@@ -24,8 +24,8 @@ jobs:
   build-and-validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -38,7 +38,7 @@ jobs:
       - name: Build and validate Internet-Draft
         run: make ietf-check
       - name: Upload rendered Internet-Draft
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: draft-sankarshan-agent-registry-protocol-00
           path: |
