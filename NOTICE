@@ -1,6 +1,18 @@
 Agent Registry Protocol
 Copyright 2026 Agent Registry Protocol contributors
 
+PROJECT STEWARDSHIP
+
+Agent Registry Protocol (ARPA) is authored and maintained by Sankarshan Mukhopadhyay
+under the stewardship of QBF Consulting LLP.
+
+Contact: sankarshan@qbfconsulting.digital
+Project repository: https://github.com/qbf-consulting/agent-registry-protocol
+
+Repository stewardship by QBF Consulting LLP does not alter the authorship or
+license history of contributions made before or after transfer into the QBF
+Consulting GitHub organization.
+
 LICENSE CLASSIFICATION
 
 The repository uses artifact-specific licensing rather than a single license for
@@ -19,6 +31,6 @@ Where classification is unclear, the machine-readable policy at
 licensing/artifact-license-policy.json is the repository's classification map.
 A file-level license notice, if present, takes precedence for that file.
 
-This repository is an independent community project. RFC-style structure and
-terminology are used as drafting conventions and do not imply adoption by the
-IETF or another standards organization.
+This repository is an independent protocol project stewarded by QBF Consulting LLP.
+RFC-style structure and terminology are used as drafting conventions and do not
+imply adoption by the IETF or another standards organization.
