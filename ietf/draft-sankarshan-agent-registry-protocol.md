@@ -24,7 +24,8 @@ author:
   -
     ins: S. Mukhopadhyay
     name: Sankarshan Mukhopadhyay
-    org: Independent
+    org: QBF Consulting LLP
+    email: sankarshan@qbfconsulting.digital
 normative:
   RFC2119:
   RFC8174:
@@ -45,8 +46,9 @@ informative:
       -
         ins: S. Mukhopadhyay
         name: Sankarshan Mukhopadhyay
+        org: QBF Consulting LLP
     date: 2026-07-16
-    target: https://sankarshanmukhopadhyay.github.io/agent-registry-protocol/spec/agent-registry-protocol-v0.9.0.html
+    target: https://qbf-consulting.github.io/agent-registry-protocol/spec/agent-registry-protocol-v0.9.0.html
 ---
 
 --- abstract
@@ -374,158 +376,156 @@ A stale cached response MUST NOT be used to produce an affirmative authority res
 
 # Error Handling
 
-Protocol errors SHOULD use Problem Details for HTTP APIs {{RFC9457}} with an ARPA-specific problem type when interoperable handling is required.
+Protocol errors SHOULD use Problem Details for HTTP APIs {{RFC9457}} with an ARPA-specific problem type when interoperable handling is unavailable. The `type` URI SHOULD identify a stable ARPA problem type. The response SHOULD include an ARPA error code suitable for deterministic client behavior.
 
-An error response SHOULD contain a stable machine-readable reason code. Registries MUST distinguish at least:
+At minimum, interoperable implementations SHOULD distinguish:
 
-* malformed request;
+* invalid request;
 * unsupported protocol version;
 * unsupported record type;
-* unauthorized operation;
-* forbidden disclosure;
-* unknown identifier;
+* unauthenticated request;
+* unauthorized request;
+* record not found;
 * stale material state;
-* conflicting material state;
-* authoritative source unavailable; and
+* conflicting authoritative state;
+* unavailable authoritative state;
+* unverifiable evidence;
+* revoked or suspended authority; and
 * historical reconstruction indeterminate.
 
-Clients MUST NOT convert an error indicating stale, conflicting, unavailable, or indeterminate material authority into an affirmative authority outcome.
+Clients MUST NOT treat an unknown error code or unknown Problem Details extension as success.
 
-# Versioning and Extensibility
+# Event Model
 
-A registry MUST identify the ARPA protocol version it implements. Extension fields MUST be namespaced or otherwise collision-resistant.
+ARPA defines an event envelope for material changes. An event MUST contain:
 
-An extension MUST NOT redefine the semantics of a core field. An extension MUST NOT weaken a core fail-safe requirement while claiming conformance to this specification.
-
-Recipients MUST ignore unknown optional extension fields unless their local policy requires rejection. Unknown fields that are marked critical by a future extension mechanism MUST cause processing to fail unless understood.
-
-New relationship types, record types, reason codes, and other extensible values SHOULD be defined through registries with explicit change control. This draft currently maintains project registries; the [IANA Considerations](#iana-considerations) section identifies which registries require IANA action before publication as an RFC.
-
-# Event Semantics
-
-A registry MAY expose an event stream for lifecycle, authority, relationship, and other material changes. This document does not mandate a specific event transport.
-
-Events MUST be persistently sequenceable within a publisher scope. Consumers MUST be able to detect replay and duplicates. Event processing MUST be idempotent with respect to an event identifier.
-
-An event MUST identify:
-
-* the event type;
 * event identifier;
-* publisher;
-* affected subject or record;
-* effective time;
-* sequence or ordering information; and
-* a reference or representation sufficient to obtain the resulting authoritative state.
+* event type;
+* subject;
+* issuer;
+* event time;
+* affected record or status reference; and
+* protocol version.
 
-Receiving an event is not equivalent to completing enforcement. Where revocation convergence is material, the applicable profile SHOULD define acknowledgement and convergence semantics.
+Events SHOULD be immutable once published. A correction SHOULD be represented as a new event referencing the superseded event.
 
-# Processing Requirements
+Event consumers MUST support duplicate delivery. Processing the same event identifier more than once MUST NOT expand authority or cause a transition that could not result from a single processing of that event.
 
-A conforming resolver or authority evaluator MUST maintain the following processing order where the steps apply:
+A registry MUST define event ordering semantics. If globally monotonic sequence numbers are unavailable, the registry MUST provide enough source-specific ordering information for consumers to detect gaps or ambiguity within the applicable stream.
 
-1. validate the response syntax and supported protocol version;
-2. establish the response source and whether it is authoritative or derived;
-3. evaluate freshness and requested effective time;
-4. establish lifecycle/status applicability;
-5. validate relationship and authority scope;
-6. apply parent-authority and delegation constraints;
-7. evaluate conflicts or missing material inputs;
-8. produce an affirmative, negative, or indeterminate result; and
-9. retain reason codes and evidence references sufficient to explain the outcome.
+Revocation and suspension events affecting authority SHOULD be delivered through a mechanism whose expected convergence is documented. A consumer MUST NOT claim enforcement convergence until the acknowledgement or observation requirements of the applicable deployment profile have been satisfied.
 
-A later step MUST NOT override an earlier fail-safe condition unless the protocol explicitly defines a valid restoration or supersession transition supported by authoritative evidence.
+# Versioning and Extensions
+
+Protocol versions MUST be explicit in registry metadata and SHOULD be explicit in representations that can cross version boundaries.
+
+An implementation receiving a major protocol version it does not support MUST fail explicitly rather than interpret it as a supported version.
+
+Extensions MUST use collision-resistant names or registered extension identifiers. An extension MUST specify whether it is ignorable. An implementation MUST fail closed when an unknown non-ignorable extension can affect authority, lifecycle, security, privacy, or evidence semantics.
+
+New fields are not automatically safe to ignore. Extension specifications MUST state the processing effect of omission and non-recognition.
 
 # Security Considerations
 
-ARPA carries data that can influence authorization and high-impact relying decisions. Implementers MUST therefore treat registry integrity, freshness, provenance, and authorization as security properties rather than descriptive metadata.
+ARPA exposes information that can influence authorization and operational decisions. An attacker who can forge, suppress, replay, reorder, stale, or selectively disclose registry state can cause both unauthorized action and denial of legitimate action.
 
-## Identifier and Endpoint Substitution
+Implementations MUST authenticate authoritative sources for material state. Deployments MUST define how source authenticity and integrity are established. HTTPS server authentication can provide transport-level source authentication but does not by itself establish that the server is authoritative for a particular principal, agent, relationship, or authority scope.
 
-Attackers can attempt to replace an Agent Identifier, key binding, deployment, or service endpoint while preserving superficially valid metadata. Registries MUST authenticate modification requests and MUST maintain provenance sufficient to detect unauthorized reassignment. Resolvers SHOULD bind endpoint use to separately authenticated identity mechanisms appropriate to the application.
+Resolvers MUST evaluate freshness for material state. A cryptographically valid but stale authority statement can be unsafe. Caches and federation layers MUST preserve source, issuance time, validity interval, and status information needed to evaluate freshness.
 
-## Authority Escalation
+Delegation processing MUST prevent scope amplification. Implementations MUST check that every delegated authority is a subset of the issuer's effective authority after applying conditions, prohibitions, validity, resource scope, action scope, and delegation-depth constraints.
 
-A malicious or defective issuer can attempt to delegate actions or resources beyond its own effective scope. Evaluators MUST intersect delegated authority with the issuer's effective authority and MUST NOT allow delegation to expand scope.
+Registries and resolvers MUST treat conflicting authoritative state as non-affirmative until the applicable conflict-resolution policy establishes a competent source or otherwise resolves the conflict. Implementations MUST NOT select the most permissive source merely because it enables an action.
 
-## Stale-State and Revocation Races
+Historical resolution creates evidence-retention risks. A registry that supports historical queries MUST protect retained records against unauthorized alteration and MUST expose reconstruction limitations rather than fabricate completeness.
 
-Cached or replicated data can remain affirmative after a suspension, revocation, compromise, or operator change. Registries SHOULD expose freshness and event mechanisms appropriate to the risk. Evaluators MUST apply relying-party freshness policy and MUST fail safely when required current state cannot be established.
+Events can be replayed, reordered, duplicated, or suppressed. Consumers MUST implement duplicate-safe processing and MUST detect ordering gaps where the source provides sequence information. Material revocation or suspension SHOULD have an out-of-band recovery or resynchronization path when event delivery cannot be trusted.
 
-## Replay and Event Reordering
+The protocol does not define credential proof formats or cryptographic suites. Deployments using signed credentials, signed HTTP messages, or proof-bearing records MUST select algorithms and key-management practices appropriate to their threat model. A valid signature MUST NOT be treated as proof of current delegated authority without evaluating the signed semantics and lifecycle state.
 
-Events and evidence can be replayed or delivered out of order. Events MUST contain stable identifiers and sequence information. Consumers MUST deduplicate events and MUST NOT treat an older event as superseding a known later authoritative state.
+Registry discovery can create enumeration and relationship-disclosure risks. Deployments SHOULD minimize unauthenticated discovery, separate public from restricted metadata, and avoid exposing principal-agent relationships or authority details beyond what the caller is permitted to learn.
 
-## Federation and Recognition Confusion
-
-Receiving records from another registry does not establish governance recognition. Implementations MUST separate transport federation from any recognition relationship and MUST NOT infer transitive trust.
-
-## Confused Deputy
-
-An agent or intermediary can present a technically valid delegation outside its intended principal, purpose, resource, or action context. Evaluators MUST bind authority evaluation to the action context and MUST apply all applicable restrictions.
-
-## Registry Compromise
-
-A compromised authoritative registry can publish false state. Deployments requiring stronger assurance SHOULD use authenticated records, append-only transparency mechanisms, independent evidence sources, or other controls appropriate to the threat model. This specification does not mandate a single cryptographic proof format.
+Implementations MUST apply ordinary HTTP security controls including request size limits, parsing limits, rate limiting, authorization checks, logging controls, and protection against server-side request forgery when dereferencing evidence or federation references.
 
 # Privacy Considerations
 
-Agent registries can reveal organizational structures, principal-agent relationships, operational deployments, capabilities, delegated authority, and historical activity. Implementers SHOULD expose the minimum information necessary for the relying purpose.
+Agent registries can expose relationships among people, organizations, agents, deployments, operators, controllers, and delegated authorities. These relationships can reveal organizational structure, sensitive workflows, personal associations, operational capabilities, or transaction intent even when the underlying payloads are not disclosed.
 
-Unauthenticated discovery SHOULD avoid disclosing sensitive relationships or authority details. Registries SHOULD support access-controlled resolution and SHOULD separate public discovery metadata from protected authority evidence.
+Registries SHOULD minimize collected and published relationship data. A record SHOULD contain only the information required for the relying context. Deployments SHOULD prefer opaque or pairwise identifiers when global correlation is unnecessary.
 
-Historical resolution creates additional correlation and retention risks. Deployments SHOULD define retention periods and access policy for historical state. The existence of a protocol capability for historical resolution does not require every registry to make all historical records public.
+Discovery and search interfaces SHOULD be treated as distinct privacy surfaces. A registry MAY permit resolution of a known identifier while denying bulk enumeration or broad search. Authorization for discovery MUST NOT be inferred from authorization for resolution.
 
-Resolvers and registries SHOULD minimize logging of sensitive query parameters and identifiers where operationally feasible. Logs that reveal which agents or principals a caller is investigating can themselves be sensitive.
+Historical records increase correlation and retention risk. Deployments MUST define retention periods, access controls, correction procedures, and deletion or tombstoning behavior consistent with their legal and governance obligations. A historical-resolution feature MUST NOT be interpreted as requiring indefinite retention of personal data.
+
+Evidence references can leak sensitive information through URLs, identifiers, query strings, or dereference patterns. Implementations SHOULD avoid embedding confidential data in evidence URLs and SHOULD authorize evidence retrieval independently from registry resolution.
+
+Logs SHOULD avoid storing unnecessary authority contents, credentials, personal identifiers, or evidence payloads. Where audit requirements require retention, access SHOULD be restricted and retention SHOULD be bounded.
+
+Federated registries can amplify privacy risk because data disclosed for one context can be indexed or correlated in another. Federation agreements SHOULD define permitted propagation, purpose restrictions, retention, correction, and withdrawal behavior.
+
+ARPA does not define a legal basis for processing personal data. Implementers are responsible for identifying and satisfying applicable privacy and data-protection requirements.
 
 # Operational Considerations
 
-Registries SHOULD publish operational metadata describing supported protocol versions, limits, historical-resolution capability, freshness guarantees, and event availability.
+Deployments SHOULD publish operational metadata sufficient for resolvers to understand supported protocol versions, record types, historical-resolution support, event mechanisms, and relevant freshness expectations.
 
-Deployments SHOULD define availability and recovery objectives for material authority and status data. If an authoritative source is unavailable, consumers MUST distinguish unavailability from a negative or affirmative authority state.
+A registry SHOULD define service-level expectations for material status propagation. Where authority revocation or suspension affects downstream enforcement, the deployment SHOULD define the expected path from authoritative change to consumer observation and enforcement acknowledgement.
 
-Registry operators SHOULD monitor replication lag, event delivery gaps, stale caches, failed status propagation, and conflicting authoritative records because each can alter reliance outcomes.
+Resolvers SHOULD retain enough decision input metadata to reproduce material authority evaluations, subject to privacy and retention constraints. At minimum this normally includes evaluation time, authoritative source, source checkpoint or version, selected records, freshness assessment, and result.
 
-# Implementation Status
-{: removeinrfc="true"}
-
-This section records implementation experience for the current Internet-Draft and is intended to be removed before RFC publication.
-
-The ARPA project currently maintains Python and TypeScript implementation tracks over shared schemas, controlled registries, and conformance vectors. Repository release v0.9.5 reports deterministic and historical cross-runtime outcome checks and loopback HTTP interoperability testing.
-
-Both implementation tracks are maintained within the same project governance boundary. They therefore provide implementation diversity and executable conformance evidence, but they are not claimed as independently operated implementations.
-
-The implementation and evidence repositories are available from the ARPA project referenced by {{ARPA-SPEC}}.
+Registries SHOULD provide backup, restoration, and compromise-recovery procedures. Recovery MUST NOT silently restore superseded or revoked authority as current. A restored registry SHOULD establish a trusted checkpoint before serving affirmative authority results.
 
 # IANA Considerations
-{: #iana-considerations}
 
-This document currently anticipates, but does not request in version `-00`, the following IANA actions. The exact registrations and registration policies require working-group or community review before Standards Track publication:
+This document requests no IANA actions in `-00`.
 
-1. registration of the `agent-registry` well-known URI suffix if `/.well-known/agent-registry` is retained, using the registry established by {{RFC8615}};
-2. evaluation of whether a dedicated ARPA JSON media type is justified; and
-3. evaluation of whether core ARPA registries such as record types, relationship types, and reason codes require IANA-managed registries or can remain specification-defined extensibility points.
+A future revision may request registration of `/.well-known/agent-registry` in the Well-Known URIs registry and may define or request registries for protocol media types, relation types, or error identifiers if interoperability experience shows that centralized registration is warranted.
 
-Before this document advances beyond early individual-draft review, this section MUST be replaced with concrete registration requests or an explicit statement that no IANA actions are required.
+Until such registrations are approved, implementations MUST treat names used by this draft as experimental/project-scoped and MUST NOT represent them as IANA-assigned values.
 
-# Relationship to Existing IETF Mechanisms
+# Conformance
 
-ARPA is intended to compose with, rather than replace, existing authentication and authorization mechanisms.
+An implementation claiming conformance to this document MUST identify the protocol version and role or roles for which conformance is claimed.
 
-OAuth 2.0 {{RFC6749}} can convey authorization grants and access tokens. ARPA addresses persistent registry-resolvable agent, relationship, authority, lifecycle, and evidence state. An OAuth token can be evidence used by an ARPA-aware relying party, but token validity alone does not establish that all ARPA authority conditions remain satisfied.
+A conforming registry implementation MUST:
 
-HTTP Message Signatures {{RFC9421}} can authenticate signed HTTP messages. ARPA does not define a competing HTTP signature mechanism.
+* expose protocol metadata;
+* preserve persistent identifier semantics;
+* distinguish authoritative from derived state;
+* expose lifecycle and authority status without mapping indeterminate state to affirmative authority;
+* implement current resolution;
+* use the defined error behavior or a documented compatible mapping;
+* preserve extension/version fail-closed rules; and
+* satisfy the security and privacy requirements applicable to the implemented features.
 
-Well-known URIs {{RFC8615}} can provide discovery of registry metadata if the corresponding IANA registration is made. OAuth 2.0 Authorization Server Metadata {{RFC8414}} establishes precedent for a well-known-URI-based metadata document with a similar structure and update model; the ARPA registry metadata response follows a comparable pattern without asserting equivalence to OAuth server metadata.
+A conforming resolver implementation MUST:
 
-Future revisions are expected to document relationships with current IETF workload identity, secure credential, attestation, and supply-chain transparency work after community review.
+* distinguish resolution from authorization;
+* evaluate material freshness;
+* fail non-affirmatively on stale, conflicting, unavailable, or unverifiable material authority;
+* prevent delegation scope amplification when it evaluates authority;
+* preserve unknown non-ignorable extension behavior; and
+* retain sufficient decision metadata for reproducibility where it produces authority evaluations.
+
+Historical-resolution conformance additionally requires the implementation to distinguish requested-time state, evaluation-time knowledge, later material events, and reconstruction quality.
+
+Event conformance additionally requires duplicate-safe processing and documented ordering/gap behavior.
+
+# References to the Wider ARPA Project
+
+The repository-maintained Candidate Specification contains governance, assurance, conformance, federation, implementation, redress, test-vector, and deployment material intentionally omitted from this protocol-focused Internet-Draft. The two documents are related but have separate version lines and publication states.
 
 # Acknowledgements
-{:unnumbered}
 
-The author thanks contributors and reviewers of the ARPA project whose implementation, assurance, security, privacy, and interoperability feedback informed this protocol extraction.
+The author thanks contributors and reviewers of the wider Agent Registry Protocol project whose implementation, interoperability, governance, security, privacy, and adversarial-hardening work informed this protocol extraction.
 
 --- back
 
-# Design Notes
+# Change Log
 
-The ARPA project contains additional governance, redress, federation, assurance profiles, conformance catalogues, and implementation guidance that are intentionally not made normative by this document. This separation is intended to keep the Internet protocol surface independently implementable while allowing stronger deployment profiles to be developed separately.
+This section is to be removed by the RFC Editor before publication.
+
+## -00
+
+* Initial individual submission extracted from the ARPA Candidate Specification and implementation corpus.
+* Defines HTTP/JSON registry metadata, agent/deployment resources, relationships, authority envelopes, lifecycle/status handling, current and historical resolution, discovery, events, errors, versioning, security, privacy, operations, and conformance.
