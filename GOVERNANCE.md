@@ -10,9 +10,13 @@ nav_exclude: true
 
 This document defines how the Agent Registry Protocol project develops from an initial community draft into an implementable and independently reviewable protocol proposal.
 
-## Repository authority and status contract
+## Stewardship, authorship and repository authority
 
-`PROJECT-STATUS.yaml` is the authoritative repository-local declaration for maturity, lifecycle, operational status, specification status, intended use, normative scope, explicit non-authority boundaries, validation commands, evidence outputs, and known limitations. The portfolio repository independently owns portfolio disposition, strategic tier, and cross-repository presentation.
+The Agent Registry Protocol is authored and maintained by **Sankarshan Mukhopadhyay** (`sankarshan@qbfconsulting.digital`) and is stewarded through **QBF Consulting LLP**. QBF Consulting LLP hosts and administers the canonical project repository and publication infrastructure.
+
+Organizational stewardship does not erase or replace individual authorship or contribution history. Repository ownership identifies the current project home and governance surface; it does not retrospectively transfer authorship of historical contributions.
+
+`PROJECT-STATUS.yaml` is the authoritative repository-local declaration for maturity, lifecycle, operational status, specification status, intended use, normative scope, explicit non-authority boundaries, validation commands, evidence outputs, and known limitations. Portfolio-level presentation does not override this repository-local status contract.
 
 This repository may define and approve ARPA protocol semantics, record models, lifecycle processing, controlled registries, profiles, conformance targets, and repository-produced evidence. It does **not** acquire authority over TRQP, A2A, relying-party policy, legal recognition, accreditation, certification, or other upstream/sibling standards merely by mapping to or interoperating with them.
 
@@ -76,7 +80,7 @@ Project decisions may be challenged through a governance issue. The issue should
 
 ## Standards-body neutrality
 
-This project may be proposed to, compared with, or aligned to standards-development work. Until formally adopted, it must remain clearly identified as an independent community project.
+This project may be proposed to, compared with, or aligned to standards-development work. Until formally adopted, it must remain clearly identified as an independent protocol project stewarded by QBF Consulting LLP, not as work adopted by an external standards organization.
 
 ## Controlled protocol registries
 

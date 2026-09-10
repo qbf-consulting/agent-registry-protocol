@@ -7,8 +7,10 @@ message: "Please cite ARPA v0.9.0 as a Candidate Specification."
 authors:
   - family-names: Mukhopadhyay
     given-names: Sankarshan
-repository-code: https://github.com/sankarshanmukhopadhyay/agent-registry-protocol
-url: https://sankarshanmukhopadhyay.github.io/agent-registry-protocol/
+    email: sankarshan@qbfconsulting.digital
+    affiliation: QBF Consulting LLP
+repository-code: https://github.com/qbf-consulting/agent-registry-protocol
+url: https://qbf-consulting.github.io/agent-registry-protocol/
 license: Apache-2.0
 
 abstract: "This citation describes the ARPA software implementation release, licensed Apache-2.0. Normative and explanatory specification content in the repository is licensed CC-BY-4.0; see LICENSE for the artifact-specific licensing map."

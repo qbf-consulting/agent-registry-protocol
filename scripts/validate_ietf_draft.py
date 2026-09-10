@@ -25,7 +25,6 @@ if DRAFT.exists():
         "# Security Considerations",
         "# Privacy Considerations",
         "# IANA Considerations",
-        "# Implementation Status",
         "RFC2119",
         "RFC8174",
         "RFC9110",

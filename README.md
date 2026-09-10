@@ -6,14 +6,17 @@ nav_exclude: true
 
 # Agent Registry Protocol
 
-[![Specification status](https://img.shields.io/badge/spec-v0.9.1%20hardening-blue)](https://sankarshanmukhopadhyay.github.io/agent-registry-protocol/spec/agent-registry-protocol-v0.9.1-hardening.html)
-[![Validation](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/actions/workflows/validate.yml/badge.svg)](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/actions/workflows/validate.yml)
-[![License: CC BY 4.0](https://img.shields.io/badge/spec-CC%20BY%204.0-lightgrey.svg)](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/LICENSE-CONTENT)
-[![Code: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-lightgrey.svg)](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/LICENSE-CODE)
+[![Specification status](https://img.shields.io/badge/spec-v0.9.1%20hardening-blue)](https://qbf-consulting.github.io/agent-registry-protocol/spec/agent-registry-protocol-v0.9.1-hardening.html)
+[![Validation](https://github.com/qbf-consulting/agent-registry-protocol/actions/workflows/validate.yml/badge.svg)](https://github.com/qbf-consulting/agent-registry-protocol/actions/workflows/validate.yml)
+[![License: CC BY 4.0](https://img.shields.io/badge/spec-CC%20BY%204.0-lightgrey.svg)](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/LICENSE-CONTENT)
+[![Code: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-lightgrey.svg)](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/LICENSE-CODE)
 
 **A modular authority-control protocol for governed agent identity, delegation, recognition, lifecycle, evidence, enforcement and redress.**
 
 > An agent registry is not merely a directory. It is an authority control plane whose claims must be scoped, revocable, inspectable and enforceable.
+
+**Author and maintainer:** Sankarshan Mukhopadhyay, QBF Consulting LLP — `sankarshan@qbfconsulting.digital`  
+**Project stewardship:** QBF Consulting LLP
 
 ## Repository status
 
@@ -29,7 +32,7 @@ nav_exclude: true
 | Primary artifacts | Specification, schemas, API/event contracts, reference implementations, conformance and evidence |
 | Release gate | `make release-check-all` |
 | Candidate evidence | `artifacts/candidate-specification/evidence-bundle.json` |
-| Authority | Member-owned status and scope in `PROJECT-STATUS.yaml`; process in `GOVERNANCE.md` |
+| Authority | Repository-local status and scope in `PROJECT-STATUS.yaml`; process in `GOVERNANCE.md` |
 
 ## What the v0.9.1 hardening adds
 
@@ -82,10 +85,10 @@ ARPA maintains a deliberately separate IETF authoring surface for the protocol c
 The v0.9.1 hardening rules that affect the interoperable protocol core are synchronized into `ietf/fragments/adversarial-hardening.md`. The IETF build deterministically inserts that source fragment into the generated draft before RFCXML/TXT/HTML generation.
 
 - [IETF authoring and submission guide]({{ '/ietf/' | relative_url }})
-- [Protocol extraction map](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
-- [`-00` submission checklist](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/ietf/SUBMISSION_CHECKLIST.md)
-- [Internet-Draft base source](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/ietf/draft-sankarshan-agent-registry-protocol.md)
-- [IETF adversarial-hardening source fragment](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/ietf/fragments/adversarial-hardening.md)
+- [Protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
+- [`-00` submission checklist](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/SUBMISSION_CHECKLIST.md)
+- [Internet-Draft base source](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/draft-sankarshan-agent-registry-protocol.md)
+- [IETF adversarial-hardening source fragment](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/fragments/adversarial-hardening.md)
 
 Build and validate the draft with `make ietf-setup` followed by `make ietf-check`. GitHub Actions automatically regenerates RFCXML v3, TXT and HTML whenever an IETF source/build input changes and publishes the generated outputs through the Pages pipeline after complete publication validation. A project-level `spec/` edit alone does not rewrite IETF source; protocol-core changes must be synchronized explicitly, as this hardening work does.
 
@@ -123,18 +126,18 @@ ARPA owns the authority, lifecycle, evidence, revocation, enforcement and federa
 
 The ARPA Candidate Specification is open for public review. Readers, implementers, standards practitioners, security and privacy reviewers, and other interested parties can use the repository's **Specification feedback** issue form to report ambiguities, governance or authority concerns, interoperability gaps, lifecycle problems, security/privacy risks, conformance issues, missing cases, or editorial improvements.
 
-[Open a specification feedback issue](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/issues/new?template=specification_feedback.yml) or see [CONTRIBUTING.md](CONTRIBUTING.md) for review and contribution expectations.
+[Open a specification feedback issue](https://github.com/qbf-consulting/agent-registry-protocol/issues/new?template=specification_feedback.yml) or see [CONTRIBUTING.md](CONTRIBUTING.md) for review and contribution expectations.
 
 ## Licensing
 
 ARPA uses **artifact-specific licensing** so that specification content and executable implementation artifacts have licenses suited to their use:
 
-- **Specification and human-readable content:** [CC BY 4.0](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/LICENSE-CONTENT)
-- **Code and executable/machine-readable artifacts:** [Apache License 2.0](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/LICENSE-CODE)
+- **Specification and human-readable content:** [CC BY 4.0](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/LICENSE-CONTENT)
+- **Code and executable/machine-readable artifacts:** [Apache License 2.0](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/LICENSE-CODE)
 
 Machine-readable schemas, OpenAPI/AsyncAPI contracts, validators, test vectors, fixtures, mappings, executable configuration and generated machine-readable evidence are treated as software artifacts under Apache-2.0 unless a file explicitly states otherwise. Normative and informative specification prose, documentation, diagrams, governance prose, narrative examples and release notes are content under CC-BY-4.0.
 
-See the repository [licensing map](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/LICENSE), [NOTICE](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/NOTICE), and machine-readable [artifact license policy](licensing/artifact-license-policy.json) for the deterministic classification rules.
+See the repository [licensing map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/LICENSE), [NOTICE](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/NOTICE), and machine-readable [artifact license policy](licensing/artifact-license-policy.json) for the deterministic classification rules.
 
 ## Assurance boundary
 

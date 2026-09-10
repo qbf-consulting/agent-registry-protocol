@@ -29,10 +29,25 @@ from pathlib import Path
 import sys
 source = Path(sys.argv[1]).read_text(encoding="utf-8")
 fragment = Path(sys.argv[2]).read_text(encoding="utf-8").strip()
-marker = "\n# Acknowledgements\n{:unnumbered}\n"
-if marker not in source:
-    raise SystemExit("error: IETF source is missing the unnumbered Acknowledgements marker")
-combined = source.replace(marker, f"\n\n{fragment}\n\n# Acknowledgements\n{{:unnumbered}}\n", 1)
+unnumbered = "\n# Acknowledgements\n{:unnumbered}\n"
+numbered = "\n# Acknowledgements\n"
+if unnumbered in source:
+    combined = source.replace(
+        unnumbered,
+        f"\n\n{fragment}\n\n# Acknowledgements\n{{:unnumbered}}\n",
+        1,
+    )
+elif numbered in source:
+    # The source may intentionally omit kramdown's unnumbered attribute.
+    # Preserve that source form while inserting the generated hardening
+    # fragment immediately before Acknowledgements.
+    combined = source.replace(
+        numbered,
+        f"\n\n{fragment}\n\n# Acknowledgements\n",
+        1,
+    )
+else:
+    raise SystemExit("error: IETF source is missing the Acknowledgements marker")
 Path(sys.argv[3]).write_text(combined, encoding="utf-8")
 PY
 
