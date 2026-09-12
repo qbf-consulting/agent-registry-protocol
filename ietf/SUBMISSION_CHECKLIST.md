@@ -5,7 +5,7 @@
 - [x] Individual-draft name: `draft-sankarshan-agent-registry-protocol-00`
 - [x] Standards Track category selected for authoring
 - [x] Full author name recorded
-- [ ] Durable author email/contact metadata added
+- [x] Durable author email/contact metadata added (`sankarshan@qbfconsulting.digital`, QBF Consulting LLP)
 - [x] ARPA project version separated from I-D revision
 
 ## Protocol completeness
@@ -26,8 +26,8 @@
 - [x] Security Considerations present
 - [x] Privacy Considerations present
 - [x] Operational Considerations present
-- [x] Implementation Status present
-- [ ] IANA actions finalized after community review
+- [x] Implementation evidence/status documented in `SUBMISSION_READINESS_REVIEW.md`
+- [x] IANA posture finalized for `-00`: no IANA actions requested; prospective registrations deferred to community review
 
 ## Assurance
 
@@ -38,21 +38,23 @@
 - [x] TypeScript implementation exists
 - [x] Cross-runtime comparison exists
 - [x] Network interoperability test exists
-- [ ] At least one externally operated independent implementation or review, when available
+- [ ] At least one externally operated independent implementation or review, when available (not a `-00` submission blocker)
 
 ## Community preparation
 
-- [ ] Complete WIMSE overlap/dependency review
-- [ ] Complete OAuth/delegation overlap/dependency review
-- [ ] Review SCITT/RATS and other relevant ART work
-- [ ] Prepare short problem statement for DISPATCH/community discussion
-- [ ] Prepare protocol architecture presentation
-- [ ] Record early review issues and disposition
+- [x] Complete initial WIMSE overlap/dependency review
+- [x] Complete initial OAuth/delegation overlap/dependency review
+- [x] Complete initial SCITT/RATS boundary review
+- [ ] Prepare short problem statement for DISPATCH/community discussion (post-submission community work)
+- [ ] Prepare protocol architecture presentation (post-submission community work)
+- [ ] Record early external review issues and disposition (begins after `-00` publication)
+
+See `SUBMISSION_READINESS_REVIEW.md` for the delta audit, standards-boundary review and submission decision.
 
 ## Submission
 
-- [ ] `make ietf-check` passes
-- [ ] `make release-check-all` passes
+- [ ] `make ietf-check` passes on the final submission commit
+- [ ] `make release-check-all` passes on the final submission commit
 - [ ] Generated TXT reviewed
 - [ ] Generated HTML reviewed
 - [ ] RFCXML v3 submitted to Datatracker
