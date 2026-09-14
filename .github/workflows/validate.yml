@@ -12,8 +12,8 @@ jobs:
   repository:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -21,7 +21,7 @@ jobs:
         run: python -m pip install -r scripts/requirements.txt
       - name: Run Python release validation
         run: make release-check
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
       - name: Run independent TypeScript implementation checks
@@ -31,7 +31,7 @@ jobs:
       - name: Run Python-TypeScript network interoperability
         run: make network-interop
       - name: Upload interoperability evidence
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: arpa-v0.9.0-evidence
           path: |
@@ -41,8 +41,8 @@ jobs:
   pages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -57,7 +57,7 @@ jobs:
       - name: Build and validate complete GitHub Pages site
         run: make pages-check
       - name: Upload publication evidence
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: github-pages-assurance
           path: artifacts/pages/
