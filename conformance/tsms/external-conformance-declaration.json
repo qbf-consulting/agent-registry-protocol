@@ -1,0 +1,54 @@
+{
+  "profile_id": "tsmm-external-conformance-core-2026.1",
+  "profile_version": "1.0.0",
+  "implementation": {
+    "name": "agent-registry-protocol",
+    "version": "0.9.5",
+    "repository": "https://github.com/qbf-consulting/agent-registry-protocol"
+  },
+  "requirements": [
+    {
+      "id": "TSMM-CONF-AUTHORITY",
+      "support": "supported",
+      "evidence": [
+        "spec/agent-registry-protocol-v0.9.0.md",
+        "spec/agent-registry-protocol-v0.9.1-hardening.md",
+        "artifacts/candidate-specification/requirements.json"
+      ]
+    },
+    {
+      "id": "TSMM-CONF-DELEGATION",
+      "support": "supported",
+      "evidence": [
+        "spec/agent-registry-protocol-v0.9.0.md",
+        "spec/agent-registry-protocol-v0.9.1-hardening.md",
+        "conformance/test-vectors"
+      ]
+    },
+    {
+      "id": "TSMM-CONF-SCOPE",
+      "support": "supported",
+      "evidence": [
+        "spec/agent-registry-protocol-v0.9.1-hardening.md",
+        "conformance/test-vectors"
+      ]
+    },
+    {
+      "id": "TSMM-CONF-CURRENT-STATE",
+      "support": "supported",
+      "evidence": [
+        "spec/agent-registry-protocol-v0.9.0.md",
+        "spec/agent-registry-protocol-v0.9.1-hardening.md",
+        "artifacts/candidate-specification/candidate-validation-report.json"
+      ]
+    },
+    {
+      "id": "TSMM-CONF-EVIDENCE",
+      "support": "supported",
+      "evidence": [
+        "artifacts/candidate-specification/evidence-bundle.json",
+        "artifacts/candidate-specification/candidate-validation-report.json"
+      ]
+    }
+  ]
+}

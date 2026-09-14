@@ -17,6 +17,7 @@ validate:
 	python3 scripts/validate_governance_assurance.py
 	python3 scripts/validate_operational_resilience.py
 	python3 scripts/validate_tga_alignment.py
+	python3 scripts/validate_tsms_external_conformance.py
 	python3 scripts/validate_ietf_draft.py
 test:
 	python3 -m pytest -q

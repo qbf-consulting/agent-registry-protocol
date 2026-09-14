@@ -1,0 +1,14 @@
+{
+  "profile_id": "tsmm-external-conformance-core-2026.1",
+  "profile_version": "1.0.0",
+  "cases": [
+    {"id": "ARPA-TSMS-001", "condition": "all-required-supported-with-evidence", "expected": "PASS"},
+    {"id": "ARPA-TSMS-002", "condition": "missing-authority", "expected": "FAIL"},
+    {"id": "ARPA-TSMS-003", "condition": "missing-delegation", "expected": "FAIL"},
+    {"id": "ARPA-TSMS-004", "condition": "out-of-scope-effect", "expected": "FAIL"},
+    {"id": "ARPA-TSMS-005", "condition": "revoked-or-non-current-state", "expected": "FAIL"},
+    {"id": "ARPA-TSMS-006", "condition": "missing-required-evidence", "expected": "INDETERMINATE"},
+    {"id": "ARPA-TSMS-007", "condition": "unknown-semantic-requirement", "expected": "FAIL"},
+    {"id": "ARPA-TSMS-008", "condition": "unsupported-profile-version", "expected": "FAIL"}
+  ]
+}
