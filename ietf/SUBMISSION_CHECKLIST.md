@@ -53,10 +53,12 @@ See `SUBMISSION_READINESS_REVIEW.md` for the delta audit, standards-boundary rev
 
 ## Submission
 
-- [ ] `make ietf-check` passes on the final submission commit
-- [ ] `make release-check-all` passes on the final submission commit
-- [ ] Generated TXT reviewed
-- [ ] Generated HTML reviewed
+- [x] `make ietf-check` passes on the final submission source commit
+- [x] `make release-check-all` constituent gates pass on the final submission source commit via the `Validate` workflow
+- [x] Generated TXT reviewed
+- [x] Generated HTML reviewed
+- [x] RFCXML metadata/content reviewed
+- [x] Exact build artifact and SHA-256 digests recorded in `SUBMISSION_PACKAGE.md`
 - [ ] RFCXML v3 submitted to Datatracker
 - [ ] Submission verified by author
 - [ ] Datatracker URL recorded in repository
