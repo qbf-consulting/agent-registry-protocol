@@ -59,6 +59,15 @@ See `SUBMISSION_READINESS_REVIEW.md` for the delta audit, standards-boundary rev
 - [x] Generated HTML reviewed
 - [x] RFCXML metadata/content reviewed
 - [x] Exact build artifact and SHA-256 digests recorded in `SUBMISSION_PACKAGE.md`
-- [ ] RFCXML v3 submitted to Datatracker
-- [ ] Submission verified by author
-- [ ] Datatracker URL recorded in repository
+- [x] RFCXML v3 submitted to Datatracker
+- [x] Submission verified by author
+- [x] Datatracker URL recorded in repository
+
+## Published result
+
+- [x] Published as `draft-sankarshan-agent-registry-protocol-00` on 2026-09-17
+- [x] Archived text: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-00.txt>
+- [x] Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
+- [x] HTMLized draft: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
+
+The published IETF archive is the immutable `-00` baseline. Any subsequent source changes are development toward `-01` or later and do not modify the archived `-00` document.
