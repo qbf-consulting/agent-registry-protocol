@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { once } from "node:events";
 import { createArpaServer } from "../src/server.js";
 import { ArpaClient } from "../src/client.js";
+import { MemoryStore } from "../src/store.js";
 import { classifyAgentCardCompatibility, createA2APublicationProjection } from "../src/a2a.js";
 
 test("A2A projection never implies authority", () => {
@@ -33,5 +34,48 @@ test("HTTP client and server provide a consumable ARPA surface", async () => {
     const list = await client.listAgents();
     assert.equal(list.items[0].authority_implication, false);
     assert.equal((await client.resolveAgent("agentreg:example:http")).agent.record_id, "core-http");
+  } finally { server.close(); }
+});
+
+test("malformed JSON is rejected without exposing parser details", async () => {
+  const { server } = createArpaServer({ port: 0, host: "127.0.0.1" });
+  server.listen(0, "127.0.0.1"); await once(server, "listening");
+  const address = server.address();
+  assert.ok(address && typeof address === "object");
+  try {
+    const response = await fetch(`http://127.0.0.1:${address.port}/agents`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: "{not-valid-json"
+    });
+    const payload = await response.json() as Record<string, unknown>;
+    const serialized = JSON.stringify(payload);
+    assert.equal(response.status, 400);
+    assert.equal(payload.code, "ARPA-INVALID-JSON");
+    assert.equal(payload.detail, "Request body must contain valid JSON.");
+    assert.equal(typeof payload.correlation_id, "string");
+    assert.doesNotMatch(serialized, /Unexpected token|Expected property name|at position \d+|column \d+/i);
+  } finally { server.close(); }
+});
+
+test("unexpected failures return a bounded internal error", async () => {
+  class ExplodingStore extends MemoryStore {
+    override recordsForSubject(_subject: string, _at?: string): Record<string, unknown>[] {
+      throw new Error("sensitive storage diagnostic");
+    }
+  }
+
+  const { server } = createArpaServer({ port: 0, host: "127.0.0.1", store: new ExplodingStore() });
+  server.listen(0, "127.0.0.1"); await once(server, "listening");
+  const address = server.address();
+  assert.ok(address && typeof address === "object");
+  try {
+    const response = await fetch(`http://127.0.0.1:${address.port}/agents/agentreg%3Aexample%3Aexplode`);
+    const payload = await response.json() as Record<string, unknown>;
+    assert.equal(response.status, 500);
+    assert.equal(payload.code, "ARPA-INTERNAL");
+    assert.equal(payload.detail, "The server could not process the request.");
+    assert.equal(typeof payload.correlation_id, "string");
+    assert.doesNotMatch(JSON.stringify(payload), /sensitive storage diagnostic/);
   } finally { server.close(); }
 });

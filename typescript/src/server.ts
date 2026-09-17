@@ -8,6 +8,13 @@ import type { AuthorityEvaluationInput } from "./types.js";
 const now = () => new Date().toISOString();
 const digest = (value: unknown) => `sha256:${createHash("sha256").update(JSON.stringify(value, Object.keys(value as any).sort())).digest("hex")}`;
 
+class InvalidJsonError extends Error {
+  constructor() {
+    super("invalid JSON request body");
+    this.name = "InvalidJsonError";
+  }
+}
+
 export interface ServerOptions { port?: number; host?: string; store?: MemoryStore; }
 
 export function createArpaServer(options: ServerOptions = {}) {
@@ -18,11 +25,24 @@ export function createArpaServer(options: ServerOptions = {}) {
       res.writeHead(status, { "content-type": "application/json" });
       res.end(JSON.stringify(body));
     };
-    const problem = (status: number, code: string, title: string, detail = "") => send(status, { type: `https://arpa.example/problems/${code.toLowerCase()}`, title, status, code, detail, reason_codes: [], retryable: false });
+    const problem = (status: number, code: string, title: string, detail = "") => send(status, {
+      type: `https://arpa.example/problems/${code.toLowerCase()}`,
+      title,
+      status,
+      code,
+      detail,
+      correlation_id: randomUUID(),
+      reason_codes: [],
+      retryable: false
+    });
     const body = async (): Promise<Record<string, unknown>> => {
       const chunks: any[] = [];
       for await (const chunk of req) chunks.push(chunk);
-      return JSON.parse(Buffer.concat(chunks).toString("utf8") || "{}");
+      try {
+        return JSON.parse(Buffer.concat(chunks).toString("utf8") || "{}");
+      } catch {
+        throw new InvalidJsonError();
+      }
     };
     const emit = (subject: string, eventType: string, payload: Record<string, unknown>) => store.addEvent({ event_id: randomUUID(), event_type: eventType, subject, effective_at: now(), issued_at: now(), payload });
 
@@ -86,7 +106,10 @@ export function createArpaServer(options: ServerOptions = {}) {
       if (req.method === "GET" && url.pathname === "/events") return send(200, { events: store.events(undefined, Number(url.searchParams.get("after") ?? 0)), after: Number(url.searchParams.get("after") ?? 0) });
       return problem(404, "ARPA-ID-NOT-FOUND", "Endpoint not found");
     } catch (error) {
-      return problem(500, "ARPA-INTERNAL", "Internal error", error instanceof Error ? error.message : String(error));
+      if (error instanceof InvalidJsonError) {
+        return problem(400, "ARPA-INVALID-JSON", "Invalid JSON", "Request body must contain valid JSON.");
+      }
+      return problem(500, "ARPA-INTERNAL", "Internal error", "The server could not process the request.");
     }
   });
   return { server, store };
