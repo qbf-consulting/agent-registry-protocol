@@ -51,3 +51,7 @@ Where material state is drawn from multiple independently ordered sources, a dec
 A proof mechanism used for a normative ARPA record MUST define the proof input transformation, excluded or transformed proof fields, deterministic encoding, algorithm or suite identifier, verification-method interpretation, key-status evaluation time, and any domain-separation or replay-binding semantics required by the mechanism.
 
 Canonicalization alone does not define the logical object covered by a proof. Successful proof verification MUST NOT be interpreted as current authority, issuer competence, governance recognition, or acceptable reliance.
+
+## Relationship to Existing IETF Mechanisms
+
+ARPA is designed to compose with existing IETF mechanisms rather than redefine them. OAuth 2.0 {{RFC6749}} and OAuth Authorization Server Metadata {{RFC8414}} can provide authorization and discovery inputs, but possession of an OAuth token or discovery of an authorization server does not by itself establish the registry-visible delegated-authority state defined by ARPA. The `/.well-known/agent-registry` discovery convention follows the Well-Known URI model in {{RFC8615}} and requires the registration discussed in the IANA Considerations section before Standards Track publication. Deployments that use HTTP Message Signatures {{RFC9421}} can protect message authenticity and integrity, but successful signature verification MUST NOT be treated as proof that the signer has current delegated authority for the requested action.
