@@ -1,6 +1,6 @@
 # ARPA Internet-Draft `-00` Submission Package
 
-This file identifies the exact build evidence selected for the initial IETF Internet-Draft submission.
+This file identifies the exact build evidence selected for the initial IETF Internet-Draft submission and records the resulting publication state.
 
 ## Draft identity
 
@@ -12,13 +12,25 @@ This file identifies the exact build evidence selected for the initial IETF Inte
 - Affiliation: QBF Consulting LLP
 - Contact: `sankarshan@qbfconsulting.digital`
 
-## Source state
+## Published result
+
+- Publication date: `2026-09-17`
+- IETF archive: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-00.txt>
+- Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
+- HTMLized draft: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
+- Published page count: 26
+
+The IETF archive is the immutable historical authority for the published `-00` revision. Repository changes after publication do not change that artifact; substantive edits to the IETF source are candidate changes for `-01` or a later revision.
+
+## Source state used for submission
 
 - Submission-source branch: `docs/ietf-00-submission-package`
 - Source commit: `d68a0aaf958762b80c21401aecaea65841bed70e`
 - Source files:
   - `ietf/draft-sankarshan-agent-registry-protocol.md`
   - `ietf/fragments/adversarial-hardening.md`
+
+The submission-preparation tranche was subsequently merged to `main` as `e2b7acce7e6f937391368b279c1fb1d81524b34b` without changing the protocol source represented by the validated submission artifact.
 
 ## Validation evidence
 
@@ -53,8 +65,8 @@ The generated artifacts were checked for:
 - valid generated RFCXML root metadata;
 - successful HTML generation.
 
-## Upload selection
+## Submission disposition
 
-Submit the RFCXML v3 file `draft-sankarshan-agent-registry-protocol-00.xml` to the IETF Datatracker as the authoritative source. The matching plaintext file may be uploaded alongside it. Retain the HTML rendering for human review.
+The RFCXML v3 file `draft-sankarshan-agent-registry-protocol-00.xml` was submitted through the IETF Datatracker and the submission was verified by the author. The resulting document was published as `draft-sankarshan-agent-registry-protocol-00` on 2026-09-17.
 
-After publication, record the Datatracker URL and publication date and do not mutate this `-00` evidence record; accepted corrections should flow into the editable source and revision `-01` or later.
+This record now serves as the repository-side evidence binding the pre-submission source/build state to the published IETF `-00` baseline. Accepted corrections and normative changes must flow into the editable source and a subsequent Internet-Draft revision rather than being represented as changes to the published `-00` artifact.
