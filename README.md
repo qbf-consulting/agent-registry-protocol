@@ -80,7 +80,13 @@ The normative amendment is [ARPA v0.9.1 Adversarial Hardening](spec/agent-regist
 
 ## IETF Internet-Draft track
 
-ARPA maintains a deliberately separate IETF authoring surface for the protocol core. The initial individual-draft series is **`draft-sankarshan-agent-registry-protocol`**. It does not replace the ARPA Candidate Specification or reuse ARPA semantic-version numbers.
+ARPA maintains a deliberately separate IETF authoring surface for the protocol core. The individual Internet-Draft **`draft-sankarshan-agent-registry-protocol-00`** was published by the IETF on **17 September 2026**. It does not replace the ARPA Candidate Specification or reuse ARPA semantic-version numbers.
+
+- [Published Internet-Draft (`-00`)](https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/)
+- [IETF archive text](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-00.txt)
+- [HTMLized draft](https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol)
+
+The published IETF archive is the immutable `-00` historical baseline. Subsequent repository edits to IETF source represent development toward `-01` or later and do not alter the published `-00`.
 
 The v0.9.1 hardening rules that affect the interoperable protocol core are synchronized into `ietf/fragments/adversarial-hardening.md`. The IETF build deterministically inserts that source fragment into the generated draft before RFCXML/TXT/HTML generation.
 
