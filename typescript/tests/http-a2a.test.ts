@@ -49,11 +49,12 @@ test("malformed JSON is rejected without exposing parser details", async () => {
       body: "{not-valid-json"
     });
     const payload = await response.json() as Record<string, unknown>;
+    const serialized = JSON.stringify(payload);
     assert.equal(response.status, 400);
     assert.equal(payload.code, "ARPA-INVALID-JSON");
     assert.equal(payload.detail, "Request body must contain valid JSON.");
     assert.equal(typeof payload.correlation_id, "string");
-    assert.doesNotMatch(JSON.stringify(payload), /Unexpected token|JSON|position/i);
+    assert.doesNotMatch(serialized, /Unexpected token|Expected property name|at position \d+|column \d+/i);
   } finally { server.close(); }
 });
 
