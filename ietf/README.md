@@ -3,9 +3,22 @@
 This directory is the IETF authoring surface for the **Agent Registry Protocol**.
 It is deliberately separate from the project-level ARPA Candidate Specification.
 
+## Published draft
+
+The initial individual Internet-Draft was published by the IETF on **17 September 2026**:
+
+- Draft: `draft-sankarshan-agent-registry-protocol-00`
+- Title: *Agent Registry Protocol*
+- Group: Individual Submission
+- Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
+- Archived text: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-00.txt>
+- HTMLized: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
+
+The IETF archive is the immutable historical authority for revision `-00`. Repository changes after publication do not modify that published artifact; changes to the checked-in IETF source represent development toward `-01` or a later revision and must be recorded accordingly.
+
 ## Draft identity
 
-Initial individual draft:
+Published individual draft:
 
 `draft-sankarshan-agent-registry-protocol-00`
 
@@ -111,27 +124,30 @@ allowing generated files to drift as independently committed repository state.
 The generated artifacts are publication products, not a separate authority
 surface.
 
+## Revision management after `-00`
+
+The published `-00` document is a fixed external baseline. After publication:
+
+1. record review feedback as repository issues with a clear disposition;
+2. change the checked-in IETF source only through reviewable commits and pull requests;
+3. treat substantive source changes as candidate material for `-01` or later;
+4. maintain traceability from each normative change to the issue, rationale, tests/evidence, and target I-D revision; and
+5. never describe repository-only edits as modifications to the archived `-00` document.
+
 ## Pre-submission gates
 
-Before submitting `-00` through the IETF Datatracker:
+The `-00` submission gates were completed before publication. The retained checklist and package evidence remain in:
 
-1. populate durable author contact information in the draft metadata;
-2. confirm the protocol title and individual-draft name;
-3. resolve all `ietf/TODO` markers, if any;
-4. make the IANA section concrete or explicitly no-action;
-5. complete overlap review against active IETF work, particularly workload identity and OAuth/delegation work;
-6. run `make ietf-check` and `make release-check-all`;
-7. inspect generated TXT and HTML renderings manually;
-8. verify that the adversarial-hardening section appears in the generated TXT and HTML;
-9. verify the published SHA-256 checksums against the generated submission files;
-10. submit the generated RFCXML v3 artifact; and
-11. record the Datatracker URL and submitted revision in this README.
+- `SUBMISSION_CHECKLIST.md`
+- `SUBMISSION_PACKAGE.md`
+- `SUBMISSION_READINESS_REVIEW.md`
+- `SUBMISSION_RUNBOOK.md`
 
 ## Version provenance
 
-The initial I-D is derived from the ARPA v0.9.x repository state and the v0.9.0
+The published `-00` is derived from the ARPA v0.9.x repository state and the v0.9.0
 Candidate Specification baseline, including the v0.9.1 adversarial-hardening
 amendment where its semantics belong to the interoperable protocol core. The I-D
 MUST NOT silently track a moving `Unreleased` state. Any normative change imported
 from ARPA must be reviewed, represented in the checked-in IETF source set, and
-recorded in the I-D change history before submission.
+recorded in the I-D change history before a subsequent submission.
