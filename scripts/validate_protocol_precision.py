@@ -6,6 +6,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 errors = []
+VECTORS_REL = "conformance/test-vectors/protocol-precision/protocol-precision-v0.9.2.json"
 
 
 def load_json(rel):
@@ -14,7 +15,7 @@ def load_json(rel):
 
 amendment = ROOT / "spec/agent-registry-protocol-v0.9.2-protocol-precision.md"
 requirements_path = ROOT / "registries/protocol-precision-requirements-v0.9.2.json"
-vectors_path = ROOT / "conformance/test-vectors/protocol-precision-v0.9.2.json"
+vectors_path = ROOT / VECTORS_REL
 openapi_path = ROOT / "openapi/arpa-openapi.yaml"
 historical_schema_path = ROOT / "schemas/historical-resolution.schema.json"
 error_registry_path = ROOT / "registries/error-codes.json"
@@ -47,7 +48,7 @@ if amendment.exists():
         if marker not in text:
             errors.append(f"precision amendment missing marker: {marker}")
 
-vectors = load_json("conformance/test-vectors/protocol-precision-v0.9.2.json") if vectors_path.exists() else {}
+vectors = load_json(VECTORS_REL) if vectors_path.exists() else {}
 if vectors:
     if vectors.get("arpa_version") != "0.9.2":
         errors.append("protocol-precision vectors must declare arpa_version 0.9.2")
