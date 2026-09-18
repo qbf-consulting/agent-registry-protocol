@@ -88,7 +88,7 @@ The IETF track currently consumes protocol-core semantics from:
 Machine-verifiable evidence for the v0.9.2 amendment is recorded in:
 
 - `registries/protocol-precision-requirements-v0.9.2.json`;
-- `conformance/test-vectors/protocol-precision-v0.9.2.json`; and
+- `conformance/test-vectors/protocol-precision/protocol-precision-v0.9.2.json`; and
 - `artifacts/conformance/protocol-precision-validation.json` when validation runs.
 
 ## IETF authoring inputs
