@@ -48,6 +48,13 @@ source = source.replace(
     "  RFC3986:\n  RFC7595:\n  RFC8615:\n  RFC9457:",
     1,
 )
+# RFC8615 is informative in the published -00 source. Revision -01 uses it
+# normatively for the well-known URI registration, so move rather than duplicate it.
+old_informative = "informative:\n  RFC6749:\n  RFC8414:\n  RFC8615:\n  RFC9421:"
+new_informative = "informative:\n  RFC6749:\n  RFC8414:\n  RFC9421:"
+if old_informative not in source:
+    raise SystemExit("error: -00 informative references changed; review RFC8615 promotion")
+source = source.replace(old_informative, new_informative, 1)
 
 old_identifier = (
     "An Agent Identifier MUST be a URI conforming to {{RFC3986}}. Its scheme and "
