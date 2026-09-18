@@ -19,11 +19,11 @@ The active repository branch work prepares:
 
 `draft-sankarshan-agent-registry-protocol-01`
 
-Revision `-01` is a candidate until the repository change is reviewed, merged, validated and subsequently submitted to the IETF. The IETF revision series is independent of ARPA project semantic versions.
+Revision `-01` is a candidate until the repository change is reviewed, merged, validated and subsequently submitted to the IETF. The IETF revision series is independent of ARPA implementation-release semantic versions.
 
 ## Authority and scope
 
-The ARPA Candidate Specification remains the richer project-level specification and source architecture. The Internet-Draft extracts only interoperable protocol-core semantics.
+The ARPA v0.9.0 Candidate Specification remains the normative project baseline. Candidate amendments can refine that baseline without reusing implementation-release version numbers. The Internet-Draft extracts only interoperable protocol-core semantics.
 
 Current IETF-core topics include:
 
@@ -54,7 +54,7 @@ REVISION_01_BASELINE.md
         ↓
 spec-delta-v01.yaml
         ↓
-ARPA v0.9.2 protocol-precision amendment
+ARPA Candidate Protocol Precision Amendment PP-01
         ↓
 requirements + conformance vectors
         ↓
@@ -81,14 +81,14 @@ See:
 
 The IETF track currently consumes protocol-core semantics from:
 
-- `spec/agent-registry-protocol-v0.9.0.md` — Candidate architecture and protocol baseline;
-- `spec/agent-registry-protocol-v0.9.1-hardening.md` — adversarial authority hardening; and
-- `spec/agent-registry-protocol-v0.9.2-protocol-precision.md` — identifier, historical-resolution, error and extension precision.
+- `spec/agent-registry-protocol-v0.9.0.md` — Candidate architecture and normative protocol baseline;
+- `spec/agent-registry-protocol-v0.9.1-hardening.md` — existing adversarial-authority Candidate amendment; and
+- `spec/agent-registry-protocol-protocol-precision-pp01.md` — Candidate Protocol Precision Amendment `ARPA-CAND-PP-01`.
 
-Machine-verifiable evidence for the v0.9.2 amendment is recorded in:
+Machine-verifiable evidence for `ARPA-CAND-PP-01` is recorded in:
 
-- `registries/protocol-precision-requirements-v0.9.2.json`;
-- `conformance/test-vectors/protocol-precision/protocol-precision-v0.9.2.json`; and
+- `registries/protocol-precision-requirements-pp01.json`;
+- `conformance/test-vectors/protocol-precision/protocol-precision-pp01.json`; and
 - `artifacts/conformance/protocol-precision-validation.json` when validation runs.
 
 ## IETF authoring inputs
@@ -96,8 +96,8 @@ Machine-verifiable evidence for the v0.9.2 amendment is recorded in:
 The `-01` build consumes:
 
 - `ietf/draft-sankarshan-agent-registry-protocol.md` — retained `-00` authoring baseline;
-- `ietf/fragments/adversarial-hardening.md` — v0.9.1 protocol-core hardening;
-- `ietf/fragments/protocol-precision.md` — v0.9.2 protocol-core precision; and
+- `ietf/fragments/adversarial-hardening.md` — protocol-core adversarial hardening;
+- `ietf/fragments/protocol-precision.md` — PP-01 protocol-core precision; and
 - `scripts/build_ietf_draft.sh` — exact-match transformations for revision identity, `agentreg:` identifier text, RFC 7595 and the corresponding IANA requests.
 
 The build script fails instead of silently applying these transformations if the expected baseline paragraphs no longer match. This makes a change to the historical source shape an explicit review event.
@@ -130,7 +130,7 @@ Run the full IETF gate:
 make ietf-check
 ```
 
-The gate validates the v0.9.2 protocol-precision traceability, IETF source invariants, deterministic `-01` generation and generated output markers. Generated files are written to `ietf/generated/` as:
+The gate validates PP-01 protocol-precision traceability, IETF source invariants, deterministic `-01` generation and generated output markers. Generated files are written to `ietf/generated/` as:
 
 - `draft-sankarshan-agent-registry-protocol-01.xml`
 - `draft-sankarshan-agent-registry-protocol-01.txt`
@@ -138,7 +138,7 @@ The gate validates the v0.9.2 protocol-precision traceability, IETF source invar
 
 ## CI and publication
 
-The dedicated IETF workflow runs when IETF inputs, the v0.9.2 amendment/evidence, build scripts or the Makefile change. It runs `make ietf-check` and retains the generated `-01` XML/TXT/HTML as an Actions artifact.
+The dedicated IETF workflow runs when IETF inputs, the PP-01 amendment/evidence, build scripts or the Makefile change. It runs `make ietf-check` and retains the generated `-01` XML/TXT/HTML as an Actions artifact.
 
 The Pages workflow independently runs the same IETF gate before staging the generated `-01` artifacts under `/ietf/generated/`. Complete publication validation and link checking remain required for deployment.
 
