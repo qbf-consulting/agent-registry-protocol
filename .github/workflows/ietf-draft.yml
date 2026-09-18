@@ -4,15 +4,23 @@ on:
   push:
     paths:
       - "ietf/**"
+      - "spec/agent-registry-protocol-v0.9.2-protocol-precision.md"
+      - "registries/protocol-precision-requirements-v0.9.2.json"
+      - "conformance/test-vectors/protocol-precision-v0.9.2.json"
       - "scripts/build_ietf_draft.sh"
       - "scripts/validate_ietf_draft.py"
+      - "scripts/validate_protocol_precision.py"
       - "Makefile"
       - ".github/workflows/ietf-draft.yml"
   pull_request:
     paths:
       - "ietf/**"
+      - "spec/agent-registry-protocol-v0.9.2-protocol-precision.md"
+      - "registries/protocol-precision-requirements-v0.9.2.json"
+      - "conformance/test-vectors/protocol-precision-v0.9.2.json"
       - "scripts/build_ietf_draft.sh"
       - "scripts/validate_ietf_draft.py"
+      - "scripts/validate_protocol_precision.py"
       - "Makefile"
       - ".github/workflows/ietf-draft.yml"
   workflow_dispatch:
@@ -35,13 +43,13 @@ jobs:
           ruby-version: "3.3"
       - name: Install IETF authoring dependencies
         run: make ietf-setup
-      - name: Build and validate Internet-Draft
+      - name: Build and validate Internet-Draft revision -01
         run: make ietf-check
-      - name: Upload rendered Internet-Draft
+      - name: Upload rendered Internet-Draft revision -01
         uses: actions/upload-artifact@v7
         with:
-          name: draft-sankarshan-agent-registry-protocol-00
+          name: draft-sankarshan-agent-registry-protocol-01
           path: |
-            ietf/generated/draft-sankarshan-agent-registry-protocol-00.xml
-            ietf/generated/draft-sankarshan-agent-registry-protocol-00.txt
-            ietf/generated/draft-sankarshan-agent-registry-protocol-00.html
+            ietf/generated/draft-sankarshan-agent-registry-protocol-01.xml
+            ietf/generated/draft-sankarshan-agent-registry-protocol-01.txt
+            ietf/generated/draft-sankarshan-agent-registry-protocol-01.html
