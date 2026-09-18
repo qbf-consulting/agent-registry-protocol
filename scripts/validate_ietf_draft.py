@@ -14,9 +14,9 @@ REVISION_CHECKLIST = ROOT / "ietf" / "REVISION_01_CHECKLIST.md"
 BASELINE = ROOT / "ietf" / "REVISION_01_BASELINE.md"
 DELTA = ROOT / "ietf" / "spec-delta-v01.yaml"
 BUILD = ROOT / "scripts" / "build_ietf_draft.sh"
-PRECISION_SPEC = ROOT / "spec" / "agent-registry-protocol-v0.9.2-protocol-precision.md"
-PRECISION_REQUIREMENTS = ROOT / "registries" / "protocol-precision-requirements-v0.9.2.json"
-PRECISION_VECTORS = ROOT / "conformance" / "test-vectors" / "protocol-precision" / "protocol-precision-v0.9.2.json"
+PRECISION_SPEC = ROOT / "spec" / "agent-registry-protocol-protocol-precision-pp01.md"
+PRECISION_REQUIREMENTS = ROOT / "registries" / "protocol-precision-requirements-pp01.json"
+PRECISION_VECTORS = ROOT / "conformance" / "test-vectors" / "protocol-precision" / "protocol-precision-pp01.json"
 
 errors = []
 for path in (
@@ -39,9 +39,6 @@ for path in (
 
 if DRAFT.exists():
     text = DRAFT.read_text(encoding="utf-8")
-    # The checked-in base source deliberately preserves the published -00
-    # authoring baseline. scripts/build_ietf_draft.sh applies only governed
-    # -01 transformations and fragments.
     required = [
         "docname: draft-sankarshan-agent-registry-protocol-00",
         "category: std",
@@ -106,6 +103,13 @@ if PRECISION.exists():
     for bad in ("layout: default", "nav_exclude:", "CC BY 4.0", "CC-BY-4.0"):
         if bad in precision:
             errors.append(f"IETF precision fragment contains project-only metadata/license text: {bad}")
+
+if PRECISION_SPEC.exists():
+    precision_spec = PRECISION_SPEC.read_text(encoding="utf-8")
+    if "ARPA-CAND-PP-01" not in precision_spec:
+        errors.append("protocol precision source lost amendment identifier ARPA-CAND-PP-01")
+    if "Normative baseline: ARPA v0.9.0 Candidate Specification" not in precision_spec:
+        errors.append("protocol precision source lost v0.9.0 normative baseline declaration")
 
 if BUILD.exists():
     build = BUILD.read_text(encoding="utf-8")
