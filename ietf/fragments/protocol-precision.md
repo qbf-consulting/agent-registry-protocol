@@ -1,6 +1,6 @@
 # Protocol Precision for Revision 01
 
-This section carries protocol-core precision requirements derived from the ARPA v0.9.2 Candidate amendment. It does not import project-only governance, conformance profiles, A2A integration, TRQP projection, or redress workflows.
+This section carries protocol-core precision requirements derived from ARPA Candidate Protocol Precision Amendment `ARPA-CAND-PP-01`, against the ARPA v0.9.0 Candidate normative baseline. It does not import project-only governance, conformance profiles, A2A integration, TRQP projection, or redress workflows.
 
 ## Historical Resolution Semantics
 
