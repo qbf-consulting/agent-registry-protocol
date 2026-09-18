@@ -108,7 +108,7 @@ if PRECISION_SPEC.exists():
     precision_spec = PRECISION_SPEC.read_text(encoding="utf-8")
     if "ARPA-CAND-PP-01" not in precision_spec:
         errors.append("protocol precision source lost amendment identifier ARPA-CAND-PP-01")
-    if "Normative baseline: ARPA v0.9.0 Candidate Specification" not in precision_spec:
+    if "ARPA v0.9.0 Candidate Specification" not in precision_spec:
         errors.append("protocol precision source lost v0.9.0 normative baseline declaration")
 
 if BUILD.exists():
@@ -117,8 +117,11 @@ if BUILD.exists():
         'BASE="draft-sankarshan-agent-registry-protocol-01"',
         "protocol-precision.md",
         "RFC7595",
+        "RFC8615",
         "agentreg:<registry-namespace>:<agent-local-id>",
-        "This document requests registration of the `agentreg` URI scheme",
+        "requests permanent registration of the `agentreg` URI scheme",
+        "URI suffix: `agent-registry`",
+        "Status: Permanent",
     ]
     for needle in required_build:
         if needle not in build:
