@@ -123,6 +123,7 @@ old_changelog = """## -00
 new_changelog = old_changelog + """
 
 ## -01
+{: #revision-01}
 
 * Aligns the ARPA Agent Identifier with the `agentreg:` scheme already used by the Candidate Specification and machine-readable API contract.
 * Adds adversarial authority-processing requirements for monotonic delegation, temporal boundaries, conflict handling, revocation effectiveness, decision reproducibility, and proof-input semantics.
