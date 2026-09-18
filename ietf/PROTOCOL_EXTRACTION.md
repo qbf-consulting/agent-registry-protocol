@@ -4,28 +4,28 @@ This file records which ARPA project surfaces feed the Internet-Draft and which 
 
 | ARPA surface | IETF treatment | Evidence / source |
 |---|---|---|
-| Agent Identifier and namespace model | Core normative | v0.9.0 §12.2; v0.9.2 precision §1; OpenAPI `AgentId` contract |
-| External/alternate identifiers | Core boundary only | v0.9.2 precision §1; alternate identifiers remain distinct from ARPA Agent Identifier |
+| Agent Identifier and namespace model | Core normative | v0.9.0 §12.2; PP-01 §1; OpenAPI `AgentId` contract |
+| External/alternate identifiers | Core boundary only | PP-01 §1; alternate identifiers remain distinct from ARPA Agent Identifier |
 | Record envelope and agent model | Core normative | schemas and valid examples |
 | Relationships | Core normative | `schemas/relationship.schema.json`, relationship registry |
-| Delegation and authority | Core normative | v0.9.0 §18 + v0.9.1 hardening §§1–5; authority schema and vectors |
-| Temporal validity and event ordering | Core normative | v0.9.1 hardening §2; `ADV-003`–`ADV-005` |
-| Authority outcome / `not_applicable` boundary | Core normative | v0.9.1 hardening §3; `ADV-016` |
-| Recognition conflict | Core normative invariant | v0.9.1 hardening §4; `ADV-007`, `ADV-017` |
-| Revocation effectiveness vs convergence | Core normative | v0.9.1 hardening §5; `ADV-006` |
-| Decision reproducibility/checkpoints | Core normative | v0.9.1 hardening §6; `ADV-020` |
-| Proof-input semantics | Core normative minimum | v0.9.1 hardening §7; proof-suite details remain extensible |
+| Delegation and authority | Core normative | v0.9.0 §18 + adversarial hardening §§1–5; authority schema and vectors |
+| Temporal validity and event ordering | Core normative | adversarial hardening §2; `ADV-003`–`ADV-005` |
+| Authority outcome / `not_applicable` boundary | Core normative | adversarial hardening §3; `ADV-016` |
+| Recognition conflict | Core normative invariant | adversarial hardening §4; `ADV-007`, `ADV-017` |
+| Revocation effectiveness vs convergence | Core normative | adversarial hardening §5; `ADV-006` |
+| Decision reproducibility/checkpoints | Core normative | adversarial hardening §6; `ADV-020` |
+| Proof-input semantics | Core normative minimum | adversarial hardening §7; proof-suite details remain extensible |
 | Lifecycle/status | Core normative | lifecycle/status registries and vectors |
-| Historical resolution | Core normative | v0.9.2 precision §2; historical schema, vectors and cross-runtime evidence |
+| Historical resolution | Core normative | PP-01 §2; historical schema, vectors and cross-runtime evidence |
 | Query/HTTP behavior | Core normative | OpenAPI + reference implementations |
 | Events | Core semantics; transport-neutral | AsyncAPI + event registry |
-| HTTP Problem Details | Core normative | v0.9.2 precision §3; RFC 9457; OpenAPI Problem schema; error-code registry |
-| Critical extension processing | Core normative | v0.9.2 precision §4; `ARPA-EXT-CRITICAL-UNKNOWN`; precision vectors |
+| HTTP Problem Details | Core normative | PP-01 §3; RFC 9457; OpenAPI Problem schema; error-code registry |
+| Critical extension processing | Core normative | PP-01 §4; `ARPA-EXT-CRITICAL-UNKNOWN`; precision vectors |
 | Extension namespace governance | Project-level governance | repository extension registry is not imported as an IETF registry |
 | Federation/recognition | Minimal invariants only | detailed profile remains project-level |
-| Multi-dimensional status composition | Project-level normative hardening | v0.9.1 hardening §8; IETF retains fail-safe invariant without project profile taxonomy |
-| Pairwise continuity | Privacy/security invariant | v0.9.1 hardening §9; proof construction remains outside current I-D |
-| Schema correction authority | Project change control | v0.9.1 hardening §10; not wire protocol text |
+| Multi-dimensional status composition | Project-level normative hardening | adversarial hardening §8; IETF retains fail-safe invariant without project profile taxonomy |
+| Pairwise continuity | Privacy/security invariant | adversarial hardening §9; proof construction remains outside current I-D |
+| Schema correction authority | Project change control | adversarial hardening §10; not wire protocol text |
 | Execution/decision receipts | Supporting evidence | potential future protocol work; not promoted by `-01` |
 | Governance, appeals, redress | Project-level / deployment profile | remains outside `-01` protocol core |
 | Conformance profiles | Supporting assurance | not normative in the I-D |
@@ -44,14 +44,24 @@ The IETF archive for `draft-sankarshan-agent-registry-protocol-00` is immutable 
 The generated `-01` candidate is assembled from three checked-in authoring inputs plus bounded build transformations:
 
 1. `ietf/draft-sankarshan-agent-registry-protocol.md` — published `-00` authoring baseline;
-2. `ietf/fragments/adversarial-hardening.md` — protocol-core semantics imported from the v0.9.1 Candidate hardening amendment; and
-3. `ietf/fragments/protocol-precision.md` — accepted protocol-core semantics imported from the v0.9.2 protocol-precision amendment.
+2. `ietf/fragments/adversarial-hardening.md` — protocol-core semantics imported from the existing Candidate hardening amendment; and
+3. `ietf/fragments/protocol-precision.md` — accepted protocol-core semantics imported from Candidate Protocol Precision Amendment `ARPA-CAND-PP-01`.
 
 `scripts/build_ietf_draft.sh` additionally performs reviewable exact-match transformations for revision identity, the `agentreg:` Agent Identifier contract, the RFC 7595 reference and IANA requests. The script fails rather than silently applying those transformations if the expected `-00` baseline text has changed.
 
 The accepted `-00 → -01` propositions and their disposition are recorded in `ietf/spec-delta-v01.yaml`. The human-readable review is `ietf/REVISION_01_BASELINE.md`.
 
 Generated RFCXML, TXT and HTML remain derivative publication artifacts. They do not acquire independent normative authority merely because a build succeeded.
+
+## Specification-version boundary
+
+The normative protocol baseline and implementation-release versions are distinct authority surfaces:
+
+- `spec/agent-registry-protocol-v0.9.0.md` is the normative Candidate baseline;
+- Candidate amendments are identified by their own stable amendment identifiers where necessary; and
+- repository implementation releases such as v0.9.1 through v0.9.5 do not, by their release number alone, change the normative Candidate baseline.
+
+`ARPA-CAND-PP-01` therefore does not claim to be “ARPA v0.9.2”; that implementation release already has a separate historical meaning.
 
 ## Non-implication and adversarial invariants retained in the I-D
 
@@ -82,8 +92,8 @@ Every normative I-D change MUST identify:
 - the evidence artifact expected from validation; and
 - whether the change is `ietf-normative`, `ietf-informative`, `base-only`, `deferred`, or `rejected`.
 
-For v0.9.1 hardening, machine-readable requirement-to-vector traceability is recorded in `registries/adversarial-hardening-requirements-v0.9.1.json` and `conformance/test-vectors/adversarial/adversarial-authority-v0.9.1.json`.
+For the adversarial-hardening amendment, machine-readable requirement-to-vector traceability is recorded in `registries/adversarial-hardening-requirements-v0.9.1.json` and `conformance/test-vectors/adversarial/adversarial-authority-v0.9.1.json`.
 
-For v0.9.2 protocol precision, traceability is recorded in `registries/protocol-precision-requirements-v0.9.2.json`, `conformance/test-vectors/protocol-precision/protocol-precision-v0.9.2.json`, and `ietf/spec-delta-v01.yaml`.
+For `ARPA-CAND-PP-01`, traceability is recorded in `registries/protocol-precision-requirements-pp01.json`, `conformance/test-vectors/protocol-precision/protocol-precision-pp01.json`, and `ietf/spec-delta-v01.yaml`.
 
 This keeps IETF prose reviewable without making the I-D depend on repository-only tooling for normative interpretation, while preserving enough evidence to challenge or reproduce each promoted protocol claim.
