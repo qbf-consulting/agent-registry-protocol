@@ -1,0 +1,84 @@
+# ARPA Internet-Draft Revision `-01` Readiness Checklist
+
+**Target:** `draft-sankarshan-agent-registry-protocol-01`  
+**Tracking issue:** #32  
+**Published baseline:** `draft-sankarshan-agent-registry-protocol-00`
+
+This checklist governs preparation of revision `-01`. It does not alter or replace the retained `-00` submission checklist and package evidence.
+
+## 1. Change authority and traceability
+
+- [x] Published `-00` identified as immutable baseline.
+- [x] Human-readable `-00 → -01` baseline review recorded in `REVISION_01_BASELINE.md`.
+- [x] Machine-readable disposition register recorded in `spec-delta-v01.yaml`.
+- [x] Each accepted normative delta identifies its governing ARPA source and evidence.
+- [x] Base-only/deferred semantics are explicitly excluded from the IETF core.
+- [x] Protocol-precision work uses stable amendment ID `ARPA-CAND-PP-01` instead of reusing implementation-release semver.
+
+## 2. Candidate Specification source semantics
+
+- [x] `agentreg:` identifier contradiction resolved through Candidate amendment `ARPA-CAND-PP-01`.
+- [x] Historical-resolution minimum semantics defined independently of HTTP path layout.
+- [x] RFC 9457 Problem Details machine contract defined.
+- [x] Critical-extension/version fail-safe semantics defined.
+- [x] Machine-readable PP-01 requirement catalogue added.
+- [x] Positive/negative PP-01 protocol-precision vectors added.
+- [x] Cross-artifact validation script added.
+
+## 3. IETF extraction
+
+- [x] Existing adversarial-hardening fragment retained.
+- [x] PP-01 protocol-precision fragment added.
+- [x] `-01` build changes revision identity without mutating the checked-in `-00` authoring baseline.
+- [x] `agentreg:` scheme semantics extracted into the generated `-01`.
+- [x] RFC 7595 reference and permanent URI-scheme IANA request added by the governed build transform.
+- [x] RFC 8615 promoted to a normative reference without duplicate reference identity.
+- [x] `agent-registry` well-known URI suffix registration record added by the governed build transform.
+- [x] Revision `-01` change log added to the generated draft.
+- [x] IETF extraction map updated.
+
+## 4. Automated validation
+
+Observed on the reviewed PR head before this evidence-only checklist update:
+
+- [x] `python3 scripts/validate_protocol_precision.py` passes in CI.
+- [x] `python3 scripts/validate_ietf_draft.py` passes in CI.
+- [x] `make ietf-check` builds and validates `-01` RFCXML/TXT/HTML.
+- [ ] `rfclint` passes when available. Current CI reports `rfclint unavailable`; `xml2rfc` build validation passes.
+- [x] Main repository validation passes for the branch.
+- [x] Python and TypeScript implementation checks pass.
+- [x] Cross-runtime conformance comparison and network interoperability pass.
+- [x] GitHub Pages publication validation passes with `-01` generated artifacts.
+
+The checklist update itself must also receive a green final CI run before merge.
+
+## 5. Protocol diff review
+
+The source-level and generated-artifact semantic review is recorded in `REVISION_01_SEMANTIC_REVIEW.md`.
+
+- [x] Every added or strengthened `MUST`, `MUST NOT`, `SHOULD`, and `MAY` reviewed for intentionality within the accepted `-01` propositions.
+- [x] No project-only governance, A2A, TRQP, assurance-profile or redress semantics leaked into the I-D.
+- [x] The `agentreg:` URI scheme syntax and IANA request are internally consistent.
+- [x] Historical resolution remains a resolution/evidence operation rather than a legal determination.
+- [x] Problem Details requirements avoid making sensitive authority/evidence details mandatory disclosure.
+- [x] Unknown material critical extensions fail safely.
+- [x] No reviewed change weakens the existing fail-safe authority invariants.
+- [x] Revision `-01` change summary matches the reviewed semantic delta.
+
+## 6. IETF submission hygiene
+
+Repository acceptance and Datatracker submission are separate gates.
+
+- [x] Generated plaintext reviewed for the accepted semantic deltas and IANA/change-log sections.
+- [ ] `idnits`/Datatracker submission checks have no unresolved blocking findings.
+- [x] RFC 7595/RFC 8615 reference placement and the repository-side IANA registration records have been reviewed.
+- [x] Change summary for `-01` is concise and matches the actual semantic diff.
+- [ ] Datatracker upload is performed only after the repository PR is accepted and merged.
+
+## Repository decision
+
+Revision `-01` is **repository-ready for merge** once the final CI run on this checklist head is green.
+
+## Submission decision
+
+Revision `-01` is **not yet Datatracker-submission-ready** until the remaining submission-time checks above are completed against the final merged/generated artifact. In particular, the Datatracker/idnits-equivalent checks must be run immediately before upload; repository CI is not a substitute for those external submission checks.

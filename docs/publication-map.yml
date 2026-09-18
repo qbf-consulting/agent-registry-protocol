@@ -136,6 +136,10 @@ publication_sources:
   mode: rendered-page
 - path: spec/agent-registry-protocol-v0.9.0.md
   mode: rendered-page
+- path: spec/agent-registry-protocol-v0.9.1-hardening.md
+  mode: rendered-page
+- path: spec/agent-registry-protocol-protocol-precision-pp01.md
+  mode: rendered-page
 - path: spec/profiles/arpa-agent-card-interoperability.md
   mode: rendered-page
 - path: spec/profiles/arpa-a2a-v1.0-interoperability-profile.md
@@ -210,7 +214,6 @@ publication_sources:
   mode: rendered-page
 - path: RELEASE_NOTES_v0.9.5.md
   mode: rendered-page
-
 - path: docs/governance-security-assurance.md
   mode: rendered-page
 - path: docs/assurance/rahp-audit-2026-08-16.md
