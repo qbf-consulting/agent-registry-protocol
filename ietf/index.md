@@ -39,7 +39,7 @@ The IETF track extracts the interoperable protocol core from the broader ARPA Ca
 - security and privacy considerations; and
 - prospective IANA actions.
 
-The v0.9.1 adversarial-hardening rules preserve monotonic delegation, temporal boundaries, non-applicability, authoritative conflict, revocation effectiveness, decision reproducibility and proof-input semantics. The v0.9.2 protocol-precision amendment resolves identifier, historical-resolution, HTTP error and critical-extension ambiguity exposed during the `-01` baseline review.
+The adversarial-hardening amendment preserves monotonic delegation, temporal boundaries, non-applicability, authoritative conflict, revocation effectiveness, decision reproducibility and proof-input semantics. Candidate Protocol Precision Amendment `ARPA-CAND-PP-01` resolves identifier, historical-resolution, HTTP error and critical-extension ambiguity exposed during the `-01` baseline review. The amendment identifier is independent of implementation-release semantic versions.
 
 Project governance, conformance programmes, A2A/TRQP profiles, deployment guidance, assurance evidence and redress workflows remain supporting ARPA artifacts unless standardized separately.
 
@@ -48,8 +48,8 @@ Project governance, conformance programmes, A2A/TRQP profiles, deployment guidan
 The checked-in base source deliberately preserves the published `-00` authoring baseline. The build constructs `-01` from governed deltas, the hardening and precision fragments, and bounded exact-match transformations.
 
 - [Internet-Draft base authoring source](draft-sankarshan-agent-registry-protocol.html)
-- [v0.9.1 protocol-hardening source fragment](fragments/adversarial-hardening.html)
-- [v0.9.2 protocol-precision source fragment](fragments/protocol-precision.html)
+- [Adversarial-hardening source fragment](fragments/adversarial-hardening.html)
+- [PP-01 protocol-precision source fragment](fragments/protocol-precision.html)
 - [Rendered `-01` — HTML](generated/draft-sankarshan-agent-registry-protocol-01.html)
 - [Rendered `-01` — plaintext](generated/draft-sankarshan-agent-registry-protocol-01.txt)
 - [RFCXML v3 for `-01`](generated/draft-sankarshan-agent-registry-protocol-01.xml)
@@ -79,7 +79,7 @@ Every relevant CI run installs the IETF authoring toolchain and executes:
 make ietf-check
 ```
 
-That gate validates the protocol-precision traceability, IETF authoring inputs and generated `-01` RFCXML/TXT/HTML. GitHub Pages publishes the generated artifacts only after its complete publication and link validation succeeds.
+That gate validates PP-01 protocol-precision traceability, IETF authoring inputs and generated `-01` RFCXML/TXT/HTML. GitHub Pages publishes the generated artifacts only after its complete publication and link validation succeeds.
 
 Generated outputs remain excluded from Git so they cannot drift as independently committed authority. SHA-256 checksums are published with the rendered artifacts for build evidence.
 
