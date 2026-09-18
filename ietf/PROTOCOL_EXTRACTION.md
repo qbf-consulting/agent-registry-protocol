@@ -84,6 +84,6 @@ Every normative I-D change MUST identify:
 
 For v0.9.1 hardening, machine-readable requirement-to-vector traceability is recorded in `registries/adversarial-hardening-requirements-v0.9.1.json` and `conformance/test-vectors/adversarial/adversarial-authority-v0.9.1.json`.
 
-For v0.9.2 protocol precision, traceability is recorded in `registries/protocol-precision-requirements-v0.9.2.json`, `conformance/test-vectors/protocol-precision-v0.9.2.json`, and `ietf/spec-delta-v01.yaml`.
+For v0.9.2 protocol precision, traceability is recorded in `registries/protocol-precision-requirements-v0.9.2.json`, `conformance/test-vectors/protocol-precision/protocol-precision-v0.9.2.json`, and `ietf/spec-delta-v01.yaml`.
 
 This keeps IETF prose reviewable without making the I-D depend on repository-only tooling for normative interpretation, while preserving enough evidence to challenge or reproduce each promoted protocol claim.
