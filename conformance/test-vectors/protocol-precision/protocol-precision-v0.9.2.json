@@ -1,0 +1,20 @@
+{
+  "suite": "arpa-protocol-precision-v0.9.2",
+  "arpa_version": "0.9.2",
+  "vectors": [
+    {"id":"PREC-001","claim":"ARPA Core identifiers use agentreg","input":{"agent_id":"agentreg:example.org:agent-123"},"expected":"accept"},
+    {"id":"PREC-002","claim":"external identifiers remain distinguishable","input":{"agent_id":"agentreg:example.org:agent-123","alternate_identifier":"did:example:123"},"expected":"accept-with-distinct-identifiers"},
+    {"id":"PREC-003","claim":"unsupported URI is not silently reinterpreted","input":{"agent_id":"did:example:123","mapping":null},"expected":"reject-or-explicit-mapping-required"},
+    {"id":"PREC-004","claim":"historical response carries reconstruction context","input":{"requested_at":"2026-08-01T00:00:00Z","resolved_at":"2026-09-18T00:00:00Z","selected_records":["record:1"],"later_material_events":["event:2"],"reconstruction_status":"complete"},"expected":"accept"},
+    {"id":"PREC-005","claim":"current state cannot silently replace requested-time state","input":{"requested_at":"2026-08-01T00:00:00Z","requested_time_state":"active","current_state":"revoked","reported_state":"revoked","historical_marker":null},"expected":"reject"},
+    {"id":"PREC-006","claim":"historical evidence failure is non-affirmative","input":{"reconstruction_status":"integrity_failed","decision":"allow"},"expected":"reject"},
+    {"id":"PREC-007","claim":"protocol-significant HTTP error uses Problem Details","input":{"content_type":"application/problem+json","type":"https://example.invalid/problems/authority-indeterminate","status":409,"code":"ARPA-AUTHORITY-INDETERMINATE"},"expected":"accept"},
+    {"id":"PREC-008","claim":"Problem Details has stable machine semantics","input":{"type":"https://example.invalid/problems/status-stale","status":409,"code":"ARPA-STATUS-STALE","title":"Status stale"},"expected":"accept"},
+    {"id":"PREC-009","claim":"human detail is not the machine contract","input":{"status":409,"title":"Something went wrong","detail":"retry maybe"},"expected":"reject-missing-code"},
+    {"id":"PREC-010","claim":"unknown protocol error is not success","input":{"status":409,"code":"ARPA-FUTURE-UNKNOWN-CODE"},"expected":"non-success"},
+    {"id":"PREC-011","claim":"critical extension is versioned and namespaced","input":{"critical":true,"namespace":"https://arpa.example/extensions/core","version":"1.0"},"expected":"process-if-supported"},
+    {"id":"PREC-012","claim":"unknown critical extension cannot be ignored","input":{"critical":true,"namespace":"https://unknown.example/ext","version":"9","supported":false},"expected":"ARPA-EXT-CRITICAL-UNKNOWN"},
+    {"id":"PREC-013","claim":"unknown non-critical extension cannot broaden authority","input":{"critical":false,"supported":false,"core_decision_without_extension":"deny","decision_after_ignoring_extension":"allow"},"expected":"reject"},
+    {"id":"PREC-014","claim":"machine contracts align with amendment","input":{"openapi_agent_id_pattern":"^agentreg:","critical_extension_error":"ARPA-EXT-CRITICAL-UNKNOWN","historical_schema_present":true},"expected":"accept"}
+  ]
+}
