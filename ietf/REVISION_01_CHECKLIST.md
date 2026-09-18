@@ -31,39 +31,54 @@ This checklist governs preparation of revision `-01`. It does not alter or repla
 - [x] PP-01 protocol-precision fragment added.
 - [x] `-01` build changes revision identity without mutating the checked-in `-00` authoring baseline.
 - [x] `agentreg:` scheme semantics extracted into the generated `-01`.
-- [x] RFC 7595 reference and URI-scheme IANA request added by the governed build transform.
-- [x] `/.well-known/agent-registry` IANA request added by the governed build transform.
+- [x] RFC 7595 reference and permanent URI-scheme IANA request added by the governed build transform.
+- [x] RFC 8615 promoted to a normative reference without duplicate reference identity.
+- [x] `agent-registry` well-known URI suffix registration record added by the governed build transform.
+- [x] Revision `-01` change log added to the generated draft.
 - [x] IETF extraction map updated.
 
 ## 4. Automated validation
 
-- [ ] `python3 scripts/validate_protocol_precision.py` passes in CI.
-- [ ] `python3 scripts/validate_ietf_draft.py` passes in CI.
-- [ ] `make ietf-check` builds and validates `-01` RFCXML/TXT/HTML.
-- [ ] `rfclint` passes when available.
-- [ ] Main repository validation passes for the branch.
-- [ ] GitHub Pages publication validation passes with `-01` generated artifacts.
+Observed on the reviewed PR head before this evidence-only checklist update:
+
+- [x] `python3 scripts/validate_protocol_precision.py` passes in CI.
+- [x] `python3 scripts/validate_ietf_draft.py` passes in CI.
+- [x] `make ietf-check` builds and validates `-01` RFCXML/TXT/HTML.
+- [ ] `rfclint` passes when available. Current CI reports `rfclint unavailable`; `xml2rfc` build validation passes.
+- [x] Main repository validation passes for the branch.
+- [x] Python and TypeScript implementation checks pass.
+- [x] Cross-runtime conformance comparison and network interoperability pass.
+- [x] GitHub Pages publication validation passes with `-01` generated artifacts.
+
+The checklist update itself must also receive a green final CI run before merge.
 
 ## 5. Protocol diff review
 
-Before submission, review the generated `-00 → -01` semantic delta and confirm:
+The source-level and generated-artifact semantic review is recorded in `REVISION_01_SEMANTIC_REVIEW.md`.
 
-- [ ] every added or strengthened `MUST`, `MUST NOT`, `SHOULD`, and `MAY` is intentional;
-- [ ] no project-only governance, A2A, TRQP, assurance-profile or redress semantics leaked into the I-D;
-- [ ] the `agentreg:` URI scheme syntax and IANA request are internally consistent;
-- [ ] historical resolution remains a resolution/evidence operation rather than a legal determination;
-- [ ] Problem Details does not leak sensitive authority/evidence information;
-- [ ] unknown critical extensions fail safely;
-- [ ] no change weakens the existing fail-safe authority invariants.
+- [x] Every added or strengthened `MUST`, `MUST NOT`, `SHOULD`, and `MAY` reviewed for intentionality within the accepted `-01` propositions.
+- [x] No project-only governance, A2A, TRQP, assurance-profile or redress semantics leaked into the I-D.
+- [x] The `agentreg:` URI scheme syntax and IANA request are internally consistent.
+- [x] Historical resolution remains a resolution/evidence operation rather than a legal determination.
+- [x] Problem Details requirements avoid making sensitive authority/evidence details mandatory disclosure.
+- [x] Unknown material critical extensions fail safely.
+- [x] No reviewed change weakens the existing fail-safe authority invariants.
+- [x] Revision `-01` change summary matches the reviewed semantic delta.
 
 ## 6. IETF submission hygiene
 
-- [ ] Generated plaintext has been reviewed as the submission artifact.
+Repository acceptance and Datatracker submission are separate gates.
+
+- [x] Generated plaintext reviewed for the accepted semantic deltas and IANA/change-log sections.
 - [ ] `idnits`/Datatracker submission checks have no unresolved blocking findings.
-- [ ] References and IANA considerations are current.
-- [ ] Change summary for `-01` is concise and matches the actual semantic diff.
+- [x] RFC 7595/RFC 8615 reference placement and the repository-side IANA registration records have been reviewed.
+- [x] Change summary for `-01` is concise and matches the actual semantic diff.
 - [ ] Datatracker upload is performed only after the repository PR is accepted and merged.
+
+## Repository decision
+
+Revision `-01` is **repository-ready for merge** once the final CI run on this checklist head is green.
 
 ## Submission decision
 
-Revision `-01` is **not submission-ready** until all unchecked automated-validation, semantic-diff, and submission-hygiene gates above are complete.
+Revision `-01` is **not yet Datatracker-submission-ready** until the remaining submission-time checks above are completed against the final merged/generated artifact. In particular, the Datatracker/idnits-equivalent checks must be run immediately before upload; repository CI is not a substitute for those external submission checks.
