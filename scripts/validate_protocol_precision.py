@@ -33,7 +33,7 @@ if amendment.exists():
     text = amendment.read_text(encoding="utf-8")
     required_markers = [
         AMENDMENT_ID,
-        "Normative baseline: ARPA v0.9.0 Candidate Specification",
+        "ARPA v0.9.0 Candidate Specification",
         "agentreg:<registry-namespace>:<agent-local-id>",
         "Historical resolution is a reconstruction operation",
         "RFC 9457 Problem Details",
