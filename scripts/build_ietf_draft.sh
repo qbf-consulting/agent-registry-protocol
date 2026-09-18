@@ -116,6 +116,23 @@ if old_iana not in source:
     raise SystemExit("error: -00 IANA section changed; review the -01 transformation")
 source = source.replace(old_iana, new_iana, 1)
 
+old_changelog = """## -00
+
+* Initial individual submission extracted from the ARPA Candidate Specification and implementation corpus.
+* Defines HTTP/JSON registry metadata, agent/deployment resources, relationships, authority envelopes, lifecycle/status handling, current and historical resolution, discovery, events, errors, versioning, security, privacy, operations, and conformance."""
+new_changelog = old_changelog + """
+
+## -01
+
+* Aligns the ARPA Agent Identifier with the `agentreg:` scheme already used by the Candidate Specification and machine-readable API contract.
+* Adds adversarial authority-processing requirements for monotonic delegation, temporal boundaries, conflict handling, revocation effectiveness, decision reproducibility, and proof-input semantics.
+* Defines deterministic historical-resolution reconstruction, RFC 9457 Problem Details behavior, and fail-safe critical-extension processing.
+* Requests IANA registration of the `agentreg` URI scheme and the `agent-registry` well-known URI suffix.
+* Preserves project governance, A2A, TRQP, assurance-profile, and redress semantics outside the IETF protocol core."""
+if old_changelog not in source:
+    raise SystemExit("error: -00 changelog changed; review the -01 changelog transformation")
+source = source.replace(old_changelog, new_changelog, 1)
+
 fragments = f"{hardening}\n\n{precision}"
 unnumbered = "\n# Acknowledgements\n{:unnumbered}\n"
 numbered = "\n# Acknowledgements\n"
