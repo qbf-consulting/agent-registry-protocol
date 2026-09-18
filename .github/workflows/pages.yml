@@ -49,14 +49,14 @@ jobs:
       - name: Publish generated Internet-Draft
         run: |
           mkdir -p _site/ietf/generated
-          cp ietf/generated/draft-sankarshan-agent-registry-protocol-00.xml _site/ietf/generated/
-          cp ietf/generated/draft-sankarshan-agent-registry-protocol-00.txt _site/ietf/generated/
-          cp ietf/generated/draft-sankarshan-agent-registry-protocol-00.html _site/ietf/generated/
+          cp ietf/generated/draft-sankarshan-agent-registry-protocol-01.xml _site/ietf/generated/
+          cp ietf/generated/draft-sankarshan-agent-registry-protocol-01.txt _site/ietf/generated/
+          cp ietf/generated/draft-sankarshan-agent-registry-protocol-01.html _site/ietf/generated/
           : > _site/ietf/generated/rfc-local.css
           sha256sum \
-            _site/ietf/generated/draft-sankarshan-agent-registry-protocol-00.xml \
-            _site/ietf/generated/draft-sankarshan-agent-registry-protocol-00.txt \
-            _site/ietf/generated/draft-sankarshan-agent-registry-protocol-00.html \
+            _site/ietf/generated/draft-sankarshan-agent-registry-protocol-01.xml \
+            _site/ietf/generated/draft-sankarshan-agent-registry-protocol-01.txt \
+            _site/ietf/generated/draft-sankarshan-agent-registry-protocol-01.html \
             _site/ietf/generated/rfc-local.css \
             > _site/ietf/generated/SHA256SUMS.txt
       - name: Validate complete publication
@@ -64,7 +64,7 @@ jobs:
       - name: Write deployment evidence
         run: |
           mkdir -p _site/assets artifacts/pages
-          printf '{\n  "repository": "%s",\n  "commit": "%s",\n  "specification_version": "0.9.0",\n  "ietf_draft": "draft-sankarshan-agent-registry-protocol-00",\n  "ietf_generated": true\n}\n' \
+          printf '{\n  "repository": "%s",\n  "commit": "%s",\n  "specification_version": "0.9.0",\n  "ietf_draft": "draft-sankarshan-agent-registry-protocol-01",\n  "ietf_generated": true\n}\n' \
             "${{ github.repository }}" "${{ github.sha }}" > _site/assets/build-info.json
           cp _site/ietf/generated/SHA256SUMS.txt artifacts/pages/ietf-generated-sha256sums.txt
       - name: Publish assurance summary
@@ -75,7 +75,7 @@ jobs:
           print('## GitHub Pages assurance report')
           for k in ('source_pages','rendered_html_pages','internal_references_checked','fragment_references_checked','local_assets_checked','mermaid_pages'):
               print(f'- {k.replace("_"," ").title()}: {r[k]}')
-          print('- IETF Internet-Draft: `draft-sankarshan-agent-registry-protocol-00`')
+          print('- IETF Internet-Draft: `draft-sankarshan-agent-registry-protocol-01`')
           print('- IETF generated outputs: RFCXML v3, plaintext, HTML')
           print(f'- Published commit: `${{ github.sha }}`')
           PY
