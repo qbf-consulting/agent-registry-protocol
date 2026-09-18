@@ -16,7 +16,7 @@ DELTA = ROOT / "ietf" / "spec-delta-v01.yaml"
 BUILD = ROOT / "scripts" / "build_ietf_draft.sh"
 PRECISION_SPEC = ROOT / "spec" / "agent-registry-protocol-v0.9.2-protocol-precision.md"
 PRECISION_REQUIREMENTS = ROOT / "registries" / "protocol-precision-requirements-v0.9.2.json"
-PRECISION_VECTORS = ROOT / "conformance" / "test-vectors" / "protocol-precision-v0.9.2.json"
+PRECISION_VECTORS = ROOT / "conformance" / "test-vectors" / "protocol-precision" / "protocol-precision-v0.9.2.json"
 
 errors = []
 for path in (
