@@ -9,7 +9,8 @@ HARDENING = ROOT / "ietf" / "fragments" / "adversarial-hardening.md"
 PRECISION = ROOT / "ietf" / "fragments" / "protocol-precision.md"
 README = ROOT / "ietf" / "README.md"
 EXTRACTION = ROOT / "ietf" / "PROTOCOL_EXTRACTION.md"
-CHECKLIST = ROOT / "ietf" / "SUBMISSION_CHECKLIST.md"
+PUBLISHED_CHECKLIST = ROOT / "ietf" / "SUBMISSION_CHECKLIST.md"
+REVISION_CHECKLIST = ROOT / "ietf" / "REVISION_01_CHECKLIST.md"
 BASELINE = ROOT / "ietf" / "REVISION_01_BASELINE.md"
 DELTA = ROOT / "ietf" / "spec-delta-v01.yaml"
 BUILD = ROOT / "scripts" / "build_ietf_draft.sh"
@@ -24,7 +25,8 @@ for path in (
     PRECISION,
     README,
     EXTRACTION,
-    CHECKLIST,
+    PUBLISHED_CHECKLIST,
+    REVISION_CHECKLIST,
     BASELINE,
     DELTA,
     BUILD,
@@ -127,6 +129,18 @@ if DELTA.exists():
         errors.append("IETF delta register lost immutable -00 baseline declaration")
     if "target_revision: draft-sankarshan-agent-registry-protocol-01" not in delta:
         errors.append("IETF delta register lost -01 target declaration")
+
+if REVISION_CHECKLIST.exists():
+    checklist = REVISION_CHECKLIST.read_text(encoding="utf-8")
+    for needle in (
+        "draft-sankarshan-agent-registry-protocol-01",
+        "Published baseline",
+        "Protocol diff review",
+        "IETF submission hygiene",
+        "not submission-ready",
+    ):
+        if needle not in checklist:
+            errors.append(f"revision -01 checklist missing gate: {needle}")
 
 if errors:
     print("IETF draft validation failed:")
