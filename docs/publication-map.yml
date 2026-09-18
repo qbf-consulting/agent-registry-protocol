@@ -138,7 +138,7 @@ publication_sources:
   mode: rendered-page
 - path: spec/agent-registry-protocol-v0.9.1-hardening.md
   mode: rendered-page
-- path: spec/agent-registry-protocol-v0.9.2-protocol-precision.md
+- path: spec/agent-registry-protocol-protocol-precision-pp01.md
   mode: rendered-page
 - path: spec/profiles/arpa-agent-card-interoperability.md
   mode: rendered-page
