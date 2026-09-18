@@ -1,0 +1,121 @@
+registry: arpa-ietf-spec-delta
+version: 1
+issue: 32
+published_baseline: draft-sankarshan-agent-registry-protocol-00
+target_revision: draft-sankarshan-agent-registry-protocol-01
+policy:
+  base_spec_precedes_ietf_extraction: true
+  published_baseline_immutable: true
+  missing_evidence_is_not_acceptance: true
+entries:
+  - id: ARPA-IETF-001
+    title: Agent Identifier scheme alignment
+    disposition: ietf-normative
+    state: accepted
+    interoperability_impact: high
+    breaking: clarification-of-existing-project-contract
+    source:
+      candidate_section: "12.2 Identifier Syntax"
+      machine_contract:
+        - openapi/arpa-openapi.yaml
+      evidence:
+        - registries/normative-requirements.json
+        - schemas/agent-core.schema.json
+    proposition: >-
+      The ARPA Agent Identifier used for ARPA Core interchange is an agentreg URI;
+      external identifiers may be represented separately but do not replace the
+      protocol Agent Identifier.
+    ietf_action: >-
+      Replace the any-URI/no-new-scheme statement with the agentreg syntax and
+      explicit IANA handling.
+
+  - id: ARPA-IETF-002
+    title: Historical resolution semantic contract
+    disposition: ietf-normative
+    state: accepted
+    interoperability_impact: high
+    breaking: false
+    source:
+      candidate_section: "21 Query Protocol / point-in-time resolution"
+      machine_contract:
+        - schemas/historical-resolution.schema.json
+        - openapi/arpa-openapi.yaml
+      evidence:
+        - scripts/validate_historical_resolution.py
+        - artifacts/conformance/historical-resolution-validation.json
+    proposition: >-
+      Historical resolution is a reconstruction operation whose result identifies
+      requested time, resolution/evaluation time, selected-record provenance,
+      later material events and reconstruction quality or limitations.
+    ietf_action: >-
+      Define the minimum semantic result independent of discoverable HTTP path
+      layout.
+
+  - id: ARPA-IETF-003
+    title: Deterministic RFC 9457 problem contract
+    disposition: ietf-normative
+    state: accepted
+    interoperability_impact: high
+    breaking: false
+    source:
+      candidate_section: "34 Error Handling"
+      machine_contract:
+        - openapi/arpa-openapi.yaml
+        - registries/error-codes.json
+      evidence:
+        - tests
+        - typescript/test
+    proposition: >-
+      Protocol-significant HTTP failures use RFC 9457 Problem Details with a
+      stable problem type, HTTP status and stable ARPA code; human-readable text
+      is non-normative and unknown error semantics never become success.
+    ietf_action: >-
+      Strengthen Problem Details from a recommendation to the interoperable ARPA
+      HTTP error contract.
+
+  - id: ARPA-IETF-004
+    title: Critical extension and version handling
+    disposition: ietf-normative
+    state: accepted
+    interoperability_impact: high
+    breaking: false
+    source:
+      candidate_section: "33 Versioning and Extensibility"
+      machine_contract:
+        - registries/extension-namespaces.json
+        - registries/error-codes.json
+      evidence:
+        - conformance/test-vectors/adversarial/adversarial-authority-v0.9.1.json
+    proposition: >-
+      Unknown critical extensions are non-processable and fail safely; unknown
+      non-critical extensions may be ignored or retained only when doing so cannot
+      change core semantics or broaden authority.
+    ietf_action: >-
+      Define interoperable critical-extension handling without importing the
+      project-specific extension registry as IETF governance.
+
+  - id: ARPA-IETF-005
+    title: Governance appeals and redress workflow
+    disposition: base-only
+    state: deferred-from-ietf
+    interoperability_impact: project
+    proposition: >-
+      Governance, appeal and redress remain important ARPA project semantics but
+      are not required for the first IETF protocol-core revision.
+
+  - id: ARPA-IETF-006
+    title: A2A interoperability profile
+    disposition: base-only
+    state: deferred-from-ietf
+    interoperability_impact: profile
+    proposition: >-
+      A2A publication and compatibility semantics remain a separate ARPA profile.
+
+  - id: ARPA-IETF-007
+    title: ARPA-TRQP projection
+    disposition: base-only
+    state: deferred-from-ietf
+    interoperability_impact: profile
+    proposition: >-
+      TRQP projection remains an informative integration profile and does not enter
+      ARPA IETF core conformance.
