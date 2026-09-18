@@ -144,7 +144,9 @@ if REVISION_CHECKLIST.exists():
         "Published baseline",
         "Protocol diff review",
         "IETF submission hygiene",
-        "not submission-ready",
+        "repository-ready for merge",
+        "not yet Datatracker-submission-ready",
+        "idnits",
     ):
         if needle not in checklist:
             errors.append(f"revision -01 checklist missing gate: {needle}")
