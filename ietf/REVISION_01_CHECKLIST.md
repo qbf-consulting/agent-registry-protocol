@@ -13,21 +13,22 @@ This checklist governs preparation of revision `-01`. It does not alter or repla
 - [x] Machine-readable disposition register recorded in `spec-delta-v01.yaml`.
 - [x] Each accepted normative delta identifies its governing ARPA source and evidence.
 - [x] Base-only/deferred semantics are explicitly excluded from the IETF core.
+- [x] Protocol-precision work uses stable amendment ID `ARPA-CAND-PP-01` instead of reusing implementation-release semver.
 
 ## 2. Candidate Specification source semantics
 
-- [x] `agentreg:` identifier contradiction resolved through a Candidate amendment.
+- [x] `agentreg:` identifier contradiction resolved through Candidate amendment `ARPA-CAND-PP-01`.
 - [x] Historical-resolution minimum semantics defined independently of HTTP path layout.
 - [x] RFC 9457 Problem Details machine contract defined.
 - [x] Critical-extension/version fail-safe semantics defined.
-- [x] Machine-readable v0.9.2 requirement catalogue added.
-- [x] Positive/negative v0.9.2 protocol-precision vectors added.
+- [x] Machine-readable PP-01 requirement catalogue added.
+- [x] Positive/negative PP-01 protocol-precision vectors added.
 - [x] Cross-artifact validation script added.
 
 ## 3. IETF extraction
 
-- [x] v0.9.1 adversarial-hardening fragment retained.
-- [x] v0.9.2 protocol-precision fragment added.
+- [x] Existing adversarial-hardening fragment retained.
+- [x] PP-01 protocol-precision fragment added.
 - [x] `-01` build changes revision identity without mutating the checked-in `-00` authoring baseline.
 - [x] `agentreg:` scheme semantics extracted into the generated `-01`.
 - [x] RFC 7595 reference and URI-scheme IANA request added by the governed build transform.
@@ -53,7 +54,7 @@ Before submission, review the generated `-00 → -01` semantic delta and confirm
 - [ ] historical resolution remains a resolution/evidence operation rather than a legal determination;
 - [ ] Problem Details does not leak sensitive authority/evidence information;
 - [ ] unknown critical extensions fail safely;
-- [ ] no change weakens the v0.9.1 fail-safe authority invariants.
+- [ ] no change weakens the existing fail-safe authority invariants.
 
 ## 6. IETF submission hygiene
 
