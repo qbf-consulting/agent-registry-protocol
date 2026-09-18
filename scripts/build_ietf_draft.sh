@@ -35,7 +35,7 @@ source = Path(sys.argv[1]).read_text(encoding="utf-8")
 hardening = Path(sys.argv[2]).read_text(encoding="utf-8").strip()
 precision = Path(sys.argv[3]).read_text(encoding="utf-8").strip()
 
-# The checked-in source preserves the published -00 authoring baseline.  The
+# The checked-in source preserves the published -00 authoring baseline. The
 # -01 build applies only explicit, reviewable transformations plus governed
 # protocol-core fragments.
 source = source.replace(
@@ -45,7 +45,7 @@ source = source.replace(
 )
 source = source.replace(
     "  RFC3986:\n  RFC9457:",
-    "  RFC3986:\n  RFC7595:\n  RFC9457:",
+    "  RFC3986:\n  RFC7595:\n  RFC8615:\n  RFC9457:",
     1,
 )
 
@@ -74,11 +74,13 @@ This document requests no IANA actions in `-00`.
 A future revision may request registration of `/.well-known/agent-registry` in the Well-Known URIs registry and may define or request registries for protocol media types, relation types, or error identifiers if interoperability experience shows that centralized registration is warranted."""
 new_iana = """# IANA Considerations
 
-This document requests registration of the `agentreg` URI scheme in the URI Schemes registry in accordance with {{RFC7595}}.
+## `agentreg` URI Scheme
+
+This document requests permanent registration of the `agentreg` URI scheme in the URI Schemes registry in accordance with {{RFC7595}}.
 
 Scheme name: `agentreg`
 
-Status: Provisional while this specification remains an Internet-Draft.
+Status: Permanent
 
 Applications/protocols that use this scheme: Agent Registry Protocol (ARPA).
 
@@ -86,11 +88,21 @@ Contact: the author of this document.
 
 Change controller: IETF.
 
-Reference: this document, Identifier Model.
+References: this document, Identifier Model and Security Considerations.
 
-The scheme-specific syntax is `agentreg:<registry-namespace>:<agent-local-id>`. Security considerations are described in the Security Considerations section of this document.
+The scheme-specific syntax is `agentreg:<registry-namespace>:<agent-local-id>`. The scheme identifies an ARPA Agent Identifier; it does not by itself confer authority, recognition, assurance, or permission. Security considerations are described in the Security Considerations section of this document.
 
-This document also requests registration of `/.well-known/agent-registry` in the Well-Known URIs registry. The resource identifies ARPA registry metadata and discovery information. Access control remains operation-specific, and discovery of this resource does not imply authority, recognition, or permission to invoke any discovered agent.
+## `/.well-known/agent-registry`
+
+This document requests registration of the `agent-registry` well-known URI suffix in the Well-Known URIs registry in accordance with {{RFC8615}}.
+
+URI suffix: `agent-registry`
+
+Change controller: IETF.
+
+Specification document: this document, Registry Metadata.
+
+Related information: the resource identifies ARPA registry metadata and discovery information. A representation SHOULD use a media type appropriate to the selected representation format; JSON deployments SHOULD use `application/json` unless a future specification registers a more specific media type. Access control remains operation-specific, and discovery of this resource does not imply authority, recognition, assurance, endorsement, or permission to invoke any discovered agent.
 
 No IANA registry for project-specific relationship types, extension namespaces, reason codes, or conformance profiles is requested by this revision."""
 if old_iana not in source:
