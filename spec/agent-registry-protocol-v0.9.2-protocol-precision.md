@@ -18,7 +18,7 @@ This document is a normative precision amendment to the ARPA Candidate Specifica
 
 For ARPA v0.9.2 Candidate conformance, the v0.9.0 Candidate Specification, v0.9.1 Adversarial Hardening and this amendment MUST be evaluated together. Where this amendment resolves an ambiguity among project prose, schemas, API contracts or implementation behaviour, this amendment controls for the semantics defined here.
 
-Machine-readable requirements are published at `registries/protocol-precision-requirements-v0.9.2.json`. Boundary vectors are published at `conformance/test-vectors/protocol-precision-v0.9.2.json` and are validated by `scripts/validate_protocol_precision.py`.
+Machine-readable requirements are published at `registries/protocol-precision-requirements-v0.9.2.json`. Boundary vectors are published at `conformance/test-vectors/protocol-precision/protocol-precision-v0.9.2.json` and are validated by `scripts/validate_protocol_precision.py`.
 
 ## 1. ARPA Agent Identifier
 
