@@ -3,23 +3,28 @@ version: 1
 issue: 32
 published_baseline: draft-sankarshan-agent-registry-protocol-00
 target_revision: draft-sankarshan-agent-registry-protocol-01
+normative_baseline: ARPA-v0.9.0-Candidate
+precision_amendment: ARPA-CAND-PP-01
 policy:
   base_spec_precedes_ietf_extraction: true
   published_baseline_immutable: true
+  implementation_release_semver_is_not_spec_version: true
   missing_evidence_is_not_acceptance: true
 entries:
   - id: ARPA-IETF-001
     title: Agent Identifier scheme alignment
     disposition: ietf-normative
     state: accepted
+    governing_amendment: ARPA-CAND-PP-01
     interoperability_impact: high
     breaking: clarification-of-existing-project-contract
     source:
-      candidate_section: "12.2 Identifier Syntax"
+      candidate_section: "12.2 Identifier Syntax + PP-01 §1"
       machine_contract:
         - openapi/arpa-openapi.yaml
       evidence:
-        - registries/normative-requirements.json
+        - registries/protocol-precision-requirements-pp01.json
+        - conformance/test-vectors/protocol-precision/protocol-precision-pp01.json
         - schemas/agent-core.schema.json
     proposition: >-
       The ARPA Agent Identifier used for ARPA Core interchange is an agentreg URI;
@@ -33,14 +38,17 @@ entries:
     title: Historical resolution semantic contract
     disposition: ietf-normative
     state: accepted
+    governing_amendment: ARPA-CAND-PP-01
     interoperability_impact: high
     breaking: false
     source:
-      candidate_section: "21 Query Protocol / point-in-time resolution"
+      candidate_section: "21 Query Protocol / point-in-time resolution + PP-01 §2"
       machine_contract:
         - schemas/historical-resolution.schema.json
         - openapi/arpa-openapi.yaml
       evidence:
+        - registries/protocol-precision-requirements-pp01.json
+        - conformance/test-vectors/protocol-precision/protocol-precision-pp01.json
         - scripts/validate_historical_resolution.py
         - artifacts/conformance/historical-resolution-validation.json
     proposition: >-
@@ -55,14 +63,17 @@ entries:
     title: Deterministic RFC 9457 problem contract
     disposition: ietf-normative
     state: accepted
+    governing_amendment: ARPA-CAND-PP-01
     interoperability_impact: high
     breaking: false
     source:
-      candidate_section: "34 Error Handling"
+      candidate_section: "34 Error Handling + PP-01 §3"
       machine_contract:
         - openapi/arpa-openapi.yaml
         - registries/error-codes.json
       evidence:
+        - registries/protocol-precision-requirements-pp01.json
+        - conformance/test-vectors/protocol-precision/protocol-precision-pp01.json
         - tests
         - typescript/test
     proposition: >-
@@ -77,14 +88,17 @@ entries:
     title: Critical extension and version handling
     disposition: ietf-normative
     state: accepted
+    governing_amendment: ARPA-CAND-PP-01
     interoperability_impact: high
     breaking: false
     source:
-      candidate_section: "33 Versioning and Extensibility"
+      candidate_section: "33 Versioning and Extensibility + PP-01 §4"
       machine_contract:
         - registries/extension-namespaces.json
         - registries/error-codes.json
       evidence:
+        - registries/protocol-precision-requirements-pp01.json
+        - conformance/test-vectors/protocol-precision/protocol-precision-pp01.json
         - conformance/test-vectors/adversarial/adversarial-authority-v0.9.1.json
     proposition: >-
       Unknown critical extensions are non-processable and fail safely; unknown
