@@ -57,9 +57,8 @@ The checked-in base source deliberately preserves the published `-00` authoring 
 - [Protocol extraction and provenance map](PROTOCOL_EXTRACTION.html)
 - [Revision `-01` baseline review](REVISION_01_BASELINE.html)
 - [Revision `-01` readiness checklist](REVISION_01_CHECKLIST.html)
-- [Repository authoring guide](README.html)
 
-The machine-readable `ietf/spec-delta-v01.yaml` records the accepted and excluded `-00 → -01` propositions.
+The machine-readable `ietf/spec-delta-v01.yaml` records the accepted and excluded `-00 → -01` propositions. The checked-in authoring workflow is documented in `ietf/README.md` in the repository source tree.
 
 ## Accepted `-01` precision work
 
