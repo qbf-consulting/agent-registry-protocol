@@ -1,20 +1,23 @@
 #!/usr/bin/env python3
-"""Validate ARPA v0.9.2 protocol-precision amendment and cross-artifact alignment."""
+"""Validate ARPA Candidate Protocol Precision Amendment PP-01 and cross-artifact alignment."""
 from pathlib import Path
 import json
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 errors = []
-VECTORS_REL = "conformance/test-vectors/protocol-precision/protocol-precision-v0.9.2.json"
+AMENDMENT_ID = "ARPA-CAND-PP-01"
+BASELINE = "0.9.0"
+VECTORS_REL = "conformance/test-vectors/protocol-precision/protocol-precision-pp01.json"
+REQUIREMENTS_REL = "registries/protocol-precision-requirements-pp01.json"
 
 
 def load_json(rel):
     return json.loads((ROOT / rel).read_text(encoding="utf-8"))
 
 
-amendment = ROOT / "spec/agent-registry-protocol-v0.9.2-protocol-precision.md"
-requirements_path = ROOT / "registries/protocol-precision-requirements-v0.9.2.json"
+amendment = ROOT / "spec/agent-registry-protocol-protocol-precision-pp01.md"
+requirements_path = ROOT / REQUIREMENTS_REL
 vectors_path = ROOT / VECTORS_REL
 openapi_path = ROOT / "openapi/arpa-openapi.yaml"
 historical_schema_path = ROOT / "schemas/historical-resolution.schema.json"
@@ -22,22 +25,15 @@ error_registry_path = ROOT / "registries/error-codes.json"
 extension_registry_path = ROOT / "registries/extension-namespaces.json"
 delta_path = ROOT / "ietf/spec-delta-v01.yaml"
 
-for path in (
-    amendment,
-    requirements_path,
-    vectors_path,
-    openapi_path,
-    historical_schema_path,
-    error_registry_path,
-    extension_registry_path,
-    delta_path,
-):
+for path in (amendment, requirements_path, vectors_path, openapi_path, historical_schema_path, error_registry_path, extension_registry_path, delta_path):
     if not path.exists():
         errors.append(f"missing protocol-precision artifact: {path.relative_to(ROOT)}")
 
 if amendment.exists():
     text = amendment.read_text(encoding="utf-8")
     required_markers = [
+        AMENDMENT_ID,
+        "Normative baseline: ARPA v0.9.0 Candidate Specification",
         "agentreg:<registry-namespace>:<agent-local-id>",
         "Historical resolution is a reconstruction operation",
         "RFC 9457 Problem Details",
@@ -50,8 +46,10 @@ if amendment.exists():
 
 vectors = load_json(VECTORS_REL) if vectors_path.exists() else {}
 if vectors:
-    if vectors.get("arpa_version") != "0.9.2":
-        errors.append("protocol-precision vectors must declare arpa_version 0.9.2")
+    if vectors.get("amendment_id") != AMENDMENT_ID:
+        errors.append(f"protocol-precision vectors must declare amendment_id {AMENDMENT_ID}")
+    if vectors.get("normative_baseline") != BASELINE:
+        errors.append(f"protocol-precision vectors must declare normative_baseline {BASELINE}")
     entries = vectors.get("vectors", [])
     ids = [entry.get("id") for entry in entries]
     if len(entries) < 14:
@@ -62,10 +60,12 @@ if vectors:
     if set(ids) != expected_ids:
         errors.append("protocol-precision vector ids must be PREC-001 through PREC-014")
 
-requirements = load_json("registries/protocol-precision-requirements-v0.9.2.json") if requirements_path.exists() else {}
+requirements = load_json(REQUIREMENTS_REL) if requirements_path.exists() else {}
 if requirements:
-    if requirements.get("arpa_version") != "0.9.2":
-        errors.append("protocol-precision requirements must declare arpa_version 0.9.2")
+    if requirements.get("amendment_id") != AMENDMENT_ID:
+        errors.append(f"protocol-precision requirements must declare amendment_id {AMENDMENT_ID}")
+    if requirements.get("normative_baseline") != BASELINE:
+        errors.append(f"protocol-precision requirements must declare normative_baseline {BASELINE}")
     entries = requirements.get("entries", [])
     ids = [entry.get("id") for entry in entries]
     if len(entries) < 14:
@@ -93,14 +93,7 @@ if openapi_path.exists():
 if historical_schema_path.exists():
     schema = load_json("schemas/historical-resolution.schema.json")
     required = set(schema.get("required", []))
-    for field in (
-        "requested_time",
-        "evaluation_time",
-        "reconstruction_status",
-        "selected_records",
-        "later_material_events",
-        "evidence",
-    ):
+    for field in ("requested_time", "evaluation_time", "reconstruction_status", "selected_records", "later_material_events", "evidence"):
         if field not in required:
             errors.append(f"historical-resolution schema missing required field {field}")
 
@@ -140,27 +133,24 @@ if errors:
 out = ROOT / "artifacts/conformance/protocol-precision-validation.json"
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(
-    json.dumps(
-        {
-            "status": "pass",
-            "arpa_version": "0.9.2",
-            "requirements": len(requirements.get("entries", [])),
-            "vectors": len(vectors.get("vectors", [])),
-            "checks": [
-                "agentreg-identifier-alignment",
-                "historical-resolution-contract",
-                "rfc9457-problem-contract",
-                "critical-extension-fail-safe",
-                "ietf-delta-traceability",
-            ],
-        },
-        indent=2,
-    )
-    + "\n",
+    json.dumps({
+        "status": "pass",
+        "amendment_id": AMENDMENT_ID,
+        "normative_baseline": BASELINE,
+        "requirements": len(requirements.get("entries", [])),
+        "vectors": len(vectors.get("vectors", [])),
+        "checks": [
+            "agentreg-identifier-alignment",
+            "historical-resolution-contract",
+            "rfc9457-problem-contract",
+            "critical-extension-fail-safe",
+            "ietf-delta-traceability",
+        ],
+    }, indent=2) + "\n",
     encoding="utf-8",
 )
 print(
     "validate_protocol_precision.py: PASS "
-    f"({len(requirements.get('entries', []))} requirements; "
+    f"({AMENDMENT_ID}; {len(requirements.get('entries', []))} requirements; "
     f"{len(vectors.get('vectors', []))} vectors)"
 )
