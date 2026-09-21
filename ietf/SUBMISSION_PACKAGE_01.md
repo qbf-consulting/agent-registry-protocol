@@ -31,12 +31,12 @@ The checked-in `ietf/draft-sankarshan-agent-registry-protocol.md` intentionally 
 The dedicated IETF workflow completed successfully for the merged `-01` preparation state.
 
 - Workflow: `IETF Internet-Draft`
-- Workflow run: `35648110289` — PASS
-- Workflow source SHA: `6a55f6804cd0c3c9d606b6cd6c8535ac3e79bee8`
-- Artifact ID: `10660732667`
+- Workflow run: `35648346374` — PASS
+- Workflow source SHA: `8ee0d7b9b33ad38bd66483f0cefbea1cd6e8f153`
+- Artifact ID: `10660608795`
 - Artifact name: `draft-sankarshan-agent-registry-protocol-01`
-- Artifact SHA-256: `3e546395e3ad8b41b7804114249f48594ca12b9b4b3e897b8fdb4369ba933d37`
-- Artifact URL: <https://github.com/qbf-consulting/agent-registry-protocol/actions/runs/35647140995/artifacts/10660099894>
+- Artifact SHA-256: `adecb61bbb5430084265e7849bb2af0b4af2fa032baab5a65c27abc969727a09`
+- Artifact URL: <https://github.com/qbf-consulting/agent-registry-protocol/actions/runs/35648346374/artifacts/10660608795>
 
 The selected artifact was rebuilt after the submission-time idnits3 check reported `SUBMISSION_TYPE_UNEXPECTED`. The governed `-01` build now removes the inherited `submissiontype: IETF` authoring metadata before RFCXML generation, because the existing Datatracker document has no stream recorded. The build fails if a `submissionType` attribute reappears. No protocol source semantics, fragment content, governed semantic input, IANA request, or conformance behavior changed.
 
