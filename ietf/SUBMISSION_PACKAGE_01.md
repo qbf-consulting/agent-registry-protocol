@@ -31,14 +31,14 @@ The checked-in `ietf/draft-sankarshan-agent-registry-protocol.md` intentionally 
 The dedicated IETF workflow completed successfully for the merged `-01` preparation state.
 
 - Workflow: `IETF Internet-Draft`
-- Workflow run: `35338636601` — PASS
-- Workflow source SHA: `f7fb6cfd478224ce0371fe8339d2a7046967248f`
-- Artifact ID: `10544087244`
+- Workflow run: `35647140995` — PASS
+- Workflow source SHA: `157c4320b091c14d94040327c0d5b3a0ed3591f1`
+- Artifact ID: `10660099894`
 - Artifact name: `draft-sankarshan-agent-registry-protocol-01`
-- Artifact SHA-256: `e3eedd8869029d78d34df4719a764f982751732aade83b26ca9fd4a3d9dadff8`
-- Artifact URL: <https://github.com/qbf-consulting/agent-registry-protocol/actions/runs/35338636601/artifacts/10544087244>
+- Artifact SHA-256: `507ad8786f93e494fd6d112ce731caf8b9bf80c6f88b0d06d1572b8b4504cdd3`
+- Artifact URL: <https://github.com/qbf-consulting/agent-registry-protocol/actions/runs/35647140995/artifacts/10660099894>
 
-The only repository change after the source commit and before this submission-evidence tranche was a GitHub Pages workflow alignment change in `.github/workflows/pages.yml`; no IETF source, fragment, governed semantic input, or `-01` build transform changed.
+The selected artifact was rebuilt on the final pre-submission documentation branch after the evidence/checklist updates. No protocol source, fragment, governed semantic input, or `-01` build transform changed in this tranche. Comparison with the earlier successful `-01` artifact showed only generated document-date/expiry changes.
 
 ## Rendered file digests
 
@@ -46,9 +46,9 @@ The selected workflow artifact was downloaded and independently inspected before
 
 | File | SHA-256 |
 |---|---|
-| `draft-sankarshan-agent-registry-protocol-01.xml` | `15f1c1c70be10a202e9410ff90c5ef2cf9a395b66f626cf54d0507715cd13d48` |
-| `draft-sankarshan-agent-registry-protocol-01.txt` | `78f267eecd1f9fae61b02a520fa99ab6663ad1953ba4de6ae691fae2f8e2a44f` |
-| `draft-sankarshan-agent-registry-protocol-01.html` | `d8d9922b3136a1bd780207fc52c79c1ee7d7a24f0483e53f21a06e57aad09f69` |
+| `draft-sankarshan-agent-registry-protocol-01.xml` | `dcf2213336e3b0cd9286ecce6c6341d36b97b370a77b9bc69c57a5aac49b55cf` |
+| `draft-sankarshan-agent-registry-protocol-01.txt` | `61e9993c86acee827c11253b46d8fe03477446fdc3d1e1064e399bef61591254` |
+| `draft-sankarshan-agent-registry-protocol-01.html` | `7adfae92a89e25c9e679d7fff9ae0992d15a14a10ba7c07c1b588db27c27ce20` |
 
 ## Manual artifact review
 
@@ -66,7 +66,7 @@ The generated artifacts were reviewed on 2026-09-22 for:
 - presence of the `agentreg` URI-scheme and `agent-registry` well-known URI IANA requests;
 - preservation of the published `-00` baseline as historical evidence.
 
-The plaintext artifact identifies the document date as 18 September 2026 and the expiry date as 22 March 2027.
+The selected plaintext artifact identifies the document date as 21 September 2026 and the expiry date as 25 March 2027. The earlier 18 September rendering was semantically identical apart from generated date/expiry text.
 
 ## Submission file
 
