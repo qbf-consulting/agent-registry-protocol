@@ -75,7 +75,8 @@ See:
 - `REVISION_01_BASELINE.md` — human-readable review and disposition;
 - `spec-delta-v01.yaml` — machine-readable delta register;
 - `PROTOCOL_EXTRACTION.md` — project-to-IETF scope and provenance map; and
-- `REVISION_01_CHECKLIST.md` — readiness and submission gates.
+- `REVISION_01_CHECKLIST.md` — readiness and submission gates; and
+- `SUBMISSION_PACKAGE_01.md` — exact selected `-01` workflow artifact, digests and manual pre-submission review.
 
 ## Candidate Specification inputs
 
@@ -154,6 +155,12 @@ The retained `-00` submission artifacts remain historical evidence and are not r
 - `SUBMISSION_RUNBOOK.md`
 
 Revision `-01` uses `REVISION_01_CHECKLIST.md` for its own readiness gate.
+
+## Current `-01` submission evidence
+
+The repository-side pre-submission package for revision `-01` is recorded in `SUBMISSION_PACKAGE_01.md`. It binds the governed revision state to the successful IETF workflow artifact, records XML/TXT/HTML SHA-256 digests, and documents manual artifact review.
+
+The repository deliberately does not mark `-01` as published. IETF Author Tools/Datatracker validation and upload remain an external author-controlled gate, after which the publication URL and date must be recorded back into the evidence package.
 
 ## Submission discipline
 
