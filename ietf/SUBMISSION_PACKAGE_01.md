@@ -31,14 +31,14 @@ The checked-in `ietf/draft-sankarshan-agent-registry-protocol.md` intentionally 
 The dedicated IETF workflow completed successfully for the merged `-01` preparation state.
 
 - Workflow: `IETF Internet-Draft`
-- Workflow run: `35647140995` — PASS
-- Workflow source SHA: `157c4320b091c14d94040327c0d5b3a0ed3591f1`
-- Artifact ID: `10660099894`
+- Workflow run: `35648110289` — PASS
+- Workflow source SHA: `6a55f6804cd0c3c9d606b6cd6c8535ac3e79bee8`
+- Artifact ID: `10660732667`
 - Artifact name: `draft-sankarshan-agent-registry-protocol-01`
-- Artifact SHA-256: `507ad8786f93e494fd6d112ce731caf8b9bf80c6f88b0d06d1572b8b4504cdd3`
+- Artifact SHA-256: `3e546395e3ad8b41b7804114249f48594ca12b9b4b3e897b8fdb4369ba933d37`
 - Artifact URL: <https://github.com/qbf-consulting/agent-registry-protocol/actions/runs/35647140995/artifacts/10660099894>
 
-The selected artifact was rebuilt on the final pre-submission documentation branch after the evidence/checklist updates. No protocol source, fragment, governed semantic input, or `-01` build transform changed in this tranche. Comparison with the earlier successful `-01` artifact showed only generated document-date/expiry changes.
+The selected artifact was rebuilt after the submission-time idnits3 check reported `SUBMISSION_TYPE_UNEXPECTED`. The governed `-01` build now removes the inherited `submissiontype: IETF` authoring metadata before RFCXML generation, because the existing Datatracker document has no stream recorded. The build fails if a `submissionType` attribute reappears. No protocol source semantics, fragment content, governed semantic input, IANA request, or conformance behavior changed.
 
 ## Rendered file digests
 
@@ -46,7 +46,7 @@ The selected workflow artifact was downloaded and independently inspected before
 
 | File | SHA-256 |
 |---|---|
-| `draft-sankarshan-agent-registry-protocol-01.xml` | `dcf2213336e3b0cd9286ecce6c6341d36b97b370a77b9bc69c57a5aac49b55cf` |
+| `draft-sankarshan-agent-registry-protocol-01.xml` | `3e7f94fdddad1853f87d997c1ba6b2a68b41e4a6d9ff20d7ec6dc3a25c80c066` |
 | `draft-sankarshan-agent-registry-protocol-01.txt` | `61e9993c86acee827c11253b46d8fe03477446fdc3d1e1064e399bef61591254` |
 | `draft-sankarshan-agent-registry-protocol-01.html` | `7adfae92a89e25c9e679d7fff9ae0992d15a14a10ba7c07c1b588db27c27ce20` |
 
@@ -64,7 +64,8 @@ The generated artifacts were reviewed on 2026-09-22 for:
 - absence of `TODO`, `FIXME`, `TBD`, or placeholder markers;
 - presence of the governed `-01` change log;
 - presence of the `agentreg` URI-scheme and `agent-registry` well-known URI IANA requests;
-- preservation of the published `-00` baseline as historical evidence.
+- preservation of the published `-00` baseline as historical evidence;
+- absence of a `submissionType` attribute in generated `-01` RFCXML, matching the existing Datatracker document stream state.
 
 The selected plaintext artifact identifies the document date as 21 September 2026 and the expiry date as 25 March 2027. The earlier 18 September rendering was semantically identical apart from generated date/expiry text.
 
