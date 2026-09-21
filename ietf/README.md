@@ -2,24 +2,23 @@
 
 This directory is the IETF authoring surface for the **Agent Registry Protocol**. It is deliberately separate from the project-level ARPA Candidate Specification.
 
-## Published baseline and active revision
+## Published revisions and active baseline
 
-The initial individual Internet-Draft was published by the IETF on **17 September 2026**:
+The current published Internet-Draft revision is:
 
-- Published baseline: `draft-sankarshan-agent-registry-protocol-00`
+- Current revision: `draft-sankarshan-agent-registry-protocol-01`
+- Published: 21 September 2026
 - Title: *Agent Registry Protocol*
 - Group: Individual Submission
+- Pages: 29
 - Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
-- Archived text: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-00.txt>
+- Archived text: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-01.txt>
 - HTMLized: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
+- Diff from `-00`: <https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-01>
 
-The IETF archive is the immutable historical authority for revision `-00`. Repository changes after publication do not modify that artifact.
+The previous published baseline, `draft-sankarshan-agent-registry-protocol-00`, remains immutable historical evidence at <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-00.txt>.
 
-The active repository branch work prepares:
-
-`draft-sankarshan-agent-registry-protocol-01`
-
-Revision `-01` is a candidate until the repository change is reviewed, merged, validated and subsequently submitted to the IETF. The IETF revision series is independent of ARPA implementation-release semantic versions.
+The IETF revision series is independent of ARPA implementation-release semantic versions. Any future protocol change is candidate work for `-02` or later; neither published revision is modified in place.
 
 ## Authority and scope
 
@@ -156,12 +155,10 @@ The retained `-00` submission artifacts remain historical evidence and are not r
 
 Revision `-01` uses `REVISION_01_CHECKLIST.md` for its own readiness gate.
 
-## Current `-01` submission evidence
+## Current `-01` publication evidence
 
-The repository-side pre-submission package for revision `-01` is recorded in `SUBMISSION_PACKAGE_01.md`. It binds the governed revision state to the successful IETF workflow artifact, records XML/TXT/HTML SHA-256 digests, and documents manual artifact review.
-
-The repository deliberately does not mark `-01` as published. IETF Author Tools/Datatracker validation and upload remain an external author-controlled gate, after which the publication URL and date must be recorded back into the evidence package.
+The publication package for revision `-01` is recorded in `SUBMISSION_PACKAGE_01.md`. It binds the governed revision state to the validated build artifact, records XML/TXT/HTML SHA-256 digests, documents the submission-time metadata correction, and records the canonical IETF publication references.
 
 ## Submission discipline
 
-A generated `-01` artifact is not submission-ready merely because it builds. Before upload to Datatracker, the revision must satisfy the automated gates, protocol-semantic diff review, IANA/reference review, and the remaining checks in `REVISION_01_CHECKLIST.md`.
+Revision `-01` has completed the automated gates, protocol-semantic diff review, IANA/reference review, submission-time validation and IETF posting gates recorded in `REVISION_01_CHECKLIST.md`. Future revisions must repeat the same discipline rather than treating the published `-01` as a moving document.
