@@ -69,18 +69,23 @@ The generated artifacts were reviewed on 2026-09-22 for:
 
 The selected plaintext artifact identifies the document date as 21 September 2026 and the expiry date as 25 March 2027. The earlier 18 September rendering was semantically identical apart from generated date/expiry text.
 
-## Submission file
+## Published result
 
-The preferred Datatracker input is:
+Revision `-01` was successfully submitted and posted to the IETF repository.
 
-`draft-sankarshan-agent-registry-protocol-01.xml`
+- Publication date: `2026-09-21`
+- Draft: `draft-sankarshan-agent-registry-protocol-01`
+- Group: Individual Submission
+- Pages: 29
+- IETF archive: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-01.txt>
+- Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
+- HTMLized draft: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
+- Diff from previous revision: <https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-01>
 
-The matching plaintext file may be supplied as the optional rendered form if desired. The HTML file is retained as review evidence and is not required as the primary submission input.
+The IETF archive is the immutable historical authority for the published `-01` revision. Repository changes after publication do not alter that artifact; future protocol changes are candidate work for `-02` or later.
 
-## Remaining external gate
+## Submission disposition
 
-Repository-side preparation is complete. Immediately before upload, the selected XML/TXT pair must still be passed through the IETF Author Tools/Datatracker submission validation path so that any current idnits or submission-system findings can be reviewed against the exact files being uploaded.
+The corrected RFCXML/TXT submission passed the submission checks and was posted as revision `-01`. The earlier `SUBMISSION_TYPE_UNEXPECTED` metadata issue was resolved before publication by omitting inherited stream metadata from the generated `-01` RFCXML while preserving the frozen `-00` authoring baseline.
 
-That submission-time validation is intentionally not represented as a repository CI result. If it reports no unresolved blocking finding, the XML may be uploaded as revision `-01` of the existing Datatracker document.
-
-After publication, this file should be updated with the publication date and canonical `-01` archive URL, and `REVISION_01_CHECKLIST.md` should record submission/author verification as complete.
+This file now serves as the repository-side evidence binding the governed `-01` source/build state to the published IETF revision.
