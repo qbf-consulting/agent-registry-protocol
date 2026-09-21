@@ -76,9 +76,9 @@ The source-level and generated-artifact semantic review is recorded in `REVISION
 - [x] Change summary for `-01` is concise and matches the reviewed semantic diff.
 - [x] No IETF source or governed `-01` semantic input changed after the selected successful workflow artifact; subsequent pre-evidence change was limited to Pages workflow publication alignment.
 
-## 7. External submission gate
+## 7. IETF submission hygiene and external gate
 
-Repository acceptance and Datatracker acceptance remain separate gates.
+Repository acceptance and Datatracker acceptance remain separate gates. The earlier governed evolution tranche established the revision as **repository-ready for merge**; this evidence tranche establishes repository-side pre-submission readiness. Until the external **idnits**/IETF Author Tools/Datatracker validation is clean, the draft remains **not yet Datatracker-submission-ready**.
 
 - [ ] Run IETF Author Tools/Datatracker validation against the exact selected `-01` XML/TXT files and resolve any blocking finding.
 - [ ] Upload `draft-sankarshan-agent-registry-protocol-01.xml` as revision `-01` of the existing Datatracker document.
