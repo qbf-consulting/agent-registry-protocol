@@ -49,6 +49,7 @@ This checklist governs preparation and submission of revision `-01`. It does not
 - [x] GitHub Pages publication validation passes with `-01` generated artifacts.
 - [x] Dedicated merged `-01` IETF workflow run `35338636601` completed successfully.
 - [x] Exact workflow artifact and SHA-256 evidence recorded in `SUBMISSION_PACKAGE_01.md`.
+- [x] Generated `-01` RFCXML is asserted to contain no `submissionType` attribute, matching the existing Datatracker document stream state.
 
 `rfclint` is not available in the repository CI environment. The generated RFCXML succeeds through the repository's `xml2rfc` validation/build path. Submission-time IETF Author Tools/Datatracker validation remains the authoritative external pre-upload gate.
 
@@ -74,7 +75,8 @@ The source-level and generated-artifact semantic review is recorded in `REVISION
 - [x] Exact XML/TXT/HTML SHA-256 digests recorded in `SUBMISSION_PACKAGE_01.md`.
 - [x] RFC 7595/RFC 8615 references and the `-01` IANA registration records reviewed.
 - [x] Change summary for `-01` is concise and matches the reviewed semantic diff.
-- [x] No IETF source or governed `-01` semantic input changed after the selected successful workflow artifact; subsequent pre-evidence change was limited to Pages workflow publication alignment.
+- [x] No protocol semantics changed in the metadata-correction tranche.
+- [x] idnits3 `SUBMISSION_TYPE_UNEXPECTED` root cause addressed by removing inherited stream metadata from generated `-01` RFCXML while preserving the frozen `-00` authoring baseline.
 
 ## 7. IETF submission hygiene and external gate
 
