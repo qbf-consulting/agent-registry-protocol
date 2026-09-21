@@ -144,12 +144,27 @@ if REVISION_CHECKLIST.exists():
         "Published baseline",
         "Protocol diff review",
         "IETF submission hygiene",
-        "repository-ready for merge",
-        "not yet Datatracker-submission-ready",
         "idnits",
     ):
         if needle not in checklist:
             errors.append(f"revision -01 checklist missing gate: {needle}")
+
+    published = "published and repository-closeout complete" in checklist
+    if published:
+        for needle in (
+            "accepted and posted by the IETF on 2026-09-21",
+            "No pre-publication submission gate remains open",
+            "candidate work for `-02` or later",
+        ):
+            if needle not in checklist:
+                errors.append(f"revision -01 published closeout missing marker: {needle}")
+    else:
+        for needle in (
+            "repository-ready for merge",
+            "not yet Datatracker-submission-ready",
+        ):
+            if needle not in checklist:
+                errors.append(f"revision -01 pre-submission checklist missing gate: {needle}")
 
 if errors:
     print("IETF draft validation failed:")
@@ -157,4 +172,4 @@ if errors:
         print(f"- {error}")
     sys.exit(1)
 
-print("IETF draft repository checks passed for governed -01 inputs")
+print("IETF draft repository checks passed for governed -01 inputs and lifecycle state")
