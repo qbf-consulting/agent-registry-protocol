@@ -80,19 +80,17 @@ The source-level and generated-artifact semantic review is recorded in `REVISION
 
 ## 7. IETF submission hygiene and external gate
 
-Repository acceptance and Datatracker acceptance remain separate gates. The earlier governed evolution tranche established the revision as **repository-ready for merge**; this evidence tranche establishes repository-side pre-submission readiness. Until the external **idnits**/IETF Author Tools/Datatracker validation is clean, the draft remains **not yet Datatracker-submission-ready**.
+Repository acceptance and Datatracker acceptance are separate gates. Both are now complete for revision `-01`.
 
-- [ ] Run IETF Author Tools/Datatracker validation against the exact selected `-01` XML/TXT files and resolve any blocking finding.
-- [ ] Upload `draft-sankarshan-agent-registry-protocol-01.xml` as revision `-01` of the existing Datatracker document.
-- [ ] Complete author verification/posting if requested by Datatracker.
-- [ ] Record the published `-01` archive URL and publication date in `SUBMISSION_PACKAGE_01.md`.
+- [x] Run IETF Author Tools/Datatracker validation against the selected `-01` XML/TXT files and resolve the blocking metadata finding.
+- [x] Upload `draft-sankarshan-agent-registry-protocol-01.xml` as revision `-01` of the existing Datatracker document.
+- [x] Complete author verification/posting.
+- [x] Record the published `-01` archive URL, publication date and page count in `SUBMISSION_PACKAGE_01.md`.
 
 ## Repository decision
 
-Revision `-01` is **repository-side pre-submission ready**. The governed semantic delta, generated artifacts, workflow evidence, manual review and cryptographic digests are recorded.
+Revision `-01` is **published and repository-closeout complete**. The governed semantic delta, generated artifacts, validation evidence, manual review, cryptographic digests, submission correction and canonical publication references are recorded.
 
 ## Submission decision
 
-The repository-side tranche is complete. The only remaining pre-publication activity is the **external IETF submission gate**: validate the exact selected artifact in the current IETF Author Tools/Datatracker path and, if no blocking finding remains, upload it as revision `-01`.
-
-The repository does not claim that an Internet-Draft revision is published until Datatracker has accepted and posted it.
+Revision `-01` was accepted and posted by the IETF on 2026-09-21. No pre-publication submission gate remains open for this revision. Future protocol changes must be treated as candidate work for `-02` or later rather than edits to the published `-01` artifact.
