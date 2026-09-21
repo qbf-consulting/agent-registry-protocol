@@ -43,6 +43,14 @@ source = source.replace(
     "docname: draft-sankarshan-agent-registry-protocol-01",
     1,
 )
+
+# Preserve the published -00 authoring baseline, but do not introduce RFC stream
+# metadata in -01 when the existing Datatracker document has no stream recorded.
+# This avoids idnits3 SUBMISSION_TYPE_UNEXPECTED on revision upload.
+submission_type = "submissiontype: IETF\n"
+if submission_type not in source:
+    raise SystemExit("error: -00 submissiontype marker changed; review -01 stream-metadata transform")
+source = source.replace(submission_type, "", 1)
 source = source.replace(
     "  RFC3986:\n  RFC9457:",
     "  RFC3986:\n  RFC7595:\n  RFC8615:\n  RFC9457:",
@@ -156,6 +164,12 @@ Path(sys.argv[4]).write_text(combined, encoding="utf-8")
 PY
 
 kramdown-rfc "$COMBINED" > "$OUT/$BASE.xml"
+
+if grep -q 'submissionType=' "$OUT/$BASE.xml"; then
+  echo "error: generated -01 RFCXML unexpectedly contains submissionType metadata" >&2
+  exit 2
+fi
+
 xml2rfc --text --out "$OUT/$BASE.txt" "$OUT/$BASE.xml"
 xml2rfc --html --out "$OUT/$BASE.html" "$OUT/$BASE.xml"
 
