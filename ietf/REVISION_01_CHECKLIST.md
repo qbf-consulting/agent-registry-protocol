@@ -2,9 +2,10 @@
 
 **Target:** `draft-sankarshan-agent-registry-protocol-01`  
 **Tracking issue:** #32  
+**Submission-evidence issue:** #35  
 **Published baseline:** `draft-sankarshan-agent-registry-protocol-00`
 
-This checklist governs preparation of revision `-01`. It does not alter or replace the retained `-00` submission checklist and package evidence.
+This checklist governs preparation and submission of revision `-01`. It does not alter or replace the retained `-00` submission checklist and package evidence.
 
 ## 1. Change authority and traceability
 
@@ -39,18 +40,17 @@ This checklist governs preparation of revision `-01`. It does not alter or repla
 
 ## 4. Automated validation
 
-Observed on the reviewed PR head before this evidence-only checklist update:
-
 - [x] `python3 scripts/validate_protocol_precision.py` passes in CI.
 - [x] `python3 scripts/validate_ietf_draft.py` passes in CI.
 - [x] `make ietf-check` builds and validates `-01` RFCXML/TXT/HTML.
-- [ ] `rfclint` passes when available. Current CI reports `rfclint unavailable`; `xml2rfc` build validation passes.
-- [x] Main repository validation passes for the branch.
+- [x] Main repository validation passes.
 - [x] Python and TypeScript implementation checks pass.
 - [x] Cross-runtime conformance comparison and network interoperability pass.
 - [x] GitHub Pages publication validation passes with `-01` generated artifacts.
+- [x] Dedicated merged `-01` IETF workflow run `35338636601` completed successfully.
+- [x] Exact workflow artifact and SHA-256 evidence recorded in `SUBMISSION_PACKAGE_01.md`.
 
-The checklist update itself must also receive a green final CI run before merge.
+`rfclint` is not available in the repository CI environment. The generated RFCXML succeeds through the repository's `xml2rfc` validation/build path. Submission-time IETF Author Tools/Datatracker validation remains the authoritative external pre-upload gate.
 
 ## 5. Protocol diff review
 
@@ -65,20 +65,32 @@ The source-level and generated-artifact semantic review is recorded in `REVISION
 - [x] No reviewed change weakens the existing fail-safe authority invariants.
 - [x] Revision `-01` change summary matches the reviewed semantic delta.
 
-## 6. IETF submission hygiene
+## 6. Submission artifact review
 
-Repository acceptance and Datatracker submission are separate gates.
+- [x] Generated plaintext reviewed for identity, metadata and readable rendering.
+- [x] Generated RFCXML reviewed as the preferred Datatracker submission input.
+- [x] Generated HTML retained and reviewed as rendering evidence.
+- [x] No `TODO`, `FIXME`, `TBD`, or placeholder markers found in the selected artifact.
+- [x] Exact XML/TXT/HTML SHA-256 digests recorded in `SUBMISSION_PACKAGE_01.md`.
+- [x] RFC 7595/RFC 8615 references and the `-01` IANA registration records reviewed.
+- [x] Change summary for `-01` is concise and matches the reviewed semantic diff.
+- [x] No IETF source or governed `-01` semantic input changed after the selected successful workflow artifact; subsequent pre-evidence change was limited to Pages workflow publication alignment.
 
-- [x] Generated plaintext reviewed for the accepted semantic deltas and IANA/change-log sections.
-- [ ] `idnits`/Datatracker submission checks have no unresolved blocking findings.
-- [x] RFC 7595/RFC 8615 reference placement and the repository-side IANA registration records have been reviewed.
-- [x] Change summary for `-01` is concise and matches the actual semantic diff.
-- [ ] Datatracker upload is performed only after the repository PR is accepted and merged.
+## 7. External submission gate
+
+Repository acceptance and Datatracker acceptance remain separate gates.
+
+- [ ] Run IETF Author Tools/Datatracker validation against the exact selected `-01` XML/TXT files and resolve any blocking finding.
+- [ ] Upload `draft-sankarshan-agent-registry-protocol-01.xml` as revision `-01` of the existing Datatracker document.
+- [ ] Complete author verification/posting if requested by Datatracker.
+- [ ] Record the published `-01` archive URL and publication date in `SUBMISSION_PACKAGE_01.md`.
 
 ## Repository decision
 
-Revision `-01` is **repository-ready for merge** once the final CI run on this checklist head is green.
+Revision `-01` is **repository-side pre-submission ready**. The governed semantic delta, generated artifacts, workflow evidence, manual review and cryptographic digests are recorded.
 
 ## Submission decision
 
-Revision `-01` is **not yet Datatracker-submission-ready** until the remaining submission-time checks above are completed against the final merged/generated artifact. In particular, the Datatracker/idnits-equivalent checks must be run immediately before upload; repository CI is not a substitute for those external submission checks.
+The repository-side tranche is complete. The only remaining pre-publication activity is the **external IETF submission gate**: validate the exact selected artifact in the current IETF Author Tools/Datatracker path and, if no blocking finding remains, upload it as revision `-01`.
+
+The repository does not claim that an Internet-Draft revision is published until Datatracker has accepted and posted it.
