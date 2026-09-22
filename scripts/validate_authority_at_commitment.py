@@ -57,6 +57,51 @@ def evaluate(data: dict) -> str:
         if approval.get("valid_until") and parse_time(approval["valid_until"]) < now:
             return "deny"
 
+    collective = data.get("collective_authority")
+    if collective is not None:
+        if not isinstance(collective, dict):
+            return "indeterminate"
+
+        membership_evidence = collective.get("membership_evidence")
+        rule_evidence = collective.get("rule_evidence")
+        if membership_evidence in {None, "missing", "unknown", "unavailable"}:
+            return "indeterminate"
+        if rule_evidence in {None, "missing", "unknown", "unavailable"}:
+            return "indeterminate"
+        if membership_evidence != "current" or rule_evidence != "current":
+            return "deny"
+
+        threshold = collective.get("threshold_required")
+        members = collective.get("current_members")
+        approvals = collective.get("approvals")
+        if not isinstance(threshold, int) or threshold < 1:
+            return "indeterminate"
+        if not isinstance(members, list) or not members:
+            return "indeterminate"
+        if threshold > len(set(members)):
+            return "deny"
+        if approvals is None or not isinstance(approvals, list):
+            return "indeterminate"
+
+        current_members = set(members)
+        qualifying_members = set()
+        for approval in approvals:
+            if not isinstance(approval, dict):
+                return "deny"
+            member = approval.get("member")
+            if member not in current_members:
+                return "deny"
+            if approval.get("action_digest") != request.get("action_digest"):
+                return "deny"
+            if approval.get("valid_until") and parse_time(approval["valid_until"]) < now:
+                return "deny"
+            if approval.get("valid") is not True:
+                return "deny"
+            qualifying_members.add(member)
+
+        if len(qualifying_members) < threshold:
+            return "deny"
+
     return "allow"
 
 
