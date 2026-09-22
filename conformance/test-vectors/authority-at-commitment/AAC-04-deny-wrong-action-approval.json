@@ -1,0 +1,38 @@
+{
+  "vector_id": "AAC-04",
+  "profile": "authority-at-commitment",
+  "check": "authority_evaluation",
+  "description": "An approval bound to a different action digest cannot authorize the requested commitment.",
+  "input": {
+    "authority_state": "active",
+    "authority_envelope": {
+      "effective_from": "2026-09-01T00:00:00Z",
+      "effective_until": "2026-10-01T00:00:00Z",
+      "action_classes": [
+        "procurement.commit"
+      ],
+      "resource_scope": [
+        "opportunity:42"
+      ],
+      "required_approvals": [
+        "procurement-lead"
+      ],
+      "limits": {
+        "amount_max": 200000
+      }
+    },
+    "request": {
+      "action": "procurement.commit",
+      "resource": "opportunity:42",
+      "amount": 150000,
+      "action_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "time": "2026-09-22T12:00:00Z"
+    },
+    "approval": {
+      "approval_id": "approval:7",
+      "action_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "valid_until": "2026-09-22T13:00:00Z"
+    }
+  },
+  "expected_outcome": "deny"
+}
