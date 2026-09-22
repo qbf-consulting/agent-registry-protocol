@@ -114,6 +114,8 @@ Build and validate the draft with `make ietf-setup` followed by `make ietf-check
 
 ## Start here
 
+- [Authority at commitment projection](docs/authority-at-commitment.md) — action-specific authority, exact-action approval and fail-safe evidence boundaries
+
 Choose the path that matches the decision you need to make:
 
 - [Understand ARPA](docs/understand.md) — concepts, modules and non-implication rules.

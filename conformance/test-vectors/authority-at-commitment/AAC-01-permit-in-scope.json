@@ -1,0 +1,31 @@
+{
+  "vector_id": "AAC-01",
+  "profile": "authority-at-commitment",
+  "check": "authority_evaluation",
+  "description": "Current authority, exact action in scope, and no additional approval requirement may allow the commitment.",
+  "input": {
+    "authority_state": "active",
+    "authority_envelope": {
+      "effective_from": "2026-09-01T00:00:00Z",
+      "effective_until": "2026-10-01T00:00:00Z",
+      "action_classes": [
+        "procurement.commit"
+      ],
+      "resource_scope": [
+        "opportunity:42"
+      ],
+      "required_approvals": [],
+      "limits": {
+        "amount_max": 100000
+      }
+    },
+    "request": {
+      "action": "procurement.commit",
+      "resource": "opportunity:42",
+      "amount": 90000,
+      "action_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "time": "2026-09-22T12:00:00Z"
+    }
+  },
+  "expected_outcome": "allow"
+}
