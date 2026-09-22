@@ -67,3 +67,26 @@ A conforming integration independently evaluates the envelope and current lifecy
 The repository carries focused vectors under `conformance/test-vectors/authority-at-commitment/`. They deliberately cover an admitted in-scope action, expired authority, scope/value exceedance, wrong-action approval and unavailable authority state.
 
 These vectors are implementation evidence for this projection only. They do not create a new universal negotiation protocol or expand the published IETF draft by implication.
+
+## Collective principal projection
+
+The same decision boundary can consume authority that belongs to a collective
+principal and is exercisable only under a current threshold or approval rule.
+This projection does not convert each controller into an independent grantor.
+
+When `collective_authority` evidence is supplied, an allow decision additionally
+requires:
+
+- current membership evidence;
+- a current exercise rule;
+- a declared threshold;
+- enough distinct current controllers to satisfy it;
+- every counted approval bound to the exact action digest; and
+- current approval validity at evaluation time.
+
+Observed insufficient participation or stale membership/rule evidence produces
+`deny`. Missing material composition evidence remains `indeterminate`.
+Duplicate controller evidence cannot be counted twice.
+
+The projection remains format-neutral. ARPA does not prescribe the threshold
+cryptosystem, collective-identifier method, or upstream protocol representation.
