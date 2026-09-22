@@ -1,0 +1,56 @@
+{
+  "vector_id": "AAC-10",
+  "profile": "authority-at-commitment",
+  "check": "collective_authority_evaluation",
+  "description": "A controller cannot be counted twice to satisfy a threshold.",
+  "input": {
+    "authority_state": "active",
+    "authority_envelope": {
+      "effective_from": "2026-09-01T00:00:00Z",
+      "effective_until": "2026-10-01T00:00:00Z",
+      "action_classes": [
+        "procurement.commit"
+      ],
+      "resource_scope": [
+        "opportunity:42"
+      ],
+      "required_approvals": [],
+      "limits": {
+        "amount_max": 100000
+      }
+    },
+    "request": {
+      "action": "procurement.commit",
+      "resource": "opportunity:42",
+      "amount": 90000,
+      "action_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa10",
+      "time": "2026-09-22T12:00:00Z"
+    },
+    "collective_authority": {
+      "principal_id": "org:buyer.example",
+      "threshold_required": 2,
+      "current_members": [
+        "controller:a",
+        "controller:b",
+        "controller:c"
+      ],
+      "membership_evidence": "current",
+      "rule_evidence": "current",
+      "approvals": [
+        {
+          "member": "controller:a",
+          "action_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa10",
+          "valid": true,
+          "valid_until": "2026-09-23T00:00:00Z"
+        },
+        {
+          "member": "controller:a",
+          "action_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa10",
+          "valid": true,
+          "valid_until": "2026-09-23T00:00:00Z"
+        }
+      ]
+    }
+  },
+  "expected_outcome": "deny"
+}
