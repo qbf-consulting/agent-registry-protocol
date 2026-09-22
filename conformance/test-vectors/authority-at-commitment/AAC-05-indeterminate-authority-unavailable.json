@@ -1,0 +1,17 @@
+{
+  "vector_id": "AAC-05",
+  "profile": "authority-at-commitment",
+  "check": "authority_evaluation",
+  "description": "Unavailable material authority state cannot be promoted to allow.",
+  "input": {
+    "authority_state": "unavailable",
+    "request": {
+      "action": "procurement.commit",
+      "resource": "opportunity:42",
+      "amount": 90000,
+      "action_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "time": "2026-09-22T12:00:00Z"
+    }
+  },
+  "expected_outcome": "indeterminate"
+}
