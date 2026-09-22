@@ -4,6 +4,7 @@ setup:
 validate:
 	python3 scripts/validate_examples.py
 	python3 scripts/validate_test_vectors.py
+	python3 scripts/validate_authority_at_commitment.py
 	python3 scripts/validate_extended_vectors.py
 	python3 scripts/validate_artifacts.py
 	python3 scripts/validate_normative_requirements.py
