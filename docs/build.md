@@ -26,8 +26,8 @@ This is the primary developer journey. Start with the smallest executable surfac
 
 - [`schemas/`](../schemas/README.md) for validation contracts;
 - [`registries/`](../registries/README.md) for governed values and codes;
-- [`openapi/arpa-openapi.yaml`](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/openapi/arpa-openapi.yaml) for HTTP surface definitions;
-- [`asyncapi/arpa-events.yaml`](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/asyncapi/arpa-events.yaml) for event contracts;
+- [`openapi/arpa-openapi.yaml`](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/openapi/arpa-openapi.yaml) for HTTP surface definitions;
+- [`asyncapi/arpa-events.yaml`](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/asyncapi/arpa-events.yaml) for event contracts;
 - [Conformance guide](conformance-guide.md) for executable behavioural expectations and links to the governed test-vector corpus.
 
 Do not copy constants or behavioural assumptions from another implementation when a normative artifact or conformance vector exists.
