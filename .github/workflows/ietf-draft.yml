@@ -20,11 +20,15 @@ on:
     paths:
       - "ietf/**"
       - "spec/agent-registry-protocol-protocol-precision-pp01.md"
+      - "spec/agent-registry-protocol-authority-commitment-pp02.md"
+      - "registries/authority-commitment-requirements-pp02.json"
+      - "conformance/test-vectors/authority-at-commitment/**"
       - "registries/protocol-precision-requirements-pp01.json"
       - "conformance/test-vectors/protocol-precision/**"
       - "scripts/build_ietf_draft.sh"
       - "scripts/validate_ietf_draft.py"
       - "scripts/validate_protocol_precision.py"
+      - "scripts/validate_authority_commitment_pp02.py"
       - "Makefile"
       - ".github/workflows/ietf-draft.yml"
   workflow_dispatch:
@@ -49,7 +53,7 @@ jobs:
         run: make ietf-setup
       - name: Build and validate Internet-Draft revision -02
         run: make ietf-check
-      - name: Upload rendered Internet-Draft revision -01
+      - name: Upload rendered Internet-Draft revision -02
         uses: actions/upload-artifact@v7
         with:
           name: draft-sankarshan-agent-registry-protocol-02
