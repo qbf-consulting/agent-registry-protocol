@@ -50,13 +50,13 @@ The checked-in base source deliberately preserves the published `-00` authoring 
 - [Internet-Draft base authoring source](draft-sankarshan-agent-registry-protocol.html)
 - [Adversarial-hardening source fragment](fragments/adversarial-hardening.html)
 - [PP-01 protocol-precision source fragment](fragments/protocol-precision.html)
-- [Rendered `-01` — HTML](generated/draft-sankarshan-agent-registry-protocol-01.html)
-- [Rendered `-01` — plaintext](generated/draft-sankarshan-agent-registry-protocol-01.txt)
-- [RFCXML v3 for `-01`](generated/draft-sankarshan-agent-registry-protocol-01.xml)
+- [Rendered `-02` — HTML](generated/draft-sankarshan-agent-registry-protocol-02.html)
+- [Rendered `-02` — plaintext](generated/draft-sankarshan-agent-registry-protocol-02.txt)
+- [RFCXML v3 for `-02`](generated/draft-sankarshan-agent-registry-protocol-02.xml)
 - [Generated-artifact SHA-256 checksums](generated/SHA256SUMS.txt)
 - [Protocol extraction and provenance map](PROTOCOL_EXTRACTION.html)
-- [Revision `-01` baseline review](REVISION_01_BASELINE.html)
-- [Revision `-01` readiness checklist](REVISION_01_CHECKLIST.html)
+- [Revision `-01` baseline review](REVISION_01_BASELINE.html)\n- [Revision `-02` baseline review](REVISION_02_BASELINE.html)
+- [Revision `-01` readiness checklist](REVISION_01_CHECKLIST.html)\n- [Revision `-02` readiness checklist](REVISION_02_CHECKLIST.html)
 
 The machine-readable `ietf/spec-delta-v01.yaml` records the accepted and excluded `-00 → -01` propositions. The checked-in authoring workflow is documented in `ietf/README.md` in the repository source tree.
 
@@ -84,3 +84,7 @@ That gate validates PP-01 protocol-precision traceability, IETF authoring inputs
 Generated outputs remain excluded from Git so they cannot drift as independently committed authority. SHA-256 checksums are published with the rendered artifacts for build evidence.
 
 A successful build is necessary but not sufficient for submission. The remaining semantic-diff and IETF submission hygiene gates are tracked in the revision `-01` checklist.
+
+## Candidate `-02` additions
+
+Candidate revision `-02` adds explicit action-context binding, exact-action approval semantics, mechanism-neutral collective-principal exercise rules, and a standards-context section that distinguishes ARPA from WIMSE workload identity, OAuth token exchange, RATS attestation, and SCITT transparency. These additions are governed by Candidate amendment `ARPA-CAND-PP-02`; they do not import A2A, TRQP, negotiation workflow, settlement, reputation, or project assurance scoring into the IETF core.
