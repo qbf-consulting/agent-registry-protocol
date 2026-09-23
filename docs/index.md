@@ -17,9 +17,9 @@ This catalogue provides a stable GitHub Pages entry point for the complete norma
 ## IETF standards track preparation
 
 - [IETF Internet-Draft authoring track]({{ '/ietf/' | relative_url }})
-- [ARPA → IETF protocol extraction map](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
-- [`draft-sankarshan-agent-registry-protocol-00` source](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/ietf/draft-sankarshan-agent-registry-protocol.md)
-- [`-00` submission checklist](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/ietf/SUBMISSION_CHECKLIST.md)
+- [ARPA → IETF protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
+- [`draft-sankarshan-agent-registry-protocol-00` source](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/draft-sankarshan-agent-registry-protocol.md)
+- [`-00` submission checklist](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/SUBMISSION_CHECKLIST.md)
 
 The IETF track is a protocol extraction and prospective contribution surface; it does not replace the project Candidate Specification or imply IETF adoption.
 
@@ -31,7 +31,7 @@ The IETF track is a protocol extraction and prospective contribution surface; it
 | **Profile normative** | Defines additional requirements applicable only when the optional profile is claimed. |
 | **Informative** | Explains architecture, implementation, deployment, evidence or examples without changing normative requirements. |
 
-ARPA v0.9.5 is the current implementation and cross-runtime interoperability release; v0.9.4 remains the historical-resolution baseline consumed by the TypeScript track. The v0.9.0 Candidate Specification remains the normative protocol baseline.
+ARPA v0.9.5 is the current implementation and cross-runtime interoperability release; v0.9.4 remains the historical-resolution baseline consumed by the TypeScript track. The ARPA Candidate v0.10.0 consolidated specification is the normative protocol baseline.
 
 ## Protocol module map
 
@@ -55,7 +55,8 @@ See [Protocol modules](protocol-modules.md) for the dependency table, profile ma
 
 ## Normative specification and profiles
 
-- **Normative:** [Agent Registry Protocol Candidate Specification v0.9.0](../spec/agent-registry-protocol-v0.9.0.md)
+- **Normative:** [Agent Registry Protocol Candidate Specification v0.10.0](../spec/agent-registry-protocol-v0.10.0.md)
+- **Historical provenance:** [Candidate v0.9.0](../spec/agent-registry-protocol-v0.9.0.md) and the retained Candidate amendment documents
 - **Profile normative:** [ARPA Core Identity and Discovery Profile](../spec/profiles/arpa-core-identity-discovery-profile.md)
 - **Profile normative:** [ARPA Identifier Profile](../spec/profiles/arpa-identifier-profile.md)
 - **Profile normative:** [ARPA Proof and Digest Profile](../spec/profiles/arpa-proof-and-digest-profile.md)
