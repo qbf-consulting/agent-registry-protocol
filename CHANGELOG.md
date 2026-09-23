@@ -6,6 +6,15 @@ nav_exclude: true
 
 # Changelog
 
+## Candidate v0.10.0 consolidation (unreleased)
+
+- Consolidated ARPA Candidate v0.9.0, the v0.9.1 adversarial-hardening amendment, `ARPA-CAND-PP-01`, `ARPA-CAND-PP-02`, and `ARPA-CAND-PP-03` into one authoritative Candidate v0.10.0 specification.
+- Added a machine-readable consolidation manifest and release-gated validator covering amendment-section mapping, normative carry-over, historical-source immutability, and protected IETF `-02` control files.
+- Regenerated the normative-requirements catalogue against v0.10.0 while preserving the existing content-derived identifier policy.
+- Reconciled project maturity/status, documentation, and IETF authoring guidance around the new Candidate baseline.
+- Preserved published IETF `draft-sankarshan-agent-registry-protocol-02` as an independently versioned immutable baseline; future `-03` work remains an explicit `-02 → -03` delta process.
+
+
 ### Operational resilience assurance (unreleased)
 
 - Added cross-cutting normative resilience requirements for retry ownership, aggregate retry budgets, partial-outage failover, stabilized recovery, event isolation, durable acknowledgement, dependency amplification, cache freshness, and sustained-load progress.
