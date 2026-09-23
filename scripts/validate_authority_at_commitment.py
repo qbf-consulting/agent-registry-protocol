@@ -35,7 +35,7 @@ def evaluate(data: dict) -> str:
     now = parse_time(request["time"])
     if now < parse_time(envelope["effective_from"]):
         return "deny"
-    if envelope.get("effective_until") and now > parse_time(envelope["effective_until"]):
+    if envelope.get("effective_until") and now >= parse_time(envelope["effective_until"]):
         return "deny"
     if request.get("action") not in envelope.get("action_classes", []):
         return "deny"
