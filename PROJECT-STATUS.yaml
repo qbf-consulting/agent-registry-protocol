@@ -4,7 +4,7 @@ project:
   maturity: pilot-ready
   lifecycle: active
   operational_status: active-validation
-  specification_status: community-draft
+  specification_status: candidate-specification
   intended_use:
     - implementation
     - interoperability-testing

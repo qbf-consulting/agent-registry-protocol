@@ -60,7 +60,7 @@ Documents may be marked:
 - **Stable Specification**
 - **Deprecated**
 
-The current specification is a **Community Draft**.
+The current specification is a **Candidate Specification**. The consolidated normative baseline is ARPA Candidate v0.10.0; earlier Candidate baselines and approved amendments remain historical provenance.
 
 ## Release policy
 

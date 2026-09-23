@@ -15,5 +15,5 @@ for e in cat['entries']:
 if errors:
     print('\n'.join(errors)); sys.exit(1)
 out=ROOT/'artifacts/conformance/normative-requirements-validation.json'; out.parent.mkdir(parents=True,exist_ok=True)
-out.write_text(json.dumps({"status":"pass","catalogue":"registries/normative-requirements.json","requirements":len(ids),"unique_ids":len(set(ids)),"source":"spec/agent-registry-protocol-v0.9.0.md"},indent=2)+"\n")
+out.write_text(json.dumps({"status":"pass","catalogue":"registries/normative-requirements.json","requirements":len(ids),"unique_ids":len(set(ids)),"source":"spec/agent-registry-protocol-v0.10.0.md"},indent=2)+"\n")
 print(f'validate_normative_requirements.py: PASS ({len(ids)} requirements)')

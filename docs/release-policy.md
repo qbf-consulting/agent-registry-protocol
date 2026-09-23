@@ -6,9 +6,9 @@ nav_exclude: true
 
 # Release Policy
 
-ARPA uses semantic versioning for repository releases and maintains a separate schema-version track where documented in `schemas/README.md`.
+ARPA maintains distinct version authority surfaces for the Candidate Specification, repository implementation releases, schemas where separately versioned, and IETF Internet-Draft revisions. A change in one surface does not silently advance another.
 
-A release is warranted for a new normative capability, machine-verifiable artifact, material interoperability change, completed conformance gate, security or correctness fix, or adoption-ready workflow. Editorial-only changes should normally be batched.
+A Candidate minor release is warranted when approved normative amendments are consolidated into a new authoritative baseline or when compatible protocol semantics materially advance. Repository implementation releases remain independently numbered and MUST NOT be inferred from the Candidate version alone. A repository release is warranted for a new normative capability, machine-verifiable artifact, material interoperability change, completed conformance gate, security or correctness fix, or adoption-ready workflow. Editorial-only changes should normally be batched.
 
 ## Readiness gates
 
