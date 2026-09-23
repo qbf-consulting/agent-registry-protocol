@@ -18,10 +18,10 @@ This catalogue provides a stable GitHub Pages entry point for the complete norma
 
 - [IETF Internet-Draft authoring track]({{ '/ietf/' | relative_url }})
 - [ARPA → IETF protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
-- [`draft-sankarshan-agent-registry-protocol-00` source](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/draft-sankarshan-agent-registry-protocol.md)
-- [`-00` submission checklist](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/SUBMISSION_CHECKLIST.md)
+- [Published `draft-sankarshan-agent-registry-protocol-02` baseline](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/REVISION_02_BASELINE.md)
+- [Future `-03` planning and proposition dispositions](https://github.com/qbf-consulting/agent-registry-protocol/issues/47)
 
-The IETF track is a protocol extraction and prospective contribution surface; it does not replace the project Candidate Specification or imply IETF adoption.
+The IETF track is an independently versioned protocol-extraction and publication surface. Published `-02` is the immutable IETF comparison baseline; Candidate v0.10.0 is the current ARPA source baseline for any future `-03` proposition. The IETF track does not replace the project Candidate Specification.
 
 ## Document status
 
