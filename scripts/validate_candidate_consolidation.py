@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib, json, re, sys
 
 ROOT=Path(__file__).resolve().parents[1]
-MANIFEST=ROOT/'registries/candidate-consolidation-v0.10.0.json'
+MANIFEST=ROOT/'conformance/manifests/candidate-consolidation-v0.10.0.json'
 SPEC=ROOT/'spec/agent-registry-protocol-v0.10.0.md'
 OUT=ROOT/'artifacts/conformance/candidate-consolidation-v0.10.0-validation.json'
 TERMS=re.compile(r'\b(MUST(?: NOT)?|REQUIRED|SHALL(?: NOT)?|SHOULD(?: NOT)?|RECOMMENDED|MAY|OPTIONAL)\b')
