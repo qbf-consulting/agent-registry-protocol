@@ -6,7 +6,7 @@ nav_exclude: true
 
 # Agent Registry Protocol
 
-[![Specification status](https://img.shields.io/badge/spec-Candidate%20%2B%20PP--01-blue)](https://qbf-consulting.github.io/agent-registry-protocol/spec/agent-registry-protocol-protocol-precision-pp01.html)
+[![Specification status](https://img.shields.io/badge/spec-Candidate%20v0.10.0-blue)](https://qbf-consulting.github.io/agent-registry-protocol/spec/agent-registry-protocol-v0.10.0.html)
 [![Validation](https://github.com/qbf-consulting/agent-registry-protocol/actions/workflows/validate.yml/badge.svg)](https://github.com/qbf-consulting/agent-registry-protocol/actions/workflows/validate.yml)
 [![License: CC BY 4.0](https://img.shields.io/badge/spec-CC%20BY%204.0-lightgrey.svg)](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/LICENSE-CONTENT)
 [![Code: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-lightgrey.svg)](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/LICENSE-CODE)
@@ -26,12 +26,12 @@ nav_exclude: true
 | Maturity | Pilot ready |
 | Lifecycle | Active |
 | Operational status | Active validation |
-| Specification status | Candidate precision revision |
+| Specification status | Candidate Specification v0.10.0 |
 | Implementation release | v0.9.5 |
-| Normative baseline | v0.9.0 Candidate Specification + adversarial-hardening amendment + `ARPA-CAND-PP-01` |
+| Normative baseline | ARPA Candidate v0.10.0 consolidated specification |
 | Primary artifacts | Specification, schemas, API/event contracts, reference implementations, conformance and evidence |
 | Release gate | `make release-check-all` |
-| Candidate evidence | `artifacts/candidate-specification/evidence-bundle.json` plus amendment-specific evidence |
+| Candidate evidence | `artifacts/candidate-specification/evidence-bundle.json`, amendment-specific evidence, and `artifacts/conformance/candidate-consolidation-v0.10.0-validation.json` |
 | Authority | Repository-local status and scope in `PROJECT-STATUS.yaml`; process in `GOVERNANCE.md` |
 
 Implementation release numbers and Candidate-specification authority are intentionally distinct. An implementation release does not change the normative baseline merely because its semantic version advances.
@@ -52,7 +52,7 @@ The existing Candidate adversarial-hardening amendment closes exploitable ambigu
 - a schema-correction authority boundary; and
 - a release-gated adversarial conformance corpus with 20+ hostile boundary cases.
 
-The amendment is [ARPA v0.9.1 Adversarial Hardening](spec/agent-registry-protocol-v0.9.1-hardening.md). The underlying consolidated Candidate architecture remains [ARPA v0.9.0](spec/agent-registry-protocol-v0.9.0.md); the amendment controls where it narrows or resolves an ambiguous v0.9.0 rule.
+The amendment is retained as historical provenance at [ARPA v0.9.1 Adversarial Hardening](spec/agent-registry-protocol-v0.9.1-hardening.md). Its approved normative semantics are now incorporated directly into [ARPA Candidate v0.10.0](spec/agent-registry-protocol-v0.10.0.md).
 
 ## Candidate Protocol Precision Amendment PP-01
 
@@ -63,7 +63,7 @@ The amendment is [ARPA v0.9.1 Adversarial Hardening](spec/agent-registry-protoco
 - protocol-significant HTTP failures use an RFC 9457 Problem Details contract with stable machine semantics; and
 - unsupported material critical extensions fail safely rather than being silently ignored.
 
-PP-01 is identified by the stable amendment ID `ARPA-CAND-PP-01`, not by an implementation-release version. Its machine-readable requirements and vectors live in `registries/protocol-precision-requirements-pp01.json` and `conformance/test-vectors/protocol-precision/protocol-precision-pp01.json`.
+PP-01 retains its stable amendment ID and provenance. Its semantics, together with `ARPA-CAND-PP-02` and `ARPA-CAND-PP-03`, are incorporated into Candidate v0.10.0. Historical amendment requirements and vectors remain retained for auditability and regression assurance; `registries/candidate-consolidation-v0.10.0.json` records the consolidation map.
 
 ## What v0.9.5 delivers
 
@@ -93,24 +93,16 @@ PP-01 is identified by the stable amendment ID `ARPA-CAND-PP-01`, not by an impl
 
 ## IETF Internet-Draft track
 
-ARPA maintains a deliberately separate IETF authoring surface for the protocol core. The individual Internet-Draft **`draft-sankarshan-agent-registry-protocol-00`** was published by the IETF on **17 September 2026**. It does not replace the ARPA Candidate Specification or reuse ARPA implementation-release semantic-version numbers.
+ARPA maintains a deliberately separate IETF authoring surface for the interoperable protocol core. The current published revision is **`draft-sankarshan-agent-registry-protocol-02`**, published on **23 September 2026**. Published IETF revisions are immutable and are not renumbered when the ARPA Candidate baseline advances.
 
-- [Published Internet-Draft (`-00`)](https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/)
-- [IETF archive text](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-00.txt)
-- [HTMLized draft](https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol)
-
-The published IETF archive is the immutable `-00` historical baseline. Repository development now prepares candidate **`draft-sankarshan-agent-registry-protocol-01`** without rewriting that published baseline.
-
-Protocol-core adversarial-hardening rules are synchronized through `ietf/fragments/adversarial-hardening.md`. The PP-01 identifier, historical-resolution, Problem Details and critical-extension semantics are synchronized through `ietf/fragments/protocol-precision.md`. The `-00 → -01` classification is recorded in `ietf/spec-delta-v01.yaml` and the baseline reasoning in `ietf/REVISION_01_BASELINE.md`.
-
+- [Published Internet-Draft](https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/)
+- [IETF archive text for `-02`](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-02.txt)
 - [IETF authoring and submission guide]({{ '/ietf/' | relative_url }})
 - [Protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
-- [`-01` readiness checklist](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/REVISION_01_CHECKLIST.md)
-- [Internet-Draft base source](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/draft-sankarshan-agent-registry-protocol.md)
-- [IETF adversarial-hardening source fragment](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/fragments/adversarial-hardening.md)
-- [IETF protocol-precision source fragment](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/fragments/protocol-precision.md)
 
-Build and validate the draft with `make ietf-setup` followed by `make ietf-check`. GitHub Actions deterministically produces candidate `-01` RFCXML v3, TXT and HTML from the retained `-00` authoring baseline plus governed deltas. A project-level `spec/` edit alone does not rewrite IETF source; a protocol-core change must be explicitly classified and synchronized.
+**Candidate v0.10.0 is now the current ARPA project source baseline.** It does not rewrite published `-02`. Future `-03` work is governed as an explicit `-02 → -03` IETF delta, with Candidate v0.10.0 providing the project semantics from which protocol-core propositions may be selected. A Candidate change crosses the IETF boundary only through explicit disposition; project-only governance, conformance, deployment and assurance material does not enter the draft automatically.
+
+Build and validate the current published-draft reproduction path with `make ietf-setup` followed by `make ietf-check`. Candidate consolidation is release-gated so that the governed `-02` control files remain unchanged.
 
 ## Start here
 
