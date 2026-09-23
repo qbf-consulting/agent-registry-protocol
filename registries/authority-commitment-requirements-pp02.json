@@ -17,7 +17,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     },
     {
       "id": "AC-PP02-002",
@@ -29,7 +30,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     },
     {
       "id": "AC-PP02-003",
@@ -43,7 +45,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     },
     {
       "id": "AC-PP02-004",
@@ -55,7 +58,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     },
     {
       "id": "AC-PP02-005",
@@ -67,7 +71,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     },
     {
       "id": "AC-PP02-006",
@@ -81,7 +86,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     },
     {
       "id": "AC-PP02-007",
@@ -93,7 +99,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     },
     {
       "id": "AC-PP02-008",
@@ -105,7 +112,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     },
     {
       "id": "AC-PP02-009",
@@ -117,7 +125,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     },
     {
       "id": "AC-PP02-010",
@@ -129,7 +138,8 @@
       "expected_evidence": [
         "authority-at-commitment vectors",
         "scripts/validate_authority_at_commitment.py"
-      ]
+      ],
+      "level": "MUST"
     }
   ]
 }
