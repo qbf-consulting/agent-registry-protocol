@@ -43,9 +43,20 @@
 
 ## Publication
 
-- [ ] Author Tools / submission checks completed
-- [ ] RFCXML v3 uploaded as revision `-02`
-- [ ] Datatracker publication verified
-- [ ] repository publication evidence updated
+- [x] Author Tools / submission checks completed
+- [x] RFCXML v3 uploaded as revision `-02`
+- [x] Datatracker publication verified
+- [x] repository publication evidence updated
 
-Datatracker upload is intentionally separate from repository preparation. Repository preparation and manual artifact review are complete; see `SUBMISSION_PACKAGE_02.md` for the selected build and digests.
+## Published result
+
+- Published: 23 September 2026
+- Draft: `draft-sankarshan-agent-registry-protocol-02`
+- Group: Individual Submission
+- Pages: 34
+- Archive: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-02.txt>
+- Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
+- HTMLized: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
+- Diff: <https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-02>
+
+Revision `-02` is now the immutable published baseline for any future `-02 → -03` delta audit. See `SUBMISSION_PACKAGE_02.md` for the selected build, digests, validation evidence, and publication closeout.
