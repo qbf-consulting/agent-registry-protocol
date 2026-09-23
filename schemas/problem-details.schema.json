@@ -7,7 +7,7 @@
     "type": {
       "type": "string",
       "format": "uri",
-      "pattern": "^https://qbfconsulting\\\\.digital/problems/arpa/ARPA-[A-Z0-9-]+$"
+      "pattern": "^https://qbfconsulting\\.digital/problems/arpa/ARPA-[A-Z0-9-]+$"
     },
     "title": {
       "type": "string",
