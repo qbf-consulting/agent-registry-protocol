@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qbfconsulting.digital/schemas/problem-details.schema.json",
+  "title": "ARPA RFC 9457 Problem Details",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://qbfconsulting\\\\.digital/problems/arpa/ARPA-[A-Z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "integer",
+      "minimum": 400,
+      "maximum": 599
+    },
+    "detail": {
+      "type": "string"
+    },
+    "instance": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "code": {
+      "type": "string",
+      "pattern": "^ARPA-[A-Z0-9-]+$"
+    },
+    "correlation_id": {
+      "type": "string"
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retryable": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "status",
+    "code"
+  ]
+}
