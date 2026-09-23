@@ -7,14 +7,17 @@ ROOT = Path(__file__).resolve().parents[1]
 DRAFT = ROOT / "ietf" / "draft-sankarshan-agent-registry-protocol.md"
 HARDENING = ROOT / "ietf" / "fragments" / "adversarial-hardening.md"
 PRECISION = ROOT / "ietf" / "fragments" / "protocol-precision.md"
+AUTHORITY = ROOT / "ietf" / "fragments" / "authority-commitment.md"
 README = ROOT / "ietf" / "README.md"
 EXTRACTION = ROOT / "ietf" / "PROTOCOL_EXTRACTION.md"
 PUBLISHED_CHECKLIST = ROOT / "ietf" / "SUBMISSION_CHECKLIST.md"
-REVISION_CHECKLIST = ROOT / "ietf" / "REVISION_01_CHECKLIST.md"
-BASELINE = ROOT / "ietf" / "REVISION_01_BASELINE.md"
-DELTA = ROOT / "ietf" / "spec-delta-v01.yaml"
+REVISION_CHECKLIST = ROOT / "ietf" / "REVISION_02_CHECKLIST.md"
+BASELINE = ROOT / "ietf" / "REVISION_02_BASELINE.md"
+DELTA = ROOT / "ietf" / "spec-delta-v02.yaml"
 BUILD = ROOT / "scripts" / "build_ietf_draft.sh"
 PRECISION_SPEC = ROOT / "spec" / "agent-registry-protocol-protocol-precision-pp01.md"
+AUTHORITY_SPEC = ROOT / "spec" / "agent-registry-protocol-authority-commitment-pp02.md"
+AUTHORITY_REQUIREMENTS = ROOT / "registries" / "authority-commitment-requirements-pp02.json"
 PRECISION_REQUIREMENTS = ROOT / "registries" / "protocol-precision-requirements-pp01.json"
 PRECISION_VECTORS = ROOT / "conformance" / "test-vectors" / "protocol-precision" / "protocol-precision-pp01.json"
 
@@ -23,6 +26,7 @@ for path in (
     DRAFT,
     HARDENING,
     PRECISION,
+    AUTHORITY,
     README,
     EXTRACTION,
     PUBLISHED_CHECKLIST,
@@ -31,6 +35,8 @@ for path in (
     DELTA,
     BUILD,
     PRECISION_SPEC,
+    AUTHORITY_SPEC,
+    AUTHORITY_REQUIREMENTS,
     PRECISION_REQUIREMENTS,
     PRECISION_VECTORS,
 ):
@@ -104,6 +110,35 @@ if PRECISION.exists():
         if bad in precision:
             errors.append(f"IETF precision fragment contains project-only metadata/license text: {bad}")
 
+if AUTHORITY.exists():
+    authority = AUTHORITY.read_text(encoding="utf-8")
+    for needle in (
+        "# Action-Specific Authority Evaluation",
+        "canonical action digest",
+        "Collective Principals",
+        "MUST NOT be counted more than once",
+        "# Relationship to Adjacent IETF Work",
+        "{{WIMSE-ARCH}}",
+        "{{WIMSE-CROSS-ORG}}",
+        "{{RFC8693}}",
+        "{{RFC9334}}",
+        "{{RFC9943}}",
+    ):
+        if needle not in authority:
+            errors.append(f"IETF -02 authority fragment missing required invariant/reference: {needle}")
+
+if AUTHORITY_SPEC.exists():
+    authority_spec = AUTHORITY_SPEC.read_text(encoding="utf-8")
+    for needle in ("ARPA-CAND-PP-02", "Action-specific authority context", "Collective-principal authority"):
+        if needle not in authority_spec:
+            errors.append(f"PP-02 source missing required marker: {needle}")
+
+if AUTHORITY_REQUIREMENTS.exists():
+    req = AUTHORITY_REQUIREMENTS.read_text(encoding="utf-8")
+    for needle in ("AC-PP02-001", "AC-PP02-010", "ARPA-CAND-PP-02"):
+        if needle not in req:
+            errors.append(f"PP-02 requirement registry missing marker: {needle}")
+
 if PRECISION_SPEC.exists():
     precision_spec = PRECISION_SPEC.read_text(encoding="utf-8")
     if "ARPA-CAND-PP-01" not in precision_spec:
@@ -114,14 +149,17 @@ if PRECISION_SPEC.exists():
 if BUILD.exists():
     build = BUILD.read_text(encoding="utf-8")
     required_build = [
-        'BASE="draft-sankarshan-agent-registry-protocol-01"',
+        'BASE="draft-sankarshan-agent-registry-protocol-02"',
         "protocol-precision.md",
+        "authority-commitment.md",
         "RFC7595",
         "RFC8615",
         "agentreg:<registry-namespace>:<agent-local-id>",
         "requests permanent registration of the `agentreg` URI scheme",
         "URI suffix: `agent-registry`",
         "Status: Permanent",
+        "WIMSE-CROSS-ORG",
+        "RFC9943",
     ]
     for needle in required_build:
         if needle not in build:
@@ -129,18 +167,18 @@ if BUILD.exists():
 
 if DELTA.exists():
     delta = DELTA.read_text(encoding="utf-8")
-    for proposition in ("ARPA-IETF-001", "ARPA-IETF-002", "ARPA-IETF-003", "ARPA-IETF-004"):
+    for proposition in ("ARPA-IETF-101", "ARPA-IETF-102", "ARPA-IETF-103"):
         if proposition not in delta:
             errors.append(f"IETF delta register missing accepted proposition {proposition}")
-    if "published_baseline: draft-sankarshan-agent-registry-protocol-00" not in delta:
-        errors.append("IETF delta register lost immutable -00 baseline declaration")
-    if "target_revision: draft-sankarshan-agent-registry-protocol-01" not in delta:
-        errors.append("IETF delta register lost -01 target declaration")
+    if "published_baseline: draft-sankarshan-agent-registry-protocol-01" not in delta:
+        errors.append("IETF delta register lost immutable -01 baseline declaration")
+    if "target_revision: draft-sankarshan-agent-registry-protocol-02" not in delta:
+        errors.append("IETF delta register lost -02 target declaration")
 
 if REVISION_CHECKLIST.exists():
     checklist = REVISION_CHECKLIST.read_text(encoding="utf-8")
     for needle in (
-        "draft-sankarshan-agent-registry-protocol-01",
+        "draft-sankarshan-agent-registry-protocol-02",
         "Published baseline",
         "Protocol diff review",
         "IETF submission hygiene",
@@ -149,22 +187,7 @@ if REVISION_CHECKLIST.exists():
         if needle not in checklist:
             errors.append(f"revision -01 checklist missing gate: {needle}")
 
-    published = "published and repository-closeout complete" in checklist
-    if published:
-        for needle in (
-            "accepted and posted by the IETF on 2026-09-21",
-            "No pre-publication submission gate remains open",
-            "candidate work for `-02` or later",
-        ):
-            if needle not in checklist:
-                errors.append(f"revision -01 published closeout missing marker: {needle}")
-    else:
-        for needle in (
-            "repository-ready for merge",
-            "not yet Datatracker-submission-ready",
-        ):
-            if needle not in checklist:
-                errors.append(f"revision -01 pre-submission checklist missing gate: {needle}")
+    for needle in (\n        "Published `-01` identified as immutable baseline",\n        "Action-specific authority context defined",\n        "Collective-principal exercise semantics defined",\n        "WIMSE architecture relationship explained",\n        "OAuth 2.0 Token Exchange boundary explained",\n    ):\n        if needle not in checklist:\n            errors.append(f"revision -02 checklist missing gate: {needle}")\n
 
 if errors:
     print("IETF draft validation failed:")
@@ -172,4 +195,4 @@ if errors:
         print(f"- {error}")
     sys.exit(1)
 
-print("IETF draft repository checks passed for governed -01 inputs and lifecycle state")
+print("IETF draft repository checks passed for governed -02 inputs and lifecycle state")
