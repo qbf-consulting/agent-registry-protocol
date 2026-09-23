@@ -4,7 +4,7 @@ This directory is the IETF authoring surface for the **Agent Registry Protocol**
 
 ## Published revisions and active baseline
 
-The current published Internet-Draft revision is:
+The current published Internet-Draft baseline is:
 
 - Current revision: `draft-sankarshan-agent-registry-protocol-01`
 - Published: 21 September 2026
@@ -18,7 +18,7 @@ The current published Internet-Draft revision is:
 
 The previous published baseline, `draft-sankarshan-agent-registry-protocol-00`, remains immutable historical evidence at <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-00.txt>.
 
-The IETF revision series is independent of ARPA implementation-release semantic versions. Any future protocol change is candidate work for `-02` or later; neither published revision is modified in place.
+The IETF revision series is independent of ARPA implementation-release semantic versions. Published `-01` is immutable. The repository is now preparing governed candidate revision `-02` from explicit post-publication deltas.
 
 ## Authority and scope
 
@@ -44,7 +44,7 @@ Project governance, conformance programmes, A2A/TRQP profiles, deployment guidan
 
 The checked-in `ietf/draft-sankarshan-agent-registry-protocol.md` deliberately preserves the published `-00` authoring baseline. Revision `-01` is constructed from explicit governed deltas rather than by silently converting that file into a moving draft.
 
-The `-01` evidence chain is:
+The historical `-01` evidence chain is:
 
 ```text
 published -00 baseline
@@ -162,3 +162,7 @@ The publication package for revision `-01` is recorded in `SUBMISSION_PACKAGE_01
 ## Submission discipline
 
 Revision `-01` has completed the automated gates, protocol-semantic diff review, IANA/reference review, submission-time validation and IETF posting gates recorded in `REVISION_01_CHECKLIST.md`. Future revisions must repeat the same discipline rather than treating the published `-01` as a moving document.
+
+## Revision `-02` development
+
+Revision `-02` is governed by `REVISION_02_BASELINE.md`, `spec-delta-v02.yaml`, Candidate amendment `ARPA-CAND-PP-02`, and `REVISION_02_CHECKLIST.md`. It adds action-specific authority evaluation, collective-principal exercise semantics, and explicit composability boundaries with WIMSE, OAuth 2.0 Token Exchange, RATS and SCITT. The generated development outputs are `draft-sankarshan-agent-registry-protocol-02.{xml,txt,html}`. Published `-01` remains the immutable comparison baseline.
