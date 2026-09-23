@@ -1,7 +1,7 @@
 {
   "registry": "normative-requirements",
-  "version": "0.9.0",
-  "source": "spec/agent-registry-protocol-v0.9.0.md",
+  "version": "0.10.0",
+  "source": "spec/agent-registry-protocol-v0.10.0.md",
   "id_policy": "content-derived; changes only when the normative clause changes",
   "entries": [
     {
@@ -12,9 +12,9 @@
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
     {
-      "id": "ARPA-NORM-CTRL-E785099E60",
+      "id": "ARPA-NORM-CTRL-B6E53C4B7D",
       "section": "Candidate Specification Control",
-      "requirement": "This document is the sole authoritative prose specification for ARPA v0.9.0. Schemas, controlled registries, OpenAPI and AsyncAPI descriptions, conformance vectors, implementation reports, and evidence bundles are subordinate machine-readable artifacts. Where an inconsistency is found, implementations MUST fail safely, record the conflict, and open a specification defect rather than infer an affirmative authority decision.",
+      "requirement": "This document is the sole authoritative prose specification for ARPA v0.10.0. Schemas, controlled registries, OpenAPI and AsyncAPI descriptions, conformance vectors, implementation reports, and evidence bundles are subordinate machine-readable artifacts. Where an inconsistency is found, implementations MUST fail safely, record the conflict, and open a specification defect rather than infer an affirmative authority decision.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -126,7 +126,7 @@
     {
       "id": "ARPA-NORM-6-3-B9962F8303",
       "section": "6.3 Capability Is Not Permission",
-      "requirement": "An agent\u2019s technical ability, declared capability, verified competence, and delegated permission MUST be modeled as separate concepts.",
+      "requirement": "An agent’s technical ability, declared capability, verified competence, and delegated permission MUST be modeled as separate concepts.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -238,7 +238,7 @@
     {
       "id": "ARPA-NORM-10-2-CB090F4E9A",
       "section": "10.2 Separation of Concerns",
-      "requirement": "Implementations MUST NOT use a single undifferentiated \u201cowner\u201d field as the exclusive representation of all relationships.",
+      "requirement": "Implementations MUST NOT use a single undifferentiated “owner” field as the exclusive representation of all relationships.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -301,7 +301,7 @@
     {
       "id": "ARPA-NORM-12-2-7EC39BA3E2",
       "section": "12.2 Identifier Syntax",
-      "requirement": "`registry-namespace` SHOULD be a DNS domain name or an equivalent registry-assigned namespace under the issuing Registration Authority's policy. `agent-local-id` MUST be unique within `registry-namespace` and MUST NOT be reassigned after retirement or revocation (\u00a712.1). Implementations MAY support other identifier schemes. A conformance profile MUST declare supported identifier schemes. Registration of `agentreg` as a permanent URI scheme is an Open Issue (\u00a740.1) and IANA Consideration (\u00a741); until registered, the scheme MUST be treated as provisional and MUST NOT be assumed collision-free with any future IANA-registered scheme of the same name.",
+      "requirement": "`registry-namespace` SHOULD be a DNS domain name or an equivalent registry-assigned namespace under the issuing Registration Authority's policy. `agent-local-id` MUST be unique within `registry-namespace` and MUST NOT be reassigned after retirement or revocation (§12.1). Implementations MAY support other identifier schemes. A conformance profile MUST declare supported identifier schemes. Registration of `agentreg` as a permanent URI scheme is an Open Issue (§40.1) and IANA Consideration (§41); until registered, the scheme MUST be treated as provisional and MUST NOT be assumed collision-free with any future IANA-registered scheme of the same name.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -348,6 +348,41 @@
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
     {
+      "id": "ARPA-NORM-CTRL-C9070DC6B8",
+      "section": "ARPA-CAND-PP-01 §1 — ARPA Agent Identifier",
+      "requirement": "The protocol Agent Identifier used for ARPA Core interchange MUST use the `agentreg:` URI scheme defined by ARPA v0.9.0 §12.2:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-AC8BC30156",
+      "section": "ARPA-CAND-PP-01 §1 — ARPA Agent Identifier",
+      "requirement": "An implementation MUST NOT emit a non-`agentreg:` URI as the ARPA Agent Identifier merely because that URI identifies the same agent in another identity or discovery system.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-0A8E111100",
+      "section": "ARPA-CAND-PP-01 §1 — ARPA Agent Identifier",
+      "requirement": "External identifiers, DIDs, HTTPS identifiers, platform identifiers or other aliases MAY be represented as alternate identifiers or mappings, but they MUST remain distinguishable from the ARPA Agent Identifier.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-2E43C74C08",
+      "section": "ARPA-CAND-PP-01 §1 — ARPA Agent Identifier",
+      "requirement": "A resolver that receives a syntactically valid URI using an unsupported identifier scheme MUST NOT silently reinterpret it as an ARPA Agent Identifier. It MAY resolve the identifier through an explicitly configured mapping mechanism, provided that the returned ARPA record preserves the resulting `agentreg:` identifier and the mapping provenance.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-5B1043924D",
+      "section": "ARPA-CAND-PP-01 §1 — ARPA Agent Identifier",
+      "requirement": "Registries MUST NOT silently reassign an `agentreg:` identifier to a different logical agent.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
       "id": "ARPA-NORM-13-1-E49D25CE55",
       "section": "13.1 Record Envelope",
       "requirement": "Every record defined by this specification MUST use a common envelope.",
@@ -364,7 +399,7 @@
     {
       "id": "ARPA-NORM-13-2-43005ABCDD",
       "section": "13.2 Canonicalization",
-      "requirement": "Unless a conformance profile declares an alternative, implementations MUST use [JSON Canonicalization Scheme (JCS), RFC 8785](https://www.rfc-editor.org/rfc/rfc8785) as the default canonicalization method for JSON-encoded records prior to hashing or signing. A profile MAY declare an alternative canonicalization method (for example, a CBOR deterministic encoding under [RFC 8949](https://www.rfc-editor.org/rfc/rfc8949) \u00a74.2, or a JSON-LD/RDF dataset canonicalization) provided the method is deterministic, is identified in the record's `proof.type`, and is declared in the profile's conformance statement (\u00a735.5).",
+      "requirement": "Unless a conformance profile declares an alternative, implementations MUST use [JSON Canonicalization Scheme (JCS), RFC 8785](https://www.rfc-editor.org/rfc/rfc8785) as the default canonicalization method for JSON-encoded records prior to hashing or signing. A profile MAY declare an alternative canonicalization method (for example, a CBOR deterministic encoding under [RFC 8949](https://www.rfc-editor.org/rfc/rfc8949) §4.2, or a JSON-LD/RDF dataset canonicalization) provided the method is deterministic, is identified in the record's `proof.type`, and is declared in the profile's conformance statement (§35.5).",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -484,6 +519,13 @@
       "id": "ARPA-NORM-14-6-F3F9628322",
       "section": "14.6 Enforcement Acknowledgement",
       "requirement": "Where required by profile, an enforcement point MUST emit an acknowledgement identifying:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-6551308D00",
+      "section": "ARPA-CAND-PP-02 §5 — Separation from authentication and execution",
+      "requirement": "A downstream system MUST NOT execute or accept a material action under a different action context from the one whose authority was evaluated without performing a new authority evaluation or proving equivalence under the applicable policy.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -698,6 +740,125 @@
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
     {
+      "id": "ARPA-NORM-CTRL-7AD8767596",
+      "section": "ARPA-HARDENING §1 — Monotonic delegation and scope intersection",
+      "requirement": "The effective authority of a downstream delegation MUST be the semantic intersection of the issuer's effective authority and the downstream delegation's declared scope.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-F2AB430E8F",
+      "section": "ARPA-HARDENING §1 — Monotonic delegation and scope intersection",
+      "requirement": "For every constrained dimension, a downstream value MUST be proven to denote a semantic subset of the corresponding effective upstream value. The dimensions include, as applicable, action, resource, purpose, jurisdiction, time, quantitative limits, approvals, prohibitions, assurance requirements, subject constraints, deployment constraints, and delegation depth.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-E43674770C",
+      "section": "ARPA-HARDENING §1 — Monotonic delegation and scope intersection",
+      "requirement": "Omission of an upstream constraint MUST NOT remove, reset, wildcard, or otherwise broaden that constraint. A downstream delegation that omits a constrained dimension inherits the effective upstream constraint unchanged.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-1EBF8B0DE8",
+      "section": "ARPA-HARDENING §1 — Monotonic delegation and scope intersection",
+      "requirement": "A prohibition MUST be inherited unless the competent upstream authority explicitly defines a narrower prohibition-removal mechanism and the governing profile permits it. A downstream delegation MUST NOT remove a mandatory prohibition merely by omitting it.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-D3497EC0DE",
+      "section": "ARPA-HARDENING §1 — Monotonic delegation and scope intersection",
+      "requirement": "Where two scope expressions use different vocabularies, taxonomies, jurisdiction models, resource grammars, or policy languages, the evaluator MUST establish a governed subset relation before treating the downstream expression as narrower. If the subset relation cannot be established, the result MUST be `deny` or `indeterminate`; it MUST NOT be `allow` or `allow_with_conditions`.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-195A488EEC",
+      "section": "ARPA-HARDENING §1 — Monotonic delegation and scope intersection",
+      "requirement": "and the intersection MUST be computed monotonically across the complete delegation lineage.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-5763940050",
+      "section": "ARPA-CAND-PP-02 §4 — Collective-principal authority",
+      "requirement": "An ARPA deployment MAY represent authority that belongs to a collective principal and is exercisable only through a threshold, quorum, role, or other governed exercise rule.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-CD2C1C2A3C",
+      "section": "ARPA-CAND-PP-02 §4 — Collective-principal authority",
+      "requirement": "An evaluator processing collective-principal authority MUST distinguish:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-C6E0442BF0",
+      "section": "ARPA-CAND-PP-02 §4 — Collective-principal authority",
+      "requirement": "The evaluator MUST NOT infer that an individual member or controller independently holds the collective authority merely because that member participates in the collective.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-8DBB1CB548",
+      "section": "ARPA-CAND-PP-02 §4 — Collective-principal authority",
+      "requirement": "A member or controller MUST NOT be counted more than once toward a threshold unless the governing rule explicitly defines multiple independent roles and the evidence proves that those roles are separately exercisable by the same entity.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-D5B9FBF018",
+      "section": "ARPA-CAND-PP-02 §4 — Collective-principal authority",
+      "requirement": "Stale membership or a superseded exercise rule MUST NOT authorize a new material action. Missing material membership or rule evidence MUST remain indeterminate.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-6DB7E2487E",
+      "section": "ARPA-CAND-PP-03 §4 — Collective-principal snapshot semantics",
+      "requirement": "A threshold, quorum, role or other collective-principal evaluation MUST bind the decision to one stated membership/controller and exercise-rule snapshot, identified by a stable snapshot/checkpoint identifier or equivalent digest.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-0656E738A8",
+      "section": "ARPA-CAND-PP-03 §4 — Collective-principal snapshot semantics",
+      "requirement": "Each approval counted toward the collective rule MUST be valid under that same snapshot unless the governing rule explicitly permits cross-snapshot composition and the evidence proves the permitted transition.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-48B05C6535",
+      "section": "ARPA-CAND-PP-03 §4 — Collective-principal snapshot semantics",
+      "requirement": "Approvals collected across membership removal/re-addition, role change, rule change or stale membership MUST NOT be combined by default.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-3305E398D3",
+      "section": "ARPA-CAND-PP-03 §4 — Collective-principal snapshot semantics",
+      "requirement": "Decision evidence MUST retain the snapshot/checkpoint identifier used to evaluate membership and the exercise rule.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-2572F3875B",
+      "section": "ARPA-CAND-PP-03 §5 — Parent authority linkage",
+      "requirement": "A delegated Authority Envelope MUST identify the parent authority statement from which its delegated scope derives using `derives_from`.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-AAAAE535C1",
+      "section": "ARPA-CAND-PP-03 §5 — Parent authority linkage",
+      "requirement": "`derives_from` is optional for a root authority grant and REQUIRED by Candidate semantics whenever the envelope represents delegated authority derived from an upstream authority statement. Implementations MUST NOT invent a second competing parent-link field.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
       "id": "ARPA-NORM-19-1-DD3C4D3D3B",
       "section": "19.1 Capability Types",
       "requirement": "The registry MUST distinguish:",
@@ -798,7 +959,7 @@
     {
       "id": "ARPA-NORM-19-12-9D80FC4231",
       "section": "19.12 No Universal Trust Flag",
-      "requirement": "A registry MUST NOT reduce assurance to a universal boolean \u201ctrusted\u201d field.",
+      "requirement": "A registry MUST NOT reduce assurance to a universal boolean “trusted” field.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -918,6 +1079,69 @@
       "id": "ARPA-NORM-20-12-21BC07E84F",
       "section": "20.12 Emergency Suspension",
       "requirement": "Emergency suspension SHOULD:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-32D5657D3E",
+      "section": "ARPA-HARDENING §5 — Revocation effectiveness and convergence",
+      "requirement": "An effective authoritative revocation immediately makes the revoked authority non-affirmative for new authority evaluations. From the revocation's effective time, an authority evaluator MUST NOT return `allow` or `allow_with_conditions` for a new action dependent on that authority.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-89456DA31B",
+      "section": "ARPA-HARDENING §5 — Revocation effectiveness and convergence",
+      "requirement": "Revocation convergence is a separate enforcement-evidence property. A registry MUST distinguish at least:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-FEAE2C3553",
+      "section": "ARPA-HARDENING §5 — Revocation effectiveness and convergence",
+      "requirement": "Pending or failed enforcement acknowledgement MUST NOT restore or extend revoked authority. It indicates that enforcement evidence is incomplete or that operational containment has failed.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-B0358621B6",
+      "section": "ARPA-HARDENING §5 — Revocation effectiveness and convergence",
+      "requirement": "A propagation deadline is an operational bound, not evidence of convergence. Missing required acknowledgements after the deadline MUST produce a propagation failure or escalation state.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-B188CB7BBC",
+      "section": "ARPA-HARDENING §8 — Multi-dimensional status composition",
+      "requirement": "Registration, operational, authority, assurance, and security status MUST remain separate dimensions. Cross-dimensional execution gating MUST NOT rely on a single total ordering of heterogeneous status labels.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-4833DACF2B",
+      "section": "ARPA-HARDENING §8 — Multi-dimensional status composition",
+      "requirement": "Each material status dimension MUST map under the applicable profile/policy to one of:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-230604232F",
+      "section": "ARPA-HARDENING §8 — Multi-dimensional status composition",
+      "requirement": "Composition MUST be monotonic toward safety:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-F8ED736CDC",
+      "section": "ARPA-HARDENING §8 — Multi-dimensional status composition",
+      "requirement": "2. an applicable `indeterminate` MUST NOT be converted to `permit` merely because another dimension is affirmative;",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-DA4D76730D",
+      "section": "ARPA-HARDENING §8 — Multi-dimensional status composition",
+      "requirement": "4. a less restrictive status in one dimension MUST NOT cancel a more restrictive material status in another dimension.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -1090,6 +1314,48 @@
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
     {
+      "id": "ARPA-NORM-CTRL-7C4CBE8994",
+      "section": "ARPA-CAND-PP-01 §2 — Historical resolution result contract",
+      "requirement": "A successful historical-resolution result MUST identify, directly or by stable reference:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-522BE9237A",
+      "section": "ARPA-CAND-PP-01 §2 — Historical resolution result contract",
+      "requirement": "A registry MUST NOT silently substitute current state for requested-time state.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-191ED48DB2",
+      "section": "ARPA-CAND-PP-01 §2 — Historical resolution result contract",
+      "requirement": "A registry MUST NOT silently omit a later material event when that event changes how the historical result can safely be interpreted.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-B019CD2EC1",
+      "section": "ARPA-CAND-PP-01 §2 — Historical resolution result contract",
+      "requirement": "If material historical evidence is unavailable, conflicting, fails integrity validation or cannot be reconstructed to the degree required by the applicable policy, the result MUST be non-affirmative and MUST expose the applicable reconstruction condition.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-8E4D2BCECB",
+      "section": "ARPA-CAND-PP-01 §2 — Historical resolution result contract",
+      "requirement": "HTTP path layout is not part of this semantic requirement. A deployment MAY expose historical resolution through an `at` parameter, a dedicated resource, or another discoverable operation mapping, provided that the result contract above is preserved.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-92177B88C3",
+      "section": "ARPA-CAND-PP-03 §7 — Media type and content negotiation",
+      "requirement": "For HTTP APIs, `application/agent-registry+json` is the preferred ARPA representation. `application/json` MAY be supported as a compatibility fallback when the payload semantics are identical. A server MUST NOT vary normative semantics solely because the generic fallback was negotiated.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
       "id": "ARPA-NORM-22-A253293DF6",
       "section": "22. Authority Evaluation",
       "requirement": "Authority evaluation determines whether a particular action is within a valid delegation and applicable policy. Implementations MUST expose the request, response, and Decision Receipt semantics defined in Sections 18, 21, 25, and 28.",
@@ -1114,6 +1380,132 @@
       "id": "ARPA-NORM-22-3-FDD7A2F9E8",
       "section": "22.3 Processing",
       "requirement": "The evaluator MUST follow Section 28.2. A deployment MUST NOT claim interoperable authority evaluation if it omits delegation-lineage validation, status freshness, or issuer-competence checks required by its profile.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-9B08A021E6",
+      "section": "ARPA-HARDENING §3 — `not_applicable` is not an authority bypass",
+      "requirement": "`not_applicable` MAY be returned only where the requested operation is outside the declared authority-evaluation domain of the selected profile or policy.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-EB0A967668",
+      "section": "ARPA-HARDENING §3 — `not_applicable` is not an authority bypass",
+      "requirement": "Absence of authority, missing delegation, expired authority, revoked authority, suspended authority, unsupported evidence, unavailable evidence, an unrecognized issuer, an incomparable scope, an unresolved critical extension, stale material state, or an inability to determine authority MUST NOT produce `not_applicable`.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-8722754EE6",
+      "section": "ARPA-HARDENING §3 — `not_applicable` is not an authority bypass",
+      "requirement": "Where authority evaluation is applicable but cannot produce an affirmative determination, the evaluator MUST return `deny` or `indeterminate` according to the applicable policy and reason codes.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-FCC95D3C40",
+      "section": "ARPA-HARDENING §6 — Deterministic evaluation context and checkpoints",
+      "requirement": "For consequential authority evaluation, the reproducibility tuple MUST include, directly or by digest/reference:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-C79983243F",
+      "section": "ARPA-HARDENING §6 — Deterministic evaluation context and checkpoints",
+      "requirement": "Where a decision depends on multiple independently ordered sources, the decision receipt MUST identify the source checkpoint set sufficient to reconstruct the evaluated snapshot. If no coherent snapshot can be established for material state, the decision MUST be non-affirmative.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-4B6E63B334",
+      "section": "ARPA-CAND-PP-02 §1 — Action-specific authority context",
+      "requirement": "When an ARPA authority evaluator determines whether resolved authority state can support a proposed material action, the evaluation MUST be bound to an explicit action context.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-5A4DB5B426",
+      "section": "ARPA-CAND-PP-02 §1 — Action-specific authority context",
+      "requirement": "The action context MUST identify, directly or by stable reference:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-B490EC27C3",
+      "section": "ARPA-CAND-PP-02 §1 — Action-specific authority context",
+      "requirement": "A valid identity, signature, registration, capability declaration, endpoint, credential, or successful registry resolution MUST NOT by itself be treated as authority for the action.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-199AD9B17C",
+      "section": "ARPA-CAND-PP-02 §2 — Current authority and constraint preservation",
+      "requirement": "An affirmative authority result MUST require current effective authority at the evaluation time.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-8F4CAC70FD",
+      "section": "ARPA-CAND-PP-02 §2 — Current authority and constraint preservation",
+      "requirement": "Expired, suspended, revoked, stale, conflicting, unavailable, unverifiable, or otherwise indeterminate material authority state MUST NOT produce an affirmative result.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-B94DC78D96",
+      "section": "ARPA-CAND-PP-02 §2 — Current authority and constraint preservation",
+      "requirement": "The evaluator MUST apply all material constraints carried by the authority envelope, including applicable action, resource, purpose, counterparty, jurisdiction, value, rate, time, prohibition, and delegation-depth limits. Evaluation MUST NOT enlarge those constraints.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-1B03E91858",
+      "section": "ARPA-CAND-PP-02 §2 — Current authority and constraint preservation",
+      "requirement": "If the proposed action exceeds a material limit or falls outside the applicable scope, the result MUST be non-affirmative.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-8B40D580B0",
+      "section": "ARPA-CAND-PP-02 §3 — Approval binding",
+      "requirement": "When the effective authority or relying policy requires additional approval, each counted approval MUST be bound to the exact action being evaluated or to a canonical digest that unambiguously identifies that action.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-9D15A66679",
+      "section": "ARPA-CAND-PP-02 §3 — Approval binding",
+      "requirement": "An approval for a different action, resource, amount, counterparty, material parameter, or action digest MUST NOT satisfy the requirement.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-EF007239A5",
+      "section": "ARPA-CAND-PP-02 §3 — Approval binding",
+      "requirement": "An expired, revoked, unverifiable, or materially incomplete approval MUST NOT be counted.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-BC308D6DC7",
+      "section": "ARPA-CAND-PP-02 §3 — Approval binding",
+      "requirement": "Missing required approval evidence produces a non-affirmative result. Where the system cannot establish whether required approval evidence exists or is current, the result MUST remain indeterminate rather than being converted to affirmative.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-F8CADD74CC",
+      "section": "ARPA-CAND-PP-03 §2 — Authority evaluation result and `not_applicable`",
+      "requirement": "It MAY be returned only when the selected policy or profile does not govern the requested operation. A `not_applicable` result MUST include at least one stable reason code explaining the non-applicability.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-18663D2362",
+      "section": "ARPA-CAND-PP-03 §2 — Authority evaluation result and `not_applicable`",
+      "requirement": "The following conditions MUST NOT yield `not_applicable`: missing authority, missing delegation, expired/revoked/suspended authority, stale or conflicting material state, unknown critical extensions, unavailable or unsupported evidence, incomparable scope, unrecognized issuer, or any inability to determine authority. Such cases yield `deny`, `indeterminate`, or a protocol error according to the failure layer.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -1237,6 +1629,20 @@
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
     {
+      "id": "ARPA-NORM-CTRL-09766B0C40",
+      "section": "ARPA-CAND-PP-02 §6 — Evidence and reproducibility",
+      "requirement": "An implementation producing an authority evaluation SHOULD retain enough evidence to reproduce the material decision, subject to privacy and retention constraints. This normally includes:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-15455496AE",
+      "section": "ARPA-CAND-PP-02 §6 — Evidence and reproducibility",
+      "requirement": "Evidence retention does not itself confer authority and MUST NOT override applicable privacy, confidentiality, or minimization requirements.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
       "id": "ARPA-NORM-26-E5D4D82C6B",
       "section": "26. Federation and Recognition",
       "requirement": "> **Candidate controls:** ARPA-CAND-003 and ARPA-CAND-004. Recognition is an explicit, scoped, time-bound governance statement. Federation is a technical exchange relationship and MUST NOT be interpreted as recognition, transitive trust, or transfer of authority.",
@@ -1246,7 +1652,7 @@
     {
       "id": "ARPA-NORM-26-1-B95DEB1FA4",
       "section": "26.1 Federation Principle",
-      "requirement": "Registries MAY interoperate technically without mutually recognizing each other\u2019s records.",
+      "requirement": "Registries MAY interoperate technically without mutually recognizing each other’s records.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -1289,6 +1695,27 @@
       "id": "ARPA-NORM-26-6-83A8CA6AD0",
       "section": "26.6 Federation Discovery",
       "requirement": "A federation SHOULD publish:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-D1C6572612",
+      "section": "ARPA-HARDENING §4 — Recognition conflict and issuer competence",
+      "requirement": "A precedence rule MAY establish which source is competent for a particular record type, subject, jurisdiction, or scope. Once a published governance rule establishes that one source is authoritative and another source is non-authoritative for that scope, the lower-precedence statement need not constitute an unresolved authoritative conflict.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-96C22A793D",
+      "section": "ARPA-HARDENING §4 — Recognition conflict and issuer competence",
+      "requirement": "Where two or more simultaneously competent authoritative sources conflict and no applicable governance rule removes one source's competence or deterministically resolves the conflict, the evaluator MUST return `deny` or `indeterminate`. It MUST NOT select the most permissive source, retain a cached affirmative result, or reinterpret the conflict as `not_applicable`.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-0F6625BE05",
+      "section": "ARPA-HARDENING §4 — Recognition conflict and issuer competence",
+      "requirement": "The decision receipt MUST identify the conflicting claims, competence/recognition basis, precedence rule evaluated, and resulting disposition.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -1510,6 +1937,34 @@
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
     {
+      "id": "ARPA-NORM-CTRL-3BEB2A3940",
+      "section": "ARPA-HARDENING §2 — Temporal interval and clock semantics",
+      "requirement": "Evaluators MUST normalize timestamps to a common time basis and MUST preserve the original timestamp where required for evidence. Profiles used for consequential action MUST declare permitted clock skew, timestamp precision, and treatment of future-dated observations. A future-dated or clock-ambiguous material status MUST NOT silently produce an affirmative decision.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-6212E04350",
+      "section": "ARPA-HARDENING §2 — Temporal interval and clock semantics",
+      "requirement": "Where multiple material events have the same wall-clock timestamp, a declared authoritative sequence, checkpoint, or equivalent ordering mechanism MUST determine order. If contradictory events remain unordered after applying the declared ordering mechanism, the affected state MUST be `indeterminate`.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-392B8ABAE0",
+      "section": "ARPA-CAND-PP-03 §3 — Time boundaries and clock profile",
+      "requirement": "Where timestamp precision or clock skew can affect an authority decision, the selected deployment/profile MUST expose, directly or by stable policy reference:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-45996210B4",
+      "section": "ARPA-CAND-PP-03 §3 — Time boundaries and clock profile",
+      "requirement": "No universal skew value is imposed by this specification. A clock-ambiguous material state MUST remain non-affirmative until the selected policy resolves the ambiguity.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
       "id": "ARPA-NORM-29-B8931DB4B9",
       "section": "29. Security Architecture",
       "requirement": "> **Candidate control:** ARPA-CAND-008. Cryptographic proof establishes only the claims supported by the proof and trust configuration. It MUST NOT, by itself, establish current authority, assurance, governance recognition, or acceptable reliance.",
@@ -1636,6 +2091,27 @@
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
     {
+      "id": "ARPA-NORM-CTRL-B4EF9FD4C0",
+      "section": "ARPA-HARDENING §7 — Proof-input semantics",
+      "requirement": "A proof type used for a normative ARPA record MUST define:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-C3AF185945",
+      "section": "ARPA-HARDENING §7 — Proof-input semantics",
+      "requirement": "Use of JCS or another canonicalization algorithm alone does not define which logical object is signed. An implementation MUST NOT claim proof interoperability unless these proof-input semantics are declared and implemented consistently.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-8025FB15F7",
+      "section": "ARPA-HARDENING §7 — Proof-input semantics",
+      "requirement": "Proof validity continues to establish only the claims supported by the proof and configured trust relationship; it MUST NOT establish authority, recognition, assurance, or acceptable reliance by itself.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
       "id": "ARPA-NORM-30-1-1E184E2859",
       "section": "30.1 Privacy Objective",
       "requirement": "The registry MUST support reliable decisions without requiring universal publication of identity, relationship, delegation, telemetry, or evidence data. Privacy is therefore an architectural property of resolution, access, and disclosure, not merely a notice or retention policy.",
@@ -1652,7 +2128,7 @@
     {
       "id": "ARPA-NORM-30-2-3AC5DD8428",
       "section": "30.2 Public Pointer, Protected Record",
-      "requirement": "The full record MAY remain protected. The resolver MUST distinguish \u201crecord exists but access is restricted\u201d from \u201crecord not found\u201d where policy permits.",
+      "requirement": "The full record MAY remain protected. The resolver MUST distinguish “record exists but access is restricted” from “record not found” where policy permits.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -1709,6 +2185,27 @@
       "id": "ARPA-NORM-30-10-F413B25A8B",
       "section": "30.10 Privacy Pattern Declaration",
       "requirement": "A conforming deployment SHOULD publish which privacy patterns it supports:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-61796E30DC",
+      "section": "ARPA-HARDENING §9 — Pairwise identity and continuity",
+      "requirement": "A deployment claiming both privacy-preserving scoped identifiers and cross-context continuity MUST define an authorized mechanism for proving the required continuity predicate without exposing a globally reusable correlator.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-DE8E1EABDF",
+      "section": "ARPA-HARDENING §9 — Pairwise identity and continuity",
+      "requirement": "The mechanism MAY use protected linkage, selective disclosure, commitments, derived pseudonyms, or another governed proof technique. The specification does not mandate a proof construction.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-96523ADE13",
+      "section": "ARPA-HARDENING §9 — Pairwise identity and continuity",
+      "requirement": "A relying party MUST NOT infer that two pairwise identifiers represent the same logical agent merely from similarity, metadata correlation, operator identity, or network endpoint overlap.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -1813,7 +2310,7 @@
     {
       "id": "ARPA-NORM-33-1-26285EBA32",
       "section": "33.1 Specification Version",
-      "requirement": "The record envelope's `schema_version` (\u00a713.1) identifies the version of the per-record-type JSON Schema under `schemas/` and follows its own semantic-versioning track, independent of this document's `Version` header (\u00a7 front matter). The two tracks are related as follows: a document major or minor version MAY be released without changing any `schema_version` (editorial or non-normative change); a `schema_version` MAY advance independently of the document version only for schema-level corrections that do not alter normative record semantics (for example, tightening a pattern already implied by prose). Any change to a record's required fields or field semantics MUST be reflected in both the document's Change Log (Appendix H) and a corresponding `schema_version` bump, and the mapping between document version and the `schema_version` values it corresponds to MUST be recorded in `schemas/README.md`. The Candidate Specification v0.9.0 uses the `1.0.0` record schema track unless an individual schema declares a later compatible schema version; the authoritative mapping is maintained in `schemas/README.md` and validated by the repository conformance checks.",
+      "requirement": "The record envelope's `schema_version` (§13.1) identifies the version of the per-record-type JSON Schema under `schemas/` and follows its own semantic-versioning track, independent of this document's `Version` header (§ front matter). The two tracks are related as follows: a document major or minor version MAY be released without changing any `schema_version` (editorial or non-normative change); a `schema_version` MAY advance independently of the document version only for schema-level corrections that do not alter normative record semantics (for example, tightening a pattern already implied by prose). Any change to a record's required fields or field semantics MUST be reflected in both the document's Change Log (Appendix H) and a corresponding `schema_version` bump, and the mapping between document version and the `schema_version` values it corresponds to MUST be recorded in `schemas/README.md`. The Candidate Specification v0.9.0 uses the `1.0.0` record schema track unless an individual schema declares a later compatible schema version; the authoritative mapping is maintained in `schemas/README.md` and validated by the repository conformance checks.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -1853,6 +2350,97 @@
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
     {
+      "id": "ARPA-NORM-CTRL-039C43BE89",
+      "section": "ARPA-HARDENING §10 — Schema corrections and authority",
+      "requirement": "A schema-only correction MUST NOT acquire de facto normative authority by changing the set of accepted records contrary to published prose.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-33D69DF703",
+      "section": "ARPA-HARDENING §10 — Schema corrections and authority",
+      "requirement": "A schema version MAY advance without a Candidate document version change only when all of the following are true:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-5D704293FF",
+      "section": "ARPA-HARDENING §10 — Schema corrections and authority",
+      "requirement": "If a proposed schema change alters required fields, field semantics, authority interpretation, lifecycle semantics, decision behavior, or the set of records that the prose permits, the Candidate Specification MUST be versioned accordingly.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-1774842EB4",
+      "section": "ARPA-CAND-PP-01 §4 — Critical extensions and version handling",
+      "requirement": "Every ARPA extension that can change interpretation of core identity, authority, lifecycle, evidence, proof, recognition or decision semantics MUST declare whether it is critical to processing.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-45C4C0640E",
+      "section": "ARPA-CAND-PP-01 §4 — Critical extensions and version handling",
+      "requirement": "A critical extension MUST identify a namespace and version sufficient for an implementation to determine whether it understands the required semantics.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-4A7A0B2A4C",
+      "section": "ARPA-CAND-PP-01 §4 — Critical extensions and version handling",
+      "requirement": "If a receiver does not understand or support a critical extension that is material to the requested operation, it MUST return a non-affirmative result or protocol error. It MUST NOT ignore the extension and continue as though the extension were absent.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-F7C68FE81B",
+      "section": "ARPA-CAND-PP-01 §4 — Critical extensions and version handling",
+      "requirement": "Unknown non-critical extensions MAY be ignored or retained as opaque data only when doing so cannot change core interpretation, broaden authority, suppress a prohibition, hide a lifecycle restriction or convert unknown/indeterminate state into success.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-91EC4007E5",
+      "section": "ARPA-CAND-PP-01 §4 — Critical extensions and version handling",
+      "requirement": "An extension MUST NOT redefine a core ARPA field in place. A semantic change to a core field requires an applicable ARPA specification version change.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-AD0CF0BE7A",
+      "section": "ARPA-CAND-PP-01 §4 — Critical extensions and version handling",
+      "requirement": "An implementation MUST NOT claim support for an extension version that it cannot process according to the extension's declared semantics.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-AEDF054607",
+      "section": "ARPA-CAND-PP-03 §1 — Controlled vocabulary coherence",
+      "requirement": "The Candidate prose remains authoritative for base vocabularies. Controlled registries MAY additionally contain governed extensions and deprecated compatibility aliases, but every such entry MUST declare its class and status so that a validator can distinguish base vocabulary from extensions and migration aliases.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-4D98D537B9",
+      "section": "ARPA-CAND-PP-03 §1 — Controlled vocabulary coherence",
+      "requirement": "A base registry entry and its governing JSON Schema MUST NOT disagree. Deprecated aliases MUST identify a replacement where an exact replacement exists. Profile-specific or project-specific extensions MUST be explicitly classified as extensions rather than presented as base Candidate vocabulary.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-136F458E81",
+      "section": "ARPA-CAND-PP-03 §8 — Extension namespaces",
+      "requirement": "A deployment MAY define an external extension namespace using another collision-resistant URI/URN/reverse-DNS authority that it controls. The namespace MUST be globally collision-resistant and MUST identify an owner and schema/policy authority.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-7798FAB230",
+      "section": "ARPA-CAND-PP-03 §8 — Extension namespaces",
+      "requirement": "The former `https://arpa.example/...` identifiers are placeholders only. They are retained in the controlled registry solely as deprecated migration aliases and MUST NOT be used for new conformant extensions.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
       "id": "ARPA-NORM-34-2-DFF104867F",
       "section": "34.2 Base Error Codes",
       "requirement": "Implementations SHOULD support:",
@@ -1877,6 +2465,55 @@
       "id": "ARPA-NORM-34-4-28E15A8B6A",
       "section": "34.4 Indeterminate Results",
       "requirement": "An indeterminate result MUST explain which required inputs, records, or verifications were unavailable or conflicting.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-D405EB9F89",
+      "section": "ARPA-CAND-PP-01 §3 — HTTP Problem Details contract",
+      "requirement": "An ARPA HTTP API MUST represent protocol-significant errors using RFC 9457 Problem Details unless a governing transport profile defines another interoperable error representation.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-F96478BF65",
+      "section": "ARPA-CAND-PP-01 §3 — HTTP Problem Details contract",
+      "requirement": "An ARPA Problem Details response for a protocol-significant failure MUST contain:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-79BE246124",
+      "section": "ARPA-CAND-PP-01 §3 — HTTP Problem Details contract",
+      "requirement": "Human-readable `title` and `detail` values MUST NOT be the sole machine contract for client behaviour.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-2862248FE6",
+      "section": "ARPA-CAND-PP-01 §3 — HTTP Problem Details contract",
+      "requirement": "Problem extensions such as reason codes, correlation identifiers and retry metadata MAY be included when applicable. They MUST NOT expose confidential evidence, hidden authority relationships, internal exception details or security-sensitive implementation state beyond the caller's authorization.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-3622E640F8",
+      "section": "ARPA-CAND-PP-01 §3 — HTTP Problem Details contract",
+      "requirement": "A client that does not recognize an ARPA error code or Problem Details extension MUST NOT interpret the response as success. Unknown error semantics affecting authority, integrity, lifecycle or reconstruction MUST remain non-affirmative.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-FFA7C064EC",
+      "section": "ARPA-CAND-PP-01 §3 — HTTP Problem Details contract",
+      "requirement": "A server MUST NOT mark a failure `retryable=true` unless replay of the same operation under the documented retry conditions is safe with respect to duplicate authoritative state and external side effects.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-B170B4B38C",
+      "section": "ARPA-CAND-PP-03 §6 — RFC 9457 Problem Details",
+      "requirement": "Unknown material error semantics MUST fail safely. A client MUST NOT reinterpret an unknown material error as success.",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
@@ -2084,6 +2721,48 @@
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
     {
+      "id": "ARPA-NORM-CTRL-77AF5B4D0A",
+      "section": "ARPA-CAND-PP-01 §5 — Cross-artifact consistency",
+      "requirement": "The Candidate Specification remains the authoritative prose surface. Machine-readable contracts MUST remain consistent with the governing normative semantics.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-AB43086081",
+      "section": "ARPA-CAND-PP-01 §5 — Cross-artifact consistency",
+      "requirement": "- OpenAPI Agent Identifier parameters MUST constrain ARPA Agent Identifiers to `agentreg:`;",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-D373D52AF2",
+      "section": "ARPA-CAND-PP-01 §5 — Cross-artifact consistency",
+      "requirement": "- historical-resolution schemas/contracts MUST expose requested-time and reconstruction semantics;",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-2D838F2CA8",
+      "section": "ARPA-CAND-PP-01 §5 — Cross-artifact consistency",
+      "requirement": "- the ARPA error registry MUST contain stable codes for protocol-significant failures used by conformance tests; and",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-EB15D628C7",
+      "section": "ARPA-CAND-PP-01 §5 — Cross-artifact consistency",
+      "requirement": "- the extension/error surfaces MUST include an explicit unknown-critical-extension failure condition.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-A9241EAE10",
+      "section": "ARPA-CAND-PP-01 §5 — Cross-artifact consistency",
+      "requirement": "A release validation gate MUST fail when these machine-readable surfaces contradict this specification.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
       "id": "ARPA-NORM-37-1-918788C175",
       "section": "37.1 Required Test Categories",
       "requirement": "A conformance suite MUST include positive and negative tests for:",
@@ -2108,6 +2787,34 @@
       "id": "ARPA-NORM-37-4-6E6E312069",
       "section": "37.4 Test Fixtures",
       "requirement": "Test fixtures SHOULD include complete record graphs rather than isolated JSON objects. At minimum, a fixture for delegated action should include an agent, version, deployment, relationships, assurance, parent and child delegations, status, policy, and expected decision receipt.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-B2E6FD76C3",
+      "section": "ARPA-HARDENING §11 — Required adversarial conformance assertions",
+      "requirement": "A v0.9.1 conformance suite for authority evaluation MUST include negative or boundary vectors covering at least:",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-BFEA1F0797",
+      "section": "ARPA-HARDENING §11 — Required adversarial conformance assertions",
+      "requirement": "Each adversarial vector MUST identify the expected decision or state, required reason codes, decisions that are prohibited, and the evidence required to explain the result.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-1E02CDBF11",
+      "section": "ARPA-HARDENING §12 — Conformance disposition",
+      "requirement": "An implementation claiming ARPA v0.9.1 authority-evaluator conformance MUST demonstrate that ambiguous or incomplete authority cannot become affirmative solely through omission, parser behavior, precedence defaults, cache behavior, unavailable evidence, or unsupported semantics.",
+      "verification_procedure": "scripts/validate_normative_requirements.py",
+      "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
+    },
+    {
+      "id": "ARPA-NORM-CTRL-CCAA16EEEB",
+      "section": "ARPA-CAND-PP-03 §9 — Conformance automation",
+      "requirement": "Repository validation MUST fail when:",
       "verification_procedure": "scripts/validate_normative_requirements.py",
       "expected_evidence": "artifacts/conformance/normative-requirements-validation.json"
     },
