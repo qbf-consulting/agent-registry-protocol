@@ -83,7 +83,7 @@ for entry in error_registry["entries"]:
 # Authority result / not_applicable semantics.
 result_schema = load("schemas/authority-evaluation-result.schema.json")
 result_validator = Draft202012Validator(result_schema)
-vectors = load("conformance/test-vectors/wire-contract-pp03.json")["vectors"]
+vectors = load("conformance/test-vectors/wire-contract/wire-contract-pp03.json")["vectors"]
 by_id = {v["id"]: v for v in vectors}
 for required in [f"WC-{n:03d}" for n in range(1,17)]:
     if required not in by_id:
