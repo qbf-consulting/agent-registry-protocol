@@ -36,9 +36,9 @@ if SPEC.is_file():
 
 if REQ.is_file():
     data = json.loads(REQ.read_text(encoding="utf-8"))
-    if data.get("amendment") != "ARPA-CAND-PP-02":
+    if data.get("amendment_id") != "ARPA-CAND-PP-02":
         errors.append("PP-02 requirement registry has wrong amendment identifier")
-    requirements = data.get("requirements") or []
+    requirements = data.get("entries") or []
     ids = {item.get("id") for item in requirements}
     expected = {f"AC-PP02-{i:03d}" for i in range(1, 11)}
     if ids != expected:
