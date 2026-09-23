@@ -178,16 +178,19 @@ if DELTA.exists():
 if REVISION_CHECKLIST.exists():
     checklist = REVISION_CHECKLIST.read_text(encoding="utf-8")
     for needle in (
-        "draft-sankarshan-agent-registry-protocol-02",
-        "Published baseline",
-        "Protocol diff review",
-        "IETF submission hygiene",
-        "idnits",
+        "Internet-Draft Revision `-02` Checklist",
+        "Published `-01` identified as immutable baseline",
+        "Action-specific authority context defined",
+        "Collective-principal exercise semantics defined",
+        "WIMSE architecture relationship explained",
+        "OAuth 2.0 Token Exchange boundary explained",
+        "make ietf-check",
+        "generated RFCXML v3 reviewed",
+        "Author Tools / submission checks completed",
     ):
         if needle not in checklist:
-            errors.append(f"revision -01 checklist missing gate: {needle}")
+            errors.append(f"revision -02 checklist missing gate: {needle}")
 
-    for needle in (\n        "Published `-01` identified as immutable baseline",\n        "Action-specific authority context defined",\n        "Collective-principal exercise semantics defined",\n        "WIMSE architecture relationship explained",\n        "OAuth 2.0 Token Exchange boundary explained",\n    ):\n        if needle not in checklist:\n            errors.append(f"revision -02 checklist missing gate: {needle}")\n
 
 if errors:
     print("IETF draft validation failed:")
