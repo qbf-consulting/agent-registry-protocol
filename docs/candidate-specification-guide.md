@@ -4,9 +4,11 @@ title: "Candidate Specification implementation guide"
 nav_exclude: true
 ---
 
-# Candidate Specification implementation guide
+# Candidate Specification v0.10.0 implementation guide
 
 > This path executes the complete repository release gate. For local development validation, use the [Quickstart](quickstart.md). For a pilot registry, use the [15-minute quickstart](implementation-accelerator/01-15-minute-quickstart.md). Compare all journeys in [Start Here](start-here.md).
+
+The current normative project baseline is [ARPA Candidate v0.10.0](../spec/agent-registry-protocol-v0.10.0.md). v0.9.0 and the approved amendment documents remain historical provenance; implementers should not reconstruct the current baseline by manually overlaying them.
 
 ## Reading paths
 
@@ -21,4 +23,4 @@ make setup
 make release-check
 ```
 
-The release gate validates schemas, original profiles, repository quality, Candidate Specification artifacts, projection vectors, historical-resolution vectors and evidence, independent adapter equivalence, networked discovery, durable event replay and retained evidence.
+The release gate additionally validates the v0.10.0 consolidation manifest, amendment-to-baseline normative carry-over, historical amendment immutability, and the protected IETF `-02` control files.
