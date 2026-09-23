@@ -32,7 +32,7 @@ No new architectural layer is introduced merely by consolidating these requireme
 
 ## Traceability and assurance
 
-`registries/candidate-consolidation-v0.10.0.json` records the amendment-section to v0.10.0 integration map and freezes the historical source blob identities used for consolidation.
+`conformance/manifests/candidate-consolidation-v0.10.0.json` records the amendment-section to v0.10.0 integration map and freezes the historical source blob identities used for consolidation.
 
 `scripts/validate_candidate_consolidation.py` is release-gated and verifies:
 
