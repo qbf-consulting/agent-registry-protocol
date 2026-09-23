@@ -53,7 +53,7 @@
         "WC-008"
       ],
       "expected_evidence": [
-        "conformance/test-vectors/wire-contract-pp03.json"
+        "conformance/test-vectors/wire-contract/wire-contract-pp03.json"
       ]
     },
     {
@@ -65,7 +65,7 @@
         "WC-009"
       ],
       "expected_evidence": [
-        "conformance/test-vectors/wire-contract-pp03.json"
+        "conformance/test-vectors/wire-contract/wire-contract-pp03.json"
       ]
     },
     {
@@ -79,7 +79,7 @@
         "WC-012"
       ],
       "expected_evidence": [
-        "conformance/test-vectors/wire-contract-pp03.json"
+        "conformance/test-vectors/wire-contract/wire-contract-pp03.json"
       ]
     },
     {
