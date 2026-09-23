@@ -24,9 +24,9 @@ ARPA is easier to navigate when you begin with the **decision you need to make**
 
 ## Version boundary
 
-- **Normative baseline:** [ARPA Candidate Specification v0.9.0](../spec/agent-registry-protocol-v0.9.0.md).
-- **Current implementation release:** v0.9.5.
-- **Normative protocol baseline:** v0.9.0 Candidate Specification; the TypeScript implementation consumes the v0.9.4 historical-resolution and conformance artifacts as part of the v0.9.5 assurance surface.
+- **Current normative project baseline:** [ARPA Candidate Specification v0.10.0](../spec/agent-registry-protocol-v0.10.0.md).
+- **Historical provenance:** Candidate v0.9.0 plus the adversarial-hardening, PP-01, PP-02 and PP-03 amendment artifacts remain retained for auditability; they are no longer meant to be manually overlaid to determine current requirements.
+- **Current implementation release line:** v0.9.5 remains the independently versioned implementation and cross-runtime interoperability release. The GitHub v0.10.0 release is a Candidate Specification consolidation release, not an implementation v0.10.0 claim.
 
 Guides and implementation code do not silently redefine normative requirements. Optional profiles become normative only when that profile is claimed.
 
@@ -38,10 +38,18 @@ For every rendered document and historical release note, use the [Documentation 
 
 ## Standards engagement
 
-ARPA maintains a separate IETF Internet-Draft authoring track for the interoperable protocol core. The initial individual-draft candidate is `draft-sankarshan-agent-registry-protocol-00`. It is not yet an IETF work item and does not replace the ARPA Candidate Specification.
+ARPA maintains a separate IETF Internet-Draft authoring track for the interoperable protocol core. The current published revision is **`draft-sankarshan-agent-registry-protocol-02`**, published on 23 September 2026. It is an independently versioned publication surface and does not replace the ARPA Candidate Specification.
+
+For future `-03` work, use two explicit baselines:
+
+- **IETF comparison baseline:** published `-02`, which is immutable.
+- **Current ARPA source baseline:** Candidate v0.10.0, from which protocol-core propositions may be selected through explicit disposition.
+
+Project-only governance, conformance, assurance, deployment and implementation material does not enter a later Internet-Draft automatically.
 
 - [IETF authoring track]({{ '/ietf/' | relative_url }})
-- [Protocol extraction map](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
-- [`-00` submission checklist](https://github.com/sankarshanmukhopadhyay/agent-registry-protocol/blob/main/ietf/SUBMISSION_CHECKLIST.md)
+- [Protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
+- [Published `-02` baseline record](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/REVISION_02_BASELINE.md)
+- [Future `-03` planning](https://github.com/qbf-consulting/agent-registry-protocol/issues/47)
 
-Use this path when reviewing ARPA for IETF submission, protocol-scope reduction, IANA requirements, or overlap with existing IETF work.
+Use this path when reviewing ARPA for IETF protocol extraction, revision deltas, IANA requirements, or overlap with adjacent IETF work.
