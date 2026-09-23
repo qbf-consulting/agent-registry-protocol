@@ -10,6 +10,7 @@ validate:
 	python3 scripts/validate_artifacts.py
 	python3 scripts/validate_normative_requirements.py
 	python3 scripts/validate_candidate_hardening.py
+	python3 scripts/validate_wire_contract_pp03.py
 	python3 scripts/validate_protocol_precision.py
 	python3 scripts/validate_kya_os_profile.py
 	python3 scripts/validate_repository.py

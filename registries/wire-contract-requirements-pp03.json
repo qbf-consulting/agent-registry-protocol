@@ -1,0 +1,134 @@
+{
+  "amendment": "ARPA-CAND-PP-03",
+  "version": "1.0.0",
+  "entries": [
+    {
+      "id": "ARPA-PP03-001",
+      "title": "Base event vocabulary coherence",
+      "section": "1",
+      "requirement": "Candidate §24.2 base events are machine-coherent with the controlled registry and event schema.",
+      "verification": [
+        "WC-001"
+      ],
+      "expected_evidence": [
+        "registries/event-types.json",
+        "schemas/event.schema.json"
+      ]
+    },
+    {
+      "id": "ARPA-PP03-002",
+      "title": "Base error vocabulary coherence",
+      "section": "1,6",
+      "requirement": "Candidate §34.2 base errors are present in the controlled registry and Problem Details contract.",
+      "verification": [
+        "WC-002"
+      ],
+      "expected_evidence": [
+        "registries/error-codes.json",
+        "schemas/problem-details.schema.json"
+      ]
+    },
+    {
+      "id": "ARPA-PP03-003",
+      "title": "not_applicable outcome semantics",
+      "section": "2",
+      "requirement": "not_applicable is a normal outcome only for policy/profile non-applicability and carries stable reasons.",
+      "verification": [
+        "WC-003",
+        "WC-004",
+        "WC-005"
+      ],
+      "expected_evidence": [
+        "schemas/authority-evaluation-result.schema.json"
+      ]
+    },
+    {
+      "id": "ARPA-PP03-004",
+      "title": "Half-open lower and upper bounds",
+      "section": "3",
+      "requirement": "effective_from is inclusive and effective_until is exclusive.",
+      "verification": [
+        "WC-006",
+        "WC-007",
+        "WC-008"
+      ],
+      "expected_evidence": [
+        "conformance/test-vectors/wire-contract/wire-contract-pp03.json"
+      ]
+    },
+    {
+      "id": "ARPA-PP03-005",
+      "title": "Clock-profile discoverability",
+      "section": "3",
+      "requirement": "Material clock skew and precision are policy/profile-visible and ambiguous state remains non-affirmative.",
+      "verification": [
+        "WC-009"
+      ],
+      "expected_evidence": [
+        "conformance/test-vectors/wire-contract/wire-contract-pp03.json"
+      ]
+    },
+    {
+      "id": "ARPA-PP03-006",
+      "title": "Collective snapshot binding",
+      "section": "4",
+      "requirement": "Collective approvals are evaluated against one stated membership/rule snapshot unless explicit cross-snapshot composition is proven.",
+      "verification": [
+        "WC-010",
+        "WC-011",
+        "WC-012"
+      ],
+      "expected_evidence": [
+        "conformance/test-vectors/wire-contract/wire-contract-pp03.json"
+      ]
+    },
+    {
+      "id": "ARPA-PP03-007",
+      "title": "Parent authority linkage",
+      "section": "5",
+      "requirement": "Delegated authority exposes one canonical derives_from parent reference.",
+      "verification": [
+        "WC-013"
+      ],
+      "expected_evidence": [
+        "schemas/authority-envelope.schema.json"
+      ]
+    },
+    {
+      "id": "ARPA-PP03-008",
+      "title": "Problem Details type URI",
+      "section": "6",
+      "requirement": "ARPA Problem Details uses stable code values and deterministic project-controlled type URIs.",
+      "verification": [
+        "WC-014"
+      ],
+      "expected_evidence": [
+        "schemas/problem-details.schema.json"
+      ]
+    },
+    {
+      "id": "ARPA-PP03-009",
+      "title": "Media type preservation",
+      "section": "7",
+      "requirement": "application/agent-registry+json remains preferred; application/json is semantics-identical fallback.",
+      "verification": [
+        "WC-015"
+      ],
+      "expected_evidence": [
+        "openapi/arpa-openapi.yaml"
+      ]
+    },
+    {
+      "id": "ARPA-PP03-010",
+      "title": "Extension namespace authority",
+      "section": "8",
+      "requirement": "Active project namespaces use qbfconsulting.digital and placeholder arpa.example identifiers are deprecated.",
+      "verification": [
+        "WC-016"
+      ],
+      "expected_evidence": [
+        "registries/extension-namespaces.json"
+      ]
+    }
+  ]
+}

@@ -190,13 +190,33 @@ paths:
       requestBody:
         required: true
         content:
+          application/agent-registry+json:
+            schema:
+              type: object
           application/json:
             schema:
               type: object
       responses:
         '200':
           description: Authority decision and decision receipt
+          content:
+            application/agent-registry+json:
+              schema:
+                $ref: ../schemas/authority-evaluation-result.schema.json
+            application/json:
+              schema:
+                $ref: ../schemas/authority-evaluation-result.schema.json
+        '400':
+          $ref: '#/components/responses/Problem'
+        '403':
+          $ref: '#/components/responses/Problem'
+        '409':
+          $ref: '#/components/responses/Problem'
+        '422':
+          $ref: '#/components/responses/Problem'
         '501':
+          $ref: '#/components/responses/Problem'
+        '503':
           $ref: '#/components/responses/Problem'
   /reliance/evaluate:
     post:
@@ -242,34 +262,7 @@ components:
         format: date-time
   schemas:
     Problem:
-      type: object
-      required:
-      - type
-      - title
-      - status
-      - code
-      properties:
-        type:
-          type: string
-          format: uri
-        title:
-          type: string
-        status:
-          type: integer
-        code:
-          type: string
-        detail:
-          type: string
-        instance:
-          type: string
-        correlation_id:
-          type: string
-        reason_codes:
-          type: array
-          items:
-            type: string
-        retryable:
-          type: boolean
+      $ref: ../schemas/problem-details.schema.json
   responses:
     Problem:
       description: ARPA problem response
