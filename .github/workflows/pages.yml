@@ -64,7 +64,7 @@ jobs:
       - name: Write deployment evidence
         run: |
           mkdir -p _site/assets artifacts/pages
-          printf '{\n  "repository": "%s",\n  "commit": "%s",\n  "specification_version": "0.9.0",\n  "ietf_draft": "draft-sankarshan-agent-registry-protocol-02",\n  "ietf_generated": true\n}\n' \
+          printf '{\n  "repository": "%s",\n  "commit": "%s",\n  "specification_version": "0.10.0",\n  "ietf_draft": "draft-sankarshan-agent-registry-protocol-02",\n  "ietf_generated": true\n}\n' \
             "${{ github.repository }}" "${{ github.sha }}" > _site/assets/build-info.json
           cp _site/ietf/generated/SHA256SUMS.txt artifacts/pages/ietf-generated-sha256sums.txt
       - name: Publish assurance summary
