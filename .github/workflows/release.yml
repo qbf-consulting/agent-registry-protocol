@@ -1,0 +1,266 @@
+name: Publish Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/release-requests/*.json"
+  pull_request:
+    paths:
+      - ".github/workflows/release.yml"
+      - ".github/release-requests/*.json"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Semantic release tag (for example v0.10.0)"
+        required: true
+        type: string
+      title:
+        description: "GitHub Release title"
+        required: true
+        type: string
+      notes_file:
+        description: "Repository release-notes file"
+        required: true
+        type: string
+      target_commit:
+        description: "Commit/ref to tag; must be an ancestor of main"
+        required: false
+        default: "main"
+        type: string
+      prerelease:
+        description: "Publish as a prerelease"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-publication
+  cancel-in-progress: false
+
+jobs:
+  control:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Validate release request controls
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          requests=(.github/release-requests/*.json)
+          for request in "${requests[@]}"; do
+            jq -e '
+              (.tag | type == "string") and
+              (.title | type == "string" and length > 0) and
+              (.notes_file | type == "string" and length > 0) and
+              ((.target_commit // "main") | type == "string") and
+              ((.prerelease // false) | type == "boolean")
+            ' "${request}" >/dev/null
+            tag="$(jq -r '.tag' "${request}")"
+            notes="$(jq -r '.notes_file' "${request}")"
+            target="$(jq -r '.target_commit // "main"' "${request}")"
+            [[ "${tag}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]
+            [[ "${notes}" != /* && "${notes}" != *".."* ]]
+            git rev-parse "${target}^{commit}" >/dev/null
+            git cat-file -e "${target}:${notes}"
+          done
+
+  publish:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout release control revision
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Resolve release request
+        id: request
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TAG: ${{ inputs.tag }}
+          INPUT_TITLE: ${{ inputs.title }}
+          INPUT_NOTES_FILE: ${{ inputs.notes_file }}
+          INPUT_TARGET: ${{ inputs.target_commit }}
+          INPUT_PRERELEASE: ${{ inputs.prerelease }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          if [[ "${GITHUB_REF}" != "refs/heads/main" ]]; then
+            echo "Releases may only be published from main." >&2
+            exit 1
+          fi
+
+          if [[ "${EVENT_NAME}" == "push" ]]; then
+            mapfile -t requests < <(git diff-tree --no-commit-id --name-only -r "${GITHUB_SHA}" -- '.github/release-requests/*.json')
+            if [[ "${#requests[@]}" -ne 1 ]]; then
+              echo "A release-triggering push must add or change exactly one release request; found ${#requests[@]}." >&2
+              printf '%s\n' "${requests[@]}" >&2
+              exit 1
+            fi
+            request="${requests[0]}"
+            TAG="$(jq -er '.tag' "${request}")"
+            TITLE="$(jq -er '.title' "${request}")"
+            NOTES_FILE="$(jq -er '.notes_file' "${request}")"
+            TARGET_RAW="$(jq -er '.target_commit // "main"' "${request}")"
+            PRERELEASE="$(jq -er '.prerelease // false' "${request}")"
+          else
+            TAG="${INPUT_TAG}"
+            TITLE="${INPUT_TITLE}"
+            NOTES_FILE="${INPUT_NOTES_FILE}"
+            TARGET_RAW="${INPUT_TARGET:-main}"
+            PRERELEASE="${INPUT_PRERELEASE:-false}"
+          fi
+
+          if [[ ! "${TAG}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Invalid semantic version tag: ${TAG}" >&2
+            exit 1
+          fi
+
+          if [[ "${NOTES_FILE}" = /* || "${NOTES_FILE}" == *".."* ]]; then
+            echo "notes_file must be a repository-relative path without '..'." >&2
+            exit 1
+          fi
+
+          TARGET="$(git rev-parse "${TARGET_RAW}^{commit}")"
+          MAIN="$(git rev-parse "main^{commit}")"
+          if ! git merge-base --is-ancestor "${TARGET}" "${MAIN}"; then
+            echo "Target ${TARGET} is not an ancestor of main ${MAIN}." >&2
+            exit 1
+          fi
+
+          if ! git cat-file -e "${TARGET}:${NOTES_FILE}"; then
+            echo "Release notes do not exist at target ${TARGET}: ${NOTES_FILE}" >&2
+            exit 1
+          fi
+
+          if git show-ref --verify --quiet "refs/tags/${TAG}"; then
+            echo "Tag already exists: ${TAG}" >&2
+            exit 1
+          fi
+
+          if gh release view "${TAG}" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            echo "GitHub Release already exists: ${TAG}" >&2
+            exit 1
+          fi
+
+          {
+            echo "tag=${TAG}"
+            echo "title=${TITLE}"
+            echo "notes_file=${NOTES_FILE}"
+            echo "target=${TARGET}"
+            echo "prerelease=${PRERELEASE}"
+          } >> "${GITHUB_OUTPUT}"
+
+          echo "Release request resolved:"
+          echo "  tag: ${TAG}"
+          echo "  target: ${TARGET}"
+          echo "  notes: ${NOTES_FILE}"
+          echo "  prerelease: ${PRERELEASE}"
+
+      - name: Checkout exact release target
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.request.outputs.target }}
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python validation dependencies
+        run: python -m pip install -r scripts/requirements.txt
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+          cache-version: 2
+
+      - name: Install IETF authoring dependencies
+        run: make ietf-setup
+
+      - name: Run full repository release gate
+        run: make release-check-all
+
+      - name: Run publication and IETF assurance
+        run: make pages-check
+
+      - name: Prepare GitHub Release notes
+        env:
+          NOTES_FILE: ${{ steps.request.outputs.notes_file }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os
+
+          source = Path(os.environ["NOTES_FILE"])
+          text = source.read_text()
+          lines = text.splitlines()
+
+          if lines and lines[0].strip() == "---":
+              try:
+                  end = lines.index("---", 1)
+              except ValueError:
+                  raise SystemExit(f"Unclosed YAML front matter in {source}")
+              lines = lines[end + 1:]
+
+          rendered = "\n".join(lines).strip() + "\n"
+          out = Path(os.environ["RUNNER_TEMP"]) / "release-notes.md"
+          out.write_text(rendered)
+          print(f"Prepared {out} from {source}")
+          PY
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.request.outputs.tag }}
+          TITLE: ${{ steps.request.outputs.title }}
+          TARGET: ${{ steps.request.outputs.target }}
+          PRERELEASE: ${{ steps.request.outputs.prerelease }}
+        run: |
+          set -euo pipefail
+          args=(
+            gh release create "${TAG}"
+            --repo "${GITHUB_REPOSITORY}"
+            --target "${TARGET}"
+            --title "${TITLE}"
+            --notes-file "${RUNNER_TEMP}/release-notes.md"
+          )
+
+          if [[ "${PRERELEASE}" == "true" ]]; then
+            args+=(--prerelease)
+          else
+            args+=(--latest)
+          fi
+
+          "${args[@]}"
+
+      - name: Verify published release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.request.outputs.tag }}
+          TARGET: ${{ steps.request.outputs.target }}
+        run: |
+          set -euo pipefail
+          git fetch --tags --force origin
+          published_target="$(git rev-list -n 1 "${TAG}")"
+          test "${published_target}" = "${TARGET}"
+          gh release view "${TAG}" --repo "${GITHUB_REPOSITORY}" --json tagName,name,isDraft,isPrerelease,url,targetCommitish
