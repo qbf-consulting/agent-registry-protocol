@@ -1,106 +1,234 @@
 {
   "registry": "error-codes",
-  "version": "0.9.4",
+  "version": "0.10.0",
+  "problem_type_base": "https://qbfconsulting.digital/problems/arpa/",
   "entries": [
     {
-      "id": "ARPA-ID-NOT-FOUND",
-      "status": "active"
+      "id": "ARPA-INVALID-REQUEST",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "ARPA-ID-NOT-AUTHORIZED",
-      "status": "active"
+      "id": "ARPA-UNSUPPORTED-VERSION",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "ARPA-ID-CONFLICT",
-      "status": "active"
+      "id": "ARPA-UNSUPPORTED-PROFILE",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "ARPA-STATUS-STALE",
-      "status": "active"
+      "id": "ARPA-IDENTIFIER-NOT-FOUND",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-RECORD-NOT-AUTHORIZED",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-SCHEMA-INVALID",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "ARPA-PROOF-INVALID",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "ARPA-ISSUER-NOT-COMPETENT",
-      "status": "active"
-    },
-    {
-      "id": "ARPA-OP-NOT-SUPPORTED",
-      "status": "active"
-    },
-    {
-      "id": "ARPA-EXT-CRITICAL-UNKNOWN",
-      "status": "active"
+      "id": "ARPA-ISSUER-NOT-AUTHORIZED",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "ARPA-STATE-TRANSITION-INVALID",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "ARPA-AUTHORITY-DENIED",
-      "status": "active"
+      "id": "ARPA-STATUS-STALE",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-AUTHORITY-EXPIRED",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-AUTHORITY-REVOKED",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "ARPA-AUTHORITY-INDETERMINATE",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-DELEGATION-EXCEEDS-SCOPE",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-ASSURANCE-EXPIRED",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-ASSURANCE-NOT-APPLICABLE",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-RUNTIME-NOT-ATTESTED",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-POLICY-DENIED",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-FEDERATION-NOT-RECOGNIZED",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-CONFLICTING-STATUS",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-PROJECTION-LAG",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-RATE-LIMITED",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-TEMPORARILY-UNAVAILABLE",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-INTERNAL-ERROR",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "ARPA-ID-NOT-FOUND",
+      "status": "deprecated",
+      "class": "compatibility_alias",
+      "replaced_by": "ARPA-IDENTIFIER-NOT-FOUND"
+    },
+    {
+      "id": "ARPA-ID-NOT-AUTHORIZED",
+      "status": "deprecated",
+      "class": "compatibility_alias",
+      "replaced_by": "ARPA-RECORD-NOT-AUTHORIZED"
+    },
+    {
+      "id": "ARPA-ID-CONFLICT",
+      "status": "active",
+      "class": "project_or_profile_extension"
+    },
+    {
+      "id": "ARPA-ISSUER-NOT-COMPETENT",
+      "status": "active",
+      "class": "project_or_profile_extension"
+    },
+    {
+      "id": "ARPA-OP-NOT-SUPPORTED",
+      "status": "active",
+      "class": "project_or_profile_extension"
+    },
+    {
+      "id": "ARPA-EXT-CRITICAL-UNKNOWN",
+      "status": "active",
+      "class": "project_or_profile_extension"
+    },
+    {
+      "id": "ARPA-AUTHORITY-DENIED",
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-VERSION-UNSUPPORTED",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-CARD-DIGEST-MISMATCH",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-CARD-SIGNATURE-INVALID",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-CARD-CONTEXT-MISMATCH",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-INTERFACE-UNRECOGNISED",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-REQUIRED-EXTENSION-UNSUPPORTED",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-CARD-STATUS-CONFLICT",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-TASK-AUTHORITY-MISSING",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-ARTIFACT-DIGEST-MISSING",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-PUBLICATION-URI-MISMATCH",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-A2A-SNAPSHOT-MISSING",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-HISTORICAL-EVIDENCE-UNAVAILABLE",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-HISTORICAL-EVIDENCE-CONFLICT",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     },
     {
       "id": "ARPA-HISTORICAL-INTEGRITY-FAILURE",
-      "status": "active"
+      "status": "active",
+      "class": "project_or_profile_extension"
     }
   ]
 }
