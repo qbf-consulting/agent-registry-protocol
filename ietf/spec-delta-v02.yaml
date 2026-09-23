@@ -1,0 +1,63 @@
+registry: arpa-ietf-spec-delta
+version: 2
+issue: 45
+published_baseline: draft-sankarshan-agent-registry-protocol-01
+target_revision: draft-sankarshan-agent-registry-protocol-02
+normative_baseline: ARPA-v0.9.0-Candidate
+governing_amendments:
+  - ARPA-v0.9.1-Adversarial-Hardening
+  - ARPA-CAND-PP-01
+  - ARPA-CAND-PP-02
+policy:
+  published_baseline_immutable: true
+  protocol_core_only: true
+  adjacent_standards_reused_not_reimplemented: true
+  missing_evidence_is_not_acceptance: true
+entries:
+  - id: ARPA-IETF-101
+    title: Action-specific authority binding
+    disposition: ietf-normative
+    state: accepted
+    governing_amendment: ARPA-CAND-PP-02
+    interoperability_impact: high
+    proposition: >-
+      Material authority evaluation is bound to explicit action context,
+      current effective authority, preserved constraints, and exact-action
+      approval/evidence binding when replay or substitution is possible.
+  - id: ARPA-IETF-102
+    title: Collective-principal exercise semantics
+    disposition: ietf-normative
+    state: accepted
+    governing_amendment: ARPA-CAND-PP-02
+    interoperability_impact: high
+    proposition: >-
+      Collective authority requires current membership/controller evidence,
+      a current exercise rule, distinct-controller counting, and non-affirmative
+      handling of stale or missing material composition evidence.
+  - id: ARPA-IETF-103
+    title: Adjacent IETF standards context
+    disposition: ietf-informative
+    state: accepted
+    interoperability_impact: explanatory
+    references:
+      - draft-ietf-wimse-arch
+      - draft-reece-wimse-cross-org-delegation
+      - RFC8693
+      - RFC9334
+      - RFC9943
+    proposition: >-
+      ARPA composes with workload identity, token exchange, attestation, and
+      transparency mechanisms without treating any of them as equivalent to
+      delegated authority.
+  - id: ARPA-IETF-104
+    title: A2A task/messaging semantics
+    disposition: base-only
+    state: excluded
+  - id: ARPA-IETF-105
+    title: TRQP projection
+    disposition: base-only
+    state: excluded
+  - id: ARPA-IETF-106
+    title: Business workflow, settlement and reputation
+    disposition: base-only
+    state: excluded
