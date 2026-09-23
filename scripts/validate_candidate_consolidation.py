@@ -51,8 +51,16 @@ checked=0
 for item in m['mappings']:
     meta=m['sources'][item['source']]
     body=adapt(extract_section((ROOT/meta['path']).read_text(),item['section']))
-    if f'consolidated-source: {item["marker"]}' not in spec:
+    marker=f'consolidated-source: {item["marker"]}'
+    if marker not in spec:
         errors.append(f'missing provenance marker: {item["marker"]}')
+    else:
+        target=int(item['destination_section'])
+        start=spec.find(f'# {target}. ')
+        end=spec.find(f'# {target+1}. ',start+1)
+        pos=spec.find(marker)
+        if start < 0 or pos < start or (end >= 0 and pos >= end):
+            errors.append(f'provenance marker outside destination section {target}: {item["marker"]}')
     for raw in body.splitlines():
         line=raw.strip()
         if not line or line.startswith('|') or line.startswith('```') or not TERMS.search(line):
