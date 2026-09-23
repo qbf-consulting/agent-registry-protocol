@@ -1,0 +1,216 @@
+{
+  "amendment": "ARPA-CAND-PP-03",
+  "vectors": [
+    {
+      "id": "WC-001",
+      "scenario": "base event vocabulary",
+      "kind": "coherence",
+      "expected": "pass"
+    },
+    {
+      "id": "WC-002",
+      "scenario": "base error vocabulary",
+      "kind": "coherence",
+      "expected": "pass"
+    },
+    {
+      "id": "WC-003",
+      "scenario": "selected policy explicitly does not govern requested operation",
+      "kind": "authority_outcome",
+      "input": {
+        "applicable": false,
+        "reason_codes": [
+          "policy_not_applicable"
+        ]
+      },
+      "expected_outcome": "not_applicable"
+    },
+    {
+      "id": "WC-004",
+      "scenario": "authority evaluation applicable but delegation evidence is missing",
+      "kind": "authority_outcome",
+      "input": {
+        "applicable": true,
+        "authority_evidence": "missing"
+      },
+      "expected_outcome": "indeterminate",
+      "prohibited_outcomes": [
+        "not_applicable",
+        "allow",
+        "allow_with_conditions"
+      ]
+    },
+    {
+      "id": "WC-005",
+      "scenario": "authority is explicitly revoked",
+      "kind": "authority_outcome",
+      "input": {
+        "applicable": true,
+        "authority_state": "revoked"
+      },
+      "expected_outcome": "deny",
+      "prohibited_outcomes": [
+        "not_applicable",
+        "allow",
+        "allow_with_conditions"
+      ]
+    },
+    {
+      "id": "WC-006",
+      "scenario": "evaluation exactly at effective_from",
+      "kind": "time",
+      "input": {
+        "effective_from": "2026-09-23T00:00:00Z",
+        "effective_until": "2026-09-24T00:00:00Z",
+        "evaluation_time": "2026-09-23T00:00:00Z"
+      },
+      "expected_in_interval": true
+    },
+    {
+      "id": "WC-007",
+      "scenario": "evaluation exactly at effective_until",
+      "kind": "time",
+      "input": {
+        "effective_from": "2026-09-23T00:00:00Z",
+        "effective_until": "2026-09-24T00:00:00Z",
+        "evaluation_time": "2026-09-24T00:00:00Z"
+      },
+      "expected_in_interval": false
+    },
+    {
+      "id": "WC-008",
+      "scenario": "future-dated authority before effective_from",
+      "kind": "time",
+      "input": {
+        "effective_from": "2026-09-23T00:00:01Z",
+        "effective_until": "2026-09-24T00:00:00Z",
+        "evaluation_time": "2026-09-23T00:00:00Z"
+      },
+      "expected_in_interval": false
+    },
+    {
+      "id": "WC-009",
+      "scenario": "material timestamp falls within unresolved skew ambiguity",
+      "kind": "clock",
+      "input": {
+        "clock_profile": {
+          "precision": "milliseconds",
+          "max_skew_seconds": 5
+        },
+        "observation_offset_seconds": 4,
+        "ambiguity_resolved": false
+      },
+      "expected_outcome": "indeterminate"
+    },
+    {
+      "id": "WC-010",
+      "scenario": "2-of-3 approvals bound to current snapshot",
+      "kind": "collective",
+      "input": {
+        "snapshot_id": "membership:42",
+        "threshold": 2,
+        "current_members": [
+          "a",
+          "b",
+          "c"
+        ],
+        "approvals": [
+          {
+            "member": "a",
+            "snapshot_id": "membership:42"
+          },
+          {
+            "member": "b",
+            "snapshot_id": "membership:42"
+          }
+        ]
+      },
+      "expected_outcome": "allow"
+    },
+    {
+      "id": "WC-011",
+      "scenario": "member removed then re-added; approval from old snapshot is presented",
+      "kind": "collective",
+      "input": {
+        "snapshot_id": "membership:44",
+        "threshold": 2,
+        "current_members": [
+          "a",
+          "b",
+          "c"
+        ],
+        "approvals": [
+          {
+            "member": "a",
+            "snapshot_id": "membership:42"
+          },
+          {
+            "member": "b",
+            "snapshot_id": "membership:44"
+          }
+        ]
+      },
+      "expected_outcome": "deny"
+    },
+    {
+      "id": "WC-012",
+      "scenario": "role changed across snapshots and approvals are mixed",
+      "kind": "collective",
+      "input": {
+        "snapshot_id": "roles:9",
+        "threshold": 2,
+        "current_members": [
+          "a",
+          "b",
+          "c"
+        ],
+        "approvals": [
+          {
+            "member": "a",
+            "snapshot_id": "roles:8"
+          },
+          {
+            "member": "c",
+            "snapshot_id": "roles:9"
+          }
+        ]
+      },
+      "expected_outcome": "deny"
+    },
+    {
+      "id": "WC-013",
+      "scenario": "delegated envelope identifies upstream authority",
+      "kind": "parent",
+      "input": {
+        "record_type": "authority_envelope",
+        "derives_from": "authority-parent-123"
+      },
+      "expected": "pass"
+    },
+    {
+      "id": "WC-014",
+      "scenario": "registered error has deterministic Problem Details type URI",
+      "kind": "problem",
+      "input": {
+        "code": "ARPA-STATUS-STALE",
+        "type": "https://qbfconsulting.digital/problems/arpa/ARPA-STATUS-STALE"
+      },
+      "expected": "pass"
+    },
+    {
+      "id": "WC-015",
+      "scenario": "ARPA media type preferred with generic JSON fallback",
+      "kind": "media",
+      "expected": "pass"
+    },
+    {
+      "id": "WC-016",
+      "scenario": "project extension namespace uses controlled authority",
+      "kind": "namespace",
+      "input": {
+        "namespace": "https://qbfconsulting.digital/ns/arpa/core"
+      },
+      "expected": "pass"
+    }
+  ]
+}
