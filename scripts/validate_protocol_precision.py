@@ -85,7 +85,11 @@ if openapi_path.exists():
     openapi = openapi_path.read_text(encoding="utf-8")
     if "pattern: '^agentreg:'" not in openapi:
         errors.append("OpenAPI AgentId no longer constrains identifiers to agentreg")
-    if "application/problem+json" not in openapi or "code:" not in openapi:
+    if "application/problem+json" not in openapi:
+        errors.append("OpenAPI does not expose application/problem+json")
+    problem_contract_inline = "code:" in openapi
+    problem_contract_external = "../schemas/problem-details.schema.json" in openapi
+    if not (problem_contract_inline or problem_contract_external):
         errors.append("OpenAPI does not expose the ARPA Problem Details code contract")
     if "historical-resolution" not in openapi:
         errors.append("OpenAPI historical-resolution operation is missing")
