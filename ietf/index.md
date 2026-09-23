@@ -9,82 +9,81 @@ nav_exclude: true
 
 This is the publication landing page for ARPA's **Agent Registry Protocol** Internet-Draft authoring track.
 
-## Current state
+## Current published revision
 
-The published IETF baseline is:
+The current IETF baseline is:
 
-`draft-sankarshan-agent-registry-protocol-00`
+`draft-sankarshan-agent-registry-protocol-02`
 
-It was published on **17 September 2026** and remains the immutable historical `-00` artifact.
+It was published on **23 September 2026** as an **Individual Submission** and is **34 pages**.
 
-The repository is now developing the next candidate revision:
+- [IETF archive](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-02.txt)
+- [Datatracker status](https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/)
+- [HTMLized draft](https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol)
+- [Diff from the previous revision](https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-02)
 
-`draft-sankarshan-agent-registry-protocol-01`
-
-The generated `-01` files on this site are **development artifacts**, not evidence that revision `-01` has been submitted, adopted, or approved by the IETF.
+Published `-00` and `-01` remain immutable historical revisions. Future protocol work must start from an explicit `-02 → -03` delta rather than modifying the published `-02` state in place.
 
 ## What is standardized here
 
-The IETF track extracts the interoperable protocol core from the broader ARPA Candidate Specification:
+The IETF track extracts the interoperable protocol core from the broader ARPA Candidate Specification, including:
 
 - the ARPA `agentreg:` Agent Identifier and registry resources;
 - typed relationships;
 - bounded delegated authority;
 - lifecycle and status;
-- registration, discovery and current resolution;
-- deterministic point-in-time historical resolution;
+- registration, discovery and current/historical resolution;
+- action-specific authority evaluation;
+- collective-principal exercise semantics;
 - event semantics;
 - HTTP processing and RFC 9457 error behavior;
 - critical extension and version handling;
-- security and privacy considerations; and
-- prospective IANA actions.
-
-The adversarial-hardening amendment preserves monotonic delegation, temporal boundaries, non-applicability, authoritative conflict, revocation effectiveness, decision reproducibility and proof-input semantics. Candidate Protocol Precision Amendment `ARPA-CAND-PP-01` resolves identifier, historical-resolution, HTTP error and critical-extension ambiguity exposed during the `-01` baseline review. The amendment identifier is independent of implementation-release semantic versions.
+- security and privacy considerations;
+- composability boundaries with WIMSE, OAuth Token Exchange, RATS and SCITT; and
+- IANA actions for protocol identifiers and discovery.
 
 Project governance, conformance programmes, A2A/TRQP profiles, deployment guidance, assurance evidence and redress workflows remain supporting ARPA artifacts unless standardized separately.
 
+## Revision `-02`
+
+Revision `-02` adds explicit action-context binding, exact-action approval semantics, mechanism-neutral collective-principal exercise rules, and stronger standards-context discussion. These changes are governed by Candidate amendment `ARPA-CAND-PP-02` and the `-01 → -02` delta register.
+
+The repository publication evidence is recorded in:
+
+- [Revision `-02` baseline review](REVISION_02_BASELINE.html)
+- [Revision `-02` readiness and publication checklist](REVISION_02_CHECKLIST.html)
+- [Revision `-02` submission/publication package](SUBMISSION_PACKAGE_02.html)
+
 ## Authoring and assurance artifacts
 
-The checked-in base source deliberately preserves the published `-00` authoring baseline. The build constructs `-01` from governed deltas, the hardening and precision fragments, and bounded exact-match transformations.
+The checked-in base source preserves the historical `-00` authoring baseline. Governed deltas and source fragments deterministically construct later revisions.
 
 - [Internet-Draft base authoring source](draft-sankarshan-agent-registry-protocol.html)
 - [Adversarial-hardening source fragment](fragments/adversarial-hardening.html)
 - [PP-01 protocol-precision source fragment](fragments/protocol-precision.html)
+- [PP-02 authority-at-commitment source fragment](fragments/authority-commitment.html)
 - [Rendered `-02` — HTML](generated/draft-sankarshan-agent-registry-protocol-02.html)
 - [Rendered `-02` — plaintext](generated/draft-sankarshan-agent-registry-protocol-02.txt)
 - [RFCXML v3 for `-02`](generated/draft-sankarshan-agent-registry-protocol-02.xml)
 - [Generated-artifact SHA-256 checksums](generated/SHA256SUMS.txt)
 - [Protocol extraction and provenance map](PROTOCOL_EXTRACTION.html)
-- [Revision `-01` baseline review](REVISION_01_BASELINE.html)\n- [Revision `-02` baseline review](REVISION_02_BASELINE.html)
-- [Revision `-01` readiness checklist](REVISION_01_CHECKLIST.html)\n- [Revision `-02` readiness checklist](REVISION_02_CHECKLIST.html)
-
-The machine-readable `ietf/spec-delta-v01.yaml` records the accepted and excluded `-00 → -01` propositions. The checked-in authoring workflow is documented in `ietf/README.md` in the repository source tree.
-
-## Accepted `-01` precision work
-
-The current `-01` candidate intentionally limits change to four protocol propositions:
-
-1. align the IETF Agent Identifier contract with the ARPA `agentreg:` identifier;
-2. define historical resolution as deterministic reconstruction rather than timestamp-filtered current state;
-3. make RFC 9457 Problem Details the interoperable HTTP error envelope for protocol-significant failures; and
-4. require fail-safe handling of unsupported material critical extensions.
-
-The repository intentionally does **not** promote ARPA governance/redress, A2A, TRQP or project assurance-profile semantics into this revision.
+- [Revision `-01` baseline review](REVISION_01_BASELINE.html)
+- [Revision `-01` readiness checklist](REVISION_01_CHECKLIST.html)
+- [Revision `-02` baseline review](REVISION_02_BASELINE.html)
+- [Revision `-02` readiness checklist](REVISION_02_CHECKLIST.html)
 
 ## Build, publication and validation
 
-Every relevant CI run installs the IETF authoring toolchain and executes:
+Relevant CI installs the IETF authoring toolchain and executes:
 
 ```bash
 make ietf-check
 ```
 
-That gate validates PP-01 protocol-precision traceability, IETF authoring inputs and generated `-01` RFCXML/TXT/HTML. GitHub Pages publishes the generated artifacts only after its complete publication and link validation succeeds.
+That gate validates Candidate amendment traceability, IETF authoring inputs and generated `-02` RFCXML/TXT/HTML. GitHub Pages publishes generated artifacts only after publication and link validation succeeds.
 
 Generated outputs remain excluded from Git so they cannot drift as independently committed authority. SHA-256 checksums are published with the rendered artifacts for build evidence.
 
-A successful build is necessary but not sufficient for submission. The remaining semantic-diff and IETF submission hygiene gates are tracked in the revision `-01` checklist.
+## Future revision work
 
-## Candidate `-02` additions
-
-Candidate revision `-02` adds explicit action-context binding, exact-action approval semantics, mechanism-neutral collective-principal exercise rules, and a standards-context section that distinguishes ARPA from WIMSE workload identity, OAuth token exchange, RATS attestation, and SCITT transparency. These additions are governed by Candidate amendment `ARPA-CAND-PP-02`; they do not import A2A, TRQP, negotiation workflow, settlement, reputation, or project assurance scoring into the IETF core.
+The current backlog item for a possible `-03` is issue **#47**, which evaluates federated trust resolution and composability with ToIP TRQP, TRQL and TSP. The published `-02` revision is the immutable baseline for that future investigation.
