@@ -1,0 +1,18 @@
+{
+  "registry": "arpa-authority-commitment-requirements",
+  "version": "PP-02",
+  "amendment": "ARPA-CAND-PP-02",
+  "normative_baseline": "ARPA-v0.9.0-Candidate",
+  "requirements": [
+    {"id":"AC-PP02-001","level":"MUST","statement":"Action-specific authority evaluation is bound to explicit action, resource, evaluation time, material constraints, and a stable action binding when substitution or replay is possible."},
+    {"id":"AC-PP02-002","level":"MUST_NOT","statement":"Identity, authentication, registration, discovery, capability advertisement, signature verification, or successful resolution alone establish action authority."},
+    {"id":"AC-PP02-003","level":"MUST","statement":"Affirmative evaluation requires current effective authority and preserves all material scope, prohibition, temporal, value, resource, purpose, counterparty, jurisdiction, and delegation limits."},
+    {"id":"AC-PP02-004","level":"MUST","statement":"Required approvals are bound to the exact action or canonical action digest and are current and verifiable at evaluation time."},
+    {"id":"AC-PP02-005","level":"MUST_NOT","statement":"Expired, revoked, stale, conflicting, unavailable, unverifiable, or indeterminate material authority or approval state produces an affirmative result."},
+    {"id":"AC-PP02-006","level":"MUST","statement":"Collective-principal evaluation uses current membership/controller evidence and the current exercise rule."},
+    {"id":"AC-PP02-007","level":"MUST_NOT","statement":"An individual member is inferred to independently possess collective authority solely from collective membership."},
+    {"id":"AC-PP02-008","level":"MUST_NOT","statement":"The same controller is counted more than once toward a threshold unless the governing rule explicitly defines and evidence proves separately exercisable roles."},
+    {"id":"AC-PP02-009","level":"MUST","statement":"Missing material membership or collective-rule evidence remains indeterminate."},
+    {"id":"AC-PP02-010","level":"MUST","statement":"Execution under a materially different action context requires reevaluation or policy-proven equivalence."}
+  ]
+}
