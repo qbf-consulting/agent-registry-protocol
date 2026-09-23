@@ -1,122 +1,209 @@
 {
   "registry": "event-types",
-  "version": "0.5.0",
+  "version": "0.10.0",
   "entries": [
     {
       "id": "agent.registered",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "agent.metadata.updated",
-      "status": "active"
+      "id": "agent.activated",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "agent.updated",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "agent.restricted",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "agent.suspended",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "agent.restored",
-      "status": "active"
+      "id": "agent.quarantined",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "agent.compromised",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "agent.revoked",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "agent.retired",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "agent.superseded",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "controller.changed",
-      "status": "active"
+      "id": "agent.control_changed",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "operator.changed",
-      "status": "active"
+      "id": "agent.operator_changed",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "alias.added",
-      "status": "active"
+      "id": "agent.accountable_entity_changed",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "alias.revoked",
-      "status": "active"
-    },
-    {
-      "id": "key.rotated",
-      "status": "active"
+      "id": "version.published",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "deployment.created",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
-      "id": "deployment.quarantined",
-      "status": "active"
+      "id": "deployment.attested",
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "deployment.restricted",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "delegation.issued",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "delegation.narrowed",
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "delegation.suspended",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "delegation.revoked",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "assurance.issued",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "assurance.expired",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "assurance.suspended",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "assurance.revoked",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "incident.opened",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "incident.updated",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "incident.closed",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "appeal.filed",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "appeal.decided",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "status.restored",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "recognition.added",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "recognition.changed",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
     },
     {
       "id": "recognition.withdrawn",
-      "status": "active"
+      "status": "active",
+      "class": "candidate_base"
+    },
+    {
+      "id": "agent.metadata.updated",
+      "status": "deprecated",
+      "class": "compatibility_alias",
+      "replaced_by": "agent.updated"
+    },
+    {
+      "id": "controller.changed",
+      "status": "deprecated",
+      "class": "compatibility_alias",
+      "replaced_by": "agent.control_changed"
+    },
+    {
+      "id": "operator.changed",
+      "status": "deprecated",
+      "class": "compatibility_alias",
+      "replaced_by": "agent.operator_changed"
+    },
+    {
+      "id": "alias.added",
+      "status": "active",
+      "class": "project_extension"
+    },
+    {
+      "id": "alias.revoked",
+      "status": "active",
+      "class": "project_extension"
+    },
+    {
+      "id": "key.rotated",
+      "status": "active",
+      "class": "project_extension"
     }
   ]
 }
