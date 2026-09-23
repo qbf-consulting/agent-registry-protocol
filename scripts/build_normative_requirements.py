@@ -23,7 +23,7 @@ for raw in SPEC.read_text().splitlines():
     entries.append({"id":rid,"section":heading,"requirement":norm,"verification_procedure":"scripts/validate_normative_requirements.py","expected_evidence":EVIDENCE})
 # de-dupe exact IDs while preserving order
 seen=set(); entries=[e for e in entries if not (e['id'] in seen or seen.add(e['id']))]
-data={"registry":"normative-requirements","version":"0.10.0","source":"spec/agent-registry-protocol-v0.9.0.md","id_policy":"content-derived; changes only when the normative clause changes","entries":entries}
+data={"registry":"normative-requirements","version":"0.10.0","source":"spec/agent-registry-protocol-v0.10.0.md","id_policy":"content-derived; changes only when the normative clause changes","entries":entries}
 if '--write' in sys.argv:
     OUT.write_text(json.dumps(data,indent=2)+"\n")
 else:
