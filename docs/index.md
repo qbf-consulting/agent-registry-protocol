@@ -56,12 +56,18 @@ See [Protocol modules](protocol-modules.md) for the dependency table, profile ma
 ## Normative specification and profiles
 
 - **Normative:** [Agent Registry Protocol Candidate Specification v0.10.0](../spec/agent-registry-protocol-v0.10.0.md)
-- **Historical provenance:** [Candidate v0.9.0](../spec/agent-registry-protocol-v0.9.0.md) and the retained Candidate amendment documents
+- **Historical provenance:** [Candidate v0.9.0](../spec/agent-registry-protocol-v0.9.0.md), [adversarial hardening](../spec/agent-registry-protocol-v0.9.1-hardening.md), [PP-01 protocol precision](../spec/agent-registry-protocol-protocol-precision-pp01.md), [PP-02 authority at commitment](../spec/agent-registry-protocol-authority-commitment-pp02.md), and [PP-03 wire-contract coherence](../spec/agent-registry-protocol-wire-contract-pp03.md)
 - **Profile normative:** [ARPA Core Identity and Discovery Profile](../spec/profiles/arpa-core-identity-discovery-profile.md)
 - **Profile normative:** [ARPA Identifier Profile](../spec/profiles/arpa-identifier-profile.md)
 - **Profile normative:** [ARPA Proof and Digest Profile](../spec/profiles/arpa-proof-and-digest-profile.md)
 - **Profile normative:** [ARPA Agent Card Interoperability Profile](../spec/profiles/arpa-agent-card-interoperability.md)
 - **Profile normative:** [ARPA A2A v1.0 Interoperability Profile](../spec/profiles/arpa-a2a-v1.0-interoperability-profile.md)
+
+## Current Candidate release
+
+- [Candidate v0.10.0 release notes](../RELEASE_NOTES_v0.10.0.md)
+- [Candidate v0.10.0 normative specification](../spec/agent-registry-protocol-v0.10.0.md)
+- [Candidate v0.10.0 consolidation traceability](../conformance/manifests/candidate-consolidation-v0.10.0.json)
 
 ## Getting started and implementation
 
