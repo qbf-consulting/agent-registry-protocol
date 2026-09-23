@@ -16,7 +16,7 @@ Use this path when you need the conceptual model before touching implementation 
 1. [Design principles](design-principles.md) — the protocol's non-implication and governance rules.
 2. [Protocol modules](protocol-modules.md) — what each module owns and depends on.
 3. [Architecture-to-module mapping](architecture-to-module-mapping.md) — how protocol responsibilities map into an implementation.
-4. [Candidate Specification v0.9.0](../spec/agent-registry-protocol-v0.9.0.md) — the normative baseline.
+4. [Candidate Specification v0.10.0](../spec/agent-registry-protocol-v0.10.0.md) — the current consolidated normative baseline.
 5. [Worked scenarios](../examples/scenarios/README.md) — how the model behaves under operational and failure conditions.
 
 ## Keep these boundaries explicit

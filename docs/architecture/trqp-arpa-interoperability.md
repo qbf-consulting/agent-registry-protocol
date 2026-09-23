@@ -7,7 +7,7 @@ nav_exclude: true
 
 # ARPA–TRQP Interoperability Architecture
 
-**Status:** Informative Candidate Specification companion for ARPA v0.9.0  
+**Status:** Informative companion to ARPA Candidate v0.10.0  
 **Profile:** `arpa-trqp-query-projection-0.1`
 
 ## Purpose
@@ -102,4 +102,4 @@ TRQP core answers cannot carry the full ARPA delegation path, conditions, prohib
 
 ## Conformance and assurance
 
-The v0.9.0 repository validates the mapping, safety rules, positive and negative vectors, two independent projection implementations, networked endpoint behavior, durable event handling and evidence reproducibility. These results demonstrate the supplied candidate implementation package only. They do not constitute certification, legal recognition, universal interoperability, or formal approval by the TRQP project.
+The repository validates the mapping, safety rules, positive and negative vectors, two independent projection implementations, networked endpoint behavior, durable event handling and evidence reproducibility. The current normative ARPA source baseline is Candidate v0.10.0; this TRQP document remains an informative interoperability companion. These results demonstrate the supplied candidate implementation package only. They do not constitute certification, legal recognition, universal interoperability, or formal approval by the TRQP project.

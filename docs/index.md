@@ -18,10 +18,10 @@ This catalogue provides a stable GitHub Pages entry point for the complete norma
 
 - [IETF Internet-Draft authoring track]({{ '/ietf/' | relative_url }})
 - [ARPA → IETF protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
-- [`draft-sankarshan-agent-registry-protocol-00` source](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/draft-sankarshan-agent-registry-protocol.md)
-- [`-00` submission checklist](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/SUBMISSION_CHECKLIST.md)
+- [Published `draft-sankarshan-agent-registry-protocol-02` baseline](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/REVISION_02_BASELINE.md)
+- [Future `-03` planning and proposition dispositions](https://github.com/qbf-consulting/agent-registry-protocol/issues/47)
 
-The IETF track is a protocol extraction and prospective contribution surface; it does not replace the project Candidate Specification or imply IETF adoption.
+The IETF track is an independently versioned protocol-extraction and publication surface. Published `-02` is the immutable IETF comparison baseline; Candidate v0.10.0 is the current ARPA source baseline for any future `-03` proposition. The IETF track does not replace the project Candidate Specification.
 
 ## Document status
 
@@ -56,12 +56,18 @@ See [Protocol modules](protocol-modules.md) for the dependency table, profile ma
 ## Normative specification and profiles
 
 - **Normative:** [Agent Registry Protocol Candidate Specification v0.10.0](../spec/agent-registry-protocol-v0.10.0.md)
-- **Historical provenance:** [Candidate v0.9.0](../spec/agent-registry-protocol-v0.9.0.md) and the retained Candidate amendment documents
+- **Historical provenance:** [Candidate v0.9.0](../spec/agent-registry-protocol-v0.9.0.md), [adversarial hardening](../spec/agent-registry-protocol-v0.9.1-hardening.md), [PP-01 protocol precision](../spec/agent-registry-protocol-protocol-precision-pp01.md), [PP-02 authority at commitment](../spec/agent-registry-protocol-authority-commitment-pp02.md), and [PP-03 wire-contract coherence](../spec/agent-registry-protocol-wire-contract-pp03.md)
 - **Profile normative:** [ARPA Core Identity and Discovery Profile](../spec/profiles/arpa-core-identity-discovery-profile.md)
 - **Profile normative:** [ARPA Identifier Profile](../spec/profiles/arpa-identifier-profile.md)
 - **Profile normative:** [ARPA Proof and Digest Profile](../spec/profiles/arpa-proof-and-digest-profile.md)
 - **Profile normative:** [ARPA Agent Card Interoperability Profile](../spec/profiles/arpa-agent-card-interoperability.md)
 - **Profile normative:** [ARPA A2A v1.0 Interoperability Profile](../spec/profiles/arpa-a2a-v1.0-interoperability-profile.md)
+
+## Current Candidate release
+
+- [Candidate v0.10.0 release notes](../RELEASE_NOTES_v0.10.0.md)
+- [Candidate v0.10.0 normative specification](../spec/agent-registry-protocol-v0.10.0.md)
+- [Candidate v0.10.0 consolidation traceability](../conformance/manifests/candidate-consolidation-v0.10.0.json)
 
 ## Getting started and implementation
 
