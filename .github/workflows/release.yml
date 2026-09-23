@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - ".github/release-requests/*.json"
+  pull_request:
+    paths:
+      - ".github/workflows/release.yml"
+      - ".github/release-requests/*.json"
   workflow_dispatch:
     inputs:
       tag:
@@ -39,6 +43,7 @@ concurrency:
 
 jobs:
   publish:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout release control revision
@@ -55,6 +60,7 @@ jobs:
           INPUT_NOTES_FILE: ${{ inputs.notes_file }}
           INPUT_TARGET: ${{ inputs.target_commit }}
           INPUT_PRERELEASE: ${{ inputs.prerelease }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
 
@@ -129,8 +135,6 @@ jobs:
           echo "  target: ${TARGET}"
           echo "  notes: ${NOTES_FILE}"
           echo "  prerelease: ${PRERELEASE}"
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Checkout exact release target
         uses: actions/checkout@v7
@@ -225,6 +229,7 @@ jobs:
           TARGET: ${{ steps.request.outputs.target }}
         run: |
           set -euo pipefail
+          git fetch --tags --force origin
           published_target="$(git rev-list -n 1 "${TAG}")"
           test "${published_target}" = "${TARGET}"
           gh release view "${TAG}" --repo "${GITHUB_REPOSITORY}" --json tagName,name,isDraft,isPrerelease,url,targetCommitish
