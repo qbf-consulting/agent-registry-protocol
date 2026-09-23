@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qbfconsulting.digital/schemas/authority-evaluation-result.schema.json",
+  "title": "ARPA Authority Evaluation Result",
+  "type": "object",
+  "properties": {
+    "decision": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "allow_with_conditions",
+        "deny",
+        "indeterminate",
+        "not_applicable"
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evaluation_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "applicable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "applicable"
+      ]
+    },
+    "clock_profile": {
+      "type": "object",
+      "properties": {
+        "timestamp_precision": {
+          "type": "string"
+        },
+        "max_skew_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "future_dated_observation_policy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "timestamp_precision",
+        "max_skew_seconds",
+        "future_dated_observation_policy"
+      ]
+    },
+    "snapshot_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "decision",
+    "reason_codes",
+    "evaluation_time",
+    "policy"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "not_applicable"
+          }
+        },
+        "required": [
+          "decision"
+        ]
+      },
+      "then": {
+        "properties": {
+          "policy": {
+            "properties": {
+              "applicable": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "allow_with_conditions"
+          }
+        },
+        "required": [
+          "decision"
+        ]
+      },
+      "then": {
+        "required": [
+          "conditions"
+        ],
+        "properties": {
+          "conditions": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}
