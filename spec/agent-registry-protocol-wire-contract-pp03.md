@@ -17,7 +17,7 @@ nav_exclude: true
 
 This amendment hardens the Candidate wire contract without rewriting the v0.9.0 baseline in place. Where this amendment explicitly reconciles Candidate prose with a controlled registry, JSON Schema or OpenAPI surface, this amendment controls.
 
-Machine-readable requirements are published at `registries/wire-contract-requirements-pp03.json`; executable boundary evidence is published at `conformance/test-vectors/wire-contract-pp03.json` and validated by `scripts/validate_wire_contract_pp03.py`.
+Machine-readable requirements are published at `registries/wire-contract-requirements-pp03.json`; executable boundary evidence is published at `conformance/test-vectors/wire-contract/wire-contract-pp03.json` and validated by `scripts/validate_wire_contract_pp03.py`.
 
 ## 1. Controlled vocabulary coherence
 
