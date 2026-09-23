@@ -20,7 +20,7 @@ Published `-00` and `-01` remain immutable historical revisions. The IETF revisi
 
 ## Authority and scope
 
-The ARPA v0.9.0 Candidate Specification remains the normative project baseline. Candidate amendments refine that baseline without reusing implementation-release version numbers. The Internet-Draft extracts only interoperable protocol-core semantics.
+The ARPA Candidate v0.10.0 consolidated specification is the current normative project baseline. v0.9.0 and the approved Candidate amendments remain immutable historical provenance. The Internet-Draft extracts only interoperable protocol-core semantics, and published `-02` remains the immutable IETF baseline.
 
 Current IETF-core topics include:
 
@@ -66,14 +66,13 @@ The accepted `-02` propositions are:
 
 ## Candidate Specification inputs
 
-The IETF track currently consumes protocol-core semantics from:
+Future IETF revision work now evaluates protocol-core propositions from:
 
-- `spec/agent-registry-protocol-v0.9.0.md` — Candidate architecture and normative protocol baseline;
-- `spec/agent-registry-protocol-v0.9.1-hardening.md` — adversarial-authority Candidate amendment;
-- `spec/agent-registry-protocol-protocol-precision-pp01.md` — Candidate Protocol Precision Amendment `ARPA-CAND-PP-01`; and
-- `spec/agent-registry-protocol-authority-commitment-pp02.md` — Candidate Authority-at-Commitment Amendment `ARPA-CAND-PP-02`.
+- `spec/agent-registry-protocol-v0.10.0.md` — current consolidated Candidate baseline;
+- `registries/candidate-consolidation-v0.10.0.json` — auditable mapping from historical Candidate amendments into v0.10.0; and
+- the retained v0.9.0, adversarial-hardening, PP-01, PP-02 and PP-03 artifacts as historical provenance and regression evidence.
 
-Machine-verifiable evidence is kept alongside the governing amendments in `registries/`, `conformance/test-vectors/`, and repository validation artifacts.
+For future `-03` work, **published `-02` is the IETF comparison baseline while Candidate v0.10.0 is the current ARPA source baseline**. No v0.10.0 clause enters an Internet-Draft merely because it is normative in ARPA; each protocol-core change still requires explicit IETF delta disposition.
 
 ## IETF authoring and build
 
