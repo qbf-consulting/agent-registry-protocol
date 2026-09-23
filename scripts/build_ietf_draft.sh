@@ -5,8 +5,9 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SOURCE="$ROOT/ietf/draft-sankarshan-agent-registry-protocol.md"
 HARDENING="$ROOT/ietf/fragments/adversarial-hardening.md"
 PRECISION="$ROOT/ietf/fragments/protocol-precision.md"
+AUTHORITY="$ROOT/ietf/fragments/authority-commitment.md"
 OUT="$ROOT/ietf/generated"
-BASE="draft-sankarshan-agent-registry-protocol-01"
+BASE="draft-sankarshan-agent-registry-protocol-02"
 COMBINED="$(mktemp)"
 trap 'rm -f "$COMBINED"' EXIT
 
@@ -20,27 +21,28 @@ if ! command -v xml2rfc >/dev/null 2>&1; then
   echo "error: xml2rfc is not installed; run 'make ietf-setup'" >&2
   exit 2
 fi
-for fragment in "$HARDENING" "$PRECISION"; do
+for fragment in "$HARDENING" "$PRECISION" "$AUTHORITY"; do
   if [ ! -f "$fragment" ]; then
     echo "error: missing IETF fragment: $fragment" >&2
     exit 2
   fi
 done
 
-python3 - "$SOURCE" "$HARDENING" "$PRECISION" "$COMBINED" <<'PY'
+python3 - "$SOURCE" "$HARDENING" "$PRECISION" "$AUTHORITY" "$COMBINED" <<'PY'
 from pathlib import Path
 import sys
 
 source = Path(sys.argv[1]).read_text(encoding="utf-8")
 hardening = Path(sys.argv[2]).read_text(encoding="utf-8").strip()
 precision = Path(sys.argv[3]).read_text(encoding="utf-8").strip()
+authority = Path(sys.argv[4]).read_text(encoding="utf-8").strip()
 
 # The checked-in source preserves the published -00 authoring baseline. The
 # -01 build applies only explicit, reviewable transformations plus governed
 # protocol-core fragments.
 source = source.replace(
     "docname: draft-sankarshan-agent-registry-protocol-00",
-    "docname: draft-sankarshan-agent-registry-protocol-01",
+    "docname: draft-sankarshan-agent-registry-protocol-02",
     1,
 )
 
@@ -63,6 +65,34 @@ new_informative = "informative:\n  RFC6749:\n  RFC8414:\n  RFC9421:"
 if old_informative not in source:
     raise SystemExit("error: -00 informative references changed; review RFC8615 promotion")
 source = source.replace(old_informative, new_informative, 1)
+
+expanded_informative = """informative:
+  RFC6749:
+  RFC8414:
+  RFC8693:
+  RFC9334:
+  RFC9421:
+  RFC9943:
+  WIMSE-ARCH:
+    title: "Workload Identity in a Multi System Environment (WIMSE) Architecture"
+    author:
+      -
+        ins: J. Salowey
+        name: Joseph Salowey
+    date: 2026-07-06
+    target: https://datatracker.ietf.org/doc/draft-ietf-wimse-arch/
+  WIMSE-CROSS-ORG:
+    title: "Cross-Organizational Delegation for Workload and Agent Identity: Problem Statement and Requirements"
+    author:
+      -
+        ins: M. Reece
+        name: Morgan Reece
+    date: 2026-08-31
+    target: https://datatracker.ietf.org/doc/draft-reece-wimse-cross-org-delegation/
+"""
+if new_informative not in source:
+    raise SystemExit("error: -01 informative references changed; review -02 reference transform")
+source = source.replace(new_informative, expanded_informative.rstrip(), 1)
 
 old_identifier = (
     "An Agent Identifier MUST be a URI conforming to {{RFC3986}}. Its scheme and "
@@ -137,12 +167,20 @@ new_changelog = old_changelog + """
 * Adds adversarial authority-processing requirements for monotonic delegation, temporal boundaries, conflict handling, revocation effectiveness, decision reproducibility, and proof-input semantics.
 * Defines deterministic historical-resolution reconstruction, RFC 9457 Problem Details behavior, and fail-safe critical-extension processing.
 * Requests IANA registration of the `agentreg` URI scheme and the `agent-registry` well-known URI suffix.
-* Preserves project governance, A2A, TRQP, assurance-profile, and redress semantics outside the IETF protocol core."""
+* Preserves project governance, A2A, TRQP, assurance-profile, and redress semantics outside the IETF protocol core.
+
+## -02
+{: #revision-02}
+
+* Defines action-specific authority evaluation with explicit action context, current-authority checks, constraint preservation, and exact-action approval binding.
+* Defines mechanism-neutral collective-principal exercise semantics, including current membership/rule evidence and distinct-controller threshold counting.
+* Strengthens composability guidance and informative references for WIMSE workload identity/delegation, OAuth 2.0 Token Exchange, RATS attestation, and SCITT transparency.
+* Preserves the separation between registry-visible authority evidence and the relying party's final authorization or execution decision."""
 if old_changelog not in source:
     raise SystemExit("error: -00 changelog changed; review the -01 changelog transformation")
 source = source.replace(old_changelog, new_changelog, 1)
 
-fragments = f"{hardening}\n\n{precision}"
+fragments = f"{hardening}\n\n{precision}\n\n{authority}"
 unnumbered = "\n# Acknowledgements\n{:unnumbered}\n"
 numbered = "\n# Acknowledgements\n"
 if unnumbered in source:
@@ -160,23 +198,24 @@ elif numbered in source:
 else:
     raise SystemExit("error: IETF source is missing the Acknowledgements marker")
 
-Path(sys.argv[4]).write_text(combined, encoding="utf-8")
+Path(sys.argv[5]).write_text(combined, encoding="utf-8")
 PY
 
 kramdown-rfc "$COMBINED" > "$OUT/$BASE.xml"
 
 if grep -q 'submissionType=' "$OUT/$BASE.xml"; then
-  echo "error: generated -01 RFCXML unexpectedly contains submissionType metadata" >&2
+  echo "error: generated -02 RFCXML unexpectedly contains submissionType metadata" >&2
   exit 2
 fi
 
 xml2rfc --text --out "$OUT/$BASE.txt" "$OUT/$BASE.xml"
 xml2rfc --html --out "$OUT/$BASE.html" "$OUT/$BASE.xml"
 
-echo "Built revision -01 from:"
+echo "Built revision -02 from:"
 echo "  ietf/draft-sankarshan-agent-registry-protocol.md (-00 authoring baseline)"
 echo "  ietf/fragments/adversarial-hardening.md"
 echo "  ietf/fragments/protocol-precision.md"
+echo "  ietf/fragments/authority-commitment.md"
 echo "Built:"
 echo "  ietf/generated/$BASE.xml"
 echo "  ietf/generated/$BASE.txt"
