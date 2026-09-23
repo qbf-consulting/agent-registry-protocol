@@ -1,0 +1,255 @@
+{
+  "registry": "candidate-consolidation-manifest",
+  "version": "0.10.0",
+  "status": "normative-consolidation-control",
+  "baseline": "spec/agent-registry-protocol-v0.9.0.md",
+  "consolidated_spec": "spec/agent-registry-protocol-v0.10.0.md",
+  "incorporation_policy": "Approved normative amendment sections are integrated into natural v0.10.0 protocol sections; IETF extraction-boundary sections remain historical process provenance and are not protocol text.",
+  "sources": {
+    "hardening": {
+      "path": "spec/agent-registry-protocol-v0.9.1-hardening.md",
+      "git_blob_sha": "18851d6529110d436fb9971739fb065c1761af40"
+    },
+    "pp01": {
+      "path": "spec/agent-registry-protocol-protocol-precision-pp01.md",
+      "git_blob_sha": "f8b51236849fda64bead1892a4e975bb180aadf9"
+    },
+    "pp02": {
+      "path": "spec/agent-registry-protocol-authority-commitment-pp02.md",
+      "git_blob_sha": "c21b20fa27d998cfee0ce97bdb7ea37ec2e83927"
+    },
+    "pp03": {
+      "path": "spec/agent-registry-protocol-wire-contract-pp03.md",
+      "git_blob_sha": "b6a8a25d7b245d0489e2a7595b1902a3ee2be1c4"
+    }
+  },
+  "excluded_process_sections": [
+    {
+      "source": "pp01",
+      "section": "6.",
+      "reason": "IETF extraction boundary"
+    },
+    {
+      "source": "pp02",
+      "section": "7.",
+      "reason": "IETF extraction boundary"
+    },
+    {
+      "source": "pp03",
+      "section": "10.",
+      "reason": "IETF extraction boundary"
+    }
+  ],
+  "mappings": [
+    {
+      "source": "hardening",
+      "section": "1.",
+      "destination_section": "18",
+      "marker": "ARPA-HARDENING §1"
+    },
+    {
+      "source": "hardening",
+      "section": "2.",
+      "destination_section": "28",
+      "marker": "ARPA-HARDENING §2"
+    },
+    {
+      "source": "hardening",
+      "section": "3.",
+      "destination_section": "22",
+      "marker": "ARPA-HARDENING §3"
+    },
+    {
+      "source": "hardening",
+      "section": "4.",
+      "destination_section": "26",
+      "marker": "ARPA-HARDENING §4"
+    },
+    {
+      "source": "hardening",
+      "section": "5.",
+      "destination_section": "20",
+      "marker": "ARPA-HARDENING §5"
+    },
+    {
+      "source": "hardening",
+      "section": "6.",
+      "destination_section": "22",
+      "marker": "ARPA-HARDENING §6"
+    },
+    {
+      "source": "hardening",
+      "section": "7.",
+      "destination_section": "29",
+      "marker": "ARPA-HARDENING §7"
+    },
+    {
+      "source": "hardening",
+      "section": "8.",
+      "destination_section": "20",
+      "marker": "ARPA-HARDENING §8"
+    },
+    {
+      "source": "hardening",
+      "section": "9.",
+      "destination_section": "30",
+      "marker": "ARPA-HARDENING §9"
+    },
+    {
+      "source": "hardening",
+      "section": "10.",
+      "destination_section": "33",
+      "marker": "ARPA-HARDENING §10"
+    },
+    {
+      "source": "hardening",
+      "section": "11.",
+      "destination_section": "37",
+      "marker": "ARPA-HARDENING §11"
+    },
+    {
+      "source": "hardening",
+      "section": "12.",
+      "destination_section": "37",
+      "marker": "ARPA-HARDENING §12"
+    },
+    {
+      "source": "pp01",
+      "section": "1.",
+      "destination_section": "12",
+      "marker": "ARPA-CAND-PP-01 §1"
+    },
+    {
+      "source": "pp01",
+      "section": "2.",
+      "destination_section": "21",
+      "marker": "ARPA-CAND-PP-01 §2"
+    },
+    {
+      "source": "pp01",
+      "section": "3.",
+      "destination_section": "34",
+      "marker": "ARPA-CAND-PP-01 §3"
+    },
+    {
+      "source": "pp01",
+      "section": "4.",
+      "destination_section": "33",
+      "marker": "ARPA-CAND-PP-01 §4"
+    },
+    {
+      "source": "pp01",
+      "section": "5.",
+      "destination_section": "36",
+      "marker": "ARPA-CAND-PP-01 §5"
+    },
+    {
+      "source": "pp02",
+      "section": "1.",
+      "destination_section": "22",
+      "marker": "ARPA-CAND-PP-02 §1"
+    },
+    {
+      "source": "pp02",
+      "section": "2.",
+      "destination_section": "22",
+      "marker": "ARPA-CAND-PP-02 §2"
+    },
+    {
+      "source": "pp02",
+      "section": "3.",
+      "destination_section": "22",
+      "marker": "ARPA-CAND-PP-02 §3"
+    },
+    {
+      "source": "pp02",
+      "section": "4.",
+      "destination_section": "18",
+      "marker": "ARPA-CAND-PP-02 §4"
+    },
+    {
+      "source": "pp02",
+      "section": "5.",
+      "destination_section": "14",
+      "marker": "ARPA-CAND-PP-02 §5"
+    },
+    {
+      "source": "pp02",
+      "section": "6.",
+      "destination_section": "25",
+      "marker": "ARPA-CAND-PP-02 §6"
+    },
+    {
+      "source": "pp03",
+      "section": "1.",
+      "destination_section": "33",
+      "marker": "ARPA-CAND-PP-03 §1"
+    },
+    {
+      "source": "pp03",
+      "section": "2.",
+      "destination_section": "22",
+      "marker": "ARPA-CAND-PP-03 §2"
+    },
+    {
+      "source": "pp03",
+      "section": "3.",
+      "destination_section": "28",
+      "marker": "ARPA-CAND-PP-03 §3"
+    },
+    {
+      "source": "pp03",
+      "section": "4.",
+      "destination_section": "18",
+      "marker": "ARPA-CAND-PP-03 §4"
+    },
+    {
+      "source": "pp03",
+      "section": "5.",
+      "destination_section": "18",
+      "marker": "ARPA-CAND-PP-03 §5"
+    },
+    {
+      "source": "pp03",
+      "section": "6.",
+      "destination_section": "34",
+      "marker": "ARPA-CAND-PP-03 §6"
+    },
+    {
+      "source": "pp03",
+      "section": "7.",
+      "destination_section": "21",
+      "marker": "ARPA-CAND-PP-03 §7"
+    },
+    {
+      "source": "pp03",
+      "section": "8.",
+      "destination_section": "33",
+      "marker": "ARPA-CAND-PP-03 §8"
+    },
+    {
+      "source": "pp03",
+      "section": "9.",
+      "destination_section": "37",
+      "marker": "ARPA-CAND-PP-03 §9"
+    }
+  ],
+  "published_ietf_02_control_files": [
+    {
+      "path": "ietf/REVISION_02_BASELINE.md",
+      "git_blob_sha": "988063ad3ae181f604cafc41373ad80cf946fa4e"
+    },
+    {
+      "path": "ietf/spec-delta-v02.yaml",
+      "git_blob_sha": "7179aec55bdb5688394c93cd55b0cd8e7479be0a"
+    },
+    {
+      "path": "ietf/SUBMISSION_PACKAGE_02.md",
+      "git_blob_sha": "69b6c5e543707350e1d54e48c0a181e7d828bd23"
+    },
+    {
+      "path": "ietf/REVISION_02_CHECKLIST.md",
+      "git_blob_sha": "de72889db1c4c9f1d8b58f41a13918bbc73a2d81"
+    }
+  ]
+}
