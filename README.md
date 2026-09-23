@@ -63,7 +63,7 @@ The amendment is retained as historical provenance at [ARPA v0.9.1 Adversarial H
 - protocol-significant HTTP failures use an RFC 9457 Problem Details contract with stable machine semantics; and
 - unsupported material critical extensions fail safely rather than being silently ignored.
 
-PP-01 retains its stable amendment ID and provenance. Its semantics, together with `ARPA-CAND-PP-02` and `ARPA-CAND-PP-03`, are incorporated into Candidate v0.10.0. Historical amendment requirements and vectors remain retained for auditability and regression assurance; `registries/candidate-consolidation-v0.10.0.json` records the consolidation map.
+PP-01 retains its stable amendment ID and provenance. Its semantics, together with `ARPA-CAND-PP-02` and `ARPA-CAND-PP-03`, are incorporated into Candidate v0.10.0. Historical amendment requirements and vectors remain retained for auditability and regression assurance; `conformance/manifests/candidate-consolidation-v0.10.0.json` records the consolidation map.
 
 ## What v0.9.5 delivers
 
