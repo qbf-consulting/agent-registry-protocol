@@ -1,18 +1,135 @@
 {
   "registry": "arpa-authority-commitment-requirements",
   "version": "PP-02",
-  "amendment": "ARPA-CAND-PP-02",
-  "normative_baseline": "ARPA-v0.9.0-Candidate",
-  "requirements": [
-    {"id":"AC-PP02-001","level":"MUST","statement":"Action-specific authority evaluation is bound to explicit action, resource, evaluation time, material constraints, and a stable action binding when substitution or replay is possible."},
-    {"id":"AC-PP02-002","level":"MUST_NOT","statement":"Identity, authentication, registration, discovery, capability advertisement, signature verification, or successful resolution alone establish action authority."},
-    {"id":"AC-PP02-003","level":"MUST","statement":"Affirmative evaluation requires current effective authority and preserves all material scope, prohibition, temporal, value, resource, purpose, counterparty, jurisdiction, and delegation limits."},
-    {"id":"AC-PP02-004","level":"MUST","statement":"Required approvals are bound to the exact action or canonical action digest and are current and verifiable at evaluation time."},
-    {"id":"AC-PP02-005","level":"MUST_NOT","statement":"Expired, revoked, stale, conflicting, unavailable, unverifiable, or indeterminate material authority or approval state produces an affirmative result."},
-    {"id":"AC-PP02-006","level":"MUST","statement":"Collective-principal evaluation uses current membership/controller evidence and the current exercise rule."},
-    {"id":"AC-PP02-007","level":"MUST_NOT","statement":"An individual member is inferred to independently possess collective authority solely from collective membership."},
-    {"id":"AC-PP02-008","level":"MUST_NOT","statement":"The same controller is counted more than once toward a threshold unless the governing rule explicitly defines and evidence proves separately exercisable roles."},
-    {"id":"AC-PP02-009","level":"MUST","statement":"Missing material membership or collective-rule evidence remains indeterminate."},
-    {"id":"AC-PP02-010","level":"MUST","statement":"Execution under a materially different action context requires reevaluation or policy-proven equivalence."}
+  "normative_baseline": "0.9.0",
+  "amendment_id": "ARPA-CAND-PP-02",
+  "source": "spec/agent-registry-protocol-authority-commitment-pp02.md",
+  "entries": [
+    {
+      "id": "AC-PP02-001",
+      "section": "1. Action-specific authority context",
+      "requirement": "Action-specific authority evaluation is bound to explicit action, resource, evaluation time, material constraints, and a stable action binding when substitution or replay is possible.",
+      "verification": [
+        "AAC-01",
+        "AAC-04",
+        "inspection"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    },
+    {
+      "id": "AC-PP02-002",
+      "section": "1. Action-specific authority context",
+      "requirement": "Identity, authentication, registration, discovery, capability advertisement, signature verification, or successful resolution alone establish action authority.",
+      "verification": [
+        "inspection"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    },
+    {
+      "id": "AC-PP02-003",
+      "section": "2-3. Current authority and approval binding",
+      "requirement": "Affirmative evaluation requires current effective authority and preserves all material scope, prohibition, temporal, value, resource, purpose, counterparty, jurisdiction, and delegation limits.",
+      "verification": [
+        "AAC-02",
+        "AAC-03",
+        "AAC-05"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    },
+    {
+      "id": "AC-PP02-004",
+      "section": "2-3. Current authority and approval binding",
+      "requirement": "Required approvals are bound to the exact action or canonical action digest and are current and verifiable at evaluation time.",
+      "verification": [
+        "AAC-04"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    },
+    {
+      "id": "AC-PP02-005",
+      "section": "2-3. Current authority and approval binding",
+      "requirement": "Expired, revoked, stale, conflicting, unavailable, unverifiable, or indeterminate material authority or approval state produces an affirmative result.",
+      "verification": [
+        "AAC-05"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    },
+    {
+      "id": "AC-PP02-006",
+      "section": "4. Collective-principal authority",
+      "requirement": "Collective-principal evaluation uses current membership/controller evidence and the current exercise rule.",
+      "verification": [
+        "AAC-06",
+        "AAC-08",
+        "AAC-09"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    },
+    {
+      "id": "AC-PP02-007",
+      "section": "4. Collective-principal authority",
+      "requirement": "An individual member is inferred to independently possess collective authority solely from collective membership.",
+      "verification": [
+        "AAC-07"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    },
+    {
+      "id": "AC-PP02-008",
+      "section": "4. Collective-principal authority",
+      "requirement": "The same controller is counted more than once toward a threshold unless the governing rule explicitly defines and evidence proves separately exercisable roles.",
+      "verification": [
+        "AAC-10"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    },
+    {
+      "id": "AC-PP02-009",
+      "section": "4. Collective-principal authority",
+      "requirement": "Missing material membership or collective-rule evidence remains indeterminate.",
+      "verification": [
+        "AAC-08"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    },
+    {
+      "id": "AC-PP02-010",
+      "section": "5. Separation from authentication and execution",
+      "requirement": "Execution under a materially different action context requires reevaluation or policy-proven equivalence.",
+      "verification": [
+        "inspection"
+      ],
+      "expected_evidence": [
+        "authority-at-commitment vectors",
+        "scripts/validate_authority_at_commitment.py"
+      ]
+    }
   ]
 }
