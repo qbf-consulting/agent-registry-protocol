@@ -30,16 +30,16 @@
 
 ## Build and assurance
 
-- [ ] PP-02 requirement/evidence validation passes
-- [ ] `make ietf-check` passes for `-02`
-- [ ] full `Validate` workflow passes
-- [ ] dedicated IETF workflow passes
-- [ ] generated RFCXML v3 reviewed
-- [ ] generated plaintext reviewed
-- [ ] generated HTML reviewed
-- [ ] no TODO/FIXME/TBD/placeholders
-- [ ] `-01 → -02` rendered diff reviewed for unintended changes
-- [ ] exact artifact and SHA-256 digests recorded
+- [x] PP-02 requirement/evidence validation passes
+- [x] `make ietf-check` passes for `-02`
+- [x] full `Validate` workflow passes
+- [x] dedicated IETF workflow passes
+- [x] generated RFCXML v3 reviewed
+- [x] generated plaintext reviewed
+- [x] generated HTML reviewed
+- [x] no TODO/FIXME/TBD/placeholders
+- [x] `-01 → -02` rendered diff reviewed for unintended changes
+- [x] exact artifact and SHA-256 digests recorded
 
 ## Publication
 
@@ -48,4 +48,4 @@
 - [ ] Datatracker publication verified
 - [ ] repository publication evidence updated
 
-Datatracker upload is intentionally separate from repository preparation.
+Datatracker upload is intentionally separate from repository preparation. Repository preparation and manual artifact review are complete; see `SUBMISSION_PACKAGE_02.md` for the selected build and digests.
