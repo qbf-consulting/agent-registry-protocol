@@ -112,7 +112,7 @@ jobs:
             TITLE="$(jq -er '.title' "${request}")"
             NOTES_FILE="$(jq -er '.notes_file' "${request}")"
             TARGET_RAW="$(jq -er '.target_commit // "main"' "${request}")"
-            PRERELEASE="$(jq -er '.prerelease // false' "${request}")"
+            PRERELEASE="$(jq -r '.prerelease // false' "${request}")"
           else
             TAG="${INPUT_TAG}"
             TITLE="${INPUT_TITLE}"
