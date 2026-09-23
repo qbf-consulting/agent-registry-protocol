@@ -1,19 +1,41 @@
 {
   "registry": "extension-namespaces",
-  "version": "0.9.2",
+  "version": "0.10.0",
+  "policy": "Active project namespaces use HTTPS identifiers under qbfconsulting.digital; external namespaces must use collision-resistant authority controlled by their owner.",
   "entries": [
     {
+      "id": "https://qbfconsulting.digital/ns/arpa/core",
+      "status": "active",
+      "owner": "QBF Consulting LLP"
+    },
+    {
+      "id": "https://qbfconsulting.digital/ns/arpa/agent-card",
+      "status": "active",
+      "owner": "QBF Consulting LLP"
+    },
+    {
+      "id": "https://qbfconsulting.digital/ns/arpa/profiles/a2a/1.0",
+      "status": "active",
+      "owner": "QBF Consulting LLP",
+      "purpose": "A2A v1.0 interoperability profile"
+    },
+    {
       "id": "https://arpa.example/extensions/core",
-      "status": "active"
+      "status": "deprecated",
+      "class": "placeholder_alias",
+      "replaced_by": "https://qbfconsulting.digital/ns/arpa/core"
     },
     {
       "id": "https://arpa.example/extensions/agent-card",
-      "status": "active"
+      "status": "deprecated",
+      "class": "placeholder_alias",
+      "replaced_by": "https://qbfconsulting.digital/ns/arpa/agent-card"
     },
     {
       "id": "https://arpa.example/profiles/a2a/1.0",
-      "status": "active",
-      "purpose": "A2A v1.0 interoperability profile"
+      "status": "deprecated",
+      "class": "placeholder_alias",
+      "replaced_by": "https://qbfconsulting.digital/ns/arpa/profiles/a2a/1.0"
     }
   ]
 }
