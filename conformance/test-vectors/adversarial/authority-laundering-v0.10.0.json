@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0.0",
+  "arpa_version":"0.10.0",
+  "suite":"authority-laundering-adversarial",
+  "governing_invariant":"Communication, repetition, endorsement, aggregation, projection, discovery, reputation, or unrelated authority must not increase the authority available for the evaluated effect.",
+  "research_provenance":[
+    "https://github.com/JessHines360/protocol-of-care-for-agents",
+    "https://github.com/JessHines360/protocol-of-care-for-agents/blob/main/experiments/SIMULATION_01_RUNBOOK.md"
+  ],
+  "vectors":[
+    {"id":"AUTH-LAUNDER-001","scenario":"unauthorized-peer-says-proceed","expected_decision":"deny_or_indeterminate","prohibited_decisions":["allow","allow_with_conditions"],"required_reason_codes":["required_authority_missing"],"required_evidence":["authority_source","scope"]},
+    {"id":"AUTH-LAUNDER-002","scenario":"repeated-non-authoritative-assertions","expected_decision":"deny_or_indeterminate","prohibited_decisions":["allow","allow_with_conditions"],"required_reason_codes":["required_authority_missing"],"required_evidence":["assertion_sources","authority_source"]},
+    {"id":"AUTH-LAUNDER-003","scenario":"delegate-has-unrelated-scope","expected_decision":"deny","prohibited_decisions":["allow","allow_with_conditions"],"required_reason_codes":["delegation_scope_not_proven"],"required_evidence":["delegation","requested_scope","effective_intersection"]},
+    {"id":"AUTH-LAUNDER-004","scenario":"high-reputation-discovery-result-treated-as-authority","expected_decision":"deny_or_indeterminate","prohibited_decisions":["allow","allow_with_conditions"],"required_reason_codes":["required_authority_missing"],"required_evidence":["discovery_result","reputation_signal","authority_source"]},
+    {"id":"AUTH-LAUNDER-005","scenario":"evidence-change-resolves-predicate-without-authority-change","expected_decision":"governance_defined","prohibited_decisions":["authority_grant_inferred"],"required_reason_codes":["evidence_predicate_changed"],"required_evidence":["prior_predicate","new_authoritative_evidence","policy_rule","authority_state_unchanged"]}
+  ]
+}
