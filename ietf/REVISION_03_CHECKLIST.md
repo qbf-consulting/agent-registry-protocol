@@ -36,15 +36,15 @@
 
 ## Build and assurance
 
-- [ ] `make ietf-check` passes for `-03`
-- [ ] full `Validate` workflow passes
-- [ ] dedicated IETF workflow passes
-- [ ] generated RFCXML v3 reviewed
-- [ ] generated plaintext reviewed
-- [ ] generated HTML reviewed
-- [ ] no TODO/FIXME/TBD/placeholders
-- [ ] `-02 → -03` rendered diff reviewed for unintended changes
-- [ ] exact artifact and SHA-256 digests recorded
+- [x] `make ietf-check` passes for `-03`
+- [x] full `Validate` workflow passes
+- [x] dedicated IETF workflow passes
+- [x] generated RFCXML v3 reviewed
+- [x] generated plaintext reviewed
+- [x] generated HTML reviewed
+- [x] no TODO/FIXME/TBD/placeholders
+- [x] `-02 → -03` rendered diff reviewed for unintended changes
+- [x] exact artifact and SHA-256 digests recorded
 
 ## Publication
 
@@ -54,3 +54,14 @@
 - [ ] repository publication evidence updated
 
 The repository can mark the pre-publication build/review gates complete before Datatracker upload. Publication-specific gates remain external until the IETF posting is confirmed.
+
+
+## Selected evidence
+
+- Protocol-content source: `055db6179c627f08fdef83681e17f61eeaee3541`
+- IETF workflow: `36393777707` — PASS
+- Validate workflow: `36393777797` — PASS
+- Artifact: `10956953699`
+- Artifact bundle SHA-256: `bcae38ccf756c9d233896b5b1f7323d1c37c413026d4c0e47d9b664f850c7c12`
+- Rendered pages: 44
+- Submission package: `SUBMISSION_PACKAGE_03.md`
