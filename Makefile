@@ -12,6 +12,7 @@ validate:
 	python3 scripts/validate_candidate_consolidation.py
 	python3 scripts/validate_docs_baseline.py
 	python3 scripts/validate_candidate_hardening.py
+	python3 scripts/validate_authority_laundering.py
 	python3 scripts/validate_wire_contract_pp03.py
 	python3 scripts/validate_protocol_precision.py
 	python3 scripts/validate_kya_os_profile.py
