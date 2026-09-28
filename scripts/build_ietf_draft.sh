@@ -6,8 +6,9 @@ SOURCE="$ROOT/ietf/draft-sankarshan-agent-registry-protocol.md"
 HARDENING="$ROOT/ietf/fragments/adversarial-hardening.md"
 PRECISION="$ROOT/ietf/fragments/protocol-precision.md"
 AUTHORITY="$ROOT/ietf/fragments/authority-commitment.md"
+REVISION03="$ROOT/ietf/fragments/revision-03.md"
 OUT="$ROOT/ietf/generated"
-BASE="draft-sankarshan-agent-registry-protocol-02"
+BASE="draft-sankarshan-agent-registry-protocol-03"
 COMBINED="$(mktemp)"
 trap 'rm -f "$COMBINED"' EXIT
 
@@ -21,14 +22,14 @@ if ! command -v xml2rfc >/dev/null 2>&1; then
   echo "error: xml2rfc is not installed; run 'make ietf-setup'" >&2
   exit 2
 fi
-for fragment in "$HARDENING" "$PRECISION" "$AUTHORITY"; do
+for fragment in "$HARDENING" "$PRECISION" "$AUTHORITY" "$REVISION03"; do
   if [ ! -f "$fragment" ]; then
     echo "error: missing IETF fragment: $fragment" >&2
     exit 2
   fi
 done
 
-python3 - "$SOURCE" "$HARDENING" "$PRECISION" "$AUTHORITY" "$COMBINED" <<'PY'
+python3 - "$SOURCE" "$HARDENING" "$PRECISION" "$AUTHORITY" "$REVISION03" "$COMBINED" <<'PY'
 from pathlib import Path
 import sys
 
@@ -36,13 +37,20 @@ source = Path(sys.argv[1]).read_text(encoding="utf-8")
 hardening = Path(sys.argv[2]).read_text(encoding="utf-8").strip()
 precision = Path(sys.argv[3]).read_text(encoding="utf-8").strip()
 authority = Path(sys.argv[4]).read_text(encoding="utf-8").strip()
+revision03 = Path(sys.argv[5]).read_text(encoding="utf-8").strip()
 
 # The checked-in source preserves the published -00 authoring baseline. The
 # -01 build applies only explicit, reviewable transformations plus governed
 # protocol-core fragments.
 source = source.replace(
     "docname: draft-sankarshan-agent-registry-protocol-00",
-    "docname: draft-sankarshan-agent-registry-protocol-02",
+    "docname: draft-sankarshan-agent-registry-protocol-03",
+    1,
+)
+
+source = source.replace(
+    '    date: 2026-07-16\n    target: https://qbf-consulting.github.io/agent-registry-protocol/spec/agent-registry-protocol-v0.9.0.html',
+    '    date: 2026-09-23\n    target: https://qbfconsulting.digital/agent-registry-protocol/spec/agent-registry-protocol-v0.10.0.html',
     1,
 )
 
@@ -55,7 +63,7 @@ if submission_type not in source:
 source = source.replace(submission_type, "", 1)
 source = source.replace(
     "  RFC3986:\n  RFC9457:",
-    "  RFC3986:\n  RFC7595:\n  RFC8615:\n  RFC9457:",
+    "  RFC3986:\n  RFC6838:\n  RFC7595:\n  RFC8615:\n  RFC9457:",
     1,
 )
 # RFC8615 is informative in the published -00 source. Revision -01 uses it
@@ -80,7 +88,7 @@ expanded_informative = """informative:
         ins: J. Salowey
         name: Joseph Salowey
     date: 2026-07-06
-    target: https://datatracker.ietf.org/doc/draft-ietf-wimse-arch/
+    target: https://datatracker.ietf.org/doc/draft-ietf-wimse-arch/08/
   WIMSE-CROSS-ORG:
     title: "Cross-Organizational Delegation for Workload and Agent Identity: Problem Statement and Requirements"
     author:
@@ -88,7 +96,25 @@ expanded_informative = """informative:
         ins: M. Reece
         name: Morgan Reece
     date: 2026-08-31
-    target: https://datatracker.ietf.org/doc/draft-reece-wimse-cross-org-delegation/
+    target: https://datatracker.ietf.org/doc/draft-reece-wimse-cross-org-delegation/02/
+  TRQP-V2:
+    title: "ToIP Trust Registry Query Protocol (TRQP) v2.0"
+    author:
+      -
+        ins: D. O'Donnell
+        name: Darrell O'Donnell
+      -
+        ins: A. Kesselman
+        name: Andor Kesselman
+      -
+        ins: D. Reed
+        name: Drummond Reed
+    date: 2026
+    target: https://github.com/trustoverip/tswg-trust-registry-protocol/tree/main/specification/v2-approved
+  TOIP-TSP:
+    title: "ToIP Trust Spanning Protocol Specification"
+    date: 2026
+    target: https://trustoverip.github.io/tswg-tsp-specification/
 """
 if new_informative not in source:
     raise SystemExit("error: -01 informative references changed; review -02 reference transform")
@@ -111,6 +137,19 @@ External identifiers MAY be represented as aliases or mapped identifiers, but th
 if old_identifier not in source:
     raise SystemExit("error: -00 identifier paragraph changed; review the -01 transformation")
 source = source.replace(old_identifier, new_identifier, 1)
+
+old_relationship_nonimplication = (
+    "For example, an `operated-by` relationship MUST NOT be interpreted as an "
+    "`authorized-by` relationship unless a separate specification explicitly defines "
+    "such equivalence."
+)
+new_relationship_nonimplication = (
+    "For example, an `operated_by` or `controlled_by` relationship MUST NOT be "
+    "interpreted as `acts_for` or `delegates_to` without separate authority evidence."
+)
+if old_relationship_nonimplication not in source:
+    raise SystemExit("error: -00 relationship non-implication paragraph changed; review -03 vocabulary transform")
+source = source.replace(old_relationship_nonimplication, new_relationship_nonimplication, 1)
 
 old_iana = """# IANA Considerations
 
@@ -147,9 +186,46 @@ Change controller: IETF.
 
 Specification document: this document, Registry Metadata.
 
-Related information: the resource identifies ARPA registry metadata and discovery information. A representation SHOULD use a media type appropriate to the selected representation format; JSON deployments SHOULD use `application/json` unless a future specification registers a more specific media type. Access control remains operation-specific, and discovery of this resource does not imply authority, recognition, assurance, endorsement, or permission to invoke any discovered agent.
+Related information: the resource identifies ARPA registry metadata and discovery information. A representation SHOULD use a media type appropriate to the selected representation format; JSON deployments SHOULD use `application/agent-registry+json`; `application/json` MAY be accepted only as a semantics-identical compatibility fallback. Access control remains operation-specific, and discovery of this resource does not imply authority, recognition, assurance, endorsement, or permission to invoke any discovered agent.
 
-No IANA registry for project-specific relationship types, extension namespaces, reason codes, or conformance profiles is requested by this revision."""
+No IANA registry for project-specific relationship types, extension namespaces, reason codes, or conformance profiles is requested by this revision.
+
+## `application/agent-registry+json` Media Type
+
+This document requests registration of the media type `application/agent-registry+json` in accordance with {{RFC6838}}.
+
+Type name: application
+
+Subtype name: agent-registry+json
+
+Required parameters: none
+
+Optional parameters: none
+
+Encoding considerations: binary; JSON representations use UTF-8 as required by {{RFC8259}}.
+
+Security considerations: see the Security Considerations and Privacy Considerations sections of this document. ARPA representations can expose authority, relationship, lifecycle, endpoint, and evidence information and therefore can be security- and privacy-sensitive.
+
+Interoperability considerations: protocol/profile versioning is carried in ARPA metadata and representations, not inferred from a media-type version parameter. `application/json` may be supported only as a semantics-identical compatibility fallback.
+
+Published specification: this document.
+
+Applications that use this media type: Agent Registry Protocol implementations.
+
+Fragment identifier considerations: none defined by this document.
+
+Additional information: none.
+
+Person and email address to contact for further information: the author of this document.
+
+Intended usage: COMMON
+
+Restrictions on usage: none.
+
+Author: the author of this document.
+
+Change controller: IETF."""
+
 if old_iana not in source:
     raise SystemExit("error: -00 IANA section changed; review the -01 transformation")
 source = source.replace(old_iana, new_iana, 1)
@@ -175,12 +251,24 @@ new_changelog = old_changelog + """
 * Defines action-specific authority evaluation with explicit action context, current-authority checks, constraint preservation, and exact-action approval binding.
 * Defines mechanism-neutral collective-principal exercise semantics, including current membership/rule evidence and distinct-controller threshold counting.
 * Strengthens composability guidance and informative references for WIMSE workload identity/delegation, OAuth 2.0 Token Exchange, RATS attestation, and SCITT transparency.
-* Preserves the separation between registry-visible authority evidence and the relying party's final authorization or execution decision."""
+* Preserves the separation between registry-visible authority evidence and the relying party's final authorization or execution decision.
+
+## -03
+{: #revision-03}
+
+* Defines interoperable authority-evaluation outcome semantics, including a machine-stable `not_applicable` boundary distinct from protocol errors, deny, and indeterminate.
+* Adds explicit parent-authority linkage, lower-bound time semantics, discoverable clock-profile assumptions, and collective-principal snapshot binding.
+* Registers `application/agent-registry+json` and tightens RFC 9457 Problem Details and extension-namespace processing.
+* Defines how external authoritative trust evidence contributes to ARPA evaluation and specifies normative composition boundaries with ToIP TRQP v2.0.
+* Describes ToIP TSP as an optional spanning substrate without making TSP a conformance dependency and preserves the rule that authenticated channels/identifiers do not confer authority.
+* Pins WIMSE references to the revisions reviewed for this draft and clarifies optional SCITT evidence-reference composition.
+* Makes IETF-draft precedence explicit for IETF protocol conformance while retaining Candidate v0.10.0 as the project baseline for wider governance/profile material."""
+
 if old_changelog not in source:
     raise SystemExit("error: -00 changelog changed; review the -01 changelog transformation")
 source = source.replace(old_changelog, new_changelog, 1)
 
-fragments = f"{hardening}\n\n{precision}\n\n{authority}"
+fragments = f"{hardening}\n\n{precision}\n\n{authority}\n\n{revision03}"
 unnumbered = "\n# Acknowledgements\n{:unnumbered}\n"
 numbered = "\n# Acknowledgements\n"
 if unnumbered in source:
@@ -198,24 +286,25 @@ elif numbered in source:
 else:
     raise SystemExit("error: IETF source is missing the Acknowledgements marker")
 
-Path(sys.argv[5]).write_text(combined, encoding="utf-8")
+Path(sys.argv[6]).write_text(combined, encoding="utf-8")
 PY
 
 kramdown-rfc "$COMBINED" > "$OUT/$BASE.xml"
 
 if grep -q 'submissionType=' "$OUT/$BASE.xml"; then
-  echo "error: generated -02 RFCXML unexpectedly contains submissionType metadata" >&2
+  echo "error: generated -03 RFCXML unexpectedly contains submissionType metadata" >&2
   exit 2
 fi
 
 xml2rfc --text --out "$OUT/$BASE.txt" "$OUT/$BASE.xml"
 xml2rfc --html --out "$OUT/$BASE.html" "$OUT/$BASE.xml"
 
-echo "Built revision -02 from:"
+echo "Built revision -03 from:"
 echo "  ietf/draft-sankarshan-agent-registry-protocol.md (-00 authoring baseline)"
 echo "  ietf/fragments/adversarial-hardening.md"
 echo "  ietf/fragments/protocol-precision.md"
 echo "  ietf/fragments/authority-commitment.md"
+echo "  ietf/fragments/revision-03.md"
 echo "Built:"
 echo "  ietf/generated/$BASE.xml"
 echo "  ietf/generated/$BASE.txt"

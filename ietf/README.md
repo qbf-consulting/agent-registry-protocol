@@ -131,3 +131,23 @@ Revision `-01` remains preserved in `SUBMISSION_PACKAGE_01.md`; `-00` evidence r
 Every future revision must repeat the governed baseline/delta, implementation evidence where normative promotion is proposed, rendered-artifact review, IETF submission validation, and publication closeout process. Published `-02` must not be treated as a moving document.
 
 The current future-work tracker for possible `-03` federated trust resolution and TSP/TRQP composability is issue #47.
+
+
+## Revision `-03` development
+
+Revision `-03` is governed by `REVISION_03_BASELINE.md`, `spec-delta-v03.yaml`, and `REVISION_03_CHECKLIST.md`. It starts from the immutable published `-02` baseline and draws selectively from Candidate v0.10.0 / ARPA-CAND-PP-03.
+
+The accepted `-03` work focuses on:
+
+- authority-evaluation wire semantics, including `not_applicable`;
+- parent-authority linkage, temporal precision and collective-principal snapshot binding;
+- the `application/agent-registry+json` media type;
+- external authoritative-evidence provenance;
+- normative composition boundaries with ToIP TRQP v2.0;
+- optional/non-conferring ToIP TSP composition;
+- pinned WIMSE references and optional SCITT evidence references; and
+- explicit Candidate/IETF precedence for IETF conformance.
+
+TRQL action-vocabulary dependency and TSP VID projection are deferred. New centralized IANA registries for every Candidate-controlled vocabulary are also deferred pending broader standards-process and implementation experience.
+
+Generated development outputs are `draft-sankarshan-agent-registry-protocol-03.{xml,txt,html}`. Their presence in CI or GitHub Pages is not evidence that `-03` has been submitted or published by the IETF.

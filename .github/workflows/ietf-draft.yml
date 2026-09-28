@@ -6,6 +6,11 @@ on:
       - "ietf/**"
       - "spec/agent-registry-protocol-protocol-precision-pp01.md"
       - "spec/agent-registry-protocol-authority-commitment-pp02.md"
+      - "spec/agent-registry-protocol-wire-contract-pp03.md"
+      - "spec/agent-registry-protocol-v0.10.0.md"
+      - "registries/wire-contract-requirements-pp03.json"
+      - "conformance/test-vectors/wire-contract/**"
+      - "scripts/validate_wire_contract_pp03.py"
       - "registries/authority-commitment-requirements-pp02.json"
       - "conformance/test-vectors/authority-at-commitment/**"
       - "registries/protocol-precision-requirements-pp01.json"
@@ -21,6 +26,11 @@ on:
       - "ietf/**"
       - "spec/agent-registry-protocol-protocol-precision-pp01.md"
       - "spec/agent-registry-protocol-authority-commitment-pp02.md"
+      - "spec/agent-registry-protocol-wire-contract-pp03.md"
+      - "spec/agent-registry-protocol-v0.10.0.md"
+      - "registries/wire-contract-requirements-pp03.json"
+      - "conformance/test-vectors/wire-contract/**"
+      - "scripts/validate_wire_contract_pp03.py"
       - "registries/authority-commitment-requirements-pp02.json"
       - "conformance/test-vectors/authority-at-commitment/**"
       - "registries/protocol-precision-requirements-pp01.json"
@@ -51,13 +61,13 @@ jobs:
           ruby-version: "3.3"
       - name: Install IETF authoring dependencies
         run: make ietf-setup
-      - name: Build and validate Internet-Draft revision -02
+      - name: Build and validate Internet-Draft revision -03
         run: make ietf-check
-      - name: Upload rendered Internet-Draft revision -02
+      - name: Upload rendered Internet-Draft revision -03
         uses: actions/upload-artifact@v7
         with:
-          name: draft-sankarshan-agent-registry-protocol-02
+          name: draft-sankarshan-agent-registry-protocol-03
           path: |
-            ietf/generated/draft-sankarshan-agent-registry-protocol-02.xml
-            ietf/generated/draft-sankarshan-agent-registry-protocol-02.txt
-            ietf/generated/draft-sankarshan-agent-registry-protocol-02.html
+            ietf/generated/draft-sankarshan-agent-registry-protocol-03.xml
+            ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
+            ietf/generated/draft-sankarshan-agent-registry-protocol-03.html
