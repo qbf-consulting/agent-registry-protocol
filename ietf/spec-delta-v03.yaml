@@ -1,0 +1,40 @@
+registry: arpa-ietf-spec-delta
+version: 3
+issue: 47
+published_baseline: draft-sankarshan-agent-registry-protocol-02
+target_revision: draft-sankarshan-agent-registry-protocol-03
+normative_baseline: ARPA-v0.10.0-Candidate
+candidate_evidence_commit: 7200c8512a13615d84c9711ac550da36ae338dd9
+governing_amendments:
+  - ARPA-CAND-PP-03
+policy:
+  published_baseline_immutable: true
+  protocol_core_only: true
+  external_protocols_are_composed_not_absorbed: true
+  missing_evidence_is_not_acceptance: true
+  ietf_draft_controls_ietf_conformance: true
+entries:
+  - {id: ARPA-IETF-201, title: External authoritative trust resolution, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-202, title: TRQP Authorization/Recognition interoperability, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-203, title: External authority evidence provenance, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-204, title: Delegation independence from TRQP, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-205, title: TSP composability, disposition: ietf-informative, state: accepted}
+  - {id: ARPA-IETF-206, title: TSP non-implication, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-207, title: TSP VID projection, disposition: defer, state: deferred}
+  - {id: ARPA-IETF-208, title: TRQL action vocabulary, disposition: defer, state: deferred}
+  - {id: ARPA-IETF-209, title: Formal wire-contract extraction, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-210, title: Shared vocabularies and IANA strategy, disposition: partial-defer, state: accepted-partial}
+  - {id: ARPA-IETF-211, title: not_applicable outcome composition, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-212, title: ARPA media type and content negotiation, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-213, title: Conformance corpus and implementation evidence, disposition: ietf-informative, state: accepted}
+  - {id: ARPA-IETF-214, title: Candidate/IETF precedence and reference durability, disposition: ietf-informative, state: accepted}
+  - {id: ARPA-IETF-215, title: Temporal precision and evaluation assumptions, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-216, title: Collective-principal snapshot semantics, disposition: ietf-normative, state: accepted}
+  - {id: ARPA-IETF-217, title: WIMSE relationship and pinned references, disposition: ietf-informative, state: accepted}
+  - {id: ARPA-IETF-218, title: Evidence-receipt composability, disposition: ietf-informative, state: accepted}
+references:
+  trqp: ToIP-TRQP-v2.0-approved
+  tsp: ToIP-TSP-experimental-0.2
+  wimse_arch: draft-ietf-wimse-arch-08
+  wimse_cross_org: draft-reece-wimse-cross-org-delegation-02
+  scitt: RFC9943
