@@ -138,6 +138,19 @@ if old_identifier not in source:
     raise SystemExit("error: -00 identifier paragraph changed; review the -01 transformation")
 source = source.replace(old_identifier, new_identifier, 1)
 
+old_relationship_nonimplication = (
+    "For example, an `operated-by` relationship MUST NOT be interpreted as an "
+    "`authorized-by` relationship unless a separate specification explicitly defines "
+    "such equivalence."
+)
+new_relationship_nonimplication = (
+    "For example, an `operated_by` or `controlled_by` relationship MUST NOT be "
+    "interpreted as `acts_for` or `delegates_to` without separate authority evidence."
+)
+if old_relationship_nonimplication not in source:
+    raise SystemExit("error: -00 relationship non-implication paragraph changed; review -03 vocabulary transform")
+source = source.replace(old_relationship_nonimplication, new_relationship_nonimplication, 1)
+
 old_iana = """# IANA Considerations
 
 This document requests no IANA actions in `-00`.
@@ -173,7 +186,7 @@ Change controller: IETF.
 
 Specification document: this document, Registry Metadata.
 
-Related information: the resource identifies ARPA registry metadata and discovery information. A representation SHOULD use a media type appropriate to the selected representation format; JSON deployments SHOULD use `application/json` unless a future specification registers a more specific media type. Access control remains operation-specific, and discovery of this resource does not imply authority, recognition, assurance, endorsement, or permission to invoke any discovered agent.
+Related information: the resource identifies ARPA registry metadata and discovery information. A representation SHOULD use a media type appropriate to the selected representation format; JSON deployments SHOULD use `application/agent-registry+json`; `application/json` MAY be accepted only as a semantics-identical compatibility fallback. Access control remains operation-specific, and discovery of this resource does not imply authority, recognition, assurance, endorsement, or permission to invoke any discovered agent.
 
 No IANA registry for project-specific relationship types, extension namespaces, reason codes, or conformance profiles is requested by this revision.
 
