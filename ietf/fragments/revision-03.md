@@ -25,10 +25,10 @@ Implementations MUST NOT infer parent authority solely from issuer identity, rec
 Authority validity is half-open:
 
 ~~~~
-effective_from <= evaluation_time < effective_until
+valid_from <= evaluation_time < valid_until
 ~~~~
 
-An evaluation exactly at `effective_from` is inside the interval. An evaluation exactly at `effective_until` is outside it.
+An evaluation exactly at `valid_from` is inside the interval. An evaluation exactly at `valid_until` is outside it.
 
 Where timestamp precision or clock skew can materially affect an authority decision, the selected deployment or profile MUST expose, directly or by stable policy reference, the timestamp precision, maximum permitted clock skew, and treatment of future-dated material observations.
 
@@ -48,9 +48,33 @@ Decision evidence MUST retain the snapshot/checkpoint used for the membership an
 
 Protocol-significant HTTP errors MUST use Problem Details {{RFC9457}} unless a negotiated transport profile defines another interoperable error representation.
 
-An ARPA Problem Details object MUST contain `type`, `title`, `status`, and `code`. The `code` value MUST be a stable machine-readable ARPA error code. The `type` URI SHOULD be stable and dereferenceable documentation SHOULD describe its semantics.
+An ARPA Problem Details object MUST contain `type`, `title`, `status`, and `code`. The `code` value MUST be a stable machine-readable ARPA error code. The `type` URI SHOULD be stable, and dereferenceable documentation SHOULD describe its semantics.
 
 Human-readable `title` or `detail` fields MUST NOT be the sole machine contract. A client that encounters an unknown material error code or extension MUST NOT interpret the response as success.
+
+### Core Error Codes
+
+For the protocol failures named by this document, implementations MUST use the following stable `code` values when the corresponding condition applies:
+
+| Condition | Code |
+|---|---|
+| invalid request | `ARPA-INVALID-REQUEST` |
+| unsupported protocol version | `ARPA-UNSUPPORTED-VERSION` |
+| unsupported record/profile semantics | `ARPA-UNSUPPORTED-PROFILE` |
+| record/identifier not found | `ARPA-IDENTIFIER-NOT-FOUND` |
+| record not authorized for caller | `ARPA-RECORD-NOT-AUTHORIZED` |
+| invalid schema/wire representation | `ARPA-SCHEMA-INVALID` |
+| unverifiable proof/evidence | `ARPA-PROOF-INVALID` |
+| issuer not authorized for asserted scope | `ARPA-ISSUER-NOT-AUTHORIZED` |
+| stale material status | `ARPA-STATUS-STALE` |
+| expired authority | `ARPA-AUTHORITY-EXPIRED` |
+| revoked authority | `ARPA-AUTHORITY-REVOKED` |
+| indeterminate authority | `ARPA-AUTHORITY-INDETERMINATE` |
+| delegated scope exceeds parent scope | `ARPA-DELEGATION-EXCEEDS-SCOPE` |
+| conflicting material status | `ARPA-CONFLICTING-STATUS` |
+| temporarily unavailable protocol service | `ARPA-TEMPORARILY-UNAVAILABLE` |
+
+A profile MAY define additional codes. Additional codes MUST be collision-resistant within their defining namespace and MUST NOT redefine the semantics of a core code.
 
 ## Media Type
 
@@ -67,6 +91,23 @@ Protocol and profile version negotiation remain explicit in the representation o
 Extensions MUST use collision-resistant identifiers. URI- or URN-based namespace identifiers SHOULD use an authority controlled by the extension owner. An extension MUST identify its owner/authority, version, criticality, and processing semantics.
 
 An implementation MUST NOT treat an unrecognized namespace as a known extension merely because its local name resembles a known field.
+
+## Core Relationship and Event Vocabularies
+
+For protocol-core relationships represented by this document, the following values have stable meanings:
+
+* `operated_by` identifies an operator relationship;
+* `controlled_by` identifies a control relationship;
+* `accountable_to` identifies an accountability relationship;
+* `acts_for` identifies an explicitly asserted principal/agency relationship;
+* `delegates_to` identifies an explicit delegation relationship; and
+* `recognized_by` identifies a recognition relationship.
+
+An `operated_by` or `controlled_by` relationship MUST NOT be interpreted as `acts_for` or `delegates_to` without separate authority evidence.
+
+For material lifecycle and authority changes, implementations supporting the corresponding event MUST use stable event-type values including `agent.updated`, `agent.suspended`, `agent.revoked`, `delegation.issued`, `delegation.suspended`, `delegation.revoked`, `recognition.added`, `recognition.changed`, `recognition.withdrawn`, and `status.restored`.
+
+An extension MAY define additional relationship or event values using the extension namespace rules above. Unknown values MUST NOT be reinterpreted as known core values.
 
 # Federated Trust Resolution and ToIP Composition
 
