@@ -1,26 +1,30 @@
 # ARPA Internet-Draft `-03` Submission Package
 
-This file records the governed repository evidence selected for the prospective submission of revision `-03` of the Agent Registry Protocol Internet-Draft. It preserves the published `-02` evidence in `SUBMISSION_PACKAGE_02.md` unchanged.
+This file records the governed repository evidence, selected build artifact, and publication closeout for revision `-03` of the Agent Registry Protocol Internet-Draft. It preserves the historical `-00`, `-01`, and `-02` evidence packages unchanged.
 
-## Draft identity
+## Published draft identity
 
 - Draft: `draft-sankarshan-agent-registry-protocol-03`
 - Title: Agent Registry Protocol
 - Intended status: Standards Track
-- Submission type: IETF individual submission
+- Group: Individual Submission
+- Published: 28 September 2026
+- Pages: 44
 - Author: Sankarshan Mukhopadhyay
 - Affiliation: QBF Consulting LLP
 - Contact: `sankarshan@qbfconsulting.digital`
 - Published predecessor: `draft-sankarshan-agent-registry-protocol-02` (23 September 2026, 34 pages)
-- Generated candidate date: 28 September 2026
-- Generated candidate expiry: 1 April 2027
-- Generated candidate pages: 44
+- IETF archive: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-03.txt>
+- Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
+- HTMLized: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
+- Diff from `-02`: <https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-03>
 
 ## Governed source state
 
-Revision `-03` is prepared through PR #62 and tracked by issue #47.
+Revision `-03` was prepared through PR #62 and tracked by issue #47.
 
 - Selected protocol-content source commit: `055db6179c627f08fdef83681e17f61eeaee3541`
+- Merge commit: `81a0c228d2fb053ededd69a7bc57a98120a60b17`
 - Published comparison baseline: `draft-sankarshan-agent-registry-protocol-02`
 - Current ARPA project baseline: Candidate v0.10.0
 - Candidate evidence baseline commit: `7200c8512a13615d84c9711ac550da36ae338dd9`
@@ -35,26 +39,24 @@ The checked-in `ietf/draft-sankarshan-agent-registry-protocol.md` continues to p
 
 Revision `-03` adds or tightens protocol-core semantics for:
 
-- stable authority-evaluation outcomes, including `not_applicable` as a normal policy/profile outcome distinct from protocol error, `deny`, and `indeterminate`;
-- delegated parent-authority linkage using `derives_from` or an explicitly negotiated equivalent;
+- stable authority-evaluation outcomes, including `not_applicable`;
+- delegated parent-authority linkage;
 - inclusive `valid_from` / exclusive `valid_until` temporal boundaries;
-- discoverable clock-skew, precision, and future-observation policy where material;
-- single-snapshot collective-principal threshold/quorum evaluation;
-- RFC 9457 ARPA Problem Details with stable core error codes;
-- `application/agent-registry+json` as the ARPA-specific JSON media type and an IANA registration request;
+- discoverable clock-profile assumptions;
+- single-snapshot collective-principal evaluation;
+- RFC 9457 ARPA Problem Details and stable core error codes;
+- `application/agent-registry+json` and its IANA registration request;
 - collision-resistant extension namespaces;
 - stable core relationship and event vocabulary;
-- provenance requirements for externally resolved trust/authority evidence;
+- provenance requirements for externally resolved authority evidence;
 - ToIP TRQP v2.0 Authorization/Recognition evidence composition without substituting TRQP results for ARPA decisions;
-- independence of ARPA delegation from future TRQP delegation-query design;
-- optional ToIP TSP carriage/authentication composition with a normative non-conferral rule;
-- deferred TRQL dependency and deferred TSP VID-to-`agentreg:` projection;
+- independence of ARPA delegation from future TRQP delegation-query work;
+- optional ToIP TSP composition with a normative non-conferral rule;
 - Candidate/IETF precedence for IETF conformance;
-- WIMSE Architecture pinned to `draft-ietf-wimse-arch-08`;
-- cross-organizational delegation pinned to `draft-reece-wimse-cross-org-delegation-02`; and
+- pinned WIMSE references; and
 - optional SCITT receipt identifiers as evidence references without authority conferral.
 
-The revision does not import A2A task/messaging semantics, business workflow, settlement, reputation, project assurance scoring, governance redress workflows, a universal action vocabulary, or mandatory TRQP/TSP/SCITT/WIMSE dependencies.
+TRQL dependency, TSP VID-to-`agentreg:` projection, A2A task/messaging semantics, business workflow, settlement, reputation, project assurance scoring, and governance redress workflows remain outside this revision.
 
 ## Validation and artifact evidence
 
@@ -75,11 +77,9 @@ The revision does not import A2A task/messaging semantics, business workflow, se
 - Repository validation: PASS
 - Pages/publication validation: PASS
 
-The equivalent pull-request-triggered IETF and Validate workflows also passed for the same protocol-content state.
+Post-merge `main` validation, IETF build, Pages deployment, and CodeQL also completed successfully before submission.
 
 ## Rendered file digests
-
-The selected IETF workflow artifact was downloaded and independently inspected.
 
 | File | SHA-256 |
 |---|---|
@@ -89,41 +89,27 @@ The selected IETF workflow artifact was downloaded and independently inspected.
 
 ## Manual artifact review
 
-The generated `-03` artifacts were reviewed for:
+The generated `-03` artifacts were reviewed for draft identity, Standards Track intended status, author/affiliation metadata, successful RFCXML/TXT/HTML rendering, absence of placeholder residue, preservation of existing IANA requests, the media-type registration request, consistent wire vocabulary, TRQP/TSP/WIMSE/SCITT composition boundaries, Candidate v0.10.0 precedence wording, and absence of unrelated project/profile promotion.
 
-- correct draft identity `draft-sankarshan-agent-registry-protocol-03`;
-- Standards Track intended status and Individual Submission presentation;
-- QBF Consulting LLP affiliation and author contact;
-- successful RFCXML v3, plaintext and HTML rendering;
-- absence of `TODO`, `FIXME`, `TBD`, and placeholder residue;
-- preservation of the `agentreg` URI-scheme and `agent-registry` well-known URI IANA requests;
-- presence of the `application/agent-registry+json` media-type registration;
-- removal of stale `operated-by` / `authorized-by` relationship spellings from the rendered draft;
-- consistent `valid_from` / `valid_until` temporal naming;
-- presence of core ARPA error, relationship, and event vocabularies;
-- presence of the Wire-Contract Precision for Revision 03 section;
-- presence of Federated Trust Resolution and ToIP Composition;
-- TRQP v2.0 treated as external evidence input rather than substituted authorization;
-- TSP treated as optional and non-conferring;
-- WIMSE references pinned to the reviewed revisions;
-- SCITT evidence-reference composition retaining the non-conferral rule;
-- Candidate v0.10.0 precedence wording;
-- presence of a specific `-03` changelog entry; and
-- absence of unrelated project/profile promotion.
+The selected plaintext renders as 44 pages versus 34 pages for published `-02`. A normalized `-02 → -03` diff was reviewed and no unintended protocol-semantic churn was identified.
 
-The selected plaintext renders as 44 pages versus 34 pages for published `-02`.
+## Published result
 
-A normalized `-02 → -03` textual diff was reviewed. Apart from revision identity, generated date/expiry, table-of-contents/page-flow changes, reference updates, and the governed `-03` additions/corrections, no unintended protocol-semantic churn was identified.
+Revision `-03` was successfully submitted and posted to the IETF repository.
+
+- Publication date: `2026-09-28`
+- Draft: `draft-sankarshan-agent-registry-protocol-03`
+- Group: Individual Submission
+- Pages: 44
+- IETF archive: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-03.txt>
+- Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
+- HTMLized: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
+- Diff from previous revision: <https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-03>
+
+The IETF archive is the immutable historical authority for published `-03`. Repository changes after publication do not alter that artifact; future protocol changes must be governed as `-04` or later work.
 
 ## Submission disposition
 
-**Repository disposition: READY FOR FINAL IETF SUBMISSION CHECKS.**
+**PUBLISHED AND REPOSITORY-CLOSEOUT COMPLETE.**
 
-The repository, generated artifact, semantic-diff, and manual-review gates are complete. Remaining actions are intentionally external publication actions:
-
-1. run final IETF Author Tools/submission validation against the selected RFCXML v3;
-2. upload the RFCXML v3 as revision `-03` of the existing Datatracker document;
-3. verify Datatracker/IETF archive publication; and
-4. update repository publication evidence with the canonical `-03` URL/date and closeout state.
-
-Until those external actions occur, this package records a submission-ready `-03` candidate, not a published revision.
+The governed source/build state, rendered artifact review, publication metadata, and canonical IETF references are now bound together in this evidence record.

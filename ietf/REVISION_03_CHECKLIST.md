@@ -48,13 +48,21 @@
 
 ## Publication
 
-- [ ] Author Tools / submission checks completed
-- [ ] RFCXML v3 uploaded as revision `-03`
-- [ ] Datatracker publication verified
-- [ ] repository publication evidence updated
+- [x] Author Tools / submission checks completed
+- [x] RFCXML v3 uploaded as revision `-03`
+- [x] Datatracker publication verified
+- [x] repository publication evidence updated
 
-The repository can mark the pre-publication build/review gates complete before Datatracker upload. Publication-specific gates remain external until the IETF posting is confirmed.
+## Published result
 
+- Published: 28 September 2026
+- Draft: `draft-sankarshan-agent-registry-protocol-03`
+- Group: Individual Submission
+- Pages: 44
+- Archive: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-03.txt>
+- Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
+- HTMLized: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
+- Diff: <https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-03>
 
 ## Selected evidence
 
@@ -65,3 +73,5 @@ The repository can mark the pre-publication build/review gates complete before D
 - Artifact bundle SHA-256: `bcae38ccf756c9d233896b5b1f7323d1c37c413026d4c0e47d9b664f850c7c12`
 - Rendered pages: 44
 - Submission package: `SUBMISSION_PACKAGE_03.md`
+
+Revision `-03` is now the immutable published baseline for future IETF delta work.

@@ -13,46 +13,50 @@ This is the publication landing page for ARPA's **Agent Registry Protocol** Inte
 
 The current IETF baseline is:
 
-`draft-sankarshan-agent-registry-protocol-02`
+`draft-sankarshan-agent-registry-protocol-03`
 
-It was published on **23 September 2026** as an **Individual Submission** and is **34 pages**.
+It was published on **28 September 2026** as an **Individual Submission** and is **44 pages**.
 
-- [IETF archive](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-02.txt)
+- [IETF archive](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-03.txt)
 - [Datatracker status](https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/)
 - [HTMLized draft](https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol)
-- [Diff from the previous revision](https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-02)
+- [Diff from revision `-02`](https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-03)
 
-Published `-00` and `-01` remain immutable historical revisions. Future protocol work must start from an explicit `-02 → -03` delta rather than modifying the published `-02` state in place.
+Published `-00`, `-01`, and `-02` remain immutable historical revisions. Future protocol work must begin from a governed delta against published `-03`.
 
 ## What is standardized here
 
 The IETF track extracts the interoperable protocol core from the broader ARPA Candidate Specification, including:
 
 - the ARPA `agentreg:` Agent Identifier and registry resources;
-- typed relationships;
-- bounded delegated authority;
-- lifecycle and status;
-- registration, discovery and current/historical resolution;
+- typed relationships and bounded delegated authority;
+- lifecycle and current/historical resolution;
 - action-specific authority evaluation;
-- collective-principal exercise semantics;
+- authority-evaluation outcomes including `not_applicable`;
+- parent-authority linkage;
+- temporal and collective-principal snapshot semantics;
+- external authoritative-evidence provenance;
+- ToIP TRQP v2.0 composition boundaries;
+- optional/non-conferring ToIP TSP composition;
 - event semantics;
-- HTTP processing and RFC 9457 error behavior;
+- HTTP/RFC 9457 error behavior;
+- `application/agent-registry+json`;
 - critical extension and version handling;
 - security and privacy considerations;
-- composability boundaries with WIMSE, OAuth Token Exchange, RATS and SCITT; and
-- IANA actions for protocol identifiers and discovery.
+- WIMSE/SCITT composability boundaries; and
+- current IANA requests.
 
-Project governance, conformance programmes, A2A/TRQP profiles, deployment guidance, assurance evidence and redress workflows remain supporting ARPA artifacts unless standardized separately.
+Project governance, conformance programmes, A2A profiles, deployment guidance, assurance scoring, redress workflows, TRQL dependency, and TSP VID projection remain supporting/project material unless standardized separately.
 
-## Revision `-02`
+## Revision `-03`
 
-Revision `-02` adds explicit action-context binding, exact-action approval semantics, mechanism-neutral collective-principal exercise rules, and stronger standards-context discussion. These changes are governed by Candidate amendment `ARPA-CAND-PP-02` and the `-01 → -02` delta register.
+Revision `-03` adds wire-contract precision, external trust-evidence composition semantics, the ARPA media type, and clearer boundaries with TRQP, TSP, WIMSE and SCITT.
 
 The repository publication evidence is recorded in:
 
-- [Revision `-02` baseline review](REVISION_02_BASELINE.html)
-- [Revision `-02` readiness and publication checklist](REVISION_02_CHECKLIST.html)
-- [Revision `-02` submission/publication package](SUBMISSION_PACKAGE_02.html)
+- [Revision `-03` baseline review](REVISION_03_BASELINE.html)
+- [Revision `-03` readiness and publication checklist](REVISION_03_CHECKLIST.html)
+- [Revision `-03` submission/publication package](SUBMISSION_PACKAGE_03.html)
 
 ## Authoring and assurance artifacts
 
@@ -62,15 +66,14 @@ The checked-in base source preserves the historical `-00` authoring baseline. Go
 - [Adversarial-hardening source fragment](fragments/adversarial-hardening.html)
 - [PP-01 protocol-precision source fragment](fragments/protocol-precision.html)
 - [PP-02 authority-at-commitment source fragment](fragments/authority-commitment.html)
+- [Revision `-03` source fragment](fragments/revision-03.html)
 - [Rendered `-03` — HTML](generated/draft-sankarshan-agent-registry-protocol-03.html)
 - [Rendered `-03` — plaintext](generated/draft-sankarshan-agent-registry-protocol-03.txt)
 - [RFCXML v3 for `-03`](generated/draft-sankarshan-agent-registry-protocol-03.xml)
 - [Generated-artifact SHA-256 checksums](generated/SHA256SUMS.txt)
 - [Protocol extraction and provenance map](PROTOCOL_EXTRACTION.html)
-- [Revision `-01` baseline review](REVISION_01_BASELINE.html)
-- [Revision `-01` readiness checklist](REVISION_01_CHECKLIST.html)
-- [Revision `-02` baseline review](REVISION_02_BASELINE.html)
-- [Revision `-02` readiness checklist](REVISION_02_CHECKLIST.html)
+- [Revision `-03` baseline review](REVISION_03_BASELINE.html)
+- [Revision `-03` readiness checklist](REVISION_03_CHECKLIST.html)
 
 ## Build, publication and validation
 
@@ -80,17 +83,10 @@ Relevant CI installs the IETF authoring toolchain and executes:
 make ietf-check
 ```
 
-That gate validates Candidate amendment traceability, IETF authoring inputs and generated `-02` RFCXML/TXT/HTML. GitHub Pages publishes generated artifacts only after publication and link validation succeeds.
+That gate validates Candidate traceability, IETF authoring inputs and generated `-03` RFCXML/TXT/HTML. GitHub Pages publishes generated artifacts only after publication and link validation succeeds.
 
 Generated outputs remain excluded from Git so they cannot drift as independently committed authority. SHA-256 checksums are published with the rendered artifacts for build evidence.
 
-## Revision `-03` development
+## Publication state
 
-Issue **#47** now governs active `-03` preparation. Published `-02` remains the immutable IETF comparison baseline, while Candidate v0.10.0 is the current project source baseline.
-
-The governed `-03` delta includes wire-contract precision, external authority-evidence provenance, TRQP v2.0 composition, optional TSP composition, current WIMSE reference pinning, and evidence-receipt composability. TRQL dependency and TSP VID projection remain deferred.
-
-- [Revision `-03` baseline review](REVISION_03_BASELINE.html)
-- [Revision `-03` readiness checklist](REVISION_03_CHECKLIST.html)
-
-The generated `-03` files on this site are **development/submission-preparation artifacts** until IETF publication is independently verified.
+Revision `-03` is **published** and is the immutable baseline for future IETF revision work. Repository-generated files are reproducibility artifacts; the canonical historical publication is the IETF archive copy linked above.
