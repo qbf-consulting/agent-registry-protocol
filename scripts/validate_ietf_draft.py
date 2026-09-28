@@ -148,7 +148,7 @@ if REVISION03.exists():
         "{{TRQP-V2}}",
         "{{TOIP-TSP}}",
         "MUST NOT by itself establish delegated authority",
-        "draft-ietf-wimse-arch",
+        "{{WIMSE-ARCH}}",
     ):
         if needle not in revision03:
             errors.append(f"IETF -03 fragment missing required invariant/reference: {needle}")
