@@ -62,9 +62,9 @@ The checked-in base source preserves the historical `-00` authoring baseline. Go
 - [Adversarial-hardening source fragment](fragments/adversarial-hardening.html)
 - [PP-01 protocol-precision source fragment](fragments/protocol-precision.html)
 - [PP-02 authority-at-commitment source fragment](fragments/authority-commitment.html)
-- [Rendered `-02` — HTML](generated/draft-sankarshan-agent-registry-protocol-02.html)
-- [Rendered `-02` — plaintext](generated/draft-sankarshan-agent-registry-protocol-02.txt)
-- [RFCXML v3 for `-02`](generated/draft-sankarshan-agent-registry-protocol-02.xml)
+- [Rendered `-03` — HTML](generated/draft-sankarshan-agent-registry-protocol-03.html)
+- [Rendered `-03` — plaintext](generated/draft-sankarshan-agent-registry-protocol-03.txt)
+- [RFCXML v3 for `-03`](generated/draft-sankarshan-agent-registry-protocol-03.xml)
 - [Generated-artifact SHA-256 checksums](generated/SHA256SUMS.txt)
 - [Protocol extraction and provenance map](PROTOCOL_EXTRACTION.html)
 - [Revision `-01` baseline review](REVISION_01_BASELINE.html)
@@ -84,6 +84,13 @@ That gate validates Candidate amendment traceability, IETF authoring inputs and 
 
 Generated outputs remain excluded from Git so they cannot drift as independently committed authority. SHA-256 checksums are published with the rendered artifacts for build evidence.
 
-## Future revision work
+## Revision `-03` development
 
-The current backlog item for a possible `-03` is issue **#47**, which evaluates federated trust resolution and composability with ToIP TRQP, TRQL and TSP. The published `-02` revision is the immutable baseline for that future investigation.
+Issue **#47** now governs active `-03` preparation. Published `-02` remains the immutable IETF comparison baseline, while Candidate v0.10.0 is the current project source baseline.
+
+The governed `-03` delta includes wire-contract precision, external authority-evidence provenance, TRQP v2.0 composition, optional TSP composition, current WIMSE reference pinning, and evidence-receipt composability. TRQL dependency and TSP VID projection remain deferred.
+
+- [Revision `-03` baseline review](REVISION_03_BASELINE.html)
+- [Revision `-03` readiness checklist](REVISION_03_CHECKLIST.html)
+
+The generated `-03` files on this site are **development/submission-preparation artifacts** until IETF publication is independently verified.
