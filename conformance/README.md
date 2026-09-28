@@ -30,3 +30,8 @@ python3 scripts/generate_implementation_report.py
 For an ARPA v0.9.1 authority-evaluator claim, the v0.9.0 Candidate Specification and `spec/agent-registry-protocol-v0.9.1-hardening.md` are evaluated together. Passing the adversarial vector structure gate demonstrates that the required hostile cases and prohibited affirmative outcomes are represented; it does not substitute for running those cases against a concrete evaluator or for independent security review.
 
 Operational resilience is cross-cutting and does not create a Profile E. Passing schemas alone is not full ARPA conformance. Implementations must identify unsupported dimensions and operational limitations.
+
+
+## Authority non-amplification
+
+The Candidate v0.10.0 adversarial corpus includes `conformance/test-vectors/adversarial/authority-laundering-v0.10.0.json`, validating that influence, repetition, reputation, discovery, projection, and unrelated scope do not manufacture authority. See [`docs/authority-non-amplification.md`](../docs/authority-non-amplification.md).
