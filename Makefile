@@ -68,7 +68,7 @@ ietf-check: ietf-lint
 	@grep -q "Security Considerations" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
 	@grep -q "IANA Considerations" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
 	@grep -q "agentreg:<registry-namespace>:<agent-local-id>" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
-		@grep -q "Action-Specific Authority Evaluation" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "Action-Specific Authority Evaluation" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
 	@grep -q "Relationship to Adjacent IETF Work" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
 	@grep -q "Wire-Contract Precision for Revision 03" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
 	@grep -q "Protocol Interoperability and Security Hardening for Revision 04" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
