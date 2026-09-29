@@ -1,0 +1,19 @@
+{
+  "draft": "draft-sankarshan-agent-registry-protocol-04",
+  "candidate_amendment": "ARPA-CAND-PP-04",
+  "entries": [
+    {"id":"F01","role":"registry/resolver","positive":"PP04-FIELD-01","negative":"PP04-FIELD-02","expected":"lossless mapping; conflicting aliases invalid"},
+    {"id":"F06","role":"authority evaluator","positive":"PP04-AER-01","negative":"PP04-AER-02","expected":"defined result object; not_applicable non-affirmative"},
+    {"id":"F08","role":"authority evaluator","positive":"PP04-STATUS-01","negative":"PP04-STATUS-02","expected":"restrictive/unknown material status non-affirmative"},
+    {"id":"F09","role":"registry/resolver","positive":"PP04-ID-01","negative":"PP04-ID-02","expected":"deterministic identifier equality"},
+    {"id":"F10","role":"proof verifier","positive":"PP04-JCS-01","negative":"PP04-JCS-02","expected":"JCS deterministic; duplicate members rejected"},
+    {"id":"F11","role":"registry/resolver","positive":"PP04-FRESH-01","negative":"PP04-FRESH-02","expected":"freshness detectable; stale/unknown non-affirmative"},
+    {"id":"F16","role":"registry/client","positive":"PP04-IDEMP-01","negative":"PP04-IDEMP-02","expected":"retry only under negotiated idempotency profile"},
+    {"id":"F17","role":"registry/client","positive":"PP04-PUT-01","negative":"PP04-PUT-02","expected":"versioned replacement; stale or widening update rejected"},
+    {"id":"F18","role":"event publisher/consumer","positive":"PP04-EVENT-01","negative":"PP04-EVENT-02","expected":"duplicate safe; gap forces resync/non-affirmative"},
+    {"id":"F19","role":"registry publisher","positive":"PP04-WRITE-01","negative":"PP04-WRITE-02","expected":"authorized write accepted; unauthorized mutation denied"},
+    {"id":"F21","role":"all","positive":"PP04-EXT-01","negative":"PP04-EXT-02","expected":"unknown critical extension fails closed"},
+    {"id":"F22","role":"resolver","positive":"PP04-SSRF-01","negative":"PP04-SSRF-02","expected":"trusted allowed origin accepted; internal/redirect attack rejected"},
+    {"id":"F25","role":"registry/client","positive":"PP04-DISC-01","negative":"PP04-DISC-02","expected":"metadata discovery does not imply enumeration"}
+  ]
+}
