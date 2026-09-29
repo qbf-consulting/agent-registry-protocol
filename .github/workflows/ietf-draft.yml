@@ -8,6 +8,10 @@ on:
       - "spec/agent-registry-protocol-authority-commitment-pp02.md"
       - "spec/agent-registry-protocol-wire-contract-pp03.md"
       - "spec/agent-registry-protocol-v0.10.0.md"
+      - "spec/agent-registry-protocol-protocol-interoperability-pp04.md"
+      - "conformance/test-vectors/protocol-interoperability-pp04.json"
+      - "spec/agent-registry-protocol-protocol-interoperability-pp04.md"
+      - "conformance/test-vectors/protocol-interoperability-pp04.json"
       - "registries/wire-contract-requirements-pp03.json"
       - "conformance/test-vectors/wire-contract/**"
       - "scripts/validate_wire_contract_pp03.py"
@@ -61,13 +65,13 @@ jobs:
           ruby-version: "3.3"
       - name: Install IETF authoring dependencies
         run: make ietf-setup
-      - name: Build and validate Internet-Draft revision -03
+      - name: Build and validate Internet-Draft revision -04
         run: make ietf-check
-      - name: Upload rendered Internet-Draft revision -03
+      - name: Upload rendered Internet-Draft revision -04
         uses: actions/upload-artifact@v7
         with:
-          name: draft-sankarshan-agent-registry-protocol-03
+          name: draft-sankarshan-agent-registry-protocol-04
           path: |
-            ietf/generated/draft-sankarshan-agent-registry-protocol-03.xml
-            ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-            ietf/generated/draft-sankarshan-agent-registry-protocol-03.html
+            ietf/generated/draft-sankarshan-agent-registry-protocol-04.xml
+            ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+            ietf/generated/draft-sankarshan-agent-registry-protocol-04.html
