@@ -10,8 +10,6 @@ on:
       - "spec/agent-registry-protocol-v0.10.0.md"
       - "spec/agent-registry-protocol-protocol-interoperability-pp04.md"
       - "conformance/test-vectors/protocol-interoperability-pp04.json"
-      - "spec/agent-registry-protocol-protocol-interoperability-pp04.md"
-      - "conformance/test-vectors/protocol-interoperability-pp04.json"
       - "registries/wire-contract-requirements-pp03.json"
       - "conformance/test-vectors/wire-contract/**"
       - "scripts/validate_wire_contract_pp03.py"
