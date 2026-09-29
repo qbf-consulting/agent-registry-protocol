@@ -2,6 +2,108 @@
 
 This section promotes protocol-core semantics from ARPA Candidate v0.10.0 and Candidate Protocol Interoperability Amendment PP-04. The Candidate amendment and project artifacts are evidence and source governance; the normative requirements for this Internet-Draft are stated here.
 
+## Protocol-Core Wire Structures
+
+The following tables define the minimum protocol-core JSON contract for revision -04. Fields not listed here MAY be added only under the extension rules of this document. A field marked required MUST be present whenever the corresponding structure is carried on the wire.
+
+### Common Record Envelope
+
+| Field | JSON type | Cardinality | Requirement |
+|---|---|---|---|
+| `id` | string | 1 | Stable record identifier. |
+| `record_type` | string | 1 | Identifies the record kind. |
+| `version` | string | 1 | Representation/schema version for this IETF profile. |
+| `issuer` | string | 1 | Identifier of the authority publishing the record. |
+| `valid_from` | date-time string | 1 | Inclusive lower validity bound. |
+| `valid_until` | date-time string | 0..1 | Exclusive upper validity bound when present. |
+| `status` | object | 0..1 | Multi-dimensional status; when material to authority, absence MUST NOT be interpreted as active. |
+| `proof` | object | 0..1 | Proof metadata/bytes as defined by the selected proof profile. |
+| `extensions` | object | 0..1 | Namespaced extensions, including criticality metadata. |
+
+### Agent Resource
+
+An Agent Resource MUST contain the common envelope plus:
+
+| Field | JSON type | Cardinality | Requirement |
+|---|---|---|---|
+| `agent_id` | string | 1 | Canonical `agentreg:` Agent Identifier. |
+| `display_name` | string | 0..1 | Human-readable only; MUST NOT be used for identifier equality. |
+| `endpoints` | array | 0..n | Service endpoints with protocol/profile metadata. |
+| `relationships` | array of references | 0..n | References to typed relationship records. |
+
+### Relationship Record
+
+A Relationship Record MUST contain the common envelope plus:
+
+| Field | JSON type | Cardinality | Requirement |
+|---|---|---|---|
+| `relationship_type` | string | 1 | Registered/core value or collision-resistant extension value. |
+| `subject` | string | 1 | Entity from which the typed edge originates. |
+| `related_entity` | string | 1 | Entity to which the typed edge points. |
+| `scope` | object | 0..1 | Scope limiting the relationship. |
+| `authority_source` | string | 1 | Stable source establishing the relationship. |
+
+Relationship semantics MUST NOT be inferred from field position alone. In particular, `operated_by` and `controlled_by` MUST NOT be interpreted as `acts_for` or `delegates_to`.
+
+### Authority Envelope
+
+An Authority Envelope MUST contain the common envelope plus:
+
+| Field | JSON type | Cardinality | Requirement |
+|---|---|---|---|
+| `principal` | string | 1 | Principal whose authority is being represented. |
+| `delegate` | string | 1 | Agent/entity receiving bounded authority. |
+| `actions` | array | 1..n | Permitted action/action-class identifiers. |
+| `resources` | array | 0..n | Resource scope when applicable. |
+| `constraints` | object | 0..1 | Limits, conditions, and prohibitions. |
+| `derives_from` | string | 0..1 | Parent authority reference; REQUIRED for delegated authority and MAY be absent for a root grant. |
+| `further_delegation` | boolean/object | 0..1 | Whether and under what limits further delegation is permitted. |
+
+A delegated Authority Envelope without the required `derives_from` linkage is invalid when parent state is needed to establish monotonic delegation.
+
+### Event
+
+An Event MUST contain:
+
+| Field | JSON type | Cardinality | Requirement |
+|---|---|---|---|
+| `event_id` | string | 1 | Stable event identifier. |
+| `event_type` | string | 1 | Core or namespaced event type. |
+| `source` | string | 1 | Registry/event-source identifier. |
+| `sequence` | integer or string | 1 | Source ordering position/checkpoint. |
+| `event_time` | date-time string | 1 | Time asserted by the event source. |
+| `subject` | string | 1 | Affected record/entity. |
+| `data` | object | 0..1 | Event-specific content. |
+
+### Registry Metadata
+
+The `/.well-known/agent-registry` representation MUST contain:
+
+| Field | JSON type | Cardinality | Requirement |
+|---|---|---|---|
+| `registry_id` | string | 1 | Stable registry identity. |
+| `protocol_version` | string | 1 | ARPA protocol version/profile identifier. |
+| `base_endpoint` | URI string | 1 | Base endpoint for the selected protocol surface. |
+| `supported_profiles` | array | 1..n | Supported representation/conformance profiles. |
+| `events_endpoint` | URI string | 0..1 | Present only when the event contract is supported. |
+| `write_policy` | URI/string | 0..1 | Stable policy reference for mutation authorization when writes are supported. |
+| `clock_profile` | object/reference | 0..1 | Required when clock/skew assumptions can affect material decisions. |
+
+### Authority Evaluation Result Wire Object
+
+An Authority Evaluation Result MUST contain:
+
+| Field | JSON type | Cardinality | Requirement |
+|---|---|---|---|
+| `decision` | string | 1 | One of `allow`, `allow_with_conditions`, `deny`, `indeterminate`, or `not_applicable`. |
+| `reason_codes` | array of strings | 1..n | Stable machine-readable reasons. |
+| `evaluation_time` | date-time string | 1 | Time at which the result was evaluated. |
+| `policy` | object | 1 | MUST identify policy id, version, and applicability. |
+| `conditions` | array | 0..n | REQUIRED and non-empty for `allow_with_conditions`. |
+| `evidence` | array of references | 0..n | Material evidence/authority references. |
+| `source_checkpoint` | string | 0..1 | REQUIRED when derived/historical/projected state materially contributed. |
+| `freshness` | object/reference | 0..1 | REQUIRED when freshness can affect the result. |
+
 ## Representation Field Mapping
 
 This document uses the IETF wire names `valid_from`, `valid_until`, and `version`. The corresponding ARPA Candidate v0.10.0 machine-contract names are `effective_from`, `effective_until`, and `schema_version`.
