@@ -1,9 +1,10 @@
 # ARPA Internet-Draft Revision `-04` Submission Package
 
-**Status:** submission-ready candidate; not yet published on the IETF Datatracker  
+**Status:** published on the IETF Datatracker  
 **Tracking issue:** #65  
 **Pull request:** #66  
-**Source commit:** `5172da3cf6ee3aff418b6f3e2e6ac12aba9338fe`  
+**Preparation source commit:** `5172da3cf6ee3aff418b6f3e2e6ac12aba9338fe`  
+**Preparation PR squash commit:** `132db88f1107b0f97c2a89ba935b16802d56d5c2`  
 **Published predecessor:** `draft-sankarshan-agent-registry-protocol-03`  
 **Target revision:** `draft-sankarshan-agent-registry-protocol-04`
 
@@ -16,7 +17,7 @@
 - `ietf/conformance-matrix-v04.json`
 - `ietf/fragments/revision-04.md`
 
-Published revision `-03` remains immutable and canonical until the Datatracker accepts `-04`.
+Revision `-04` was accepted and published by the IETF on **29 September 2026**. It is now the current immutable published IETF baseline; revision `-03` remains an immutable historical predecessor.
 
 ## Successful assurance runs
 
@@ -66,13 +67,13 @@ Use the generated **RFCXML v3** file as the primary revision upload:
 
 The TXT and HTML files are deterministic companion renderings for verification and archival evidence.
 
-## Post-submission closeout
+## Publication evidence
 
-After the Datatracker accepts revision `-04`:
+Revision `-04` was accepted on **29 September 2026** as an **Individual Submission**, with **56 pages**.
 
-1. verify the canonical IETF archive and Datatracker URLs;
-2. record the publication timestamp and resulting page count;
-3. update `ietf/index.md` so `-04` becomes the published immutable baseline;
-4. mark the external-submission gates in `REVISION_04_CHECKLIST.md`;
-5. record the accepted publication evidence in this file; and
-6. close issue #65 if no residual defects remain.
+- IETF archive: https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-04.txt
+- Datatracker: https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/
+- HTMLized draft: https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol
+- Diff: https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-04
+
+Repository publication state has been advanced from candidate `-04` to published `-04`. Issue #65 is complete.

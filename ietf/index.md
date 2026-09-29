@@ -13,16 +13,16 @@ This is the publication landing page for ARPA's **Agent Registry Protocol** Inte
 
 The current IETF baseline is:
 
-`draft-sankarshan-agent-registry-protocol-03`
+`draft-sankarshan-agent-registry-protocol-04`
 
-It was published on **28 September 2026** as an **Individual Submission** and is **44 pages**.
+It was published on **29 September 2026** as an **Individual Submission** and is **56 pages**.
 
-- [IETF archive](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-03.txt)
+- [IETF archive](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-04.txt)
 - [Datatracker status](https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/)
 - [HTMLized draft](https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol)
-- [Diff from revision `-02`](https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-03)
+- [Diff from revision `-02`](https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-04)
 
-Published `-00`, `-01`, and `-02` remain immutable historical revisions. Future protocol work must begin from a governed delta against published `-03`.
+Published `-00` through `-03` remain immutable historical revisions. Future protocol work must begin from a governed delta against published `-04`.
 
 ## What is standardized here
 
@@ -48,15 +48,15 @@ The IETF track extracts the interoperable protocol core from the broader ARPA Ca
 
 Project governance, conformance programmes, A2A profiles, deployment guidance, assurance scoring, redress workflows, TRQL dependency, and TSP VID projection remain supporting/project material unless standardized separately.
 
-## Revision `-03`
+## Revision `-04`
 
-Revision `-03` adds wire-contract precision, external trust-evidence composition semantics, the ARPA media type, and clearer boundaries with TRQP, TSP, WIMSE and SCITT.
+Revision `-04` adds protocol-interoperability and security hardening, including explicit wire contracts, authority-evaluation outcomes, fail-safe status composition, identifier normalization, freshness/cache rules, deterministic update/event semantics, write authorization, critical-extension handling, SSRF protections, and discovery/search boundaries.
 
 The repository publication evidence is recorded in:
 
-- [Revision `-03` baseline review](REVISION_03_BASELINE.html)
-- [Revision `-03` readiness and publication checklist](REVISION_03_CHECKLIST.html)
-- [Revision `-03` submission/publication package](SUBMISSION_PACKAGE_03.html)
+- [Revision `-04` baseline review](REVISION_04_BASELINE.html)
+- [Revision `-04` readiness and publication checklist](REVISION_04_CHECKLIST.html)
+- [Revision `-04` submission/publication package](SUBMISSION_PACKAGE_04.html)
 
 ## Authoring and assurance artifacts
 
@@ -70,7 +70,7 @@ The checked-in base source preserves the historical `-00` authoring baseline. Go
 - [Generated-artifact SHA-256 checksums](generated/SHA256SUMS.txt)
 - [Protocol extraction and provenance map](PROTOCOL_EXTRACTION.html)
 - [Revision `-03` baseline review](REVISION_03_BASELINE.html)
-- [Revision `-03` readiness checklist](REVISION_03_CHECKLIST.html)\n\n### Candidate revision `-04`\n\nRevision `-04` is under governed preparation in issue #65. Until it is submitted to the IETF Datatracker, published `-03` remains the canonical IETF revision. The repository renders `-04` as a submission candidate from Candidate v0.10.0 plus PP-04.\n\n- [Revision `-04` baseline review](REVISION_04_BASELINE.html)\n- [Revision `-04` readiness checklist](REVISION_04_CHECKLIST.html)\n- [Revision `-04` source fragment](fragments/revision-04.html)\n- [Rendered candidate `-04` — HTML](generated/draft-sankarshan-agent-registry-protocol-04.html)\n- [Rendered candidate `-04` — plaintext](generated/draft-sankarshan-agent-registry-protocol-04.txt)\n- [RFCXML v3 candidate for `-04`](generated/draft-sankarshan-agent-registry-protocol-04.xml)\n
+- [Revision `-03` readiness checklist](REVISION_03_CHECKLIST.html)
 ## Build, publication and validation
 
 Relevant CI installs the IETF authoring toolchain and executes:
@@ -85,4 +85,4 @@ Generated outputs remain excluded from Git so they cannot drift as independently
 
 ## Publication state
 
-Revision `-03` is **published** and is the immutable baseline for future IETF revision work. Repository-generated files are reproducibility artifacts; the canonical historical publication is the IETF archive copy linked above.
+Revision `-04` is **published** and is the immutable baseline for future IETF revision work. Repository-generated files are reproducibility artifacts; the canonical historical publication is the IETF archive copy linked above.
