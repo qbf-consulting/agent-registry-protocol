@@ -65,7 +65,7 @@ if submission_type not in source:
 source = source.replace(submission_type, "", 1)
 source = source.replace(
     "  RFC3986:\n  RFC9457:",
-    "  RFC3986:\n  RFC6838:\n  RFC7595:\n  RFC8615:\n  RFC9457:",
+    "  RFC3986:\n  RFC5234:\n  RFC6838:\n  RFC7595:\n  RFC8615:\n  RFC8785:\n  RFC9457:",
     1,
 )
 # RFC8615 is informative in the published -00 source. Revision -01 uses it
