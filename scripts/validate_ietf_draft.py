@@ -224,33 +224,31 @@ if BUILD.exists():
 
 if DELTA.exists():
     delta = DELTA.read_text(encoding="utf-8")
-    for proposition in ("ARPA-IETF-201", "ARPA-IETF-202", "ARPA-IETF-203", "ARPA-IETF-204",
-                        "ARPA-IETF-205", "ARPA-IETF-206", "ARPA-IETF-209", "ARPA-IETF-211",
-                        "ARPA-IETF-212", "ARPA-IETF-215", "ARPA-IETF-216", "ARPA-IETF-217",
-                        "ARPA-IETF-218"):
-        if proposition not in delta:
-            errors.append(f"IETF -03 delta register missing proposition {proposition}")
-    if "published_baseline: draft-sankarshan-agent-registry-protocol-02" not in delta:
-        errors.append("IETF delta register lost immutable -02 baseline declaration")
-    if "target_revision: draft-sankarshan-agent-registry-protocol-03" not in delta:
-        errors.append("IETF delta register lost -03 target declaration")
+    for finding in ("F01", "F04", "F06", "F07", "F08", "F09", "F10", "F11", "F12",
+                    "F14", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23",
+                    "F24", "F25", "F26", "F27", "F28"):
+        if f"id: {finding}" not in delta:
+            errors.append(f"IETF -04 delta register missing disposition {finding}")
+    if "published_baseline: draft-sankarshan-agent-registry-protocol-03" not in delta:
+        errors.append("IETF delta register lost immutable -03 baseline declaration")
+    if "target_revision: draft-sankarshan-agent-registry-protocol-04" not in delta:
+        errors.append("IETF delta register lost -04 target declaration")
+    if "ARPA-CAND-PP-04" not in delta:
+        errors.append("IETF -04 delta register lost governing Candidate amendment")
 
 if REVISION_CHECKLIST.exists():
     checklist = REVISION_CHECKLIST.read_text(encoding="utf-8")
     for needle in (
-        "Internet-Draft Revision `-03` Checklist",
-        "Published `-02` identified as immutable baseline",
-        "Candidate hardening issue #50 completed",
-        "TRQP Authorization/Recognition composition boundary defined",
-        "`not_applicable` wire semantics defined",
-        "ARPA media type preserved",
+        "Internet-Draft Revision `-04` Checklist",
+        "Published -03 identified as immutable baseline",
+        "Candidate PP-04 records Candidate-first semantic hardening",
+        "Breaking/potentially-breaking propositions classified",
         "make ietf-check",
         "generated RFCXML v3 reviewed",
-        "Author Tools / submission checks completed",
+        "download-ready ZIP produced",
     ):
         if needle not in checklist:
             errors.append(f"revision -04 checklist missing gate: {needle}")
-
 
 if errors:
     print("IETF draft validation failed:")
