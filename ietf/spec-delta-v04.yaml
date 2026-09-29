@@ -1,0 +1,44 @@
+registry: arpa-ietf-spec-delta
+version: 4
+issue: 65
+published_baseline: draft-sankarshan-agent-registry-protocol-03
+target_revision: draft-sankarshan-agent-registry-protocol-04
+normative_baseline: ARPA-v0.10.0-Candidate
+governing_amendments:
+  - ARPA-CAND-PP-04
+policy:
+  published_baseline_immutable: true
+  protocol_core_only: true
+  candidate_first: true
+  missing_evidence_is_not_acceptance: true
+  ietf_draft_controls_ietf_conformance: true
+entries:
+  - {id: F01, disposition: ietf-normative, state: accepted, compatibility: potentially-breaking}
+  - {id: F02, disposition: ietf-normative, state: accepted, compatibility: clarifying}
+  - {id: F03, disposition: repo-hardening, state: deferred, compatibility: none}
+  - {id: F04, disposition: ietf-normative, state: accepted, compatibility: additive}
+  - {id: F06, disposition: ietf-normative, state: accepted, compatibility: potentially-breaking}
+  - {id: F07, disposition: ietf-normative, state: accepted, compatibility: clarifying}
+  - {id: F08, disposition: ietf-normative, state: accepted, compatibility: clarifying}
+  - {id: F09, disposition: ietf-normative, state: accepted, compatibility: potentially-breaking}
+  - {id: F10, disposition: ietf-normative, state: accepted, compatibility: clarifying}
+  - {id: F11, disposition: ietf-normative, state: accepted, compatibility: additive}
+  - {id: F12, disposition: ietf-normative, state: accepted, compatibility: additive}
+  - {id: F14, disposition: retain-profile-bound, state: accepted, compatibility: clarifying}
+  - {id: F16, disposition: ietf-normative, state: accepted, compatibility: clarifying}
+  - {id: F17, disposition: ietf-normative, state: accepted, compatibility: potentially-breaking}
+  - {id: F18, disposition: ietf-normative, state: accepted, compatibility: additive}
+  - {id: F19, disposition: ietf-normative, state: accepted, compatibility: potentially-breaking}
+  - {id: F20, disposition: validation-gate, state: accepted, compatibility: none}
+  - {id: F21, disposition: ietf-normative, state: accepted, compatibility: clarifying}
+  - {id: F22, disposition: ietf-normative, state: accepted, compatibility: clarifying}
+  - {id: F23, disposition: editorial, state: accepted, compatibility: none}
+  - {id: F24, disposition: ietf-normative, state: accepted, compatibility: clarifying}
+  - {id: F25, disposition: ietf-normative, state: accepted, compatibility: clarifying}
+  - {id: F26, disposition: regression, state: resolved-03, compatibility: none}
+  - {id: F27, disposition: editorial, state: accepted, compatibility: none}
+  - {id: F28, disposition: process, state: retained, compatibility: none}
+regression_only:
+  - F05
+  - F13
+  - F15

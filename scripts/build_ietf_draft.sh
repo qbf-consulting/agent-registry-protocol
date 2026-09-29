@@ -7,8 +7,9 @@ HARDENING="$ROOT/ietf/fragments/adversarial-hardening.md"
 PRECISION="$ROOT/ietf/fragments/protocol-precision.md"
 AUTHORITY="$ROOT/ietf/fragments/authority-commitment.md"
 REVISION03="$ROOT/ietf/fragments/revision-03.md"
+REVISION04="$ROOT/ietf/fragments/revision-04.md"
 OUT="$ROOT/ietf/generated"
-BASE="draft-sankarshan-agent-registry-protocol-03"
+BASE="draft-sankarshan-agent-registry-protocol-04"
 COMBINED="$(mktemp)"
 trap 'rm -f "$COMBINED"' EXIT
 
@@ -22,14 +23,14 @@ if ! command -v xml2rfc >/dev/null 2>&1; then
   echo "error: xml2rfc is not installed; run 'make ietf-setup'" >&2
   exit 2
 fi
-for fragment in "$HARDENING" "$PRECISION" "$AUTHORITY" "$REVISION03"; do
+for fragment in "$HARDENING" "$PRECISION" "$AUTHORITY" "$REVISION03" "$REVISION04"; do
   if [ ! -f "$fragment" ]; then
     echo "error: missing IETF fragment: $fragment" >&2
     exit 2
   fi
 done
 
-python3 - "$SOURCE" "$HARDENING" "$PRECISION" "$AUTHORITY" "$REVISION03" "$COMBINED" <<'PY'
+python3 - "$SOURCE" "$HARDENING" "$PRECISION" "$AUTHORITY" "$REVISION03" "$REVISION04" "$COMBINED" <<'PY'
 from pathlib import Path
 import sys
 
@@ -38,13 +39,14 @@ hardening = Path(sys.argv[2]).read_text(encoding="utf-8").strip()
 precision = Path(sys.argv[3]).read_text(encoding="utf-8").strip()
 authority = Path(sys.argv[4]).read_text(encoding="utf-8").strip()
 revision03 = Path(sys.argv[5]).read_text(encoding="utf-8").strip()
+revision04 = Path(sys.argv[6]).read_text(encoding="utf-8").strip()
 
 # The checked-in source preserves the published -00 authoring baseline. The
 # -01 build applies only explicit, reviewable transformations plus governed
 # protocol-core fragments.
 source = source.replace(
     "docname: draft-sankarshan-agent-registry-protocol-00",
-    "docname: draft-sankarshan-agent-registry-protocol-03",
+    "docname: draft-sankarshan-agent-registry-protocol-04",
     1,
 )
 
@@ -63,7 +65,7 @@ if submission_type not in source:
 source = source.replace(submission_type, "", 1)
 source = source.replace(
     "  RFC3986:\n  RFC9457:",
-    "  RFC3986:\n  RFC6838:\n  RFC7595:\n  RFC8615:\n  RFC9457:",
+    "  RFC3986:\n  RFC5234:\n  RFC6838:\n  RFC7595:\n  RFC8615:\n  RFC8785:\n  RFC9457:",
     1,
 )
 # RFC8615 is informative in the published -00 source. Revision -01 uses it
@@ -262,13 +264,23 @@ new_changelog = old_changelog + """
 * Defines how external authoritative trust evidence contributes to ARPA evaluation and specifies normative composition boundaries with ToIP TRQP v2.0.
 * Describes ToIP TSP as an optional spanning substrate without making TSP a conformance dependency and preserves the rule that authenticated channels/identifiers do not confer authority.
 * Pins WIMSE references to the revisions reviewed for this draft and clarifies optional SCITT evidence-reference composition.
-* Makes IETF-draft precedence explicit for IETF protocol conformance while retaining Candidate v0.10.0 as the project baseline for wider governance/profile material."""
+* Makes IETF-draft precedence explicit for IETF protocol conformance while retaining Candidate v0.10.0 as the project baseline for wider governance/profile material.
+
+## -04
+{: #revision-04}
+
+* Defines explicit Candidate-to-IETF wire-field mappings and rejects conflicting aliases.
+* Makes the Authority Evaluation Result, affirmative/non-affirmative grouping, multi-dimensional status composition, and freshness contract explicit.
+* Defines agentreg ABNF/equality/normalization and RFC 8785 default canonicalization for JSON proof inputs.
+* Hardens registration retry, PUT replacement, event ordering/gap recovery, write authorization, and critical-extension semantics.
+* Adds concrete SSRF/dereference safeguards and separates registry metadata discovery from agent search.
+* Requires role-scoped positive and hostile conformance evidence for promoted -04 requirements."""
 
 if old_changelog not in source:
     raise SystemExit("error: -00 changelog changed; review the -01 changelog transformation")
 source = source.replace(old_changelog, new_changelog, 1)
 
-fragments = f"{hardening}\n\n{precision}\n\n{authority}\n\n{revision03}"
+fragments = f"{hardening}\n\n{precision}\n\n{authority}\n\n{revision03}\n\n{revision04}"
 unnumbered = "\n# Acknowledgements\n{:unnumbered}\n"
 numbered = "\n# Acknowledgements\n"
 if unnumbered in source:
@@ -286,25 +298,26 @@ elif numbered in source:
 else:
     raise SystemExit("error: IETF source is missing the Acknowledgements marker")
 
-Path(sys.argv[6]).write_text(combined, encoding="utf-8")
+Path(sys.argv[7]).write_text(combined, encoding="utf-8")
 PY
 
 kramdown-rfc "$COMBINED" > "$OUT/$BASE.xml"
 
 if grep -q 'submissionType=' "$OUT/$BASE.xml"; then
-  echo "error: generated -03 RFCXML unexpectedly contains submissionType metadata" >&2
+  echo "error: generated -04 RFCXML unexpectedly contains submissionType metadata" >&2
   exit 2
 fi
 
 xml2rfc --text --out "$OUT/$BASE.txt" "$OUT/$BASE.xml"
 xml2rfc --html --out "$OUT/$BASE.html" "$OUT/$BASE.xml"
 
-echo "Built revision -03 from:"
+echo "Built revision -04 from:"
 echo "  ietf/draft-sankarshan-agent-registry-protocol.md (-00 authoring baseline)"
 echo "  ietf/fragments/adversarial-hardening.md"
 echo "  ietf/fragments/protocol-precision.md"
 echo "  ietf/fragments/authority-commitment.md"
 echo "  ietf/fragments/revision-03.md"
+echo "  ietf/fragments/revision-04.md"
 echo "Built:"
 echo "  ietf/generated/$BASE.xml"
 echo "  ietf/generated/$BASE.txt"

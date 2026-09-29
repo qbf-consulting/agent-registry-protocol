@@ -1,0 +1,31 @@
+{
+  "amendment": "ARPA-CAND-PP-04",
+  "vectors": [
+    {"id":"PP04-FIELD-01","kind":"field_mapping","input":{"effective_from":"2026-09-29T00:00:00Z"},"ietf":{"valid_from":"2026-09-29T00:00:00Z"},"expected":"pass"},
+    {"id":"PP04-FIELD-02","kind":"field_mapping","input":{"effective_from":"2026-09-29T00:00:00Z","valid_from":"2026-09-30T00:00:00Z"},"expected":"reject"},
+    {"id":"PP04-AER-01","kind":"authority_result","input":{"decision":"allow","reason_codes":["authority_current"],"evaluation_time":"2026-09-29T00:00:00Z","policy":{"id":"p","version":"1","applicable":true}},"expected":"affirmative"},
+    {"id":"PP04-AER-02","kind":"authority_result","input":{"decision":"not_applicable","reason_codes":["policy_not_applicable"],"evaluation_time":"2026-09-29T00:00:00Z","policy":{"id":"p","version":"1","applicable":false}},"expected":"non_affirmative"},
+    {"id":"PP04-STATUS-01","kind":"status","input":{"lifecycle":"active","security":"normal","authority":"current"},"expected":"eligible_for_further_evaluation"},
+    {"id":"PP04-STATUS-02","kind":"status","input":{"lifecycle":"active","security":"quarantined","authority":"current"},"expected":"non_affirmative"},
+    {"id":"PP04-ID-01","kind":"identifier","input":["agentreg:Registry:Agent","agentreg:Registry:Agent"],"expected_equal":true},
+    {"id":"PP04-ID-02","kind":"identifier","input":["agentreg:Registry:Agent","agentreg:registry:Agent"],"expected_equal":false},
+    {"id":"PP04-JCS-01","kind":"canonicalization","input_a":{"a":1,"b":2},"input_b":{"b":2,"a":1},"expected":"same_digest"},
+    {"id":"PP04-JCS-02","kind":"canonicalization","raw_json":"{\"a\":1,\"a\":2}","expected":"reject_duplicate_member"},
+    {"id":"PP04-FRESH-01","kind":"freshness","input":{"generated_at":"2026-09-29T00:00:00Z","valid_until":"2026-09-29T00:05:00Z","evaluation_time":"2026-09-29T00:04:00Z"},"expected":"fresh"},
+    {"id":"PP04-FRESH-02","kind":"freshness","input":{"generated_at":"2026-09-29T00:00:00Z","valid_until":"2026-09-29T00:05:00Z","evaluation_time":"2026-09-29T00:06:00Z"},"expected":"non_affirmative"},
+    {"id":"PP04-IDEMP-01","kind":"registration_retry","input":{"profile_idempotency_key":"k1","same_payload":true},"expected":"same_result"},
+    {"id":"PP04-IDEMP-02","kind":"registration_retry","input":{"profile_idempotency_key":null,"automatic_retry":true},"expected":"unsafe_reject_or_no_retry"},
+    {"id":"PP04-PUT-01","kind":"put","input":{"if_match":"v4","current":"v4","subject_same":true,"widens_authority":false},"expected":"new_version"},
+    {"id":"PP04-PUT-02","kind":"put","input":{"if_match":"v3","current":"v4","subject_same":true},"expected":"reject_stale"},
+    {"id":"PP04-EVENT-01","kind":"event","input":{"sequence":[41,42,42,43]},"expected":"deduplicate_and_apply"},
+    {"id":"PP04-EVENT-02","kind":"event","input":{"sequence":[41,43]},"expected":"gap_resync_non_affirmative"},
+    {"id":"PP04-WRITE-01","kind":"write_auth","input":{"authorized":true},"expected":"accept"},
+    {"id":"PP04-WRITE-02","kind":"write_auth","input":{"authorized":false,"relationship":"delegates_to"},"expected_error":"ARPA-RECORD-NOT-AUTHORIZED"},
+    {"id":"PP04-EXT-01","kind":"extension","input":{"known":true,"critical":true},"expected":"process"},
+    {"id":"PP04-EXT-02","kind":"extension","input":{"known":false,"critical":true},"expected":"fail_closed"},
+    {"id":"PP04-SSRF-01","kind":"dereference","input":{"scheme":"https","destination":"trusted.example"},"expected":"profile_policy"},
+    {"id":"PP04-SSRF-02","kind":"dereference","input":{"scheme":"https","destination":"169.254.169.254"},"expected":"reject"},
+    {"id":"PP04-DISC-01","kind":"discovery","input":{"operation":"/.well-known/agent-registry"},"expected":"metadata"},
+    {"id":"PP04-DISC-02","kind":"discovery","input":{"metadata_permission":true,"bulk_enumeration_permission":false},"expected":"enumeration_denied"}
+  ]
+}

@@ -61,19 +61,19 @@ ietf-build: ietf-repo-check
 	scripts/build_ietf_draft.sh
 
 ietf-lint: ietf-build
-	@if command -v rfclint >/dev/null 2>&1; then rfclint ietf/generated/draft-sankarshan-agent-registry-protocol-03.xml; else echo "rfclint unavailable; xml2rfc build validation completed"; fi
+	@if command -v rfclint >/dev/null 2>&1; then rfclint ietf/generated/draft-sankarshan-agent-registry-protocol-04.xml; else echo "rfclint unavailable; xml2rfc build validation completed"; fi
 
 ietf-check: ietf-lint
-	@grep -q "draft-sankarshan-agent-registry-protocol-03" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-	@grep -q "Security Considerations" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-	@grep -q "IANA Considerations" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-	@grep -q "agentreg:<registry-namespace>:<agent-local-id>" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-	@grep -q "Protocol Precision for Revision 01" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-	@grep -q "Action-Specific Authority Evaluation" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-	@grep -q "Relationship to Adjacent IETF Work" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-	@grep -q "Wire-Contract Precision for Revision 03" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-	@grep -q "Federated Trust Resolution and ToIP Composition" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
-	@grep -q "application/agent-registry+json" ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt
+	@grep -q "draft-sankarshan-agent-registry-protocol-04" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "Security Considerations" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "IANA Considerations" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "agentreg:<registry-namespace>:<agent-local-id>" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "Action-Specific Authority Evaluation" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "Relationship to Adjacent IETF Work" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "Wire-Contract Precision for Revision 03" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "Protocol Interoperability and Security Hardening for Revision 04" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "Federated Trust Resolution and ToIP Composition" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
+	@grep -q "application/agent-registry+json" ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt
 
 pages-manifest:
 	python3 scripts/build_publication_manifest.py
@@ -81,14 +81,14 @@ pages-build: pages-manifest
 	bundle exec jekyll build --trace --baseurl "/agent-registry-protocol"
 pages-stage-ietf: pages-build ietf-check
 	mkdir -p _site/ietf/generated
-	cp ietf/generated/draft-sankarshan-agent-registry-protocol-03.xml _site/ietf/generated/
-	cp ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt _site/ietf/generated/
-	cp ietf/generated/draft-sankarshan-agent-registry-protocol-03.html _site/ietf/generated/
+	cp ietf/generated/draft-sankarshan-agent-registry-protocol-04.xml _site/ietf/generated/
+	cp ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt _site/ietf/generated/
+	cp ietf/generated/draft-sankarshan-agent-registry-protocol-04.html _site/ietf/generated/
 	: > _site/ietf/generated/rfc-local.css
 	sha256sum \
-		_site/ietf/generated/draft-sankarshan-agent-registry-protocol-03.xml \
-		_site/ietf/generated/draft-sankarshan-agent-registry-protocol-03.txt \
-		_site/ietf/generated/draft-sankarshan-agent-registry-protocol-03.html \
+		_site/ietf/generated/draft-sankarshan-agent-registry-protocol-04.xml \
+		_site/ietf/generated/draft-sankarshan-agent-registry-protocol-04.txt \
+		_site/ietf/generated/draft-sankarshan-agent-registry-protocol-04.html \
 		_site/ietf/generated/rfc-local.css \
 		> _site/ietf/generated/SHA256SUMS.txt
 pages-validate: pages-stage-ietf

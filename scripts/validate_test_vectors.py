@@ -48,6 +48,11 @@ def main() -> int:
 
     for path in vector_paths:
         vector = json.loads(path.read_text())
+        # Generic evaluator vectors use the legacy single-vector shape.
+        # Amendment-specific corpora (for example PP-04) are validated by their
+        # dedicated repository/IETF assurance checks and MUST NOT be misread here.
+        if "check" not in vector:
+            continue
         total += 1
         check = vector["check"]
         fn = DISPATCH.get(check)

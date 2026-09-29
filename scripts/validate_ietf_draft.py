@@ -9,12 +9,13 @@ HARDENING = ROOT / "ietf" / "fragments" / "adversarial-hardening.md"
 PRECISION = ROOT / "ietf" / "fragments" / "protocol-precision.md"
 AUTHORITY = ROOT / "ietf" / "fragments" / "authority-commitment.md"
 REVISION03 = ROOT / "ietf" / "fragments" / "revision-03.md"
+REVISION04 = ROOT / "ietf" / "fragments" / "revision-04.md"
 README = ROOT / "ietf" / "README.md"
 EXTRACTION = ROOT / "ietf" / "PROTOCOL_EXTRACTION.md"
 PUBLISHED_CHECKLIST = ROOT / "ietf" / "SUBMISSION_CHECKLIST.md"
-REVISION_CHECKLIST = ROOT / "ietf" / "REVISION_03_CHECKLIST.md"
-BASELINE = ROOT / "ietf" / "REVISION_03_BASELINE.md"
-DELTA = ROOT / "ietf" / "spec-delta-v03.yaml"
+REVISION_CHECKLIST = ROOT / "ietf" / "REVISION_04_CHECKLIST.md"
+BASELINE = ROOT / "ietf" / "REVISION_04_BASELINE.md"
+DELTA = ROOT / "ietf" / "spec-delta-v04.yaml"
 BUILD = ROOT / "scripts" / "build_ietf_draft.sh"
 PRECISION_SPEC = ROOT / "spec" / "agent-registry-protocol-protocol-precision-pp01.md"
 AUTHORITY_SPEC = ROOT / "spec" / "agent-registry-protocol-authority-commitment-pp02.md"
@@ -156,6 +157,25 @@ if REVISION03.exists():
         if bad in revision03:
             errors.append(f"IETF -03 fragment contains project-only metadata/license text: {bad}")
 
+if REVISION04.exists():
+    revision04 = REVISION04.read_text(encoding="utf-8")
+    for needle in (
+        "# Protocol Interoperability and Security Hardening for Revision 04",
+        "Authority Evaluation Result",
+        "agentreg =",
+        "{{RFC5234}}",
+        "{{RFC8785}}",
+        "Protocol writes are default-deny",
+        "DNS rebinding",
+        "/.well-known/agent-registry",
+        "GET /agents",
+    ):
+        if needle not in revision04:
+            errors.append(f"IETF -04 fragment missing required invariant/reference: {needle}")
+    for bad in ("layout: default", "nav_exclude:", "CC BY 4.0", "CC-BY-4.0"):
+        if bad in revision04:
+            errors.append(f"IETF -04 fragment contains project-only metadata/license text: {bad}")
+
 if AUTHORITY_SPEC.exists():
     authority_spec = AUTHORITY_SPEC.read_text(encoding="utf-8")
     for needle in ("ARPA-CAND-PP-02", "Action-specific authority context", "Collective-principal authority"):
@@ -178,10 +198,13 @@ if PRECISION_SPEC.exists():
 if BUILD.exists():
     build = BUILD.read_text(encoding="utf-8")
     required_build = [
-        'BASE="draft-sankarshan-agent-registry-protocol-03"',
+        'BASE="draft-sankarshan-agent-registry-protocol-04"',
         "protocol-precision.md",
         "authority-commitment.md",
         "revision-03.md",
+        "revision-04.md",
+        "RFC5234",
+        "RFC8785",
         "RFC6838",
         "RFC7595",
         "RFC8615",
@@ -197,37 +220,35 @@ if BUILD.exists():
     ]
     for needle in required_build:
         if needle not in build:
-            errors.append(f"-03 build path missing governed transformation: {needle}")
+            errors.append(f"-04 build path missing governed transformation: {needle}")
 
 if DELTA.exists():
     delta = DELTA.read_text(encoding="utf-8")
-    for proposition in ("ARPA-IETF-201", "ARPA-IETF-202", "ARPA-IETF-203", "ARPA-IETF-204",
-                        "ARPA-IETF-205", "ARPA-IETF-206", "ARPA-IETF-209", "ARPA-IETF-211",
-                        "ARPA-IETF-212", "ARPA-IETF-215", "ARPA-IETF-216", "ARPA-IETF-217",
-                        "ARPA-IETF-218"):
-        if proposition not in delta:
-            errors.append(f"IETF -03 delta register missing proposition {proposition}")
-    if "published_baseline: draft-sankarshan-agent-registry-protocol-02" not in delta:
-        errors.append("IETF delta register lost immutable -02 baseline declaration")
-    if "target_revision: draft-sankarshan-agent-registry-protocol-03" not in delta:
-        errors.append("IETF delta register lost -03 target declaration")
+    for finding in ("F01", "F04", "F06", "F07", "F08", "F09", "F10", "F11", "F12",
+                    "F14", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23",
+                    "F24", "F25", "F26", "F27", "F28"):
+        if f"id: {finding}" not in delta:
+            errors.append(f"IETF -04 delta register missing disposition {finding}")
+    if "published_baseline: draft-sankarshan-agent-registry-protocol-03" not in delta:
+        errors.append("IETF delta register lost immutable -03 baseline declaration")
+    if "target_revision: draft-sankarshan-agent-registry-protocol-04" not in delta:
+        errors.append("IETF delta register lost -04 target declaration")
+    if "ARPA-CAND-PP-04" not in delta:
+        errors.append("IETF -04 delta register lost governing Candidate amendment")
 
 if REVISION_CHECKLIST.exists():
     checklist = REVISION_CHECKLIST.read_text(encoding="utf-8")
     for needle in (
-        "Internet-Draft Revision `-03` Checklist",
-        "Published `-02` identified as immutable baseline",
-        "Candidate hardening issue #50 completed",
-        "TRQP Authorization/Recognition composition boundary defined",
-        "`not_applicable` wire semantics defined",
-        "ARPA media type preserved",
+        "Internet-Draft Revision `-04` Checklist",
+        "Published -03 identified as immutable baseline",
+        "Candidate PP-04 records Candidate-first semantic hardening",
+        "Breaking/potentially-breaking propositions classified",
         "make ietf-check",
         "generated RFCXML v3 reviewed",
-        "Author Tools / submission checks completed",
+        "download-ready ZIP produced",
     ):
         if needle not in checklist:
-            errors.append(f"revision -03 checklist missing gate: {needle}")
-
+            errors.append(f"revision -04 checklist missing gate: {needle}")
 
 if errors:
     print("IETF draft validation failed:")
@@ -235,4 +256,4 @@ if errors:
         print(f"- {error}")
     sys.exit(1)
 
-print("IETF draft repository checks passed for governed -03 inputs and lifecycle state")
+print("IETF draft repository checks passed for governed -04 inputs and lifecycle state")

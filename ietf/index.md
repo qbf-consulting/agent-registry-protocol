@@ -67,14 +67,10 @@ The checked-in base source preserves the historical `-00` authoring baseline. Go
 - [PP-01 protocol-precision source fragment](fragments/protocol-precision.html)
 - [PP-02 authority-at-commitment source fragment](fragments/authority-commitment.html)
 - [Revision `-03` source fragment](fragments/revision-03.html)
-- [Rendered `-03` — HTML](generated/draft-sankarshan-agent-registry-protocol-03.html)
-- [Rendered `-03` — plaintext](generated/draft-sankarshan-agent-registry-protocol-03.txt)
-- [RFCXML v3 for `-03`](generated/draft-sankarshan-agent-registry-protocol-03.xml)
 - [Generated-artifact SHA-256 checksums](generated/SHA256SUMS.txt)
 - [Protocol extraction and provenance map](PROTOCOL_EXTRACTION.html)
 - [Revision `-03` baseline review](REVISION_03_BASELINE.html)
-- [Revision `-03` readiness checklist](REVISION_03_CHECKLIST.html)
-
+- [Revision `-03` readiness checklist](REVISION_03_CHECKLIST.html)\n\n### Candidate revision `-04`\n\nRevision `-04` is under governed preparation in issue #65. Until it is submitted to the IETF Datatracker, published `-03` remains the canonical IETF revision. The repository renders `-04` as a submission candidate from Candidate v0.10.0 plus PP-04.\n\n- [Revision `-04` baseline review](REVISION_04_BASELINE.html)\n- [Revision `-04` readiness checklist](REVISION_04_CHECKLIST.html)\n- [Revision `-04` source fragment](fragments/revision-04.html)\n- [Rendered candidate `-04` — HTML](generated/draft-sankarshan-agent-registry-protocol-04.html)\n- [Rendered candidate `-04` — plaintext](generated/draft-sankarshan-agent-registry-protocol-04.txt)\n- [RFCXML v3 candidate for `-04`](generated/draft-sankarshan-agent-registry-protocol-04.xml)\n
 ## Build, publication and validation
 
 Relevant CI installs the IETF authoring toolchain and executes:
@@ -83,7 +79,7 @@ Relevant CI installs the IETF authoring toolchain and executes:
 make ietf-check
 ```
 
-That gate validates Candidate traceability, IETF authoring inputs and generated `-03` RFCXML/TXT/HTML. GitHub Pages publishes generated artifacts only after publication and link validation succeeds.
+That gate validates Candidate traceability, IETF authoring inputs and generated current-candidate RFCXML/TXT/HTML. GitHub Pages publishes generated artifacts only after publication and link validation succeeds.
 
 Generated outputs remain excluded from Git so they cannot drift as independently committed authority. SHA-256 checksums are published with the rendered artifacts for build evidence.
 
