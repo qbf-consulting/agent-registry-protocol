@@ -65,6 +65,12 @@ The amendment is retained as historical provenance at [ARPA v0.9.1 Adversarial H
 
 PP-01 retains its stable amendment ID and provenance. Its semantics, together with `ARPA-CAND-PP-02` and `ARPA-CAND-PP-03`, are incorporated into Candidate v0.10.0. Historical amendment requirements and vectors remain retained for auditability and regression assurance; `conformance/manifests/candidate-consolidation-v0.10.0.json` records the consolidation map.
 
+## Candidate Protocol Interoperability Amendment PP-04
+
+[ARPA Candidate Protocol Interoperability Amendment PP-04](spec/agent-registry-protocol-protocol-interoperability-pp04.md) records the Candidate-first protocol and security hardening used for IETF revision `-04`. It makes protocol-core behavior explicit across wire contracts, authority-evaluation results, multi-dimensional status composition, `agentreg:` identifier normalization, JSON proof canonicalization, freshness and cache bounds, idempotent registration, versioned PUT semantics, event ordering and resynchronization, write authorization, critical extensions, dereference/SSRF safeguards, and discovery-versus-search boundaries.
+
+PP-04 is a governed amendment to Candidate v0.10.0 rather than a new consolidated Candidate release. The Candidate specification remains the ARPA normative project baseline; only explicitly selected protocol-core propositions cross into the separately governed IETF draft.
+
 ## What v0.9.5 delivers
 
 - an independent TypeScript v0.3.0 implementation track over shared normative artifacts;
@@ -93,16 +99,17 @@ PP-01 retains its stable amendment ID and provenance. Its semantics, together wi
 
 ## IETF Internet-Draft track
 
-ARPA maintains a deliberately separate IETF authoring surface for the interoperable protocol core. The current published revision is **`draft-sankarshan-agent-registry-protocol-02`**, published on **23 September 2026**. Published IETF revisions are immutable and are not renumbered when the ARPA Candidate baseline advances.
+ARPA maintains a deliberately separate IETF authoring surface for the interoperable protocol core. The current published revision is **`draft-sankarshan-agent-registry-protocol-04`**, published on **29 September 2026** as an **Individual Submission**, with **56 pages**. Published IETF revisions are immutable and are not renumbered when the ARPA Candidate baseline advances.
 
 - [Published Internet-Draft](https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/)
-- [IETF archive text for `-02`](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-02.txt)
-- [IETF authoring and submission guide]({{ '/ietf/' | relative_url }})
+- [IETF archive text for `-04`](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-04.txt)
+- [HTMLized `-04`](https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol)
+- [IETF authoring and publication record]({{ '/ietf/' | relative_url }})
 - [Protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
 
-**Candidate v0.10.0 is now the current ARPA project source baseline.** It does not rewrite published `-02`. Future `-03` work is governed as an explicit `-02 → -03` IETF delta, with Candidate v0.10.0 providing the project semantics from which protocol-core propositions may be selected. A Candidate change crosses the IETF boundary only through explicit disposition; project-only governance, conformance, deployment and assurance material does not enter the draft automatically.
+**Candidate v0.10.0 remains the current ARPA normative project baseline. IETF revision `-04` is the current published protocol-core extraction.** Revision `-04` incorporates explicitly governed protocol-core propositions from Candidate v0.10.0 and PP-04; it does not turn project-only governance, conformance, deployment or assurance material into IETF protocol requirements. Published revisions `-00` through `-03` remain immutable historical predecessors, and any future IETF revision must begin as an explicit governed delta against published `-04`.
 
-Build and validate the current published-draft reproduction path with `make ietf-setup` followed by `make ietf-check`. Candidate consolidation is release-gated so that the governed `-02` control files remain unchanged.
+Build and validate the current IETF authoring/reproduction path with `make ietf-setup` followed by `make ietf-check`. Candidate authority and IETF publication authority remain deliberately distinct.
 
 ## Start here
 
