@@ -8,13 +8,13 @@ DRAFT = ROOT / "ietf" / "draft-sankarshan-agent-registry-protocol.md"
 HARDENING = ROOT / "ietf" / "fragments" / "adversarial-hardening.md"
 PRECISION = ROOT / "ietf" / "fragments" / "protocol-precision.md"
 AUTHORITY = ROOT / "ietf" / "fragments" / "authority-commitment.md"
-REVISION03 = ROOT / "ietf" / "fragments" / "revision-03.md"
+REVISION03 = ROOT / "ietf" / "fragments" / "revision-03.md"\nREVISION04 = ROOT / "ietf" / "fragments" / "revision-04.md"
 README = ROOT / "ietf" / "README.md"
 EXTRACTION = ROOT / "ietf" / "PROTOCOL_EXTRACTION.md"
 PUBLISHED_CHECKLIST = ROOT / "ietf" / "SUBMISSION_CHECKLIST.md"
-REVISION_CHECKLIST = ROOT / "ietf" / "REVISION_03_CHECKLIST.md"
-BASELINE = ROOT / "ietf" / "REVISION_03_BASELINE.md"
-DELTA = ROOT / "ietf" / "spec-delta-v03.yaml"
+REVISION_CHECKLIST = ROOT / "ietf" / "REVISION_04_CHECKLIST.md"
+BASELINE = ROOT / "ietf" / "REVISION_04_BASELINE.md"
+DELTA = ROOT / "ietf" / "spec-delta-v04.yaml"
 BUILD = ROOT / "scripts" / "build_ietf_draft.sh"
 PRECISION_SPEC = ROOT / "spec" / "agent-registry-protocol-protocol-precision-pp01.md"
 AUTHORITY_SPEC = ROOT / "spec" / "agent-registry-protocol-authority-commitment-pp02.md"
@@ -156,6 +156,25 @@ if REVISION03.exists():
         if bad in revision03:
             errors.append(f"IETF -03 fragment contains project-only metadata/license text: {bad}")
 
+if REVISION04.exists():
+    revision04 = REVISION04.read_text(encoding="utf-8")
+    for needle in (
+        "# Protocol Interoperability and Security Hardening for Revision 04",
+        "Authority Evaluation Result",
+        "agentreg =",
+        "{{RFC5234}}",
+        "{{RFC8785}}",
+        "Protocol writes are default-deny",
+        "DNS rebinding",
+        "/.well-known/agent-registry",
+        "GET /agents",
+    ):
+        if needle not in revision04:
+            errors.append(f"IETF -04 fragment missing required invariant/reference: {needle}")
+    for bad in ("layout: default", "nav_exclude:", "CC BY 4.0", "CC-BY-4.0"):
+        if bad in revision04:
+            errors.append(f"IETF -04 fragment contains project-only metadata/license text: {bad}")
+
 if AUTHORITY_SPEC.exists():
     authority_spec = AUTHORITY_SPEC.read_text(encoding="utf-8")
     for needle in ("ARPA-CAND-PP-02", "Action-specific authority context", "Collective-principal authority"):
@@ -178,10 +197,10 @@ if PRECISION_SPEC.exists():
 if BUILD.exists():
     build = BUILD.read_text(encoding="utf-8")
     required_build = [
-        'BASE="draft-sankarshan-agent-registry-protocol-03"',
+        'BASE="draft-sankarshan-agent-registry-protocol-04"',
         "protocol-precision.md",
         "authority-commitment.md",
-        "revision-03.md",
+        "revision-03.md",\n        "revision-04.md",\n        "RFC5234",\n        "RFC8785",
         "RFC6838",
         "RFC7595",
         "RFC8615",
@@ -197,7 +216,7 @@ if BUILD.exists():
     ]
     for needle in required_build:
         if needle not in build:
-            errors.append(f"-03 build path missing governed transformation: {needle}")
+            errors.append(f"-04 build path missing governed transformation: {needle}")
 
 if DELTA.exists():
     delta = DELTA.read_text(encoding="utf-8")
@@ -226,7 +245,7 @@ if REVISION_CHECKLIST.exists():
         "Author Tools / submission checks completed",
     ):
         if needle not in checklist:
-            errors.append(f"revision -03 checklist missing gate: {needle}")
+            errors.append(f"revision -04 checklist missing gate: {needle}")
 
 
 if errors:
@@ -235,4 +254,4 @@ if errors:
         print(f"- {error}")
     sys.exit(1)
 
-print("IETF draft repository checks passed for governed -03 inputs and lifecycle state")
+print("IETF draft repository checks passed for governed -04 inputs and lifecycle state")
