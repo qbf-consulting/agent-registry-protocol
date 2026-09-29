@@ -26,16 +26,16 @@
 - [x] HTTP core/profile operation boundary clarified
 
 ## Build and assurance
-- [ ] `make ietf-check` passes for -04
-- [ ] full Validate workflow passes
-- [ ] dedicated IETF workflow passes
-- [ ] generated RFCXML v3 reviewed
-- [ ] generated plaintext reviewed
-- [ ] generated HTML reviewed
-- [ ] no TODO/FIXME/TBD/placeholders
+- [x] `make ietf-check` passes for -04
+- [x] full Validate workflow passes
+- [x] dedicated IETF workflow passes
+- [x] generated RFCXML v3 reviewed
+- [x] generated plaintext reviewed
+- [x] generated HTML reviewed
+- [x] no TODO/FIXME/TBD/placeholders
 - [ ] -03 → -04 rendered semantic diff reviewed
-- [ ] exact artifact SHA-256 digests recorded
-- [ ] download-ready ZIP produced
+- [x] exact artifact SHA-256 digests recorded
+- [x] download-ready ZIP produced
 
 ## External submission
 - [ ] current Author Tools / submission checks completed
