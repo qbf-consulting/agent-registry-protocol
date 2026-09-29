@@ -33,12 +33,12 @@
 - [x] generated plaintext reviewed
 - [x] generated HTML reviewed
 - [x] no TODO/FIXME/TBD/placeholders
-- [ ] -03 → -04 rendered semantic diff reviewed
+- [x] -03 → -04 rendered semantic diff reviewed
 - [x] exact artifact SHA-256 digests recorded
 - [x] download-ready ZIP produced
 
 ## External submission
-- [ ] current Author Tools / submission checks completed
-- [ ] RFCXML v3 uploaded as revision -04
-- [ ] Datatracker publication verified
-- [ ] repository publication closeout updated
+- [x] current Author Tools / submission checks completed
+- [x] RFCXML v3 uploaded as revision -04
+- [x] Datatracker publication verified
+- [x] repository publication closeout updated
