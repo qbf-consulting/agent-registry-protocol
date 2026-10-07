@@ -21,6 +21,8 @@ This is a semantic interoperability profile, not a complete ARPA profile claim. 
 
 ## Running the profile
 
+For a practical walkthrough, including a per-case worksheet, outcome-mapping rules, evidence bundle layout, and report validation, use the [External Operator Guide](OPERATOR-GUIDE.md).
+
 1. Obtain the exact repository revision and profile artifacts identified in `profile-v1.0.json`.
 2. Operate the implementation under test independently from the ARPA repository maintainers. Record the operator and implementation provenance and disclose material relationships. Repository ownership alone does not establish organizational independence.
 3. Execute each listed vector against the implementation's documented interface. Record the exact observed protocol outcome; do not substitute a local reimplementation of the expected result or merely validate the input fixture.
