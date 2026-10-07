@@ -28,7 +28,9 @@ Use a clean checkout of the repository revision whose profile and vector digests
 From the ARPA checkout, install the declared validation dependencies and create a separate evidence directory:
 
 ```bash
-python3 -m pip install -r scripts/requirements.txt
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r scripts/requirements.txt
 mkdir -p /path/to/arpa-run/evidence
 cp conformance/external/evidence-report-template.json /path/to/arpa-run/report.json
 ```
@@ -102,6 +104,8 @@ For each evidence file, compute its digest from the run directory. For example:
 cd /path/to/arpa-run
 sha256sum evidence/WC-005.json
 ```
+
+On macOS, use `shasum -a 256 evidence/WC-005.json` if `sha256sum` is unavailable.
 
 Copy the resulting lowercase SHA-256 value into the matching artifact entry. The validator checks that the referenced file exists under the report directory and that its bytes match the recorded digest.
 
