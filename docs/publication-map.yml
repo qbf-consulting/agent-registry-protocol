@@ -32,6 +32,8 @@ publication_sources:
   mode: rendered-page
 - path: conformance/README.md
   mode: rendered-page
+- path: conformance/external/README.md
+  mode: rendered-page
 - path: conformance/profiles/profile-a.md
   mode: rendered-page
 - path: conformance/profiles/profile-b.md

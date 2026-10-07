@@ -44,6 +44,8 @@ The repository-owned TypeScript track is implementation-diversity evidence, but 
 
 Promotion requires external implementation experience, independently operated interoperability tests, resolution of Candidate Specification feedback, production deployment evidence for durable events and key management, security review, and confirmation that the normative surface no longer requires material change.
 
+The bounded external interoperability profile and evidence validator are available under `conformance/external/`. External execution and independent review remain pending; publishing the profile does not satisfy this v1.0 gate.
+
 
 ### v0.9.3 delivered — A2A registry convergence
 

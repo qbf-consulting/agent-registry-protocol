@@ -1,0 +1,37 @@
+{
+  "profile_id": "arpa-external-implementation-interop",
+  "profile_version": "1.0.0",
+  "normative_baseline": "ARPA Candidate Specification v0.10.0",
+  "specification": "spec/agent-registry-protocol-v0.10.0.md",
+  "independence_rule": "The implementation and test execution are operated outside the ARPA repository maintainer organization. Relationships must be disclosed; independence is assessed by reviewers and is not inferred from a report field.",
+  "suites": [
+    {
+      "path": "conformance/test-vectors/protocol-interoperability-pp04.json",
+      "sha256": "ebaedcb13b3ba193c0c9bc088d1510aa81f7729eec639c1087a02b7ac651a251",
+      "cases": [
+        {"id":"PP04-FIELD-02","expected_field":"expected","expected":"reject"},
+        {"id":"PP04-AER-02","expected_field":"expected","expected":"non_affirmative"},
+        {"id":"PP04-STATUS-02","expected_field":"expected","expected":"non_affirmative"},
+        {"id":"PP04-ID-02","expected_field":"expected_equal","expected":false},
+        {"id":"PP04-JCS-02","expected_field":"expected","expected":"reject_duplicate_member"},
+        {"id":"PP04-FRESH-02","expected_field":"expected","expected":"non_affirmative"},
+        {"id":"PP04-PUT-02","expected_field":"expected","expected":"reject_stale"},
+        {"id":"PP04-EVENT-02","expected_field":"expected","expected":"gap_resync_non_affirmative"},
+        {"id":"PP04-WRITE-02","expected_field":"expected_error","expected":"ARPA-RECORD-NOT-AUTHORIZED"},
+        {"id":"PP04-EXT-02","expected_field":"expected","expected":"fail_closed"},
+        {"id":"PP04-SSRF-02","expected_field":"expected","expected":"reject"}
+      ]
+    },
+    {
+      "path": "conformance/test-vectors/wire-contract/wire-contract-pp03.json",
+      "sha256": "6b582eebeecb79f7c66426cab6c47eb8ce09d7d313f11a3c2ac7e0758bbb356e",
+      "cases": [
+        {"id":"WC-004","expected_field":"expected_outcome","expected":"indeterminate"},
+        {"id":"WC-005","expected_field":"expected_outcome","expected":"deny"},
+        {"id":"WC-006","expected_field":"expected_in_interval","expected":true},
+        {"id":"WC-007","expected_field":"expected_in_interval","expected":false},
+        {"id":"WC-009","expected_field":"expected_outcome","expected":"indeterminate"}
+      ]
+    }
+  ]
+}
