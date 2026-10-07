@@ -1,4 +1,4 @@
-.PHONY: pilot-up pilot-down pilot-seed pilot-check pilot-reset setup validate test interop candidate run report typescript-check cross-runtime network-interop ietf-setup ietf-repo-check ietf-build ietf-lint ietf-check pages-manifest pages-build pages-stage-ietf pages-validate docs-links pages-check release-check release-check-all package clean
+.PHONY: pilot-up pilot-down pilot-seed pilot-check pilot-reset setup validate test interop candidate run report external-interop-check typescript-check cross-runtime network-interop ietf-setup ietf-repo-check ietf-build ietf-lint ietf-check pages-manifest pages-build pages-stage-ietf pages-validate docs-links pages-check release-check release-check-all package clean
 setup:
 	python3 -m pip install -r scripts/requirements.txt
 validate:
@@ -26,6 +26,7 @@ validate:
 	python3 scripts/validate_tga_alignment.py
 	python3 scripts/validate_tsms_external_conformance.py
 	python3 scripts/validate_ietf_draft.py
+	python3 scripts/validate_external_interop.py
 test:
 	python3 -m pytest -q
 interop:
@@ -36,6 +37,9 @@ run:
 	python3 -m uvicorn reference.app:app --host 127.0.0.1 --port 8000
 report:
 	python3 scripts/generate_implementation_report.py
+
+external-interop-check:
+	python3 scripts/validate_external_interop.py --report "$(if $(REPORT),$(REPORT),conformance/external/evidence-report-template.json)"
 
 typescript-check:
 	cd typescript && (if [ -x node_modules/.bin/tsc ] || command -v tsc >/dev/null 2>&1; then npm run release-check; else npm install --ignore-scripts --no-audit --no-fund && npm run release-check; fi)

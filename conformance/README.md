@@ -35,3 +35,7 @@ Operational resilience is cross-cutting and does not create a Profile E. Passing
 ## Authority non-amplification
 
 The Candidate v0.10.0 adversarial corpus includes `conformance/test-vectors/adversarial/authority-laundering-v0.10.0.json`, validating that influence, repetition, reputation, discovery, projection, and unrelated scope do not manufacture authority. See [`docs/authority-non-amplification.md`](../docs/authority-non-amplification.md).
+
+## External implementation evidence
+
+The [external implementation interoperability profile](external/README.md) defines a bounded, version-pinned run against 16 existing PP-03/PP-04 vectors and a machine-readable evidence report. `make validate` verifies the profile pins and the checked-in report template; it does not execute or certify an external implementation. The checked-in report is deliberately `not_run`, so external interoperability remains unestablished. Participants can validate a completed evidence bundle with `make external-interop-check REPORT=path/to/report.json`.

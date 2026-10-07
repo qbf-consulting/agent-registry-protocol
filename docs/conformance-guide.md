@@ -57,4 +57,6 @@ flowchart LR
 
 A declaration MUST identify the exact profile, implementation version, evidence period and known limitations. Passing repository-controlled tests is implementation evidence, not independent certification, legal recognition or proof of production fitness.
 
+For a bounded test run by an implementation operator outside the ARPA maintainer organization, see the [external implementation interoperability profile](../conformance/external/README.md). Its pinned vectors and evidence report improve reviewability but do not independently authenticate the operator or certify the implementation. The checked-in report remains `not_run` until an external operator submits evidence.
+
 For journey selection, see [Start Here](start-here.md). For module dependencies and non-implication rules, see [Protocol modules](protocol-modules.md).

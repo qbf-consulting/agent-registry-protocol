@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qbf-consulting.github.io/agent-registry-protocol/conformance/external/evidence-report.schema.json",
+  "title": "ARPA External Interoperability Evidence Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["report_version", "profile_id", "profile_version", "normative_baseline", "report_id", "execution", "operator", "implementation", "results", "artifacts"],
+  "properties": {
+    "report_version": {"const": "1.0.0"},
+    "profile_id": {"const": "arpa-external-implementation-interop"},
+    "profile_version": {"const": "1.0.0"},
+    "normative_baseline": {"const": "ARPA Candidate Specification v0.10.0"},
+    "report_id": {"type": "string", "minLength": 1},
+    "execution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["not_run", "in_progress", "complete"]},
+        "started_at": {"type": "string", "format": "date-time"},
+        "completed_at": {"type": "string", "format": "date-time"},
+        "environment": {"type": "string", "minLength": 1},
+        "repository_revision": {"type": "string", "minLength": 7}
+      }
+    },
+    "operator": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "object", "additionalProperties": false, "required": ["name", "organization", "relationship_disclosure", "independence_attestation"], "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "organization": {"type": "string", "minLength": 1},
+          "relationship_disclosure": {"type": "string", "minLength": 1},
+          "independence_attestation": {"type": "string", "minLength": 1}
+        }}
+      ]
+    },
+    "implementation": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "object", "additionalProperties": false, "required": ["name", "version", "source"], "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "version": {"type": "string", "minLength": 1},
+          "source": {"type": "string", "format": "uri"},
+          "commit": {"type": "string", "minLength": 7},
+          "runtime": {"type": "string", "minLength": 1}
+        }}
+      ]
+    },
+    "results": {
+      "type": "array", "items": {"type": "object", "additionalProperties": false,
+        "required": ["case_id", "status", "observed_outcome", "evidence"],
+        "properties": {
+          "case_id": {"type": "string", "minLength": 1},
+          "status": {"enum": ["pass", "fail", "indeterminate", "blocked", "not_run"]},
+          "observed_outcome": {"type": ["string", "boolean", "null"]},
+          "notes": {"type": "string"},
+          "evidence": {"type": "array", "items": {"$ref": "#/$defs/artifact"}}
+        }
+      }
+    },
+    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}}
+  },
+  "$defs": {
+    "artifact": {"type": "object", "additionalProperties": false, "required": ["path", "sha256", "media_type"], "properties": {
+      "path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+"},
+      "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+      "media_type": {"type": "string", "minLength": 1},
+      "description": {"type": "string"}
+    }}
+  },
+  "allOf": [
+    {"if": {"required": ["execution"], "properties": {"execution": {"required": ["status"], "properties": {"status": {"const": "not_run"}}}}}, "then": {"properties": {"operator": {"type": "null"}, "implementation": {"type": "null"}, "results": {"maxItems": 0}, "artifacts": {"maxItems": 0}}}},
+    {"if": {"required": ["execution"], "properties": {"execution": {"required": ["status"], "properties": {"status": {"enum": ["in_progress", "complete"]}}}}}, "then": {"properties": {"operator": {"type": "object"}, "implementation": {"type": "object"}, "execution": {"required": ["started_at", "environment", "repository_revision"]}}}},
+    {"if": {"required": ["execution"], "properties": {"execution": {"required": ["status"], "properties": {"status": {"const": "complete"}}}}}, "then": {"properties": {"execution": {"required": ["completed_at"]}}}}
+  ]
+}

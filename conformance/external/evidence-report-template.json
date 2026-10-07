@@ -1,0 +1,12 @@
+{
+  "report_version": "1.0.0",
+  "profile_id": "arpa-external-implementation-interop",
+  "profile_version": "1.0.0",
+  "normative_baseline": "ARPA Candidate Specification v0.10.0",
+  "report_id": "unexecuted-template",
+  "execution": {"status": "not_run"},
+  "operator": null,
+  "implementation": null,
+  "results": [],
+  "artifacts": []
+}
