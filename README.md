@@ -18,6 +18,14 @@ nav_exclude: true
 **Author and maintainer:** Sankarshan Mukhopadhyay, QBF Consulting LLP — `sankarshan@qbfconsulting.digital`  
 **Project stewardship:** QBF Consulting LLP
 
+## Why this repository exists
+
+Autonomous and semi-autonomous agents are becoming operational participants in enterprise, public-sector and decentralized trust ecosystems. Existing identity, credential and trust-registry infrastructure can identify parties and carry assertions, but it does not by itself provide a common layer for registering agents, binding operators, evaluating delegated authority, recording lifecycle state, preserving evidence, reconstructing historical state and supporting challenge or redress.
+
+This repository investigates that missing layer.
+
+ARPA is the current reference protocol and implementation surface for this work. The broader repository is an **agent governance laboratory**: a place to test how registries, delegation, lifecycle controls, federation, evidence and assurance can work together without collapsing discovery into authority or registry state into certification.
+
 ## Repository status
 
 | Attribute | Value |
@@ -29,94 +37,20 @@ nav_exclude: true
 | Specification status | Candidate Specification v0.10.0 |
 | Implementation release | v0.9.5 |
 | Normative baseline | ARPA Candidate v0.10.0 consolidated specification |
-| Primary artifacts | Specification, schemas, API/event contracts, reference implementations, conformance and evidence |
+| Primary artifacts | Specification, schemas, API/event contracts, reference implementations, conformance, evidence, research agenda and lab experiments |
 | Release gate | `make release-check-all` |
 | Candidate evidence | `artifacts/candidate-specification/evidence-bundle.json`, amendment-specific evidence, and `artifacts/conformance/candidate-consolidation-v0.10.0-validation.json` |
 | Authority | Repository-local status and scope in `PROJECT-STATUS.yaml`; process in `GOVERNANCE.md` |
 
 Implementation release numbers and Candidate-specification authority are intentionally distinct. An implementation release does not change the normative baseline merely because its semantic version advances.
 
-## What the adversarial hardening adds
-
-The existing Candidate adversarial-hardening amendment closes exploitable ambiguity without changing the core ARPA architecture. It adds:
-
-- monotonic delegation intersection and explicit subset-proof requirements;
-- half-open validity intervals and explicit clock/event-ordering behavior;
-- a narrow definition of `not_applicable` so it cannot bypass authority failure;
-- stricter handling of conflicts between simultaneously competent authoritative sources;
-- explicit separation of revocation effectiveness from enforcement convergence;
-- decision-reproducibility requirements over evaluation time and source checkpoints;
-- minimum proof-input semantics beyond canonicalization alone;
-- monotonic composition rules for independent status dimensions;
-- privacy-preserving cross-context continuity requirements for scoped identifiers;
-- a schema-correction authority boundary; and
-- a release-gated adversarial conformance corpus with 20+ hostile boundary cases.
-
-The amendment is retained as historical provenance at [ARPA v0.9.1 Adversarial Hardening](spec/agent-registry-protocol-v0.9.1-hardening.md). Its approved normative semantics are now incorporated directly into [ARPA Candidate v0.10.0](spec/agent-registry-protocol-v0.10.0.md).
-
-## Candidate Protocol Precision Amendment PP-01
-
-[ARPA Candidate Protocol Precision Amendment PP-01](spec/agent-registry-protocol-protocol-precision-pp01.md) resolves four cross-artifact protocol ambiguities identified while preparing IETF revision `-01`:
-
-- the ARPA Core Agent Identifier is the `agentreg:` identifier already required by the Candidate/OpenAPI contract;
-- historical resolution is a reconstruction operation with explicit requested/evaluation time, provenance, later material events and reconstruction quality;
-- protocol-significant HTTP failures use an RFC 9457 Problem Details contract with stable machine semantics; and
-- unsupported material critical extensions fail safely rather than being silently ignored.
-
-PP-01 retains its stable amendment ID and provenance. Its semantics, together with `ARPA-CAND-PP-02` and `ARPA-CAND-PP-03`, are incorporated into Candidate v0.10.0. Historical amendment requirements and vectors remain retained for auditability and regression assurance; `conformance/manifests/candidate-consolidation-v0.10.0.json` records the consolidation map.
-
-## Candidate Protocol Interoperability Amendment PP-04
-
-[ARPA Candidate Protocol Interoperability Amendment PP-04](spec/agent-registry-protocol-protocol-interoperability-pp04.md) records the Candidate-first protocol and security hardening used for IETF revision `-04`. It makes protocol-core behavior explicit across wire contracts, authority-evaluation results, multi-dimensional status composition, `agentreg:` identifier normalization, JSON proof canonicalization, freshness and cache bounds, idempotent registration, versioned PUT semantics, event ordering and resynchronization, write authorization, critical extensions, dereference/SSRF safeguards, and discovery-versus-search boundaries.
-
-PP-04 is a governed amendment to Candidate v0.10.0 rather than a new consolidated Candidate release. The Candidate specification remains the ARPA normative project baseline; only explicitly selected protocol-core propositions cross into the separately governed IETF draft.
-
-## What v0.9.5 delivers
-
-- an independent TypeScript v0.3.0 implementation track over shared normative artifacts;
-- 27/27 Python↔TypeScript deterministic and historical outcome-equivalence checks;
-- a thin TypeScript HTTP service, reusable `ArpaClient`, and 7/7 network interoperability checks;
-- A2A publication/compatibility adapters with explicit discovery-is-not-authority semantics;
-- a task-oriented documentation architecture organized around Understand, Build, Assure, Operate, Integrate, and Govern;
-- deterministic historical authority resolution separating requested-time state from current state;
-- explicit reconstruction quality, selected-record provenance, later material events, historical-effect and retention semantics;
-- fifteen release-gated historical-resolution vectors with machine-readable evidence;
-- eight release-gated governance/privacy assurance vectors covering administrative capture, revocation convergence, federation conflict, restricted discovery and compromise restoration;
-- portfolio-aligned `PROJECT-STATUS.yaml` with executable status/authority validation;
-- A2A registry publication semantics separating portable Agent Cards, publication projections and authorization overlays;
-- structured caller-visible discovery, exact Agent Card URI preservation and immutable snapshot/reference semantics;
-- Agent Card compatibility classification and twelve additional registry-assurance vectors;
-- an executable 15-minute path from clone to a resolved governed agent;
-- a canonical sample registry, pilot kit and machine-readable readiness evidence;
-- stable Candidate Specification requirements and conformance targets;
-- hardened authority, delegation, recognition and fail-closed lifecycle semantics;
-- two independently structured projection implementations with disclosed limits;
-- network-boundary discovery and durable event replay, deduplication and acknowledgement tests;
-- production-oriented proof, key and policy integration boundaries;
-- machine-readable compatibility, requirement and evidence artifacts;
-- an informative ARPA–TRQP governed query-projection profile with architecture guidance, mappings and 13 positive/negative vectors;
-- flagship documentation, CI, GitHub Pages, contribution controls and AI-use governance.
-
-## IETF Internet-Draft track
-
-ARPA maintains a deliberately separate IETF authoring surface for the interoperable protocol core. The current published revision is **`draft-sankarshan-agent-registry-protocol-04`**, published on **29 September 2026** as an **Individual Submission**, with **56 pages**. Published IETF revisions are immutable and are not renumbered when the ARPA Candidate baseline advances.
-
-- [Published Internet-Draft](https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/)
-- [IETF archive text for `-04`](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-04.txt)
-- [HTMLized `-04`](https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol)
-- [IETF authoring and publication record]({{ '/ietf/' | relative_url }})
-- [Protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
-
-**Candidate v0.10.0 remains the current ARPA normative project baseline. IETF revision `-04` is the current published protocol-core extraction.** Revision `-04` incorporates explicitly governed protocol-core propositions from Candidate v0.10.0 and PP-04; it does not turn project-only governance, conformance, deployment or assurance material into IETF protocol requirements. Published revisions `-00` through `-03` remain immutable historical predecessors, and any future IETF revision must begin as an explicit governed delta against published `-04`.
-
-Build and validate the current IETF authoring/reproduction path with `make ietf-setup` followed by `make ietf-check`. Candidate authority and IETF publication authority remain deliberately distinct.
-
 ## Start here
-
-- [Authority at commitment projection](docs/authority-at-commitment.md) — action-specific authority, exact-action approval and fail-safe evidence boundaries
 
 Choose the path that matches the decision you need to make:
 
+- [Agent Governance Lab](docs/agent-governance-lab.md) — why this repository is broader than a protocol specification.
+- [Research Agenda](docs/research-agenda.md) — open questions and near-term research increments.
+- [Start Here](docs/start-here.md) — decision-oriented navigation through ARPA.
 - [Understand ARPA](docs/understand.md) — concepts, modules and non-implication rules.
 - [Build ARPA](docs/build.md) — implementation paths, machine-readable artifacts and developer quickstarts.
 - [Assure & Conform](docs/assure.md) — profiles, release gates and evidence.
@@ -124,7 +58,60 @@ Choose the path that matches the decision you need to make:
 - [Integrate & Interoperate](docs/integrate.md) — A2A, TRQP and cross-runtime integration.
 - [Govern & Contribute](docs/govern.md) — change control, releases and repository governance.
 
-Use [Start Here](docs/start-here.md) for the decision router or the [documentation catalogue](docs/index.md) for the complete rendered surface.
+Use the [documentation catalogue](docs/index.md) for the complete rendered surface.
+
+## Lab orientation
+
+The lab framing is intentionally concrete. Research questions should become one or more of:
+
+- testable requirements;
+- negative vectors;
+- implementation reports;
+- architecture decision records;
+- interoperability profiles;
+- pilot-readiness evidence;
+- governance, security or privacy notes.
+
+The repository currently includes:
+
+- [Agent governance reference architecture](docs/architecture/agent-governance-reference-architecture.md);
+- [Lab experiments catalogue](docs/experiments/README.md);
+- [Independent implementation guide](docs/independent-implementation-guide.md);
+- [Lab interoperability programme](docs/interop/lab-interoperability-programme.md);
+- [Lab contribution pathways](docs/lab-contribution-pathways.md);
+- [ADR-001: Agent registry as governance control plane](docs/adr/ADR-001-agent-registry-as-governance-control-plane.md);
+- [Registry federation research note](docs/research/registry-federation.md).
+
+## What v0.9.5 delivers
+
+- an independent TypeScript v0.3.0 implementation track over shared normative artifacts;
+- Python↔TypeScript deterministic, historical and network interoperability checks;
+- A2A publication/compatibility adapters with explicit discovery-is-not-authority semantics;
+- deterministic historical authority resolution separating requested-time state from current state;
+- explicit reconstruction quality, selected-record provenance, later material events, historical-effect and retention semantics;
+- governance/privacy assurance vectors covering administrative capture, revocation convergence, federation conflict, restricted discovery and compromise restoration;
+- a canonical sample registry, pilot kit and machine-readable readiness evidence;
+- stable Candidate Specification requirements and conformance targets;
+- hardened authority, delegation, recognition and fail-closed lifecycle semantics;
+- machine-readable compatibility, requirement and evidence artifacts;
+- an informative ARPA–TRQP governed query-projection profile;
+- flagship documentation, CI, GitHub Pages, contribution controls and AI-use governance.
+
+The repository-owned TypeScript track improves implementation diversity, but it is not external organizational independence evidence. See the [Independent implementation guide](docs/independent-implementation-guide.md) and [Lab interoperability programme](docs/interop/lab-interoperability-programme.md) for how external evidence should be collected.
+
+## IETF Internet-Draft track
+
+ARPA maintains a deliberately separate IETF authoring surface for the interoperable protocol core. The current published revision is **`draft-sankarshan-agent-registry-protocol-04`**, published on **29 September 2026** as an **Individual Submission**, with **56 pages**.
+
+- [Published Internet-Draft](https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/)
+- [IETF archive text for `-04`](https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-04.txt)
+- [HTMLized `-04`](https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol)
+- [IETF authoring and publication record]({{ '/ietf/' | relative_url }})
+- [Protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
+
+**Candidate v0.10.0 remains the current ARPA normative project baseline. IETF revision `-04` is the current published protocol-core extraction.** Published revisions `-00` through `-03` remain immutable historical predecessors, and any future IETF revision must begin as an explicit governed delta against published `-04`.
+
+Build and validate the current IETF authoring/reproduction path with `make ietf-setup` followed by `make ietf-check`. Candidate authority and IETF publication authority remain deliberately distinct.
 
 ## Validate and produce evidence
 
@@ -133,25 +120,32 @@ make setup
 make release-check-all
 ```
 
-The full gate validates the Python release surface, TypeScript conformance and historical semantics, A2A adapters, same-corpus Python↔TypeScript equivalence, loopback HTTP network interoperability, Candidate hardening requirements, PP-01 cross-artifact precision, and adversarial vector structure.
+The full gate validates the Python release surface, TypeScript conformance and historical semantics, A2A adapters, same-corpus Python↔TypeScript equivalence, loopback HTTP network interoperability, Candidate hardening requirements, PP-01 cross-artifact precision and adversarial vector structure.
 
-## TypeScript and cross-runtime assurance
+## ARPA and adjacent systems
 
-The [TypeScript implementation](docs/typescript-implementation.md) independently implements the supported ARPA semantics, exposes a development HTTP/client surface, and emits deterministic, historical, A2A and network interoperability evidence. Repository-owned implementation diversity improves pre-v1.0 assurance but does not substitute for externally operated independent implementation evidence.
+ARPA owns the authority, lifecycle, evidence, revocation, enforcement and federation control-plane semantics for governed agent registries. It is designed to compose with adjacent systems without absorbing them:
 
-## ARPA and TRQP
+| Adjacent layer | Relationship |
+|---|---|
+| DID / identifier infrastructure | Provides identifier and resolution substrate where appropriate |
+| Verifiable credentials | Provides assertions that may inform authority, delegation or competence |
+| Trust registries | Provide recognition and competence inputs; ARPA does not replace them |
+| A2A-style agent ecosystems | Provide publication and discovery contexts that require authority boundaries |
+| TRQP | Can expose selected registry state through a read-only governed projection |
+| Assurance systems | Can consume ARPA evidence without treating ARPA as certification |
 
-ARPA owns the authority, lifecycle, evidence, revocation, enforcement and federation control plane. TRQP is treated as an external, minimal read-only query interface. The optional v0.9.0 projection demonstrates how selected ARPA authorization and recognition state can be exposed without merging the protocols or implying cross-protocol conformance.
+## Public specification and lab review
 
-## Public specification review
+The ARPA Candidate Specification and the surrounding lab material are open for review. Readers, implementers, standards practitioners, security and privacy reviewers, governance practitioners and other interested parties can use the repository's issue forms to report ambiguities, implementation experience, authority concerns, interoperability gaps, lifecycle problems, security/privacy risks, conformance issues, missing cases or editorial improvements.
 
-The ARPA Candidate Specification is open for public review. Readers, implementers, standards practitioners, security and privacy reviewers, and other interested parties can use the repository's **Specification feedback** issue form to report ambiguities, governance or authority concerns, interoperability gaps, lifecycle problems, security/privacy risks, conformance issues, missing cases, or editorial improvements.
-
-[Open a specification feedback issue](https://github.com/qbf-consulting/agent-registry-protocol/issues/new?template=specification_feedback.yml) or see [CONTRIBUTING.md](CONTRIBUTING.md) for review and contribution expectations.
+- [Open a specification feedback issue](https://github.com/qbf-consulting/agent-registry-protocol/issues/new?template=specification_feedback.yml)
+- [Open an implementation report](https://github.com/qbf-consulting/agent-registry-protocol/issues/new?template=implementation_report.yml)
+- See [CONTRIBUTING.md](CONTRIBUTING.md) for review and contribution expectations.
 
 ## Licensing
 
-ARPA uses **artifact-specific licensing** so that specification content and executable implementation artifacts have licenses suited to their use:
+ARPA uses artifact-specific licensing so that specification content and executable implementation artifacts have licenses suited to their use:
 
 - **Specification and human-readable content:** [CC BY 4.0](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/LICENSE-CONTENT)
 - **Code and executable/machine-readable artifacts:** [Apache License 2.0](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/LICENSE-CODE)
