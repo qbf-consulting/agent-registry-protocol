@@ -20,11 +20,17 @@ This catalogue provides a stable GitHub Pages entry point for the complete norma
 - [Research Agenda](research-agenda.md)
 - [Agent governance reference architecture](architecture/agent-governance-reference-architecture.md)
 - [Lab Experiments](experiments/README.md)
+- [EXP-001: Federated registry conflict](experiments/EXP-001-federated-registry-conflict.md)
 - [Independent Implementation Guide](independent-implementation-guide.md)
 - [Lab Interoperability Programme](interop/lab-interoperability-programme.md)
 - [Lab Contribution Pathways](lab-contribution-pathways.md)
 - [ADR-001: Agent registry as governance control plane](adr/ADR-001-agent-registry-as-governance-control-plane.md)
+- [ADR-002: Identity does not imply authority](adr/ADR-002-identity-does-not-imply-authority.md)
+- [ADR-003: Historical reconstruction is evidence-bound](adr/ADR-003-historical-reconstruction-is-evidence-bound.md)
+- [ADR-004: Federation does not imply transitive trust](adr/ADR-004-federation-does-not-imply-transitive-trust.md)
 - [Registry federation research note](research/registry-federation.md)
+- [Delegated authority research note](research/delegated-authority.md)
+- [Historical reconstruction research note](research/historical-reconstruction.md)
 
 ## IETF standards track preparation
 
