@@ -10,18 +10,28 @@ document_status: informative
 
 # Agent Registry Protocol documentation
 
-This catalogue provides a stable GitHub Pages entry point for the complete normative specification, implementation guidance, governance material, conformance profiles, interoperability artefacts, and worked scenarios maintained in this repository.
+This catalogue provides a stable GitHub Pages entry point for the complete normative specification, implementation guidance, governance material, conformance profiles, interoperability artefacts, lab research programme, and worked scenarios maintained in this repository.
 
-> New to ARPA? Use [Start Here](start-here.md). This page is the exhaustive catalogue; the six journey pages provide the preferred reading order.
+> New to ARPA? Use [Start Here](start-here.md). This page is the exhaustive catalogue; the journey pages provide the preferred reading order.
+
+## Agent Governance Lab
+
+- [Agent Governance Lab](agent-governance-lab.md)
+- [Research Agenda](research-agenda.md)
+- [Agent governance reference architecture](architecture/agent-governance-reference-architecture.md)
+- [Lab Experiments](experiments/README.md)
+- [Independent Implementation Guide](independent-implementation-guide.md)
+- [Lab Interoperability Programme](interop/lab-interoperability-programme.md)
+- [Lab Contribution Pathways](lab-contribution-pathways.md)
+- [ADR-001: Agent registry as governance control plane](adr/ADR-001-agent-registry-as-governance-control-plane.md)
+- [Registry federation research note](research/registry-federation.md)
 
 ## IETF standards track preparation
 
 - [IETF Internet-Draft authoring track]({{ '/ietf/' | relative_url }})
 - [ARPA → IETF protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
-- [Published `draft-sankarshan-agent-registry-protocol-02` baseline](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/REVISION_02_BASELINE.md)
-- [Future `-03` planning and proposition dispositions](https://github.com/qbf-consulting/agent-registry-protocol/issues/47)
 
-The IETF track is an independently versioned protocol-extraction and publication surface. Published `-02` is the immutable IETF comparison baseline; Candidate v0.10.0 is the current ARPA source baseline for any future `-03` proposition. The IETF track does not replace the project Candidate Specification.
+The IETF track is an independently versioned protocol-extraction and publication surface. Published `draft-sankarshan-agent-registry-protocol-04` is the current immutable IETF comparison baseline; Candidate v0.10.0 is the current ARPA source baseline for future protocol-core propositions. The IETF track does not replace the project Candidate Specification.
 
 ## Document status
 
@@ -29,7 +39,7 @@ The IETF track is an independently versioned protocol-extraction and publication
 |---|---|
 | **Normative** | Defines core requirements against which conformance may be claimed. |
 | **Profile normative** | Defines additional requirements applicable only when the optional profile is claimed. |
-| **Informative** | Explains architecture, implementation, deployment, evidence or examples without changing normative requirements. |
+| **Informative** | Explains architecture, implementation, deployment, evidence, research or examples without changing normative requirements. |
 
 ARPA v0.9.5 is the current implementation and cross-runtime interoperability release; v0.9.4 remains the historical-resolution baseline consumed by the TypeScript track. The ARPA Candidate v0.10.0 consolidated specification is the normative protocol baseline.
 
@@ -49,9 +59,10 @@ See [Protocol modules](protocol-modules.md) for the dependency table, profile ma
 
 ## Choose an implementation path
 
-- [Start Here](start-here.md) — compare architecture, local validation, pilot, release, conformance and A2A journeys.
+- [Start Here](start-here.md) — compare lab, architecture, local validation, pilot, release, conformance and A2A journeys.
 - [Implementation Accelerator](implementation-accelerator/index.md) — run a pilot and produce readiness evidence.
 - [Conformance Guide](conformance-guide.md) — assemble profile declarations, reports and retained evidence.
+- [Independent Implementation Guide](independent-implementation-guide.md) — report external or independently operated implementation evidence.
 
 ## Normative specification and profiles
 
@@ -140,6 +151,7 @@ See [Protocol modules](protocol-modules.md) for the dependency table, profile ma
 - [A2A v1.0 interoperability profile](../spec/profiles/arpa-a2a-v1.0-interoperability-profile.md)
 - [A2A Agent Card integration guide](agent-card-integration-guide.md)
 - [Interoperability guide](interoperability.md)
+- [Lab Interoperability Programme](interop/lab-interoperability-programme.md)
 - [Interoperability tooling](../interop/README.md)
 - [Reference implementation](../reference/README.md)
 - [Independent implementation](../independent_impl/README.md)
@@ -185,7 +197,6 @@ See [Protocol modules](protocol-modules.md) for the dependency table, profile ma
 ## Publication assurance
 
 - [GitHub Pages publication assurance](PUBLICATION_ASSURANCE.md)
-
 
 ## v0.9.3 A2A registry convergence
 
