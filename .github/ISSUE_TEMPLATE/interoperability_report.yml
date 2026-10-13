@@ -1,0 +1,62 @@
+name: Interoperability report
+description: Report interoperability observations, evidence, deviations, and unresolved questions.
+title: "[Interop] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to report interoperability evidence or observations. A report is not a certification claim unless separately reviewed and accepted under the repository's governance process.
+  - type: input
+    id: implementation
+    attributes:
+      label: Implementation or system under review
+      description: Name the implementation, deployment, profile, adapter, or external system.
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Scenario
+      description: Describe the interoperability path, protocol boundary, integration point, or workflow tested.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Link or describe logs, fixtures, reports, receipts, conformance declarations, or reproducible commands.
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: Results and deviations
+      description: State what worked, what diverged, what failed, and what remains indeterminate.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Boundaries and independence
+      description: Disclose whether the evidence is self-reported, repository-owned, external, independently operated, or independently reviewed.
+    validations:
+      required: true
+  - type: textarea
+    id: followup
+    attributes:
+      label: Requested follow-up
+      description: Describe whether this should become a documentation update, conformance vector, experiment, bug report, or specification feedback item.
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: This report does not claim certification unless explicitly reviewed and accepted.
+          required: true
+        - label: Evidence limitations and independence boundaries are disclosed.
+          required: true
+        - label: Any proposed normative change will be handled separately.
+          required: true

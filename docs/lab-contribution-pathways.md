@@ -10,14 +10,17 @@ permalink: /docs/lab-contribution-pathways/
 
 The ARPA lab accepts more than code patches. Agent governance needs evidence from implementers, operators, reviewers, policy practitioners, security reviewers and affected communities.
 
+This document complements ARPA's existing protocol specification, IETF submission, implementation, conformance, governance and release material. It does not create a separate governance process and it does not change normative protocol requirements.
+
 ## Contribution types
 
 | Contribution | Useful output |
 |---|---|
 | Specification feedback | Ambiguity report, missing requirement, unsafe implication, terminology issue |
+| Research question | Bounded question that may become a note, ADR, experiment or later proposal |
 | Implementation report | Evidence from a repository-owned, external or independently operated implementation |
-| Experiment result | Hypothesis, setup, observations, negative results and retained evidence |
-| Interoperability profile | Boundary mapping to another protocol or ecosystem |
+| Experiment proposal or result | Hypothesis, setup, observations, negative results and retained evidence |
+| Interoperability report | Boundary mapping, implementation evidence, deviations and unresolved questions |
 | Conformance vector | Positive or negative machine-checkable case |
 | Deployment report | Pilot topology, operational assumptions and failure modes |
 | Threat model | Attack path, control gap or adversarial test case |
@@ -52,7 +55,19 @@ A strong contribution states:
 | Ambiguity or defect in protocol text | Specification feedback |
 | External implementation evidence | Implementation report |
 | Runtime or tool failure | Bug report |
-| Larger research or experiment idea | Discussion issue or implementation report with experiment label |
+| Bounded research question | Research question |
+| Proposed lab-track experiment | Experiment proposal |
+| Cross-runtime, cross-registry, adapter or external-system evidence | Interoperability report |
+
+## New intake templates
+
+This repository provides structured issue forms for lab-track inputs:
+
+- **Research question** — for bounded investigative questions that may lead to a note, ADR, experiment or later proposal.
+- **Experiment proposal** — for hypotheses with setup, evidence, outcome criteria and promotion path.
+- **Interoperability report** — for evidence from adapters, external implementations, profiles, projections or protocol-boundary tests.
+
+These templates are intentionally scoped. Submitting one does not create a normative change, certification claim, or accepted conformance result.
 
 ## Review principles
 
@@ -68,3 +83,8 @@ Contributions should be reviewed against these principles:
 ## Community posture
 
 The lab is useful only if it becomes legible to people outside the original authoring context. Contributions that improve external readability, reproducibility and implementability are high-value even when they do not add new protocol features.
+
+## Related issues
+
+- Closes #78 when merged.
+- Supports #79.

@@ -1,0 +1,57 @@
+name: Research question
+description: Propose or refine an informative ARPA research question without changing normative protocol text.
+title: "[Research] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for bounded research questions that support ARPA's protocol, implementation, conformance, governance, or interoperability work. This form does not create normative requirements.
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+      description: State the question in one or two precise sentences.
+      placeholder: What should ARPA investigate, clarify, or test?
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Boundary and non-goals
+      description: State what this question does not attempt to change or decide.
+      placeholder: This does not modify the Candidate Specification, IETF draft, schemas, or conformance profiles.
+    validations:
+      required: true
+  - type: textarea
+    id: affected
+    attributes:
+      label: Affected artifacts
+      description: List relevant docs, modules, profiles, examples, conformance assets, or implementation surfaces.
+    validations:
+      required: false
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Existing evidence or examples
+      description: Provide links, examples, implementation observations, failure modes, or prior discussions.
+    validations:
+      required: false
+  - type: textarea
+    id: expected-output
+    attributes:
+      label: Expected output
+      description: Describe whether the result should be a research note, ADR, experiment, guide update, issue disposition, or future proposal.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: This submission is informative unless later promoted through a governed process.
+          required: true
+        - label: This submission does not directly modify normative protocol requirements.
+          required: true
+        - label: Any independence, certification, or assurance claims are explicitly scoped.
+          required: true

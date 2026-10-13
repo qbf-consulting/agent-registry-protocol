@@ -1,0 +1,63 @@
+name: Experiment proposal
+description: Propose a bounded ARPA experiment with hypothesis, setup, evidence, and non-goals.
+title: "[Experiment] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for proposed lab-track experiments. Experiments are informative unless later promoted through a governed specification, profile, conformance, or documentation change.
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis
+      description: State the claim being tested.
+      placeholder: We expect that...
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Setup
+      description: Describe required registries, agents, records, policies, keys, fixtures, or workflows.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence to retain
+      description: List expected outputs such as receipts, logs, fixtures, vectors, reports, or observations.
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: Success, failure, and indeterminate criteria
+      description: Define how the experiment should classify outcomes.
+    validations:
+      required: true
+  - type: textarea
+    id: promotion
+    attributes:
+      label: Promotion path
+      description: Explain how useful results could later become documentation, implementation guidance, conformance vectors, or specification proposals.
+    validations:
+      required: false
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-goals
+      description: State what this experiment will not claim or decide.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: This experiment does not itself create normative requirements.
+          required: true
+        - label: This experiment does not claim external certification or production assurance.
+          required: true
+        - label: Any later promotion will require a separate governed change.
+          required: true
