@@ -15,7 +15,7 @@ errors = []
 required_current = {
     "docs/start-here.md": [
         "Candidate Specification v0.10.0",
-        "draft-sankarshan-agent-registry-protocol-02",
+        "draft-sankarshan-agent-registry-protocol-04",
         "Current implementation release line",
     ],
     "docs/understand.md": [
@@ -23,7 +23,7 @@ required_current = {
     ],
     "docs/index.md": [
         "Candidate v0.10.0",
-        "draft-sankarshan-agent-registry-protocol-02",
+        "draft-sankarshan-agent-registry-protocol-04",
     ],
 }
 
