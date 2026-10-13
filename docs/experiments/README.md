@@ -25,11 +25,13 @@ Each experiment should define:
 
 ## Candidate experiments
 
-### EXP-001 — Federated registry conflict
+### [EXP-001 — Federated registry conflict](EXP-001-federated-registry-conflict.md)
 
 **Hypothesis:** two registries can exchange or project agent state without implying that the receiving registry accepts the source registry's authority for every relying context.
 
 **Evidence target:** conflict matrix, competence-preservation rules, example federation records, negative vectors.
+
+Status: designed as a concrete experiment packet.
 
 ### EXP-002 — Delegated authority separation
 
@@ -87,3 +89,7 @@ Each experiment should define:
 ## Promotion discipline
 
 An experiment should be promoted only when the evidence clarifies behavior that implementers, operators or reviewers can act on. Negative results are acceptable and should be retained where they prevent over-design or unsafe assumptions.
+
+## Related issues
+
+- Supports #76 and #79.
