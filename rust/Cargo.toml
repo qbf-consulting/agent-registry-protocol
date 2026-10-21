@@ -1,0 +1,15 @@
+[package]
+name = "arpa-rust-identifier-resolution"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Bounded ARPA Profile A identifier-resolution interoperability experiment"
+license = "Apache-2.0"
+
+[lib]
+name = "arpa_rust_identifier_resolution"
+path = "src/lib.rs"
+
+[[bin]]
+name = "arpa-rust-identifier-resolution"
+path = "src/main.rs"
