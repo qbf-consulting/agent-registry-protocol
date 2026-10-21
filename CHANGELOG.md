@@ -23,6 +23,12 @@ nav_exclude: true
 
 ## Unreleased
 
+### Rust identifier-resolution interoperability experiment
+- Added a standard-library-only Rust implementation of the existing Profile A identifier-resolution contract.
+- Reused `TV-A-01..03` across Python, TypeScript, and Rust and extended cross-runtime evidence without changing normative protocol semantics.
+- Added CI-generated machine-readable Rust evidence and explicit `not_in_experiment_scope` treatment for unsupported Rust checks.
+- Recorded the disposition as a bounded informative example, not a Python migration, general Rust SDK, external independence claim, or release trigger.
+
 ### IETF publication-path hardening
 - Corrected the IETF landing-page navigation to use Jekyll `relative_url` semantics, preventing nested-page links from resolving under `/docs/ietf/`.
 - Kept repository-only IETF authoring guidance linked to its GitHub source rather than to a non-rendered `README.html`.
