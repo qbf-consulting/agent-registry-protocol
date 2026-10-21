@@ -1,4 +1,4 @@
-.PHONY: pilot-up pilot-down pilot-seed pilot-check pilot-reset setup validate test interop candidate run report external-interop-check typescript-check cross-runtime network-interop ietf-setup ietf-repo-check ietf-build ietf-lint ietf-check pages-manifest pages-build pages-stage-ietf pages-validate docs-links pages-check release-check release-check-all package clean
+.PHONY: pilot-up pilot-down pilot-seed pilot-check pilot-reset setup validate test interop candidate run report external-interop-check typescript-check rust-check cross-runtime network-interop ietf-setup ietf-repo-check ietf-build ietf-lint ietf-check pages-manifest pages-build pages-stage-ietf pages-validate docs-links pages-check release-check release-check-all package clean
 setup:
 	python3 -m pip install -r scripts/requirements.txt
 validate:
@@ -43,6 +43,9 @@ external-interop-check:
 
 typescript-check:
 	cd typescript && (if [ -x node_modules/.bin/tsc ] || command -v tsc >/dev/null 2>&1; then npm run release-check; else npm install --ignore-scripts --no-audit --no-fund && npm run release-check; fi)
+
+rust-check:
+	python3 scripts/run_rust_conformance.py
 
 cross-runtime:
 	python3 scripts/validate_typescript_interoperability.py
@@ -101,10 +104,10 @@ docs-links: pages-stage-ietf
 	python3 scripts/validate_docs_links.py --baseurl "/agent-registry-protocol"
 pages-check: pages-validate docs-links
 release-check: validate test interop candidate report
-release-check-all: release-check typescript-check cross-runtime network-interop
+release-check-all: release-check typescript-check rust-check cross-runtime network-interop
 package: release-check-all
 clean:
-	rm -rf .pytest_cache __pycache__ reference/__pycache__ scripts/__pycache__ independent_impl/__pycache__ typescript/dist typescript/node_modules
+	rm -rf .pytest_cache __pycache__ reference/__pycache__ scripts/__pycache__ independent_impl/__pycache__ typescript/dist typescript/node_modules rust/target
 	rm -f ietf/generated/*.xml ietf/generated/*.txt ietf/generated/*.html ietf/generated/*.pdf
 
 

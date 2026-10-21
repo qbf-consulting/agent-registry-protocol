@@ -20,6 +20,7 @@ This is the primary developer journey. Start with the smallest executable surfac
 | Choose an implementation shape | [Implementation selection guide](implementation-selection-guide.md) | Explicit supported modules/profiles |
 | Implement from the specification | [Implementor guide](implementor-guide.md) | Protocol-conformant behaviour |
 | Use TypeScript/Node.js | [TypeScript implementation](typescript-implementation.md) | TypeScript conformance and interoperability evidence |
+| Inspect the bounded Rust experiment | [Rust identifier-resolution experiment](rust-implementation-experiment.md) | Profile A cross-runtime evidence, not a general Rust SDK |
 | Understand the supplied Python service | [Reference implementation architecture](reference-implementation-architecture.md) | Reference service understanding, not normative behaviour |
 
 ## Machine-readable sources developers should prefer
@@ -47,6 +48,20 @@ npm run network-server
 ```
 
 The TypeScript implementation is deliberately repository-artifact driven and behaviourally independent from the Python reference implementation.
+
+## Rust experiment path
+
+The repository also contains a deliberately bounded Rust implementation of
+Profile A identifier resolution:
+
+```bash
+make rust-check
+make cross-runtime
+```
+
+It exists to pressure-test a stable shared contract across a third runtime. It
+is not a replacement for Python or TypeScript and does not establish a general
+Rust implementation commitment. See the [experiment disposition](rust-implementation-experiment.md).
 
 ## Next
 

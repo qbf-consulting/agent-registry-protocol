@@ -47,7 +47,8 @@
         "tests/**",
         "independent_impl/**",
         "interop/**",
-        "typescript/**"
+        "typescript/**",
+        "rust/**"
       ],
       "license": "Apache-2.0"
     },

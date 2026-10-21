@@ -26,7 +26,9 @@ jobs:
           node-version: "22"
       - name: Run independent TypeScript implementation checks
         run: make typescript-check
-      - name: Compare Python and TypeScript conformance outcomes
+      - name: Run bounded Rust identifier-resolution checks
+        run: make rust-check
+      - name: Compare cross-runtime conformance outcomes
         run: make cross-runtime
       - name: Run Python-TypeScript network interoperability
         run: make network-interop
@@ -38,6 +40,7 @@ jobs:
             artifacts/interoperability/
             conformance/reports/reference-implementation-report.json
             artifacts/typescript/
+            artifacts/rust/
   pages:
     runs-on: ubuntu-latest
     steps:
