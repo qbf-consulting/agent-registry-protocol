@@ -6,21 +6,21 @@ This directory is the IETF authoring surface for the **Agent Registry Protocol**
 
 The current published Internet-Draft baseline is:
 
-- Current revision: `draft-sankarshan-agent-registry-protocol-03`
-- Published: 28 September 2026
+- Current revision: `draft-sankarshan-agent-registry-protocol-04`
+- Published: 29 September 2026
 - Title: *Agent Registry Protocol*
 - Group: Individual Submission
-- Pages: 44
+- Pages: 56
 - Datatracker: <https://datatracker.ietf.org/doc/draft-sankarshan-agent-registry-protocol/>
-- Archived text: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-03.txt>
+- Archived text: <https://www.ietf.org/archive/id/draft-sankarshan-agent-registry-protocol-04.txt>
 - HTMLized: <https://datatracker.ietf.org/doc/html/draft-sankarshan-agent-registry-protocol>
-- Diff from `-02`: <https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-03>
+- Diff through `-04`: <https://author-tools.ietf.org/iddiff?url2=draft-sankarshan-agent-registry-protocol-04>
 
-Published `-00`, `-01`, and `-02` remain immutable historical revisions. The IETF revision series is independent of ARPA Candidate/implementation semantic versions. Future protocol changes must be evaluated as an explicit delta from published `-03`.
+Published `-00` through `-03` remain immutable historical revisions. The IETF revision series is independent of ARPA Candidate/implementation semantic versions. Future protocol changes must be evaluated as an explicit delta from published `-04`.
 
 ## Authority and scope
 
-ARPA Candidate v0.10.0 is the current normative project baseline. The Internet-Draft extracts only interoperable protocol-core semantics, and published `-03` is the current immutable IETF baseline.
+ARPA Candidate v0.10.0 is the current normative project baseline. The Internet-Draft extracts only interoperable protocol-core semantics, and published `-04` is the current immutable IETF baseline.
 
 Current IETF-core topics include:
 
@@ -53,9 +53,10 @@ Historical revision evidence is recorded in:
 - `SUBMISSION_PACKAGE.md` and `SUBMISSION_CHECKLIST.md` for `-00`;
 - `REVISION_01_BASELINE.md`, `spec-delta-v01.yaml`, `REVISION_01_CHECKLIST.md`, and `SUBMISSION_PACKAGE_01.md` for `-01`;
 - `REVISION_02_BASELINE.md`, `spec-delta-v02.yaml`, `REVISION_02_CHECKLIST.md`, and `SUBMISSION_PACKAGE_02.md` for `-02`; and
-- `REVISION_03_BASELINE.md`, `spec-delta-v03.yaml`, `REVISION_03_CHECKLIST.md`, and `SUBMISSION_PACKAGE_03.md` for `-03`.
+- `REVISION_03_BASELINE.md`, `spec-delta-v03.yaml`, `REVISION_03_CHECKLIST.md`, and `SUBMISSION_PACKAGE_03.md` for `-03`; and
+- `REVISION_04_BASELINE.md`, `spec-delta-v04.yaml`, `REVISION_04_CHECKLIST.md`, `SUBMISSION_PACKAGE_04.md`, and `conformance-matrix-v04.json` for `-04`.
 
-For future work, **published `-03` is the IETF comparison baseline while Candidate v0.10.0 is the current ARPA source baseline**. No Candidate clause enters a later Internet-Draft without explicit IETF delta disposition.
+For future work, **published `-04` is the IETF comparison baseline while Candidate v0.10.0 is the current ARPA source baseline**. No Candidate clause enters a later Internet-Draft without explicit IETF delta disposition.
 
 ## IETF authoring and build
 
@@ -65,7 +66,8 @@ The current build consumes:
 - `ietf/fragments/adversarial-hardening.md`;
 - `ietf/fragments/protocol-precision.md`;
 - `ietf/fragments/authority-commitment.md`;
-- `ietf/fragments/revision-03.md`; and
+- `ietf/fragments/revision-03.md`;
+- `ietf/fragments/revision-04.md`; and
 - `scripts/build_ietf_draft.sh`.
 
 Install dependencies with:
@@ -82,18 +84,22 @@ make ietf-check
 
 The current generated outputs are:
 
-- `draft-sankarshan-agent-registry-protocol-03.xml`
-- `draft-sankarshan-agent-registry-protocol-03.txt`
-- `draft-sankarshan-agent-registry-protocol-03.html`
+- `draft-sankarshan-agent-registry-protocol-04.xml`
+- `draft-sankarshan-agent-registry-protocol-04.txt`
+- `draft-sankarshan-agent-registry-protocol-04.html`
 
 Generated files remain derivative artifacts and are excluded from Git as independent normative state.
 
 ## Publication evidence
 
-Revision `-03` is the current published baseline. Its governed build state, artifact digests, manual review, and canonical IETF publication references are recorded in `SUBMISSION_PACKAGE_03.md`.
+Revision `-04` is the current published baseline. Its governed build state, artifact digests, manual review, and canonical IETF publication references are recorded in `SUBMISSION_PACKAGE_04.md`.
 
-Revision `-02` remains preserved in `SUBMISSION_PACKAGE_02.md`; earlier evidence remains in the corresponding historical submission packages/checklists.
+Revisions `-00` through `-03` remain preserved in their corresponding historical submission packages/checklists.
 
 ## Submission discipline
 
-Every future revision must repeat the governed baseline/delta, implementation evidence where normative promotion is proposed, rendered-artifact review, IETF submission validation, and publication closeout process. Published `-03` must not be treated as a moving document.
+Every future revision must repeat the governed baseline/delta, implementation evidence where normative promotion is proposed, rendered-artifact review, IETF submission validation, and publication closeout process. Published `-04` must not be treated as a moving document.
+
+## Next revision decision
+
+The 25 October 2026 `-05` readiness review found no demonstrated post-`-04` protocol-core delta that warrants a submission. Revision `-04` remains current. See [the revision readiness disposition](REVISION_05_READINESS_REVIEW.md). A later `-05` must start with new, independently reviewable normative or interoperability evidence, not implementation or lab activity alone.
