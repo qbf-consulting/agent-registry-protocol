@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 title: Agent Registry Protocol
 type: software
-version: 0.9.5
+version: 0.10.0
 date-released: 2026-08-10
-message: "Please cite ARPA v0.9.0 as a Candidate Specification."
+message: "Please cite the specific ARPA release or commit consulted; distinguish the implementation release from the status of the specification."
 authors:
   - family-names: Mukhopadhyay
     given-names: Sankarshan
