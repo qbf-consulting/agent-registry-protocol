@@ -61,3 +61,7 @@ Project-only governance, conformance, assurance, deployment, lab and implementat
 - [Protocol extraction map](https://github.com/qbf-consulting/agent-registry-protocol/blob/main/ietf/PROTOCOL_EXTRACTION.md)
 
 Use this path when reviewing ARPA for IETF protocol extraction, revision deltas, IANA requirements, or overlap with adjacent IETF work.
+
+## Operational assurance experiments
+
+The [operational assurance evidence disposition](operational-assurance-disposition.md) explains how the optional observation, dependency and composite reliance test profiles relate to ARPA's authority control plane, and where independent evidence is still missing. It is an informative integration review, not a new protocol baseline.
