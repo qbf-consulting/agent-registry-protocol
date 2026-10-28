@@ -4,6 +4,12 @@ title: "Changelog"
 nav_exclude: true
 ---
 
+## Unreleased
+
+- Add an optional, informative operational-observation evidence profile and schema/fixture validator for #97. Observations remain distinct from authoritative operational status, authorization and assurance. Include Mermaid flow and attempt-state diagrams. No new normative ARPA v0.10.0 requirements.
+
+
+
 # Changelog
 
 ## Candidate v0.10.0 consolidation (unreleased)
