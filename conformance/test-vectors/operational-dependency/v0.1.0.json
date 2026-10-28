@@ -435,6 +435,61 @@
         "evaluated_at": "2026-10-28T12:00:00Z"
       },
       "expected_fields": {}
+    },
+    {
+      "id": "OD-19-snapshot-changed",
+      "expected": "indeterminate",
+      "expected_fields": {
+        "reasons": [
+          "dependency_snapshot_mismatch"
+        ],
+        "authority_implication": false
+      },
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": false
+          }
+        ],
+        "observed_states": {
+          "agentreg:example.org:b": "available"
+        },
+        "expected_snapshot_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "id": "OD-20-snapshot-after-reorder",
+      "expected": "prerequisites_observed",
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": false
+          }
+        ],
+        "observed_states": {
+          "agentreg:example.org:b": "available"
+        }
+      }
+    },
+    {
+      "id": "OD-21-no-critical-dependencies",
+      "expected": "indeterminate",
+      "input": {
+        "dependencies": [],
+        "observed_states": {}
+      }
     }
   ]
 }
