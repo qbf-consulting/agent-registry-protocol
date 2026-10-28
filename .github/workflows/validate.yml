@@ -39,6 +39,8 @@ jobs:
           path: |
             artifacts/interoperability/
             artifacts/operational-reliance/
+            artifacts/operational-assessment/
+            artifacts/operational-dependency/
             conformance/reports/reference-implementation-report.json
             artifacts/typescript/
             artifacts/rust/

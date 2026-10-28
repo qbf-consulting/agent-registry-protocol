@@ -132,7 +132,7 @@ def validate_fixtures():
 
 if __name__ == "__main__":
     cli=argparse.ArgumentParser()
-    cli.add_argument("--output",type=Path)
+    cli.add_argument("--output",type=Path,default=ROOT / "artifacts/operational-assessment/validation-report.json")
     args=cli.parse_args()
     report=validate_fixtures()
     if args.output:

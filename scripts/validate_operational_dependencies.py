@@ -2,6 +2,7 @@
 """Bounded optional dependency evaluation; never determines delegated authority."""
 import json
 import hashlib
+import argparse
 from datetime import datetime
 from pathlib import Path
 from jsonschema import Draft202012Validator, FormatChecker
@@ -96,6 +97,11 @@ def validate():
         results.append({"id":case["id"],"expected":case["expected"],"actual":outcome,"passed":passed})
     return {"passed":bool(results) and all(x["passed"] for x in results),"cases":results,"limitations":["modeled-fixtures","declared-states-not-verified","not-authority-or-lifecycle-evaluation"]}
 if __name__=="__main__":
+    cli=argparse.ArgumentParser()
+    cli.add_argument("--output",type=Path,default=ROOT/"artifacts/operational-dependency/validation-report.json")
+    args=cli.parse_args()
     report=validate()
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    args.output.write_text(json.dumps(report,indent=2,sort_keys=True)+"\n")
     print(json.dumps(report,indent=2))
     raise SystemExit(0 if report["passed"] else 1)
