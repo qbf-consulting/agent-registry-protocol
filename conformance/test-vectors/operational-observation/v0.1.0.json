@@ -1,0 +1,250 @@
+{
+  "profile_version": "0.1.0",
+  "cases": [
+    {
+      "id": "OO-01-valid",
+      "expected": "pass",
+      "observation": {
+        "profile_version": "0.1.0",
+        "observation_id": "obs-01",
+        "subject": {
+          "agent_id": "agentreg:example.org:agent1",
+          "endpoint_id": "ep1",
+          "protocol": "a2a",
+          "protocol_version": "1.0"
+        },
+        "observer": {
+          "identifier": "monitor.example.org",
+          "provenance_class": "independent"
+        },
+        "method": "protocol_probe",
+        "observed_at": "2026-10-28T10:00:00Z",
+        "outcome": "success",
+        "evidence": [
+          {
+            "ref": "https://monitor.example.org/evidence/1",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "limitations": [
+          "protocol_success_is_not_authority"
+        ],
+        "authority_implication": false
+      }
+    },
+    {
+      "id": "OO-02-no-authority",
+      "expected": "fail",
+      "observation": {
+        "profile_version": "0.1.0",
+        "observation_id": "obs-01",
+        "subject": {
+          "agent_id": "agentreg:example.org:agent1",
+          "endpoint_id": "ep1",
+          "protocol": "a2a",
+          "protocol_version": "1.0"
+        },
+        "observer": {
+          "identifier": "monitor.example.org",
+          "provenance_class": "independent"
+        },
+        "method": "protocol_probe",
+        "observed_at": "2026-10-28T10:00:00Z",
+        "outcome": "success",
+        "evidence": [
+          {
+            "ref": "https://monitor.example.org/evidence/1",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "limitations": [
+          "protocol_success_is_not_authority"
+        ],
+        "authority_implication": true
+      }
+    },
+    {
+      "id": "OO-03-not-performed",
+      "expected": "pass",
+      "observation": {
+        "profile_version": "0.1.0",
+        "observation_id": "obs-03",
+        "subject": {
+          "agent_id": "agentreg:example.org:agent1",
+          "endpoint_id": "ep1",
+          "protocol": "a2a",
+          "protocol_version": "1.0"
+        },
+        "observer": {
+          "identifier": "monitor.example.org",
+          "provenance_class": "independent"
+        },
+        "method": "protocol_probe",
+        "observed_at": "2026-10-28T10:00:00Z",
+        "outcome": "not_performed",
+        "evidence": [
+          {
+            "ref": "https://monitor.example.org/evidence/1",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "limitations": [
+          "protocol_success_is_not_authority"
+        ],
+        "authority_implication": false
+      }
+    },
+    {
+      "id": "OO-04-missing-reason",
+      "expected": "fail",
+      "observation": {
+        "profile_version": "0.1.0",
+        "observation_id": "obs-01",
+        "subject": {
+          "agent_id": "agentreg:example.org:agent1",
+          "endpoint_id": "ep1",
+          "protocol": "a2a",
+          "protocol_version": "1.0"
+        },
+        "observer": {
+          "identifier": "monitor.example.org",
+          "provenance_class": "independent"
+        },
+        "method": "protocol_probe",
+        "observed_at": "2026-10-28T10:00:00Z",
+        "outcome": "failure",
+        "evidence": [
+          {
+            "ref": "https://monitor.example.org/evidence/1",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "limitations": [
+          "protocol_success_is_not_authority"
+        ],
+        "authority_implication": false
+      }
+    },
+    {
+      "id": "OO-05-missing-method-reference",
+      "expected": "fail",
+      "observation": {
+        "profile_version": "0.1.0",
+        "observation_id": "obs-01",
+        "subject": {
+          "agent_id": "agentreg:example.org:agent1",
+          "endpoint_id": "ep1",
+          "protocol": "a2a",
+          "protocol_version": "1.0"
+        },
+        "observer": {
+          "identifier": "monitor.example.org",
+          "provenance_class": "independent"
+        },
+        "method": "other_declared_method",
+        "observed_at": "2026-10-28T10:00:00Z",
+        "outcome": "success",
+        "evidence": [
+          {
+            "ref": "https://monitor.example.org/evidence/1",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "limitations": [
+          "protocol_success_is_not_authority"
+        ],
+        "authority_implication": false
+      }
+    },
+    {
+      "id": "OO-06-unrecognized-outcome",
+      "expected": "fail",
+      "observation": {
+        "profile_version": "0.1.0",
+        "observation_id": "obs-01",
+        "subject": {
+          "agent_id": "agentreg:example.org:agent1",
+          "endpoint_id": "ep1",
+          "protocol": "a2a",
+          "protocol_version": "1.0"
+        },
+        "observer": {
+          "identifier": "monitor.example.org",
+          "provenance_class": "independent"
+        },
+        "method": "protocol_probe",
+        "observed_at": "2026-10-28T10:00:00Z",
+        "outcome": "available",
+        "evidence": [
+          {
+            "ref": "https://monitor.example.org/evidence/1",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "limitations": [
+          "protocol_success_is_not_authority"
+        ],
+        "authority_implication": false
+      }
+    },
+    {
+      "id": "OO-07-unbound-subject",
+      "expected": "fail",
+      "observation": {
+        "profile_version": "0.1.0",
+        "observation_id": "obs-01",
+        "subject": {
+          "endpoint_id": "ep1"
+        },
+        "observer": {
+          "identifier": "monitor.example.org",
+          "provenance_class": "independent"
+        },
+        "method": "protocol_probe",
+        "observed_at": "2026-10-28T10:00:00Z",
+        "outcome": "success",
+        "evidence": [
+          {
+            "ref": "https://monitor.example.org/evidence/1",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "limitations": [
+          "protocol_success_is_not_authority"
+        ],
+        "authority_implication": false
+      }
+    },
+    {
+      "id": "OO-08-invalid-digest",
+      "expected": "fail",
+      "observation": {
+        "profile_version": "0.1.0",
+        "observation_id": "obs-01",
+        "subject": {
+          "agent_id": "agentreg:example.org:agent1",
+          "endpoint_id": "ep1",
+          "protocol": "a2a",
+          "protocol_version": "1.0"
+        },
+        "observer": {
+          "identifier": "monitor.example.org",
+          "provenance_class": "independent"
+        },
+        "method": "protocol_probe",
+        "observed_at": "2026-10-28T10:00:00Z",
+        "outcome": "success",
+        "evidence": [
+          {
+            "ref": "https://example.org/evidence",
+            "digest": "sha256:broken"
+          }
+        ],
+        "limitations": [
+          "protocol_success_is_not_authority"
+        ],
+        "authority_implication": false
+      }
+    }
+  ]
+}
