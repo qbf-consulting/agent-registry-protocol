@@ -82,6 +82,9 @@ sequenceDiagram
  Note over E,RP: Neither digest nor readiness implies delegated authority
 ```
 
+
+A changed snapshot is detectable only when the expected digest has been obtained from a trusted current resolution context. A digest produced solely by the same untrusted source as the supplied declarations cannot independently establish freshness or provenance; relying implementations must preserve the verification result separately.
+
 ## Boundaries
 
 A reported `available` state is merely an evaluator input; the modeled fixture set does not authenticate its source or determine whether it is fresh. `prerequisites_observed` is therefore not a current-readiness guarantee, and the absence of declared critical dependencies does not certify an agent's operational health.
