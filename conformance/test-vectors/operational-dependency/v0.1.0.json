@@ -490,6 +490,57 @@
         "dependencies": [],
         "observed_states": {}
       }
+    },
+    {
+      "id": "OD-22-foreign-claim-not-implicit-recognition",
+      "expected": "indeterminate",
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": false,
+            "registry_context": {
+              "source_registry": "foreign.example",
+              "recognized": false,
+              "provenance_ref": "urn:example:attestation"
+            }
+          }
+        ],
+        "observed_states": {
+          "agentreg:example.org:b": "available"
+        }
+      },
+      "expected_fields": {
+        "authority_implication": false,
+        "reasons": [
+          "dep-1"
+        ]
+      }
+    },
+    {
+      "id": "OD-23-dependency-authority-laundering-rejected",
+      "expected": "error",
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": true
+          }
+        ],
+        "observed_states": {
+          "agentreg:example.org:b": "available"
+        }
+      }
     }
   ]
 }
