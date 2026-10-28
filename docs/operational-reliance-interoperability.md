@@ -63,3 +63,15 @@ The optional schema `schemas/operational-reliance-result.schema.json` and test e
 ## Evidence report
 
 The validator writes a deterministic machine-readable report containing individual modeled scenario IDs, expected outcomes, observed outcomes, pass/fail results and explicit evidence limitations. Re-running against the same fixtures produces equivalent content. A PASS describes repository-owned modeled fixture evaluation, not cryptographic verification, actual enforcement or independent cross-runtime interoperability. The report is an implementation-test artifact and does not bind a production execution receipt.
+
+## Cross-runtime composition comparison
+
+TypeScript independently implements the **final composition gate**, consuming bounded dimensions prepared by Python from modeled observation and dependency fixtures. The check compares outcome, reason codes and the non-authority marker, and it does **not** establish independent TypeScript observation validation, federation resolution or authority source verification.
+
+```bash
+python3 scripts/validate_reliance_cross_runtime.py --prepare
+cd typescript && npm run operational-reliance && cd ..
+python3 scripts/validate_reliance_cross_runtime.py --compare
+```
+
+The output reports in `artifacts/operational-reliance/` are repository-owned modeled assurance evidence. An operational reliance result is **not** an execution receipt and must never substitute for the authoritative action-specific decision receipt referenced by `schemas/execution-receipt.schema.json`.
