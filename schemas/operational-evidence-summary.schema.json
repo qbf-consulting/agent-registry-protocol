@@ -115,6 +115,10 @@
             "null"
           ],
           "minimum": 0
+        },
+        "basis": {
+          "const": "declared_count_only",
+          "description": "Count sufficiency is NOT verified continuous observation coverage."
         }
       }
     },
@@ -143,6 +147,32 @@
     },
     "authority_implication": {
       "const": false
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evaluated",
+        "fresh_count",
+        "stale_observation_ids"
+      ],
+      "properties": {
+        "evaluated": {
+          "type": "boolean"
+        },
+        "fresh_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stale_observation_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
     }
   }
 }

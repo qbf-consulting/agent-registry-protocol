@@ -59,14 +59,42 @@ def assess(input_data):
     for obs in observations:
         by_instant.setdefault(when(obs["observed_at"]).isoformat(), []).append(obs)
     conflicts = sorted({o["observation_id"] for group in by_instant.values() if len({o["outcome"] for o in group if o["outcome"] in ("success", "failure")}) > 1 for o in group})
+    # Freshness is a separate evidence-quality dimension, never a claim of present availability.
+    as_of_text = input_data.get("as_of")
+    max_age = input_data.get("max_observation_age_seconds")
+    if (as_of_text is None) != (max_age is None):
+        raise ValueError("both as_of and maximum observation age are required")
+    if max_age is not None and (isinstance(max_age, bool) or not isinstance(max_age, int) or max_age < 0):
+        raise ValueError("invalid freshness threshold")
+    as_of = when(as_of_text) if as_of_text is not None else None
+    fresh_count = 0
+    stale_ids = []
+    future_ids = []
+    for item in observations:
+        t = when(item["observed_at"])
+        if as_of is None:
+            continue
+        if t > as_of:
+            future_ids.append(item["observation_id"])
+        elif (as_of - t).total_seconds() > max_age:
+            stale_ids.append(item["observation_id"])
+        else:
+            fresh_count += 1
+    if future_ids:
+        raise ValueError("observation occurs after assessment as_of")
+    freshness = {"evaluated": as_of is not None, "fresh_count": fresh_count,
+                 "stale_observation_ids": sorted(stale_ids)}
     # Count sufficiency is a declared sampling condition, NOT verified continuous coverage.
     complete = expected is not None and expected > 0 and len(observations) >= expected and not conflicts and not duplicates and counts["indeterminate"] == 0 and counts["not_performed"] == 0
+    if stale_ids or (as_of is not None and not fresh_count):
+        complete = False
     outcome = "conflicting_evidence" if conflicts else ("insufficient_evidence" if not observations or not complete else "observations_present")
     summary = {
         "profile_version":"0.1.0", "subject":subject, "window":window, "method":method,
         "observation_count":len(observations),
         "outcome_counts":{x:counts[x] for x in ("success","failure","indeterminate","not_performed")},
-        "coverage":{"complete":complete,"declared_expected_count":expected},
+        "coverage":{"complete":complete,"declared_expected_count":expected, "basis":"declared_count_only"},
+        "freshness":freshness,
         "conflicts":conflicts,
         "source_observation_ids":sorted(selected),
         "assessment_outcome":outcome,
