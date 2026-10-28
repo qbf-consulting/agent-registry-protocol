@@ -6,6 +6,10 @@ nav_exclude: true
 
 # Changelog
 
+## Unreleased
+
+- Add an optional, informative operational-observation evidence profile and schema/fixture validator for #97. Observations remain distinct from authoritative operational status, authorization and assurance. Include Mermaid flow and attempt-state diagrams. No new normative ARPA v0.10.0 requirements.
+
 ## Candidate v0.10.0 consolidation (unreleased)
 
 - Consolidated ARPA Candidate v0.9.0, the v0.9.1 adversarial-hardening amendment, `ARPA-CAND-PP-01`, `ARPA-CAND-PP-02`, and `ARPA-CAND-PP-03` into one authoritative Candidate v0.10.0 specification.
