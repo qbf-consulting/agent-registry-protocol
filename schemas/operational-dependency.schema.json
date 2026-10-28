@@ -58,6 +58,33 @@
     },
     "authority_implication": {
       "const": false
+    },
+    "registry_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_registry",
+        "recognized"
+      ],
+      "properties": {
+        "source_registry": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recognized": {
+          "type": "boolean"
+        },
+        "provenance_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "cycle_policy": {
+      "enum": [
+        "permit",
+        "prohibit"
+      ]
     }
   }
 }
