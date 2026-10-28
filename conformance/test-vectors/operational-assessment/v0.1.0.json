@@ -1406,7 +1406,7 @@
               "protocol_success_is_not_authority"
             ],
             "authority_implication": false,
-            "disclosure_class": "restricted"
+            "disclosure_class": "private"
           },
           {
             "profile_version": "0.1.0",
