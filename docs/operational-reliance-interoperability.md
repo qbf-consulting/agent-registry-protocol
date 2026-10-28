@@ -49,6 +49,7 @@ stateDiagram-v2
 
 ```bash
 python3 scripts/validate_operational_reliance.py
+# Evidence report: artifacts/operational-reliance/evidence-report.json
 ```
 
 The fixture set includes valid declared conditions, revoked authority, critical dependency failure, stale observations, conflicting observers, unknown and federated dependencies, history after revocation, discovery without permission, changed dependency snapshots, revoked lifecycle despite a permit input, omitted freshness evaluation, offline endpoint and malformed authority provenance.
@@ -58,3 +59,7 @@ Expected findings are asserted for both overall outcome and independently report
 ## Compatibility and migration
 
 The optional schema `schemas/operational-reliance-result.schema.json` and test evaluator are additive. Existing A2A publication, authority envelope, decision and execution-receipt schemas are unchanged; applications are not required to support this experiment. Source freshness and snapshot recognition must be resolved by competent external components before consequential reliance.
+
+## Evidence report
+
+The validator writes a deterministic machine-readable report containing individual modeled scenario IDs, expected outcomes, observed outcomes, pass/fail results and explicit evidence limitations. Re-running against the same fixtures produces equivalent content. A PASS describes repository-owned modeled fixture evaluation, not cryptographic verification, actual enforcement or independent cross-runtime interoperability. The report is an implementation-test artifact and does not bind a production execution receipt.

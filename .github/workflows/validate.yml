@@ -38,6 +38,7 @@ jobs:
           name: arpa-candidate-evidence
           path: |
             artifacts/interoperability/
+            artifacts/operational-reliance/
             conformance/reports/reference-implementation-report.json
             artifacts/typescript/
             artifacts/rust/

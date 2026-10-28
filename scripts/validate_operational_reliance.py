@@ -5,6 +5,7 @@ Inputs for authoritative status and authority are *resolved scenario inputs*.
 This module does not authenticate them, enforce decisions, or replace core ARPA.
 """
 import json
+import argparse
 from pathlib import Path
 from jsonschema import Draft202012Validator, FormatChecker
 
@@ -82,6 +83,11 @@ def validate_fixtures():
             "limitations":["modeled-resolved-authority","no-live-federation-or-evidence-verification","not-a-runtime-enforcement-engine"]}
 
 if __name__ == "__main__":
+    cli=argparse.ArgumentParser(description="Validate modeled operational reliance integration fixtures")
+    cli.add_argument("--output",type=Path,default=ROOT / "artifacts/operational-reliance/evidence-report.json")
+    args=cli.parse_args()
     report=validate_fixtures()
-    print(json.dumps(report,indent=2))
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    args.output.write_text(json.dumps(report,sort_keys=True,indent=2)+"\n",encoding="utf-8")
+    print(json.dumps({"passed":report["passed"],"cases":len(report["cases"]),"report":str(args.output)},indent=2))
     raise SystemExit(0 if report["passed"] else 1)
