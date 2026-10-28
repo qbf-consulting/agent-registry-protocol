@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "status": "informative",
+  "normative_source": "ARPA Candidate v0.10.0",
+  "profile": "arpa-trqp-query-projection-0.1",
+  "relationships": [
+    {
+      "id": "arpa-trqp-authorization",
+      "relationship": "projects-to",
+      "source": {
+        "protocol": "ARPA",
+        "version": "0.10.0",
+        "operation": "authority-evaluation"
+      },
+      "target": {
+        "protocol": "TRQP",
+        "version": "2.0",
+        "operation": "authorization"
+      },
+      "authority": {
+        "source_of_determination": "ARPA",
+        "transfers_authority": false
+      },
+      "semantics": {
+        "information_loss_disclosed": true,
+        "unknown_does_not_authorize": true,
+        "historical_result_is_not_current": true
+      },
+      "conformance": {
+        "arpa_and_trqp_independent": true
+      }
+    },
+    {
+      "id": "arpa-trqp-recognition",
+      "relationship": "projects-to",
+      "source": {
+        "protocol": "ARPA",
+        "version": "0.10.0",
+        "operation": "recognition-resolution"
+      },
+      "target": {
+        "protocol": "TRQP",
+        "version": "2.0",
+        "operation": "recognition"
+      },
+      "authority": {
+        "source_of_determination": "ARPA",
+        "transfers_authority": false
+      },
+      "semantics": {
+        "information_loss_disclosed": true,
+        "unknown_does_not_authorize": true,
+        "historical_result_is_not_current": true
+      },
+      "conformance": {
+        "arpa_and_trqp_independent": true
+      }
+    }
+  ]
+}
