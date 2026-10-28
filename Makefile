@@ -27,6 +27,7 @@ validate:
 	python3 scripts/validate_operational_assessment.py
 	python3 scripts/validate_operational_dependencies.py
 	python3 scripts/validate_operational_reliance.py
+	python3 scripts/validate_operational_receipt_binding.py
 	python3 scripts/validate_tga_alignment.py
 	python3 scripts/validate_tsms_external_conformance.py
 	python3 scripts/validate_ietf_draft.py
