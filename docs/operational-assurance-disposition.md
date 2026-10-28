@@ -57,3 +57,7 @@ Independent reproduction would require an implementation outside repository cont
 ## Residual work and closure condition
 
 Continue to track independent source competence, privacy-limited evidence, trusted freshness, two-registry interoperability, third-party reproduction and proof-bound action receipts in their existing child issues or approved successor issue(s). #96 can close only when those acceptance gates are evidenced or formally dispositioned without claiming that missing evidence has passed.
+
+## Bounded closure and successor tracking
+
+See the [experimental reproduction and acceptance guide](operational-assurance-reproduction.md) for the clean-checkout commands, modeled versus independent evidence distinctions, and the approved limited-scope closure basis. Independent operational provenance and federation remain tracked by [#113](https://github.com/qbf-consulting/agent-registry-protocol/issues/113), and actual action-specific execution receipt assurance by [#114](https://github.com/qbf-consulting/agent-registry-protocol/issues/114). An unchecked original acceptance criterion is **transferred**, not passed.
