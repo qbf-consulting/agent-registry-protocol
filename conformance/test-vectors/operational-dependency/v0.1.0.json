@@ -1,0 +1,128 @@
+{
+  "profile_version": "0.1.0",
+  "cases": [
+    {
+      "id": "OD-01-available",
+      "expected": "prerequisites_observed",
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": false
+          }
+        ],
+        "observed_states": {
+          "agentreg:example.org:b": "available"
+        }
+      }
+    },
+    {
+      "id": "OD-02-unavailable",
+      "expected": "unavailable",
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": false
+          }
+        ],
+        "observed_states": {
+          "agentreg:example.org:b": "unavailable"
+        }
+      }
+    },
+    {
+      "id": "OD-03-missing",
+      "expected": "indeterminate",
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": false
+          }
+        ],
+        "observed_states": {}
+      }
+    },
+    {
+      "id": "OD-04-noncritical",
+      "expected": "prerequisites_observed",
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "noncritical",
+            "declared_by": "example.org",
+            "authority_implication": false
+          }
+        ],
+        "observed_states": {
+          "agentreg:example.org:b": "unavailable"
+        }
+      }
+    },
+    {
+      "id": "OD-05-reject-authority",
+      "expected": "error",
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": true
+          }
+        ],
+        "observed_states": {}
+      }
+    },
+    {
+      "id": "OD-06-reject-duplicate",
+      "expected": "error",
+      "input": {
+        "dependencies": [
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": false
+          },
+          {
+            "profile_version": "0.1.0",
+            "dependency_id": "dep-1",
+            "dependent_agent": "agentreg:example.org:a",
+            "required_service": "agentreg:example.org:b",
+            "criticality": "critical",
+            "declared_by": "example.org",
+            "authority_implication": false
+          }
+        ],
+        "observed_states": {}
+      }
+    }
+  ]
+}
