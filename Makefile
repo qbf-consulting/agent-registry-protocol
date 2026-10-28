@@ -32,6 +32,7 @@ validate:
 	python3 scripts/validate_tsms_external_conformance.py
 	python3 scripts/validate_ietf_draft.py
 	python3 scripts/validate_external_interop.py
+	python3 scripts/validate_protocol_operation_relationships.py
 test:
 	python3 -m pytest -q
 interop:
