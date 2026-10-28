@@ -33,5 +33,5 @@ if __name__ == "__main__":
     if args.output:
         args.output.parent.mkdir(parents=True,exist_ok=True)
         args.output.write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
-    print(json.dumps({"passed":report["passed"],"case_count":len(report["cases"])}))
+    print(json.dumps({"passed":report["passed"],"case_count":len(report["cases"]),"failed_cases":[r for r in report["cases"] if not r["passed"]]}, indent=2))
     raise SystemExit(0 if report["passed"] else 1)
