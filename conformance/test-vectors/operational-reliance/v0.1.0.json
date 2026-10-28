@@ -1,0 +1,1524 @@
+{
+  "profile_version": "0.1.0",
+  "cases": [
+    {
+      "id": "IR-01-all-conditions-declared",
+      "expected": "prerequisites_observed",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "authority.decision": "permit",
+        "dependencies.readiness": "prerequisites_observed",
+        "operational_evidence.freshness_evaluated": true,
+        "authority_implication": false
+      }
+    },
+    {
+      "id": "IR-02-revoked-authority",
+      "expected": "deny",
+      "input": {
+        "authority": {
+          "decision": "deny",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "reliance.reasons": [
+          "authority_or_lifecycle_denial"
+        ]
+      }
+    },
+    {
+      "id": "IR-03-critical-dependency-unavailable",
+      "expected": "not_established",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "unavailable"
+          }
+        }
+      },
+      "expected_fields": {
+        "authority.decision": "permit",
+        "dependencies.readiness": "unavailable",
+        "reliance.reasons": [
+          "critical_dependencies_not_established"
+        ]
+      }
+    },
+    {
+      "id": "IR-04-stale-evidence",
+      "expected": "not_established",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-29T13:00:00Z",
+          "max_observation_age_seconds": 3600
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "operational_evidence.outcome": "insufficient_evidence",
+        "reliance.reasons": [
+          "operational_evidence_insufficient_or_unchecked"
+        ]
+      }
+    },
+    {
+      "id": "IR-05-conflicting-observers",
+      "expected": "not_established",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "ir-conflict",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "other.example",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "operational_evidence.outcome": "conflicting_evidence"
+      }
+    },
+    {
+      "id": "IR-06-dependency-unknown",
+      "expected": "not_established",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {}
+        }
+      },
+      "expected_fields": {
+        "dependencies.readiness": "indeterminate"
+      }
+    },
+    {
+      "id": "IR-07-federated-unrecognized",
+      "expected": "not_established",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false,
+              "registry_context": {
+                "source_registry": "foreign.example",
+                "recognized": false,
+                "provenance_ref": "urn:foreign:record"
+              }
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "dependencies.readiness": "indeterminate"
+      }
+    },
+    {
+      "id": "IR-08-history-after-revocation",
+      "expected": "deny",
+      "input": {
+        "authority": {
+          "decision": "deny",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "revoked",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "authoritative_state.agent_status": "revoked",
+        "operational_evidence.outcome": "observations_present"
+      }
+    },
+    {
+      "id": "IR-09-discovery-not-authority",
+      "expected": "not_established",
+      "input": {
+        "authority": {
+          "decision": "indeterminate",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "reliance.reasons": [
+          "authority_not_positively_established"
+        ]
+      }
+    },
+    {
+      "id": "IR-10-dependency-snapshot-changed",
+      "expected": "not_established",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          },
+          "expected_snapshot_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      "expected_fields": {
+        "dependencies.reasons": [
+          "dependency_snapshot_mismatch"
+        ]
+      }
+    },
+    {
+      "id": "IR-11-lifecycle-revoked-although-authority-permit",
+      "expected": "deny",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "revoked",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "authority.decision": "permit",
+        "reliance.reasons": [
+          "authority_or_lifecycle_denial"
+        ]
+      }
+    },
+    {
+      "id": "IR-12-missing-freshness-check",
+      "expected": "not_established",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ]
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "operational_evidence.freshness_evaluated": false
+      }
+    },
+    {
+      "id": "IR-13-offline-endpoint",
+      "expected": "not_established",
+      "input": {
+        "authority": {
+          "decision": "permit",
+          "evidence_ref": "urn:arpa:evidence:authority-permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "offline",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {
+        "reliance.reasons": [
+          "current_endpoint_state_not_available"
+        ]
+      }
+    },
+    {
+      "id": "IR-14-missing-authority-reference",
+      "expected": "error",
+      "input": {
+        "authority": {
+          "decision": "permit"
+        },
+        "current_state": {
+          "agent_status": "active",
+          "endpoint_status": "available",
+          "evidence_ref": "urn:arpa:evidence:current-status"
+        },
+        "operational_assessment": {
+          "window": {
+            "start": "2026-10-27T00:00:00Z",
+            "end": "2026-10-29T00:00:00Z"
+          },
+          "subject": {
+            "agent_id": "agentreg:example.org:agent1",
+            "endpoint_id": "ep1"
+          },
+          "method": "protocol_probe",
+          "declared_expected_count": 2,
+          "observations": [
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "1",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T10:00:00Z",
+              "outcome": "success",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false
+            },
+            {
+              "profile_version": "0.1.0",
+              "observation_id": "2",
+              "subject": {
+                "agent_id": "agentreg:example.org:agent1",
+                "endpoint_id": "ep1",
+                "protocol": "a2a",
+                "protocol_version": "1.0"
+              },
+              "observer": {
+                "identifier": "monitor.example.org",
+                "provenance_class": "independent"
+              },
+              "method": "protocol_probe",
+              "observed_at": "2026-10-28T12:00:00Z",
+              "outcome": "failure",
+              "evidence": [
+                {
+                  "ref": "https://monitor.example.org/evidence/1",
+                  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ],
+              "limitations": [
+                "protocol_success_is_not_authority"
+              ],
+              "authority_implication": false,
+              "failure_reason": "timeout"
+            }
+          ],
+          "as_of": "2026-10-28T13:00:00Z",
+          "max_observation_age_seconds": 20000
+        },
+        "dependency_assessment": {
+          "dependencies": [
+            {
+              "profile_version": "0.1.0",
+              "dependency_id": "dep-1",
+              "dependent_agent": "agentreg:example.org:a",
+              "required_service": "agentreg:example.org:b",
+              "criticality": "critical",
+              "declared_by": "example.org",
+              "authority_implication": false
+            }
+          ],
+          "observed_states": {
+            "agentreg:example.org:b": "available"
+          }
+        }
+      },
+      "expected_fields": {}
+    }
+  ]
+}

@@ -8,6 +8,8 @@ nav_exclude: true
 
 ## Unreleased
 
+- Add an optional modeled operational-reliance composition evaluator, fourteen integrated scenarios and diagrams for #100. The profile does not establish permission, runtime enforcement or external interoperability.
+
 - Prototype an optional non-authoritative dependency declaration and modeled dependency-readiness evaluator for #99; leave normative Relationship Record and authority semantics unchanged.
 
 - Add an experimental, informative, bounded-window longitudinal observation assessment with deterministic aggregation and conformance fixtures for #98. Does not produce authoritative availability, reliability certification, assurance or authorization.
