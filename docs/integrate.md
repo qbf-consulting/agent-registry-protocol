@@ -47,3 +47,7 @@ The v0.9.5 development track provides:
 - Python↔TypeScript HTTP interoperability evidence.
 
 See [TypeScript implementation](typescript-implementation.md) for supported and deferred behaviour.
+
+## Experimental operational reliance
+
+See the [operational assurance evidence disposition](operational-assurance-disposition.md) for optional observation, longitudinal, dependency and composite reliance profiles. Their derived results cannot create or modify an action-specific ARPA authority decision.
