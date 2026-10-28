@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qbfconsulting.digital/agent-registry-protocol/schemas/operational-dependency.schema.json",
+  "title": "Optional operational dependency evidence profile",
+  "description": "Informative dependency declaration; not a delegation, authority or core Relationship Record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_version",
+    "dependency_id",
+    "dependent_agent",
+    "required_service",
+    "criticality",
+    "declared_by",
+    "authority_implication"
+  ],
+  "properties": {
+    "profile_version": {
+      "const": "0.1.0"
+    },
+    "dependency_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dependent_agent": {
+      "type": "string",
+      "pattern": "^agentreg:"
+    },
+    "required_service": {
+      "type": "string",
+      "minLength": 1
+    },
+    "function": {
+      "type": "string",
+      "minLength": 1
+    },
+    "criticality": {
+      "enum": [
+        "critical",
+        "noncritical"
+      ]
+    },
+    "declared_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "applicable_from": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "applicable_until": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority_implication": {
+      "const": false
+    },
+    "registry_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_registry",
+        "recognized"
+      ],
+      "properties": {
+        "source_registry": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recognized": {
+          "type": "boolean"
+        },
+        "provenance_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "cycle_policy": {
+      "enum": [
+        "permit",
+        "prohibit"
+      ]
+    }
+  }
+}

@@ -8,6 +8,8 @@ nav_exclude: true
 
 ## Unreleased
 
+- Prototype an optional non-authoritative dependency declaration and modeled dependency-readiness evaluator for #99; leave normative Relationship Record and authority semantics unchanged.
+
 - Add an experimental, informative, bounded-window longitudinal observation assessment with deterministic aggregation and conformance fixtures for #98. Does not produce authoritative availability, reliability certification, assurance or authorization.
 
 - Add an optional, informative operational-observation evidence profile and schema/fixture validator for #97. Observations remain distinct from authoritative operational status, authorization and assurance. Include Mermaid flow and attempt-state diagrams. No new normative ARPA v0.10.0 requirements.
