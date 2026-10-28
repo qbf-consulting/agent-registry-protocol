@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qbfconsulting.digital/agent-registry-protocol/schemas/operational-observation.schema.json",
+  "title": "Optional ARPA operational observation evidence",
+  "description": "Informative optional evidence profile; not authoritative status, recognition, assurance or authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_version",
+    "observation_id",
+    "subject",
+    "observer",
+    "method",
+    "observed_at",
+    "outcome",
+    "evidence",
+    "authority_implication"
+  ],
+  "properties": {
+    "profile_version": {
+      "const": "0.1.0"
+    },
+    "observation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent_id",
+        "endpoint_id"
+      ],
+      "properties": {
+        "agent_id": {
+          "type": "string",
+          "pattern": "^agentreg:"
+        },
+        "endpoint_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deployment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "protocol": {
+          "type": "string",
+          "minLength": 1
+        },
+        "protocol_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "observer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identifier",
+        "provenance_class"
+      ],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance_class": {
+          "enum": [
+            "self_reported",
+            "independent",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "method": {
+      "enum": [
+        "transport_probe",
+        "protocol_probe",
+        "endpoint_control_proof",
+        "other_declared_method"
+      ]
+    },
+    "method_reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "outcome": {
+      "enum": [
+        "success",
+        "failure",
+        "indeterminate",
+        "not_performed"
+      ]
+    },
+    "failure_reason": {
+      "enum": [
+        "timeout",
+        "dns_error",
+        "tls_error",
+        "connection_refused",
+        "protocol_error",
+        "unauthorized",
+        "other",
+        "unknown"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref",
+          "digest"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "digest": {
+            "type": "string",
+            "pattern": "^sha256:[A-Fa-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "disclosure_class": {
+      "enum": [
+        "public",
+        "authenticated",
+        "private"
+      ]
+    },
+    "authority_implication": {
+      "const": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "const": "other_declared_method"
+          }
+        },
+        "required": [
+          "method"
+        ]
+      },
+      "then": {
+        "required": [
+          "method_reference"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "failure"
+          }
+        },
+        "required": [
+          "outcome"
+        ]
+      },
+      "then": {
+        "required": [
+          "failure_reason"
+        ]
+      }
+    }
+  ]
+}
