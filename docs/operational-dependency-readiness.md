@@ -44,10 +44,27 @@ stateDiagram-v2
 
 These are derived evaluation outcomes, not changes to an agent's lifecycle, authorization or status.
 
+## Temporal and federation evaluation
+
+```mermaid
+flowchart TD
+ D["Dependency declaration"] --> T{"Applicable at evaluation time?"}
+ T -->|No / unknown| I["indeterminate"]
+ T -->|Yes| F{"Cross-registry recognition established?"}
+ F -->|No| I
+ F -->|Yes / local| C{"Cycle prohibited by declared profile?"}
+ C -->|Yes| R["Reject invalid topology"]
+ C -->|No| S{"Modeled service state"}
+ S -->|unavailable| U["unavailable"]
+ S -->|missing / conflict / stale| I
+ S -->|available| P["prerequisites observed only"]
+ P -. "No implied authority" .-> A["Separate authorization evaluation"]
+```
+
 ## Boundaries
 
 A reported `available` state is merely an evaluator input; the modeled fixture set does not authenticate its source or determine whether it is fresh. `prerequisites_observed` is therefore not a current-readiness guarantee, and the absence of declared critical dependencies does not certify an agent's operational health.
 
-A dependency must never imply `delegates_to`, authority transfer, invocation permission, recognition, assurance or trust propagation. No topology policy, cycle detection, multiple-observer conflict resolution, federation recognition or temporal-validity enforcement is claimed by this initial prototype. Those are necessary acceptance and interoperability questions for #99 before closure.
+A dependency must never imply `delegates_to`, authority transfer, invocation permission, recognition, assurance or trust propagation. The bounded evaluator now checks declared applicability intervals against an explicit evaluation time, rejects inverted intervals, detects cycles under an explicit `prohibit` profile, and preserves `permit` cases without making a universal DAG requirement. Conflicting modeled state inputs produce an indeterminate result. A cross-registry dependency is not accepted as a satisfied prerequisite unless its `registry_context.recognized` input is explicitly true. **That input is a modeled recognition assertion, not independent verification of federation competence.** No real registry querying, observer verification, topology versioning, freshness-proof evaluation, or event-based invalidation is implemented. These remain limitations requiring independent integration evidence before #99 can be closed.
 
 Run `python3 scripts/validate_operational_dependencies.py` for the preliminary modeled fixtures. Full status/authority composition belongs to [#100](https://github.com/qbf-consulting/agent-registry-protocol/issues/100).
