@@ -6,7 +6,8 @@ from jsonschema import Draft202012Validator, FormatChecker
 ROOT=Path(__file__).resolve().parents[1]
 schema=json.loads((ROOT/"schemas/execution-receipt.schema.json").read_text())
 envelope=json.loads((ROOT/"schemas/common/envelope.schema.json").read_text())
-schema["allOf"][0]=envelope  # Resolve repository-owned envelope locally, not over the network.\nvalidator=Draft202012Validator(schema,format_checker=FormatChecker())
+schema["allOf"][0]=envelope  # Resolve repository-owned envelope locally, not over the network.
+validator=Draft202012Validator(schema,format_checker=FormatChecker())
 def check(x):
     receipt=x["execution_receipt"]
     if list(validator.iter_errors(receipt)): return "invalid_receipt"
