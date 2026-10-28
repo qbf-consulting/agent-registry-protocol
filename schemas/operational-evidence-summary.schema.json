@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qbfconsulting.digital/agent-registry-protocol/schemas/operational-evidence-summary.schema.json",
+  "title": "ARPA optional longitudinal operational evidence assessment",
+  "description": "Derived, non-authoritative summary of observations, not uptime certification or current readiness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_version",
+    "subject",
+    "window",
+    "method",
+    "observation_count",
+    "outcome_counts",
+    "coverage",
+    "conflicts",
+    "source_observation_ids",
+    "assessment_outcome",
+    "authority_implication"
+  ],
+  "properties": {
+    "profile_version": {
+      "const": "0.1.0"
+    },
+    "subject": {
+      "type": "object",
+      "required": [
+        "agent_id",
+        "endpoint_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "agent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "endpoint_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "method": {
+      "enum": [
+        "transport_probe",
+        "protocol_probe",
+        "endpoint_control_proof",
+        "other_declared_method"
+      ]
+    },
+    "observation_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "outcome_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "success",
+        "failure",
+        "indeterminate",
+        "not_performed"
+      ],
+      "properties": {
+        "success": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failure": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "indeterminate": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_performed": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "complete",
+        "declared_expected_count"
+      ],
+      "properties": {
+        "complete": {
+          "type": "boolean"
+        },
+        "declared_expected_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "source_observation_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "assessment_outcome": {
+      "enum": [
+        "observations_present",
+        "insufficient_evidence",
+        "conflicting_evidence"
+      ]
+    },
+    "authority_implication": {
+      "const": false
+    }
+  }
+}
