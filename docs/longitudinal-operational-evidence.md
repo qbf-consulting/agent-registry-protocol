@@ -38,6 +38,25 @@ The evidence count and outcome counts describe **observations only**. `observati
 
 Conflicts are detected conservatively for opposite success/failure outcomes at the same timestamp from different evidence items; different observation times may reveal operational change rather than disagreement. A different observer perspective can explain apparent differences, and no automatic observer trust ranking occurs. The evaluator does not authenticate observers, retrieve referenced evidence, validate digests, apply expiry, or incorporate later security or revocation events. A generated summary must not override those independent decisions.
 
+## Freshness and coverage qualification
+
+The optional `as_of` and `max_observation_age_seconds` inputs bound the freshness of each observed timestamp. An observation after `as_of` is rejected; stale observations are retained as historical evidence but cannot satisfy the declared sampling-coverage condition. The resulting `freshness` metadata reports what was evaluated, not current service availability. Without explicit freshness inputs, `freshness.evaluated` is false and downstream reliance must not infer freshness.
+
+`coverage.basis` is `declared_count_only`: the value `coverage.complete` refers only to satisfaction of a declared count under the modeled input rules. It **does not** establish uninterrupted monitoring or independently verified observation coverage. A production relying party must establish the sampling schedule and evidence integrity independently.
+
+```mermaid
+flowchart TD
+  A["Validated observations"] --> B{"as_of and max age supplied?"}
+  B -->|No| C["Freshness unassessed"]
+  B -->|Yes| D{"Any future or stale observations?"}
+  D -->|Future| E["Reject invalid as-of assessment"]
+  D -->|Stale| F["Historical only; count coverage insufficient"]
+  D -->|All within bounds| G["Freshness condition satisfied for reported samples"]
+  C --> H["Derived evidence, never current authority"]
+  F --> H
+  G --> H
+```
+
 ## Outcome diagram
 
 ```mermaid
