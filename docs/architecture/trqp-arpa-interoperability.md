@@ -103,3 +103,32 @@ TRQP core answers cannot carry the full ARPA delegation path, conditions, prohib
 ## Conformance and assurance
 
 The repository validates the mapping, safety rules, positive and negative vectors, two independent projection implementations, networked endpoint behavior, durable event handling and evidence reproducibility. The current normative ARPA source baseline is Candidate v0.10.0; this TRQP document remains an informative interoperability companion. These results demonstrate the supplied candidate implementation package only. They do not constitute certification, legal recognition, universal interoperability, or formal approval by the TRQP project.
+
+
+## Machine-readable operation relationship (informative)
+
+The version-pinned declaration in [`interop/protocol-operation-relationships.json`](../../interop/protocol-operation-relationships.json) records two `projects-to` relationships: ARPA authority evaluation to TRQP 2.0 authorization, and ARPA recognition resolution to TRQP 2.0 recognition. Run `python3 scripts/validate_protocol_operation_relationships.py` to check uniqueness, protocol versions, direction, explicit non-transfer of authority, information-loss disclosure, historical/current separation, and independent conformance declarations. `make validate` includes this check; `make test` exercises negative mutations.
+
+The declaration is an **inventory and assertion about mapping intent**, not an alternate normative interface, a runtime policy engine, or evidence that a TRQP endpoint is conformant. The validator checks declared invariants; runtime adapter behavior and semantic fidelity require the existing TRQP projection tests and network interoperability evidence.
+
+### Why `projects-to` rather than `carries`
+
+A Trust Tasks-style carrier preserves an externally owned operation inside a different interaction envelope. The ARPA adapter instead computes an ARPA-governed determination and projects a bounded result into TRQP. Consequently, the adapter must account for semantic information loss and may not treat a syntactically valid TRQP answer as proof of underlying authority.
+
+Three separately assessable properties remain:
+
+1. **Source correctness:** ARPA resolved authoritative records, delegation, lifecycle, freshness, constraints, and historical effects correctly.
+2. **Projection fidelity:** the adapter preserved the meaning of the resulting determination, including indeterminate and information-loss cases.
+3. **Consumer interpretation:** a relying party can identify what was determined, the temporal scope, provenance, and limitations; it must not infer current authority from an affirmative historical answer.
+
+A passing relationship-declaration validator proves none of these three properties by itself.
+
+### A2A comparison and abstraction decision
+
+A2A publication is a discovery/publication projection, and A2A task completion is not ARPA authorization. TRQP projection exposes authorization or recognition determinations whose authority, freshness and information-loss characteristics are more consequential. Both integrations require typed boundaries, but **their runtime and outcome semantics differ**.
+
+**Decision: defer a portfolio-wide or protocol-wide relationship framework.** The two existing integrations do not justify introducing a generic adapter runtime, dynamic relationship registry, common outcome schema, or new core protocol requirement. Retain protocol-specific profiles and validators. Revisit only if a third independently implemented adapter exposes repeated, testable relationship contracts that cannot be maintained economically within existing profiles.
+
+### Limits and evolution
+
+The relation keys and source-operation labels are informative identifiers within this local declaration, not newly registered ARPA protocol operations. No guarantee of external TRQP approval or independently established conformance follows from this document. Changes to Candidate v0.10.0 or TRQP 2.0 require explicit compatibility reassessment; do not silently retarget the mapping. This work does not modify the published IETF Internet-Draft or ARPA's runtime authority evaluator.
