@@ -59,7 +59,8 @@ def assess(input_data):
     for obs in observations:
         by_instant.setdefault(when(obs["observed_at"]).isoformat(), []).append(obs)
     conflicts = sorted({o["observation_id"] for group in by_instant.values() if len({o["outcome"] for o in group if o["outcome"] in ("success", "failure")}) > 1 for o in group})
-    complete = expected is not None and len(observations) >= expected and not conflicts and not duplicates and counts["indeterminate"] == 0 and counts["not_performed"] == 0
+    # Count sufficiency is a declared sampling condition, NOT verified continuous coverage.
+    complete = expected is not None and expected > 0 and len(observations) >= expected and not conflicts and not duplicates and counts["indeterminate"] == 0 and counts["not_performed"] == 0
     outcome = "conflicting_evidence" if conflicts else ("insufficient_evidence" if not observations or not complete else "observations_present")
     summary = {
         "profile_version":"0.1.0", "subject":subject, "window":window, "method":method,
@@ -84,10 +85,21 @@ def validate_fixtures():
             actual = assess(case["input"])
             ok = actual["assessment_outcome"] == case["expected"]
             state = actual["assessment_outcome"]
+            # Assertions on derived outputs, not just a coarse outcome label.
+            for key, value in case.get("expect_fields", {}).items():
+                cursor = actual
+                for segment in key.split("."):
+                    cursor = cursor[segment]
+                ok = ok and cursor == value
         except ValueError as exc:
             state = "error"
             ok = case["expected"] == "error"
         results.append({"id":case["id"],"expected":case["expected"],"actual":state,"passed":ok})
+    # Reordering source inputs must not change canonical summary content.
+    full = next(c for c in cases if c["id"] == "LA-01-full")
+    reordered = next(c for c in cases if c["id"] == "LA-02-reordered")
+    equivalent = assess(full["input"]) == assess(reordered["input"])
+    results.append({"id":"LA-DET-01-order-invariance","expected":"equivalent","actual":"equivalent" if equivalent else "different","passed":equivalent})
     return {"passed":bool(results) and all(x["passed"] for x in results),"cases":results,"limitations":["modeled-fixtures","no-independent-probe","no-current-state-or-authority-evaluation"]}
 
 if __name__ == "__main__":
