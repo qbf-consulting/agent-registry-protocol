@@ -1,0 +1,625 @@
+{
+  "profile_version": "0.1.0",
+  "cases": [
+    {
+      "id": "RB-01-good",
+      "expected": "references_consistent",
+      "input": {
+        "execution_receipt": {
+          "record_id": "execution-receipt-txn-556",
+          "record_type": "execution_receipt",
+          "schema_version": "1.0.0",
+          "issuer": "runtime:example.org:prod-in-1:node-a",
+          "subject": "agentreg:example.org:agent-123",
+          "issued_at": "2026-07-15T10:04:00Z",
+          "effective_from": "2026-07-15T10:04:00Z",
+          "effective_until": null,
+          "status": "final",
+          "task_id": "task-purchase-556",
+          "agent_id": "agentreg:example.org:agent-123",
+          "agent_version": "agent-version-2.4.1",
+          "deployment_id": "deployment-prod-in-1",
+          "runtime_id": "runtime:example.org:prod-in-1:node-a",
+          "principal": "did:example:principal",
+          "beneficiary": "org:example:procurement-services",
+          "authority_envelope_id": "authority-789",
+          "authority_decision_receipt": "decision-receipt-req-556",
+          "policy_version": "2026.1",
+          "action_class": "purchase.submit",
+          "resource": "account:procurement:regional",
+          "purpose": "approved-supplier-procurement",
+          "input_digest": "sha256:5555555555555555555555555555555555555555555555555555555555ee",
+          "output_digest": "sha256:6666666666666666666666666666666666666666666666666666666666ff",
+          "tool_and_service_references": [
+            "service:example.org:supplier-catalog"
+          ],
+          "approvals_obtained": [
+            "human-procurement-owner:approval-88231"
+          ],
+          "downstream_delegations": [],
+          "start_time": "2026-07-15T10:03:50Z",
+          "completion_time": "2026-07-15T10:04:00Z",
+          "result": "success",
+          "side_effects": [
+            "purchase_order:PO-88231:created"
+          ],
+          "error_or_exception": null,
+          "redress_reference": "https://registry.example.org/agents/agent-123/redress",
+          "proof": {},
+          "interaction_protocol": "A2A",
+          "interaction_protocol_version": "1.0",
+          "interaction_context_id": "context-procurement-2026-07-30",
+          "interaction_interface_uri": "https://agent.example.org/a2a",
+          "interaction_terminal_state": "completed",
+          "artifact_digests": [
+            "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        },
+        "decision_receipt": {
+          "record_id": "decision-receipt-req-556",
+          "decision": "permit"
+        },
+        "expected_agent_id": "agentreg:example.org:agent-123",
+        "expected_authority_evidence_ref": "urn:example:authority-source",
+        "reliance_result": {
+          "authority": {
+            "decision": "permit",
+            "evidence_ref": "urn:example:authority-source"
+          },
+          "authority_implication": false
+        }
+      }
+    },
+    {
+      "id": "RB-02-mismatched-decision",
+      "expected": "unbound",
+      "input": {
+        "execution_receipt": {
+          "record_id": "execution-receipt-txn-556",
+          "record_type": "execution_receipt",
+          "schema_version": "1.0.0",
+          "issuer": "runtime:example.org:prod-in-1:node-a",
+          "subject": "agentreg:example.org:agent-123",
+          "issued_at": "2026-07-15T10:04:00Z",
+          "effective_from": "2026-07-15T10:04:00Z",
+          "effective_until": null,
+          "status": "final",
+          "task_id": "task-purchase-556",
+          "agent_id": "agentreg:example.org:agent-123",
+          "agent_version": "agent-version-2.4.1",
+          "deployment_id": "deployment-prod-in-1",
+          "runtime_id": "runtime:example.org:prod-in-1:node-a",
+          "principal": "did:example:principal",
+          "beneficiary": "org:example:procurement-services",
+          "authority_envelope_id": "authority-789",
+          "authority_decision_receipt": "different",
+          "policy_version": "2026.1",
+          "action_class": "purchase.submit",
+          "resource": "account:procurement:regional",
+          "purpose": "approved-supplier-procurement",
+          "input_digest": "sha256:5555555555555555555555555555555555555555555555555555555555ee",
+          "output_digest": "sha256:6666666666666666666666666666666666666666666666666666666666ff",
+          "tool_and_service_references": [
+            "service:example.org:supplier-catalog"
+          ],
+          "approvals_obtained": [
+            "human-procurement-owner:approval-88231"
+          ],
+          "downstream_delegations": [],
+          "start_time": "2026-07-15T10:03:50Z",
+          "completion_time": "2026-07-15T10:04:00Z",
+          "result": "success",
+          "side_effects": [
+            "purchase_order:PO-88231:created"
+          ],
+          "error_or_exception": null,
+          "redress_reference": "https://registry.example.org/agents/agent-123/redress",
+          "proof": {},
+          "interaction_protocol": "A2A",
+          "interaction_protocol_version": "1.0",
+          "interaction_context_id": "context-procurement-2026-07-30",
+          "interaction_interface_uri": "https://agent.example.org/a2a",
+          "interaction_terminal_state": "completed",
+          "artifact_digests": [
+            "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        },
+        "decision_receipt": {
+          "record_id": "decision-receipt-req-556",
+          "decision": "permit"
+        },
+        "expected_agent_id": "agentreg:example.org:agent-123",
+        "expected_authority_evidence_ref": "urn:example:authority-source",
+        "reliance_result": {
+          "authority": {
+            "decision": "permit",
+            "evidence_ref": "urn:example:authority-source"
+          },
+          "authority_implication": false
+        }
+      }
+    },
+    {
+      "id": "RB-03-mismatched-agent",
+      "expected": "unbound",
+      "input": {
+        "execution_receipt": {
+          "record_id": "execution-receipt-txn-556",
+          "record_type": "execution_receipt",
+          "schema_version": "1.0.0",
+          "issuer": "runtime:example.org:prod-in-1:node-a",
+          "subject": "agentreg:example.org:agent-123",
+          "issued_at": "2026-07-15T10:04:00Z",
+          "effective_from": "2026-07-15T10:04:00Z",
+          "effective_until": null,
+          "status": "final",
+          "task_id": "task-purchase-556",
+          "agent_id": "agentreg:example.org:agent-123",
+          "agent_version": "agent-version-2.4.1",
+          "deployment_id": "deployment-prod-in-1",
+          "runtime_id": "runtime:example.org:prod-in-1:node-a",
+          "principal": "did:example:principal",
+          "beneficiary": "org:example:procurement-services",
+          "authority_envelope_id": "authority-789",
+          "authority_decision_receipt": "decision-receipt-req-556",
+          "policy_version": "2026.1",
+          "action_class": "purchase.submit",
+          "resource": "account:procurement:regional",
+          "purpose": "approved-supplier-procurement",
+          "input_digest": "sha256:5555555555555555555555555555555555555555555555555555555555ee",
+          "output_digest": "sha256:6666666666666666666666666666666666666666666666666666666666ff",
+          "tool_and_service_references": [
+            "service:example.org:supplier-catalog"
+          ],
+          "approvals_obtained": [
+            "human-procurement-owner:approval-88231"
+          ],
+          "downstream_delegations": [],
+          "start_time": "2026-07-15T10:03:50Z",
+          "completion_time": "2026-07-15T10:04:00Z",
+          "result": "success",
+          "side_effects": [
+            "purchase_order:PO-88231:created"
+          ],
+          "error_or_exception": null,
+          "redress_reference": "https://registry.example.org/agents/agent-123/redress",
+          "proof": {},
+          "interaction_protocol": "A2A",
+          "interaction_protocol_version": "1.0",
+          "interaction_context_id": "context-procurement-2026-07-30",
+          "interaction_interface_uri": "https://agent.example.org/a2a",
+          "interaction_terminal_state": "completed",
+          "artifact_digests": [
+            "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        },
+        "decision_receipt": {
+          "record_id": "decision-receipt-req-556",
+          "decision": "permit"
+        },
+        "expected_agent_id": "agentreg:example.org:other",
+        "expected_authority_evidence_ref": "urn:example:authority-source",
+        "reliance_result": {
+          "authority": {
+            "decision": "permit",
+            "evidence_ref": "urn:example:authority-source"
+          },
+          "authority_implication": false
+        }
+      }
+    },
+    {
+      "id": "RB-04-deny-success",
+      "expected": "inconsistent",
+      "input": {
+        "execution_receipt": {
+          "record_id": "execution-receipt-txn-556",
+          "record_type": "execution_receipt",
+          "schema_version": "1.0.0",
+          "issuer": "runtime:example.org:prod-in-1:node-a",
+          "subject": "agentreg:example.org:agent-123",
+          "issued_at": "2026-07-15T10:04:00Z",
+          "effective_from": "2026-07-15T10:04:00Z",
+          "effective_until": null,
+          "status": "final",
+          "task_id": "task-purchase-556",
+          "agent_id": "agentreg:example.org:agent-123",
+          "agent_version": "agent-version-2.4.1",
+          "deployment_id": "deployment-prod-in-1",
+          "runtime_id": "runtime:example.org:prod-in-1:node-a",
+          "principal": "did:example:principal",
+          "beneficiary": "org:example:procurement-services",
+          "authority_envelope_id": "authority-789",
+          "authority_decision_receipt": "decision-receipt-req-556",
+          "policy_version": "2026.1",
+          "action_class": "purchase.submit",
+          "resource": "account:procurement:regional",
+          "purpose": "approved-supplier-procurement",
+          "input_digest": "sha256:5555555555555555555555555555555555555555555555555555555555ee",
+          "output_digest": "sha256:6666666666666666666666666666666666666666666666666666666666ff",
+          "tool_and_service_references": [
+            "service:example.org:supplier-catalog"
+          ],
+          "approvals_obtained": [
+            "human-procurement-owner:approval-88231"
+          ],
+          "downstream_delegations": [],
+          "start_time": "2026-07-15T10:03:50Z",
+          "completion_time": "2026-07-15T10:04:00Z",
+          "result": "success",
+          "side_effects": [
+            "purchase_order:PO-88231:created"
+          ],
+          "error_or_exception": null,
+          "redress_reference": "https://registry.example.org/agents/agent-123/redress",
+          "proof": {},
+          "interaction_protocol": "A2A",
+          "interaction_protocol_version": "1.0",
+          "interaction_context_id": "context-procurement-2026-07-30",
+          "interaction_interface_uri": "https://agent.example.org/a2a",
+          "interaction_terminal_state": "completed",
+          "artifact_digests": [
+            "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        },
+        "decision_receipt": {
+          "record_id": "decision-receipt-req-556",
+          "decision": "deny"
+        },
+        "expected_agent_id": "agentreg:example.org:agent-123",
+        "expected_authority_evidence_ref": "urn:example:authority-source",
+        "reliance_result": {
+          "authority": {
+            "decision": "deny",
+            "evidence_ref": "urn:example:authority-source"
+          },
+          "authority_implication": false
+        }
+      }
+    },
+    {
+      "id": "RB-05-authority-laundering",
+      "expected": "unbound",
+      "input": {
+        "execution_receipt": {
+          "record_id": "execution-receipt-txn-556",
+          "record_type": "execution_receipt",
+          "schema_version": "1.0.0",
+          "issuer": "runtime:example.org:prod-in-1:node-a",
+          "subject": "agentreg:example.org:agent-123",
+          "issued_at": "2026-07-15T10:04:00Z",
+          "effective_from": "2026-07-15T10:04:00Z",
+          "effective_until": null,
+          "status": "final",
+          "task_id": "task-purchase-556",
+          "agent_id": "agentreg:example.org:agent-123",
+          "agent_version": "agent-version-2.4.1",
+          "deployment_id": "deployment-prod-in-1",
+          "runtime_id": "runtime:example.org:prod-in-1:node-a",
+          "principal": "did:example:principal",
+          "beneficiary": "org:example:procurement-services",
+          "authority_envelope_id": "authority-789",
+          "authority_decision_receipt": "decision-receipt-req-556",
+          "policy_version": "2026.1",
+          "action_class": "purchase.submit",
+          "resource": "account:procurement:regional",
+          "purpose": "approved-supplier-procurement",
+          "input_digest": "sha256:5555555555555555555555555555555555555555555555555555555555ee",
+          "output_digest": "sha256:6666666666666666666666666666666666666666666666666666666666ff",
+          "tool_and_service_references": [
+            "service:example.org:supplier-catalog"
+          ],
+          "approvals_obtained": [
+            "human-procurement-owner:approval-88231"
+          ],
+          "downstream_delegations": [],
+          "start_time": "2026-07-15T10:03:50Z",
+          "completion_time": "2026-07-15T10:04:00Z",
+          "result": "success",
+          "side_effects": [
+            "purchase_order:PO-88231:created"
+          ],
+          "error_or_exception": null,
+          "redress_reference": "https://registry.example.org/agents/agent-123/redress",
+          "proof": {},
+          "interaction_protocol": "A2A",
+          "interaction_protocol_version": "1.0",
+          "interaction_context_id": "context-procurement-2026-07-30",
+          "interaction_interface_uri": "https://agent.example.org/a2a",
+          "interaction_terminal_state": "completed",
+          "artifact_digests": [
+            "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        },
+        "decision_receipt": {
+          "record_id": "decision-receipt-req-556",
+          "decision": "permit"
+        },
+        "expected_agent_id": "agentreg:example.org:agent-123",
+        "expected_authority_evidence_ref": "urn:example:authority-source",
+        "reliance_result": {
+          "authority": {
+            "decision": "permit",
+            "evidence_ref": "urn:example:authority-source"
+          },
+          "authority_implication": true
+        }
+      }
+    },
+    {
+      "id": "RB-06-source-mismatch",
+      "expected": "unbound",
+      "input": {
+        "execution_receipt": {
+          "record_id": "execution-receipt-txn-556",
+          "record_type": "execution_receipt",
+          "schema_version": "1.0.0",
+          "issuer": "runtime:example.org:prod-in-1:node-a",
+          "subject": "agentreg:example.org:agent-123",
+          "issued_at": "2026-07-15T10:04:00Z",
+          "effective_from": "2026-07-15T10:04:00Z",
+          "effective_until": null,
+          "status": "final",
+          "task_id": "task-purchase-556",
+          "agent_id": "agentreg:example.org:agent-123",
+          "agent_version": "agent-version-2.4.1",
+          "deployment_id": "deployment-prod-in-1",
+          "runtime_id": "runtime:example.org:prod-in-1:node-a",
+          "principal": "did:example:principal",
+          "beneficiary": "org:example:procurement-services",
+          "authority_envelope_id": "authority-789",
+          "authority_decision_receipt": "decision-receipt-req-556",
+          "policy_version": "2026.1",
+          "action_class": "purchase.submit",
+          "resource": "account:procurement:regional",
+          "purpose": "approved-supplier-procurement",
+          "input_digest": "sha256:5555555555555555555555555555555555555555555555555555555555ee",
+          "output_digest": "sha256:6666666666666666666666666666666666666666666666666666666666ff",
+          "tool_and_service_references": [
+            "service:example.org:supplier-catalog"
+          ],
+          "approvals_obtained": [
+            "human-procurement-owner:approval-88231"
+          ],
+          "downstream_delegations": [],
+          "start_time": "2026-07-15T10:03:50Z",
+          "completion_time": "2026-07-15T10:04:00Z",
+          "result": "success",
+          "side_effects": [
+            "purchase_order:PO-88231:created"
+          ],
+          "error_or_exception": null,
+          "redress_reference": "https://registry.example.org/agents/agent-123/redress",
+          "proof": {},
+          "interaction_protocol": "A2A",
+          "interaction_protocol_version": "1.0",
+          "interaction_context_id": "context-procurement-2026-07-30",
+          "interaction_interface_uri": "https://agent.example.org/a2a",
+          "interaction_terminal_state": "completed",
+          "artifact_digests": [
+            "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        },
+        "decision_receipt": {
+          "record_id": "decision-receipt-req-556",
+          "decision": "permit"
+        },
+        "expected_agent_id": "agentreg:example.org:agent-123",
+        "expected_authority_evidence_ref": "urn:example:authority-source",
+        "reliance_result": {
+          "authority": {
+            "decision": "permit",
+            "evidence_ref": "other"
+          },
+          "authority_implication": false
+        }
+      }
+    },
+    {
+      "id": "RB-07-outcome-disagreement",
+      "expected": "inconsistent",
+      "input": {
+        "execution_receipt": {
+          "record_id": "execution-receipt-txn-556",
+          "record_type": "execution_receipt",
+          "schema_version": "1.0.0",
+          "issuer": "runtime:example.org:prod-in-1:node-a",
+          "subject": "agentreg:example.org:agent-123",
+          "issued_at": "2026-07-15T10:04:00Z",
+          "effective_from": "2026-07-15T10:04:00Z",
+          "effective_until": null,
+          "status": "final",
+          "task_id": "task-purchase-556",
+          "agent_id": "agentreg:example.org:agent-123",
+          "agent_version": "agent-version-2.4.1",
+          "deployment_id": "deployment-prod-in-1",
+          "runtime_id": "runtime:example.org:prod-in-1:node-a",
+          "principal": "did:example:principal",
+          "beneficiary": "org:example:procurement-services",
+          "authority_envelope_id": "authority-789",
+          "authority_decision_receipt": "decision-receipt-req-556",
+          "policy_version": "2026.1",
+          "action_class": "purchase.submit",
+          "resource": "account:procurement:regional",
+          "purpose": "approved-supplier-procurement",
+          "input_digest": "sha256:5555555555555555555555555555555555555555555555555555555555ee",
+          "output_digest": "sha256:6666666666666666666666666666666666666666666666666666666666ff",
+          "tool_and_service_references": [
+            "service:example.org:supplier-catalog"
+          ],
+          "approvals_obtained": [
+            "human-procurement-owner:approval-88231"
+          ],
+          "downstream_delegations": [],
+          "start_time": "2026-07-15T10:03:50Z",
+          "completion_time": "2026-07-15T10:04:00Z",
+          "result": "success",
+          "side_effects": [
+            "purchase_order:PO-88231:created"
+          ],
+          "error_or_exception": null,
+          "redress_reference": "https://registry.example.org/agents/agent-123/redress",
+          "proof": {},
+          "interaction_protocol": "A2A",
+          "interaction_protocol_version": "1.0",
+          "interaction_context_id": "context-procurement-2026-07-30",
+          "interaction_interface_uri": "https://agent.example.org/a2a",
+          "interaction_terminal_state": "completed",
+          "artifact_digests": [
+            "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        },
+        "decision_receipt": {
+          "record_id": "decision-receipt-req-556",
+          "decision": "permit"
+        },
+        "expected_agent_id": "agentreg:example.org:agent-123",
+        "expected_authority_evidence_ref": "urn:example:authority-source",
+        "reliance_result": {
+          "authority": {
+            "decision": "indeterminate",
+            "evidence_ref": "urn:example:authority-source"
+          },
+          "authority_implication": false
+        }
+      }
+    },
+    {
+      "id": "RB-08-invalid-receipt",
+      "expected": "invalid_receipt",
+      "input": {
+        "execution_receipt": {
+          "record_id": "execution-receipt-txn-556",
+          "record_type": "execution_receipt",
+          "schema_version": "1.0.0",
+          "issuer": "runtime:example.org:prod-in-1:node-a",
+          "subject": "agentreg:example.org:agent-123",
+          "issued_at": "2026-07-15T10:04:00Z",
+          "effective_from": "2026-07-15T10:04:00Z",
+          "effective_until": null,
+          "status": "final",
+          "agent_id": "agentreg:example.org:agent-123",
+          "agent_version": "agent-version-2.4.1",
+          "deployment_id": "deployment-prod-in-1",
+          "runtime_id": "runtime:example.org:prod-in-1:node-a",
+          "principal": "did:example:principal",
+          "beneficiary": "org:example:procurement-services",
+          "authority_envelope_id": "authority-789",
+          "authority_decision_receipt": "decision-receipt-req-556",
+          "policy_version": "2026.1",
+          "action_class": "purchase.submit",
+          "resource": "account:procurement:regional",
+          "purpose": "approved-supplier-procurement",
+          "input_digest": "sha256:5555555555555555555555555555555555555555555555555555555555ee",
+          "output_digest": "sha256:6666666666666666666666666666666666666666666666666666666666ff",
+          "tool_and_service_references": [
+            "service:example.org:supplier-catalog"
+          ],
+          "approvals_obtained": [
+            "human-procurement-owner:approval-88231"
+          ],
+          "downstream_delegations": [],
+          "start_time": "2026-07-15T10:03:50Z",
+          "completion_time": "2026-07-15T10:04:00Z",
+          "result": "success",
+          "side_effects": [
+            "purchase_order:PO-88231:created"
+          ],
+          "error_or_exception": null,
+          "redress_reference": "https://registry.example.org/agents/agent-123/redress",
+          "proof": {},
+          "interaction_protocol": "A2A",
+          "interaction_protocol_version": "1.0",
+          "interaction_context_id": "context-procurement-2026-07-30",
+          "interaction_interface_uri": "https://agent.example.org/a2a",
+          "interaction_terminal_state": "completed",
+          "artifact_digests": [
+            "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        },
+        "decision_receipt": {
+          "record_id": "decision-receipt-req-556",
+          "decision": "permit"
+        },
+        "expected_agent_id": "agentreg:example.org:agent-123",
+        "expected_authority_evidence_ref": "urn:example:authority-source",
+        "reliance_result": {
+          "authority": {
+            "decision": "permit",
+            "evidence_ref": "urn:example:authority-source"
+          },
+          "authority_implication": false
+        }
+      }
+    },
+    {
+      "id": "RB-09-denied-receipt",
+      "expected": "references_consistent",
+      "input": {
+        "execution_receipt": {
+          "record_id": "execution-receipt-txn-556",
+          "record_type": "execution_receipt",
+          "schema_version": "1.0.0",
+          "issuer": "runtime:example.org:prod-in-1:node-a",
+          "subject": "agentreg:example.org:agent-123",
+          "issued_at": "2026-07-15T10:04:00Z",
+          "effective_from": "2026-07-15T10:04:00Z",
+          "effective_until": null,
+          "status": "final",
+          "task_id": "task-purchase-556",
+          "agent_id": "agentreg:example.org:agent-123",
+          "agent_version": "agent-version-2.4.1",
+          "deployment_id": "deployment-prod-in-1",
+          "runtime_id": "runtime:example.org:prod-in-1:node-a",
+          "principal": "did:example:principal",
+          "beneficiary": "org:example:procurement-services",
+          "authority_envelope_id": "authority-789",
+          "authority_decision_receipt": "decision-receipt-req-556",
+          "policy_version": "2026.1",
+          "action_class": "purchase.submit",
+          "resource": "account:procurement:regional",
+          "purpose": "approved-supplier-procurement",
+          "input_digest": "sha256:5555555555555555555555555555555555555555555555555555555555ee",
+          "output_digest": "sha256:6666666666666666666666666666666666666666666666666666666666ff",
+          "tool_and_service_references": [
+            "service:example.org:supplier-catalog"
+          ],
+          "approvals_obtained": [
+            "human-procurement-owner:approval-88231"
+          ],
+          "downstream_delegations": [],
+          "start_time": "2026-07-15T10:03:50Z",
+          "completion_time": "2026-07-15T10:04:00Z",
+          "result": "denied",
+          "side_effects": [
+            "purchase_order:PO-88231:created"
+          ],
+          "error_or_exception": null,
+          "redress_reference": "https://registry.example.org/agents/agent-123/redress",
+          "proof": {},
+          "interaction_protocol": "A2A",
+          "interaction_protocol_version": "1.0",
+          "interaction_context_id": "context-procurement-2026-07-30",
+          "interaction_interface_uri": "https://agent.example.org/a2a",
+          "interaction_terminal_state": "completed",
+          "artifact_digests": [
+            "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          ]
+        },
+        "decision_receipt": {
+          "record_id": "decision-receipt-req-556",
+          "decision": "deny"
+        },
+        "expected_agent_id": "agentreg:example.org:agent-123",
+        "expected_authority_evidence_ref": "urn:example:authority-source",
+        "reliance_result": {
+          "authority": {
+            "decision": "deny",
+            "evidence_ref": "urn:example:authority-source"
+          },
+          "authority_implication": false
+        }
+      }
+    }
+  ]
+}
