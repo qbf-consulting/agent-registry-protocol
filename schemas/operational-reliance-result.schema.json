@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qbfconsulting.digital/agent-registry-protocol/schemas/operational-reliance-result.schema.json",
+  "title": "Informative operational reliance composition result",
+  "description": "Composition of independently resolved authority and operational assessments; not an authorization decision or runtime enforcement receipt.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_version",
+    "authority",
+    "authoritative_state",
+    "operational_evidence",
+    "dependencies",
+    "reliance",
+    "authority_implication"
+  ],
+  "properties": {
+    "profile_version": {
+      "const": "0.1.0"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "evidence_ref"
+      ],
+      "properties": {
+        "decision": {
+          "enum": [
+            "permit",
+            "deny",
+            "indeterminate"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "authoritative_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent_status",
+        "endpoint_status",
+        "evidence_ref"
+      ],
+      "properties": {
+        "agent_status": {
+          "enum": [
+            "active",
+            "revoked",
+            "suspended",
+            "unknown"
+          ]
+        },
+        "endpoint_status": {
+          "enum": [
+            "available",
+            "offline",
+            "unknown"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "operational_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "observation_ids",
+        "freshness_evaluated"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "observations_present",
+            "insufficient_evidence",
+            "conflicting_evidence"
+          ]
+        },
+        "observation_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "freshness_evaluated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "readiness",
+        "reasons",
+        "snapshot_digest"
+      ],
+      "properties": {
+        "readiness": {
+          "enum": [
+            "prerequisites_observed",
+            "unavailable",
+            "indeterminate"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "snapshot_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      }
+    },
+    "reliance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "reasons"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "prerequisites_observed",
+            "not_established",
+            "deny"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "authority_implication": {
+      "const": false
+    }
+  }
+}
