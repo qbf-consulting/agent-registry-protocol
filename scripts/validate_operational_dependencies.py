@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Bounded optional dependency evaluation; never determines delegated authority."""
 import json
+import hashlib
 from datetime import datetime
 from pathlib import Path
 from jsonschema import Draft202012Validator, FormatChecker
@@ -53,6 +54,10 @@ def evaluate(case):
             raise ValueError("evaluation time required for temporal dependency")
     if any(dep.get("cycle_policy")=="prohibit" for dep in deps) and cycles(edges):
         raise ValueError("cycle prohibited by declared dependency profile")
+    snapshot_digest = "sha256:" + hashlib.sha256(json.dumps(sorted(deps,key=lambda d:d["dependency_id"]),sort_keys=True,separators=(",",":")).encode("utf-8")).hexdigest()
+    expected_snapshot = case.get("expected_snapshot_digest")
+    if expected_snapshot is not None and expected_snapshot != snapshot_digest:
+        return {"readiness":"indeterminate","authority_implication":False,"reasons":["dependency_snapshot_mismatch"],"snapshot_digest":snapshot_digest}
     observations=case.get("observed_states",{})
     issues={"unavailable":[],"indeterminate":[]}
     for dep in deps:
@@ -75,7 +80,7 @@ def evaluate(case):
         if state=="unavailable":issues["unavailable"].append(did)
         elif state!="available":issues["indeterminate"].append(did)
     readiness="unavailable" if issues["unavailable"] else ("indeterminate" if issues["indeterminate"] or not deps else "prerequisites_observed")
-    return {"readiness":readiness,"authority_implication":False,"reasons":sorted(issues["unavailable"]+issues["indeterminate"])}
+    return {"readiness":readiness,"authority_implication":False,"reasons":sorted(issues["unavailable"]+issues["indeterminate"]),"snapshot_digest":snapshot_digest}
 
 def validate():
     cases=json.loads(FIXTURES.read_text())["cases"]
