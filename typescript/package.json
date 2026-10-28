@@ -12,7 +12,8 @@
     "release-check": "npm run typecheck && npm test && npm run conformance && npm run historical && npm run a2a",
     "historical": "npm run build && node dist/src/historical-conformance.js",
     "network-server": "npm run build && node dist/src/server.js",
-    "a2a": "npm run build && node dist/src/a2a-conformance.js"
+    "a2a": "npm run build && node dist/src/a2a-conformance.js",
+    "operational-reliance": "npm run build && node dist/src/operational-reliance-conformance.js"
   },
   "engines": {
     "node": ">=20"

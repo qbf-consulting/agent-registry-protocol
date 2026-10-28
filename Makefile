@@ -53,6 +53,9 @@ rust-check:
 
 cross-runtime:
 	python3 scripts/validate_typescript_interoperability.py
+	python3 scripts/validate_reliance_cross_runtime.py --prepare
+	cd typescript && npm run operational-reliance
+	python3 scripts/validate_reliance_cross_runtime.py --compare
 
 network-interop:
 	cd typescript && npm run build
