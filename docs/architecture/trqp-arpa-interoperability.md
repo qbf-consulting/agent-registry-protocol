@@ -132,3 +132,7 @@ A2A publication is a discovery/publication projection, and A2A task completion i
 ### Limits and evolution
 
 The relation keys and source-operation labels are informative identifiers within this local declaration, not newly registered ARPA protocol operations. No guarantee of external TRQP approval or independently established conformance follows from this document. Changes to Candidate v0.10.0 or TRQP 2.0 require explicit compatibility reassessment; do not silently retarget the mapping. This work does not modify the published IETF Internet-Draft or ARPA's runtime authority evaluator.
+
+## TRQP v3 bitemporal proposal tracking (informative)
+
+[TRQP issue #79](https://github.com/sankarshanmukhopadhyay/tswg-trust-registry-protocol/issues/79) proposes an explicit `effective_at` and `evidence_as_of` distinction. The existing `arpa-trqp-query-projection-0.1` remains pinned to its declared TRQP 2.0 relationship and does not claim compatibility with the proposed v3 contract. An integration requesting bitemporal semantics requires negotiated capability, an authoritative recording-time cutoff, record-completeness provenance and explicit indeterminate outcomes if evidence is incomplete or translation would lose critical meaning. `evaluation_time` is not a substitute for `evidence_as_of`. No TRQP v3 adapter implementation or conformance claim is implied by ARPA's experimental record-selection evaluator.

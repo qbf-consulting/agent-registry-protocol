@@ -82,6 +82,23 @@
           "digest": {
             "type": "string",
             "minLength": 1
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Authoritative source recording timestamp, not client observation time."
+          },
+          "logical_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "supersedes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
           }
         }
       }
@@ -209,6 +226,40 @@
       "items": {
         "type": "string"
       }
+    },
+    "evidence_as_of": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Optional authoritative recording-time cutoff for explicit bitemporal requests; not evaluation time or client observation."
+    },
+    "history_complete_through": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Attested completeness watermark of the authoritative record history."
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "evidence_as_of"
+        ]
+      },
+      "then": {
+        "required": [
+          "history_complete_through"
+        ],
+        "properties": {
+          "selected_records": {
+            "items": {
+              "required": [
+                "recorded_at",
+                "logical_key"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
 }

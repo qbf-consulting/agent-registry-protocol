@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { assessHistoricalResolution } from "./historical.js";
+import { assessHistoricalResolution, selectBitemporalRecords } from "./historical.js";
 import { readJson, repositoryRoot } from "./repository.js";
 
 interface ManifestVector {
@@ -43,3 +43,13 @@ fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(report, null, 2) + "\n");
 console.log(`TypeScript historical resolution: ${report.vectors.passed}/${report.vectors.total} vectors passed`);
 if (report.vectors.failed > 0) process.exitCode = 1;
+
+const bitemporal = readJson<{ vectors: Array<{ id: string; records: any[]; context: { effective_at: string; evidence_as_of: string; evaluation_time: string; history_complete_through?: string }; expected: { outcome: string; selected_record_ids: string[]; reason_code: string } }> }>("conformance/test-vectors/bitemporal/fixtures.json");
+const bitemporalResults = bitemporal.vectors.map(vector => {
+  const got = selectBitemporalRecords(vector.records, vector.context);
+  return { id: vector.id, passed: got.outcome === vector.expected.outcome
+    && JSON.stringify(got.selected_record_ids) === JSON.stringify(vector.expected.selected_record_ids)
+    && got.reason_codes.includes(vector.expected.reason_code), outcome: got.outcome };
+});
+console.log(`TypeScript bitemporal: ${bitemporalResults.filter(r => r.passed).length}/${bitemporalResults.length} vectors passed`);
+if (bitemporalResults.some(r => !r.passed)) process.exitCode = 1;

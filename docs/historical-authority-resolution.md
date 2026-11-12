@@ -94,3 +94,19 @@ The registry MUST retain a tamper-evident lineage for records and material lifec
 ARPA owns the lifecycle, event, evidence, revocation, enforcement, and historical reconstruction control plane. A TRQP projection may expose selected point-in-time authorization or recognition results, but that projection does not transfer lifecycle authority to TRQP and does not imply TRQP conformance. ARPA implementations SHOULD preserve the distinction between the requested historical time and the time at which the query was evaluated when projecting historical results.
 
 This separation is intentionally aligned with the lifecycle and as-of verification concerns being discussed in ToIP TRQP issue #176 and UN/CEFACT GTR issue #75 without making either external project a normative dependency.
+
+## Optional bitemporal evidence-cutoff profile (experimental)
+
+This repository-local profile is informative pending a governed Candidate amendment. Legacy `requested_time` resolution remains unchanged unless a bitemporal request is explicitly negotiated. This capability does not claim TRQP v3 conformance.
+
+- `requested_time` (the profile's `effective_at`): time at which the assertion is evaluated as effective.
+- `evidence_as_of`: cutoff over assertions **committed by the competent authoritative source**. It is not client observation or event arrival time.
+- `evaluation_time`: when the reconstruction is executed, which can be later than either of the above.
+- `recorded_at`: authoritative recording timestamp of an assertion, bound to provenance and its source/version.
+- `history_complete_through`: independently supportable completeness watermark for the authoritative record through the requested cutoff. The absence of evidence without this assertion is not evidence of absence.
+
+The bitemporal test evaluator selects only records whose `recorded_at <= evidence_as_of`, then evaluates the effective interval at `requested_time`. Corrections supersede prior records **only** through explicit, cutoff-visible `supersedes` references. Conflicting effective records for the same `logical_key` without supersession are indeterminate. A later-recorded retroactive revocation can alter a later reconstruction, but never changes an earlier as-known-at result. A prospective revocation does not project backward.
+
+A request requiring this profile MUST NOT be silently downgraded when a publisher, adapter or evidence source cannot support it. Missing timestamps, insufficient coverage, ambiguous lineage, unavailable authority or contradictory records must remain non-affirmative. The experimental evaluator exercises those constraints but does not independently prove authentic recording time, source competence, log completeness, or federation convergence; deployments must substantiate these claims separately.
+
+See `conformance/test-vectors/bitemporal/fixtures.json`. The independent Python and TypeScript checks are wired into their existing historical-validation commands. The present schema permits optional cutoff fields but the repository has **not** changed the Candidate v0.10.0 normative text or the published IETF -04 revision.

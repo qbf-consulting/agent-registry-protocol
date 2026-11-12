@@ -1,0 +1,247 @@
+{
+  "profile": "arpa-bitemporal-evidence-cutoff-0.1",
+  "status": "experimental",
+  "candidate_baseline": "0.10.0",
+  "vectors": [
+    {
+      "id": "BT-01-before-retroactive-correction",
+      "records": [
+        {
+          "record_id": "grant",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-01T00:00:00Z",
+          "recorded_at": "2026-10-01T00:00:00Z"
+        },
+        {
+          "record_id": "revocation",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-08T00:00:00Z",
+          "recorded_at": "2026-10-15T00:00:00Z",
+          "supersedes": [
+            "grant"
+          ]
+        }
+      ],
+      "context": {
+        "effective_at": "2026-10-10T12:00:00Z",
+        "evidence_as_of": "2026-10-10T13:00:00Z",
+        "evaluation_time": "2026-10-21T00:00:00Z",
+        "history_complete_through": "2026-10-21T00:00:00Z"
+      },
+      "expected": {
+        "outcome": "determinate",
+        "selected_record_ids": [
+          "grant"
+        ],
+        "reason_code": "complete_authoritative_history_at_cutoff"
+      }
+    },
+    {
+      "id": "BT-02-after-retroactive-correction",
+      "records": [
+        {
+          "record_id": "grant",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-01T00:00:00Z",
+          "recorded_at": "2026-10-01T00:00:00Z"
+        },
+        {
+          "record_id": "revocation",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-08T00:00:00Z",
+          "recorded_at": "2026-10-15T00:00:00Z",
+          "supersedes": [
+            "grant"
+          ]
+        }
+      ],
+      "context": {
+        "effective_at": "2026-10-10T12:00:00Z",
+        "evidence_as_of": "2026-10-20T00:00:00Z",
+        "evaluation_time": "2026-10-21T00:00:00Z",
+        "history_complete_through": "2026-10-21T00:00:00Z"
+      },
+      "expected": {
+        "outcome": "determinate",
+        "selected_record_ids": [
+          "revocation"
+        ],
+        "reason_code": "complete_authoritative_history_at_cutoff"
+      }
+    },
+    {
+      "id": "BT-03-later-prospective-event",
+      "records": [
+        {
+          "record_id": "grant",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-01T00:00:00Z",
+          "recorded_at": "2026-10-01T00:00:00Z"
+        },
+        {
+          "record_id": "revocation",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-15T00:00:00Z",
+          "recorded_at": "2026-10-15T00:00:00Z",
+          "supersedes": [
+            "grant"
+          ]
+        }
+      ],
+      "context": {
+        "effective_at": "2026-10-10T12:00:00Z",
+        "evidence_as_of": "2026-10-20T00:00:00Z",
+        "evaluation_time": "2026-10-21T00:00:00Z",
+        "history_complete_through": "2026-10-21T00:00:00Z"
+      },
+      "expected": {
+        "outcome": "determinate",
+        "selected_record_ids": [
+          "grant"
+        ],
+        "reason_code": "complete_authoritative_history_at_cutoff"
+      }
+    },
+    {
+      "id": "BT-04-missing-recording-provenance",
+      "records": [
+        {
+          "record_id": "grant",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-01T00:00:00Z"
+        }
+      ],
+      "context": {
+        "effective_at": "2026-10-10T12:00:00Z",
+        "evidence_as_of": "2026-10-20T00:00:00Z",
+        "evaluation_time": "2026-10-21T00:00:00Z",
+        "history_complete_through": "2026-10-21T00:00:00Z"
+      },
+      "expected": {
+        "outcome": "indeterminate",
+        "selected_record_ids": [],
+        "reason_code": "missing_authoritative_recording_time"
+      }
+    },
+    {
+      "id": "BT-05-incomplete-history",
+      "records": [
+        {
+          "record_id": "grant",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-01T00:00:00Z",
+          "recorded_at": "2026-10-01T00:00:00Z"
+        },
+        {
+          "record_id": "revocation",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-08T00:00:00Z",
+          "recorded_at": "2026-10-15T00:00:00Z",
+          "supersedes": [
+            "grant"
+          ]
+        }
+      ],
+      "context": {
+        "effective_at": "2026-10-10T12:00:00Z",
+        "evidence_as_of": "2026-10-20T00:00:00Z",
+        "evaluation_time": "2026-10-21T00:00:00Z",
+        "history_complete_through": "2026-10-11T00:00:00Z"
+      },
+      "expected": {
+        "outcome": "indeterminate",
+        "selected_record_ids": [],
+        "reason_code": "incomplete_authoritative_record_history"
+      }
+    },
+    {
+      "id": "BT-06-contradictory-claim",
+      "records": [
+        {
+          "record_id": "grant",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-01T00:00:00Z",
+          "recorded_at": "2026-10-01T00:00:00Z"
+        },
+        {
+          "record_id": "revocation",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-08T00:00:00Z",
+          "recorded_at": "2026-10-15T00:00:00Z"
+        }
+      ],
+      "context": {
+        "effective_at": "2026-10-10T12:00:00Z",
+        "evidence_as_of": "2026-10-20T00:00:00Z",
+        "evaluation_time": "2026-10-21T00:00:00Z",
+        "history_complete_through": "2026-10-21T00:00:00Z"
+      },
+      "expected": {
+        "outcome": "indeterminate",
+        "selected_record_ids": [],
+        "reason_code": "contradictory_effective_claims_without_supersession"
+      }
+    },
+    {
+      "id": "BT-07-future-cutoff",
+      "records": [
+        {
+          "record_id": "grant",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-01T00:00:00Z",
+          "recorded_at": "2026-10-01T00:00:00Z"
+        },
+        {
+          "record_id": "revocation",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-08T00:00:00Z",
+          "recorded_at": "2026-10-15T00:00:00Z",
+          "supersedes": [
+            "grant"
+          ]
+        }
+      ],
+      "context": {
+        "effective_at": "2026-10-10T12:00:00Z",
+        "evidence_as_of": "2026-11-01T00:00:00Z",
+        "evaluation_time": "2026-10-21T00:00:00Z",
+        "history_complete_through": "2026-10-21T00:00:00Z"
+      },
+      "expected": {
+        "outcome": "indeterminate",
+        "selected_record_ids": [],
+        "reason_code": "cutoff_or_effective_time_after_evaluation"
+      }
+    },
+    {
+      "id": "BT-08-no-history-assertion",
+      "records": [
+        {
+          "record_id": "grant",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-01T00:00:00Z",
+          "recorded_at": "2026-10-01T00:00:00Z"
+        },
+        {
+          "record_id": "revocation",
+          "logical_key": "delegation:procurement",
+          "effective_from": "2026-10-08T00:00:00Z",
+          "recorded_at": "2026-10-15T00:00:00Z",
+          "supersedes": [
+            "grant"
+          ]
+        }
+      ],
+      "context": {
+        "effective_at": "2026-10-10T12:00:00Z",
+        "evidence_as_of": "2026-10-10T13:00:00Z",
+        "evaluation_time": "2026-10-21T00:00:00Z"
+      },
+      "expected": {
+        "outcome": "indeterminate",
+        "selected_record_ids": [],
+        "reason_code": "incomplete_authoritative_record_history"
+      }
+    }
+  ]
+}
