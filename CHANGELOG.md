@@ -8,6 +8,8 @@ nav_exclude: true
 
 ## Unreleased
 
+- Add an experimental, explicitly requested bitemporal authoritative-evidence cutoff profile for historical agent authority: optional schema fields, provenance and completeness semantics, independent Python/TypeScript negative evaluation vectors, and synchronized historical, TRQP and commitment guidance. Current Candidate v0.10.0 and IETF -04 remain unchanged; no TRQP v3 conformance claim. Tracks #119 and upstream TRQP #79.
+
 - Add an optional modeled operational-reliance composition evaluator, fourteen integrated scenarios and diagrams for #100. The profile does not establish permission, runtime enforcement or external interoperability.
 
 - Prototype an optional non-authoritative dependency declaration and modeled dependency-readiness evaluator for #99; leave normative Relationship Record and authority semantics unchanged.

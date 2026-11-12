@@ -90,3 +90,7 @@ Duplicate controller evidence cannot be counted twice.
 
 The projection remains format-neutral. ARPA does not prescribe the threshold
 cryptosystem, collective-identifier method, or upstream protocol representation.
+
+## Historical commitment examination and evidence cutoffs
+
+The operational decision above remains a relying-policy decision at the time of execution. A subsequent investigation may ask two separate historical questions: what authority was effective at the commitment time, and what the authoritative source had recorded by the relevant evidence cutoff. The optional [bitemporal evidence-cutoff profile](historical-authority-resolution.md) distinguishes `requested_time`/`effective_at`, `evidence_as_of`, and the later reconstruction `evaluation_time`. The profile does not infer lawful reliance, contemporaneous client observation, successful notification, actual enforcement, or the permissibility of a transaction from an as-known-at result.
